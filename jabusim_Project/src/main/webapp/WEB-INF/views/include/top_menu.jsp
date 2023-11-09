@@ -26,13 +26,13 @@ JaBuSim
 		</li>
 		
 		<li class="nav-item active">
-			<a href="#" class="nav-link">
+			<a href="${root }search/main" class="nav-link">
 			자격증 검색
 			</a>
 		</li>
 		
 		<li class="nav-item active">
-			<a href="#" class="nav-link">
+			<a href="${root }schedule/main" class="nav-link">
 			자격증 달력
 			</a>
 		</li>
