@@ -9,26 +9,35 @@
 <title>자격증 달력</title>
 
 <style>
-	
-	
-	.body{
-		width : 100%;
-		height : 1500px;
-		background-color: red;
+	body{
+		width:1113.6px;
+		height:2230px;
 	}
 	
-	
-	
+	.pageContainer{
+		width : 900px;
+		height : 1800px;
+		background-color: red;
+		margin:auto;
+	}
 
 </style>
+	
+	
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
-	<div class="body" align="center">
+	
+	<div class="pageContainer" >
+		<div>
 		
+		
+		</div>
 	</div>
+		
+	
 	<c:import url="/WEB-INF/views/include/buttom_info.jsp"/>
 
 </body>

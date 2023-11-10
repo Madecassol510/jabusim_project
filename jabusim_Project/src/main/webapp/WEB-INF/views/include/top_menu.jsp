@@ -9,6 +9,15 @@ width="30" height="30" />
 JaBuSim
 </a> -->
 
+<style>
+	.navbar{
+	    position: fixed;
+	    width : 100%;
+	    z-index: 1;   
+	}
+</style>
+
+
  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a href="#" class="navbar-brand mb-0 h1">
             <img class="d-inline-block align-top" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg"
