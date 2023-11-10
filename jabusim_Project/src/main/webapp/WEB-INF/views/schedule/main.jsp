@@ -9,9 +9,16 @@
 <title>자격증 달력</title>
 
 <style>
-	.nav > div{
-		border: 1px solid black;
+	
+	
+	.body{
+		width : 100%;
+		height : 1500px;
+		background-color: red;
 	}
+	
+	
+	
 
 </style>
 
@@ -19,18 +26,9 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
-	<nav class="nav">
-		<div align="center" class="div">
-			<div>
-				<div>
-				
-				</div>
-				<div>
-				
-				</div>	
-			</div>
-		</div>
-	</nav>
+	<div class="body" align="center">
+		
+	</div>
 	<c:import url="/WEB-INF/views/include/buttom_info.jsp"/>
 
 </body>

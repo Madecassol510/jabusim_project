@@ -15,12 +15,12 @@ public class ServletAppContext implements WebMvcConfigurer{
 
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
-		// view로 보내질 최종 요청 응답에 관한 환경설정
+		
 		WebMvcConfigurer.super.configureViewResolvers(registry);
 		registry.jsp("/WEB-INF/views/", ".jsp");
 	}
 	
-	//정적 파일의 경로를 매핑(이미지, 영상, 소리)
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		WebMvcConfigurer.super.addResourceHandlers(registry);
