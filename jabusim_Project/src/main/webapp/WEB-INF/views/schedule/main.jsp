@@ -10,17 +10,17 @@
 
 <style>
 	body{
-		width:1113.6px;
-		height:2230px;
+		width:100%;
+		heigth : 1800px;
 	}
 	
 	.pageContainer{
-		width : 900px;
-		height : 1800px;
-		background-color: red;
-		margin:auto;
+		position: relative;
+	    width: 1250px;
+	    height: 1500px;
+	    margin: 30px auto;
+	    background-color: red;
 	}
-
 </style>
 	
 	
@@ -32,7 +32,6 @@
 	
 	<div class="pageContainer" >
 		<div>
-		
 		
 		</div>
 	</div>

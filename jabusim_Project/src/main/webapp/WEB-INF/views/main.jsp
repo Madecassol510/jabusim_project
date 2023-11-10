@@ -11,6 +11,37 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+<style>
+	body{
+		width:100%;
+		heigth : 1700px;
+	}
+	
+	.pageContainer{
+		position: relative;
+	    width: 1250px;
+	    height: 1500px;
+	    margin: 0 auto;
+	   	padding-top: 80px;
+	    background-color: red;
+	}
+	
+	.pageContainer .imageDiv{
+		height : 700px;
+		width:100%;
+		background-color: blue;
+		
+	}
+	
+	.pageContainer .article{
+		height : 700px;
+		width:100%;
+		background-color: green;
+	}
+	
+</style>
+	
+
 </head>
 <body>
 
@@ -95,7 +126,15 @@
  --%>
 
 
-
+	<div class="pageContainer" >
+		<div class="imageDiv">
+			
+		
+		</div>
+		<div class="article">
+		
+		</div>
+	</div>
 
 
 
