@@ -14,29 +14,59 @@
 <style>
 	body{
 		width:100%;
-		heigth : 1700px;
+		heigth : 1200px;
 	}
 	
 	.pageContainer{
 		position: relative;
 	    width: 1250px;
-	    height: 1500px;
+	    min-height: 700px;
 	    margin: 0 auto;
 	   	padding-top: 80px;
 	    background-color: red;
 	}
 	
-	.pageContainer .imageDiv{
-		height : 700px;
+	.pageContainer .first_module{
+		min-height : 600px;
 		width:100%;
 		background-color: blue;
 		
 	}
 	
-	.pageContainer .article{
-		height : 700px;
+	.pageContainer .second_module{
+		min-height : 200px;
 		width:100%;
 		background-color: green;
+	}
+	
+	.schedule{
+		border: 1px solid black;
+		width : 450px;
+		height : 450px;
+		background-color: yellow;
+	}
+	
+	.notice{
+		border: 1px solid black;
+		width : 450px;
+		height : 450px;
+		background-color: gray;
+	}
+	
+	.schedule .hd{
+		display : flex;
+		width : 200px;
+		align: center;
+		margin : 0 auto;
+		justify-content :space-between;
+		height : 40px;
+	}
+	
+	
+	.calendar{
+		width : 100%;
+		height: 100%;
+		background-color: white;
 	}
 	
 </style>
@@ -127,12 +157,32 @@
 
 
 	<div class="pageContainer" >
-		<div class="imageDiv">
+		<div class="first_module">
+			<div class = "schedule">
+				<div class = "hd">
+					<button type="button">이전</button>
+					<h3>2023.11</h3>
+					<button type="button">다음</button>
+				</div>
+				<div class = "calendar">
+				
+				
+				</div>
+			</div>
+			<div class = "notice">
 			
-		
+			</div>
 		</div>
-		<div class="article">
-		
+		<div class="second_module">
+			<div >
+				<div>
+				
+				
+				</div>
+			</div>
+			<div>
+			
+			</div>
 		</div>
 	</div>
 
