@@ -26,6 +26,11 @@
 	    background-color: red;
 	}
 	
+	.pageContainer > div{
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+	
 	.pageContainer .first_module{
 		min-height : 600px;
 		width:100%;
@@ -33,10 +38,13 @@
 		
 	}
 	
-	.pageContainer .second_module{
-		min-height : 200px;
-		width:100%;
-		background-color: green;
+	.pageContainer .first_module .article{
+		margin: 0 auto;
+	}
+	
+	.pageContainer .first_module .article > div{
+		float : left;
+		margin-right: 60px
 	}
 	
 	.schedule{
@@ -44,6 +52,7 @@
 		width : 450px;
 		height : 450px;
 		background-color: yellow;
+		
 	}
 	
 	.notice{
@@ -55,18 +64,36 @@
 	
 	.schedule .hd{
 		display : flex;
-		width : 200px;
+		width : 220px;
 		align: center;
 		margin : 0 auto;
 		justify-content :space-between;
-		height : 40px;
+		height : 10%;
+		
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+		
+	.calendar{
+		width : 100%;
+		height: 90%;
+		background-color: white;
+	}
+	
+	.pageContainer .second_module{
+		min-height : 200px;
+		width:100%;
+		background-color: green;
+	}
+	
+	.pageContainer .second_module .article{
+		display : inline-block
+		margin : 0 auto;
 	}
 	
 	
-	.calendar{
-		width : 100%;
-		height: 100%;
-		background-color: white;
+	.pageContainer .second_module .article .card{
+		marrgin : 0 auto;
 	}
 	
 </style>
@@ -156,39 +183,106 @@
  --%>
 
 
-	<div class="pageContainer" >
+	<div class="pageContainer">
 		<div class="first_module">
-			<div class = "schedule">
-				<div class = "hd">
-					<button type="button">이전</button>
-					<h3>2023.11</h3>
-					<button type="button">다음</button>
+			<div class="article">
+				<div class="schedule">
+					<div class="hd">
+						<button type="button">&lt;</button>
+						<h3>2023.11</h3>
+						<button type="button">&gt;</button>
+					</div>
+					<div class="calendar"></div>
 				</div>
-				<div class = "calendar">
-				
-				
+				<div class="notice">
+					<div>
+						<h3>공지사항</h3>
+
+						<button type="button">더보기</button>
+					</div>
 				</div>
+
 			</div>
-			<div class = "notice">
-			
-			</div>
+
 		</div>
 		<div class="second_module">
-			<div >
+			<div class="article">
 				<div>
-				
-				
+					<h3>오늘의 자격증</h3>
 				</div>
-			</div>
-			<div>
-			
+				
+				<div class="row row-cols-1 row-cols-md-3 g-4">
+					<div class="col">
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<h3>오늘의 자격증</h3>
+				</div>
 			</div>
 		</div>
 	</div>
 
 
 
-<c:import url="/WEB-INF/views/include/buttom_info.jsp"/>
+	<c:import url="/WEB-INF/views/include/buttom_info.jsp"/>
 
  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
