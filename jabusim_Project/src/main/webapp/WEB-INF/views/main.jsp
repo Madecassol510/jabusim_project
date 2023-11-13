@@ -23,18 +23,18 @@
 	    min-height: 700px;
 	    margin: 0 auto;
 	   	padding-top: 80px;
-	    background-color: red;
+	    border: 1px solid red;
 	}
 	
 	.pageContainer > div{
 		padding-top: 50px;
-		padding-bottom: 50px;
+		padding-bottom: 10px;
 	}
 	
 	.pageContainer .module{
 		min-height : 600px;
 		width:100%;
-		background-color: blue;
+		border: 1px solid blue;
 		text-align:center;
 	}
 	
@@ -44,31 +44,27 @@
 		margin: 0 auto;
 	}
 	
-	.pageContainer .module .article > div{
-		float : left;
-		
-	}
 	
 	.schedule{
 		border: 1px solid black;
-		width : 500px;
-		height : 500px;
-		background-color: yellow;
-		margin-right: 60px
+		width : 550px;
+		height : 550px;
+		margin-right: 60px;
+		float: left;
 	}
 	
 	.notice{
 		border: 1px solid black;
-		width : 500px;
-		height : 500px;
-		background-color: gray;
+		width : 550px;
+		height : 550px;
+		float: left;
 	}
 	
 	.schedule .hd{
-		display : flex;
-		width : 220px;
+		display : inline-block;
 		align: center;
-		margin : 0 auto;
+		width : 100%;
+		margin : auto;
 		justify-content :space-between;
 		height : 10%;
 		
@@ -79,10 +75,37 @@
 	.calendar{
 		width : 100%;
 		height: 90%;
-		background-color: white;
+		border: 1px solid black;	
+	}
+
+	ul{
+		padding : 0px;
+		display : inline-block;
 	}
 	
 
+	li{
+		display : inline-block;
+		list-style:none;
+		margin: 10px auto;
+	}
+	
+	.article .hd h3{
+		display : inline-block;
+		width:100px;
+		heigh:100%;
+		
+	}
+	
+	.article .hd button{
+		width:30px;
+		heigh:20px;
+	}
+	
+	.articleBtn{
+		text-align: center;
+	}
+	
 </style>
 	
 
@@ -171,12 +194,18 @@
 
 
 	<div class="pageContainer">
+		<div class="module" style="min-height:150px; padding-top: 10">
+			<form class="d-flex" style="width:650px; height:65px; margin:0 auto; border: 1px solid black;">
+			   <input type="text" class="form-control me-2" style=" outline:none">
+			   <button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>	
 		<div class="module">
 			<div class="article">
 				<div class="schedule">
 					<div class="hd">
 						<button type="button">&lt;</button>
-						<h3>2023.11</h3>
+						<h3 >2023.11</h3>
 						<button type="button">&gt;</button>
 					</div>
 					<div class="calendar"></div>
@@ -194,24 +223,92 @@
 		</div>
 		<div class="module">
 			<div class="article">
-				<div>
-					<h3>오늘의 자격증</h3>
-				</div>
-				<div>
-					<div class="card border-dark mb-3" style="max-width: 18rem;">
-						<div class="card-header">Header</div>
-						<div class="card-body">
-							<h5 class="card-title">Dark card title</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+				<!-- <h3>오늘의 자격증</h3> -->
+				<ul>
+					<li>
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
 						</div>
-					</div>
-				</div>
-
-
-
-				<div>
-					<h3>오늘의 자격증</h3>
+					</li>
+					<li>
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="card border-dark mb-3" style="max-width: 18rem;">
+							<div class="card-header">Header</div>
+							<div class="card-body">
+								<h5 class="card-title">Dark card title</h5>
+								<p class="card-text">Some quick example text to build on the
+									card title and make up the bulk of the card's content.</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="articleBtn">
+					<button type="button">이전</button>
+					<button type="button">다음</button>
 				</div>
 			</div>
 		</div>
