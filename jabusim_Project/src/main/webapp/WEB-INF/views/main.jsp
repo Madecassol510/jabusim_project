@@ -31,34 +31,36 @@
 		padding-bottom: 50px;
 	}
 	
-	.pageContainer .first_module{
+	.pageContainer .module{
 		min-height : 600px;
 		width:100%;
 		background-color: blue;
-		
+		text-align:center;
 	}
 	
-	.pageContainer .first_module .article{
+	.pageContainer .module .article{
+		
+		display : inline-block;
 		margin: 0 auto;
 	}
 	
-	.pageContainer .first_module .article > div{
+	.pageContainer .module .article > div{
 		float : left;
-		margin-right: 60px
+		
 	}
 	
 	.schedule{
 		border: 1px solid black;
-		width : 450px;
-		height : 450px;
+		width : 500px;
+		height : 500px;
 		background-color: yellow;
-		
+		margin-right: 60px
 	}
 	
 	.notice{
 		border: 1px solid black;
-		width : 450px;
-		height : 450px;
+		width : 500px;
+		height : 500px;
 		background-color: gray;
 	}
 	
@@ -80,22 +82,7 @@
 		background-color: white;
 	}
 	
-	.pageContainer .second_module{
-		min-height : 200px;
-		width:100%;
-		background-color: green;
-	}
-	
-	.pageContainer .second_module .article{
-		display : inline-block
-		margin : 0 auto;
-	}
-	
-	
-	.pageContainer .second_module .article .card{
-		marrgin : 0 auto;
-	}
-	
+
 </style>
 	
 
@@ -184,7 +171,7 @@
 
 
 	<div class="pageContainer">
-		<div class="first_module">
+		<div class="module">
 			<div class="article">
 				<div class="schedule">
 					<div class="hd">
@@ -205,74 +192,24 @@
 			</div>
 
 		</div>
-		<div class="second_module">
+		<div class="module">
 			<div class="article">
 				<div>
 					<h3>오늘의 자격증</h3>
 				</div>
-				
-				<div class="row row-cols-1 row-cols-md-3 g-4">
-					<div class="col">
-						<div class="card border-dark mb-3" style="max-width: 18rem;">
-							<div class="card-header">Header</div>
-							<div class="card-body">
-								<h5 class="card-title">Dark card title</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card border-dark mb-3" style="max-width: 18rem;">
-							<div class="card-header">Header</div>
-							<div class="card-body">
-								<h5 class="card-title">Dark card title</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card border-dark mb-3" style="max-width: 18rem;">
-							<div class="card-header">Header</div>
-							<div class="card-body">
-								<h5 class="card-title">Dark card title</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card border-dark mb-3" style="max-width: 18rem;">
-							<div class="card-header">Header</div>
-							<div class="card-body">
-								<h5 class="card-title">Dark card title</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card border-dark mb-3" style="max-width: 18rem;">
-							<div class="card-header">Header</div>
-							<div class="card-body">
-								<h5 class="card-title">Dark card title</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card border-dark mb-3" style="max-width: 18rem;">
-							<div class="card-header">Header</div>
-							<div class="card-body">
-								<h5 class="card-title">Dark card title</h5>
-								<p class="card-text">Some quick example text to build on the
-									card title and make up the bulk of the card's content.</p>
-							</div>
+				<div>
+					<div class="card border-dark mb-3" style="max-width: 18rem;">
+						<div class="card-header">Header</div>
+						<div class="card-body">
+							<h5 class="card-title">Dark card title</h5>
+							<p class="card-text">Some quick example text to build on the
+								card title and make up the bulk of the card's content.</p>
 						</div>
 					</div>
 				</div>
+
+
+
 				<div>
 					<h3>오늘의 자격증</h3>
 				</div>
