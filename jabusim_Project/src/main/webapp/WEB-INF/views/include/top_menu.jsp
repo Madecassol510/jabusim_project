@@ -39,7 +39,7 @@ JaBuSim
 <div class="collapse navbar-collapse" id="navbarNav">
    <ul class="navbar-nav">
       <li class="nav-item active">
-         <a href="#" class="nav-link">
+         <a href="${root }info/main" class="nav-link">
          자격증 정보
          </a>
       </li>
@@ -80,10 +80,10 @@ JaBuSim
             <a href="${root }user/join" class="nav-link">회원가입</a>
          </li>
          <li class="nav-item">
-            <a href="${root }user/modify" class="nav-link">정보수정</a>
+            <a href="${root }user/logout" class="nav-link">로그아웃</a>
          </li>
          <li class="nav-item">
-            <a href="${root }user/logout" class="nav-link">로그아웃</a>
+            <a href="${root }mypage/my_certificate" class="nav-link">마이페이지</a>
          </li>
       </ul>
 

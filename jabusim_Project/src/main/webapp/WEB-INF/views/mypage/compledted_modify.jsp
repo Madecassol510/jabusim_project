@@ -10,7 +10,7 @@
 
 
 <script>
-alert("로그아웃 되었습니다.")
-location.href='${root}main'
+alert("개인정보 수정완료")
+location.href='${root}mypage/modify_info'
 
 </script>
