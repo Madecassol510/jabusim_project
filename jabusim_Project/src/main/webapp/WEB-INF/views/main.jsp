@@ -11,6 +11,29 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+<script>
+	let nowDay = new Date();
+	let nowYear = nowDay.getFullYear(); // 년도  
+	let nowMonth = nowDay.getMonth() + 1; // 월   0~11
+	let nowDate = nowDay.getDate(); // 일   0~31
+	let nowWeek = nowDay.getDay(); // 요일   0(일)~6(토)
+	
+	//Date(양)
+	
+	//이번달 1일
+	let firstDate = new Date(nowYear, nowMonth, 1);
+	
+	//이번달 마지막날
+	let lastDate = new Date(nowYear, nowMonth+1, 0);
+	
+
+</script>
+
+
+
+
+
+
 <style>
 	body{
 		width:100%;
@@ -207,6 +230,22 @@
 						<button type="button">&lt;</button>
 						<h3 >2023.11</h3>
 						<button type="button">&gt;</button>
+						<table style="width:100%;">
+							<thead>
+								<tr style="border-bottom: 1px solid red;">
+									<td>일</td>
+									<td>월</td>
+									<td>화</td>
+									<td>수</td>
+									<td>목</td>
+									<td>금</td>
+									<td>토</td>
+								</tr>						
+							</thead>
+							<tbody>
+							
+							</tbody>		
+						</table>
 					</div>
 					<div class="calendar"></div>
 				</div>
