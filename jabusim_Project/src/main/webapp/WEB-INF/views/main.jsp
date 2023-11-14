@@ -18,7 +18,7 @@
 	let nowDate = nowDay.getDate(); // 일   0~31
 	let nowWeek = nowDay.getDay(); // 요일   0(일)~6(토)
 	
-	//Date(양)
+	//Date()
 	
 	//이번달 1일
 	let firstDate = new Date(nowYear, nowMonth, 1);
@@ -35,9 +35,21 @@
 
 
 <style>
+
+	/* ==========================페이지 공용================================== */
+
 	body{
 		width:100%;
-		heigth : 1200px;
+		min-height : 1200px;
+	}
+	
+	ul{
+		list-style:none;
+		padding : 5px;
+	}
+	
+	li{
+	
 	}
 	
 	.pageContainer{
@@ -48,84 +60,143 @@
 	   	padding-top: 80px;
 	    border: 1px solid red;
 	}
-	
-	.pageContainer > div{
-		padding-top: 50px;
-		padding-bottom: 10px;
-	}
-	
-	.pageContainer .module{
+	.module{
 		min-height : 600px;
 		width:100%;
 		border: 1px solid blue;
 		text-align:center;
+		padding-top: 50px;
+		padding-bottom: 50px;
 	}
 	
-	.pageContainer .module .article{
-		
+	.article{	
 		display : inline-block;
 		margin: 0 auto;
+		
 	}
 	
+	/* =========================================================================== */
 	
-	.schedule{
-		border: 1px solid black;
-		width : 550px;
-		height : 550px;
-		margin-right: 60px;
+	/*top_module*/
+	
+	#top_module .article{
+		width : 94%;
+		height : 650px;
+		
+	}
+	
+	#top_module .left_div{
+		border : 1px solid red;
+		display:inline-block;
+		width : 700px;
+		height : 100%;
 		float: left;
 	}
 	
-	.notice{
-		border: 1px solid black;
-		width : 550px;
-		height : 550px;
-		float: left;
+	#top_module .right_div{
+		display:inline-block;
+		border : 1px solid red;
+		width : 450px;
+		height : 100%;
+		float: right;
+		text-align: center
 	}
 	
-	.schedule .hd{
+	
+	/* 자겨증 캐러셀 */
+	#top_module .left_div{
+		
+		
+	}
+	
+	
+	/* 달력 */
+	
+	#top_module .schedule{
+		border: 1px solid black;
+		width : 100%;
+		height : 450px;
+		/* margin-right: 60px; */
+	}
+		
+	#top_module .schedule .hd{
 		display : inline-block;
 		align: center;
 		width : 100%;
 		margin : auto;
 		justify-content :space-between;
 		height : 10%;
-		
 		padding-top: 5px;
 		padding-bottom: 5px;
 	}
 		
-	.calendar{
+	#top_module .schedule .calendar{
 		width : 100%;
 		height: 90%;
 		border: 1px solid black;	
 	}
 
-	ul{
-		padding : 0px;
-		display : inline-block;
-	}
 	
-
-	li{
-		display : inline-block;
-		list-style:none;
-		margin: 10px auto;
-	}
 	
-	.article .hd h3{
+	#top_module .schedule .hd span{
 		display : inline-block;
 		width:100px;
 		heigh:100%;
 		
 	}
 	
-	.article .hd button{
+	#top_module .schedule .hd button{
 		width:30px;
 		heigh:20px;
 	}
 	
-	.articleBtn{
+	
+	/*공지사항*/
+	#top_module .notice{
+		border: 1px solid black;
+		width : 100%;
+		height : 180px;
+		margin-top: 20px;
+		padding-left: 5%;
+		padding-right: 5%;
+	}
+	
+	#top_module .notice .hd{
+		display:inline-block;
+		width:100%;
+		
+		border-bottom: 1px solid black;
+	}
+	
+	#top_module .notice_name{
+		float: left;
+		margin : 5px;
+		font-size: 20px;
+	}
+	
+	#top_module .notice_contents{
+		
+	}
+	
+	/* =========================================================================== */
+	
+	/* bottom_module */
+	
+	/*자격증 리스트*/
+	#bottom_module .licenseCardList{
+		padding : 0px;
+		display : inline-block;
+	}
+	
+
+	#bottom_module .licenseCard{
+		display : inline-block;
+		list-style:none;
+		margin: 10px auto;
+	}
+	
+	
+	#bottom_module .articleBtn{
 		text-align: center;
 	}
 	
@@ -138,10 +209,7 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
-
-
-
-<%-- 
+		<%-- 
 <div class="container text-center">
   <div class="row">
     <div class="col-md-4">
@@ -215,56 +283,95 @@
 </div>
  --%>
 
+		<!-- 
+<form class="d-flex" style="width:650px; height:65px; margin:0 auto; border: 1px solid black;">
+	<input type="text" class="form-control me-2" style=" outline:none">
+	<button type="submit" class="btn btn-primary">Search</button>
+</form> 
+			
+			-->
+
+
 
 	<div class="pageContainer">
-		<div class="module" style="min-height:150px; padding-top: 10">
-			<form class="d-flex" style="width:650px; height:65px; margin:0 auto; border: 1px solid black;">
-			   <input type="text" class="form-control me-2" style=" outline:none">
-			   <button type="submit" class="btn btn-primary">Search</button>
-			</form>
-		</div>	
-		<div class="module">
+		<div class="module" id="top_module">
 			<div class="article">
-				<div class="schedule">
-					<div class="hd">
-						<button type="button">&lt;</button>
-						<h3 >2023.11</h3>
-						<button type="button">&gt;</button>
-						<table style="width:100%;">
-							<thead>
-								<tr style="border-bottom: 1px solid red;">
-									<td>일</td>
-									<td>월</td>
-									<td>화</td>
-									<td>수</td>
-									<td>목</td>
-									<td>금</td>
-									<td>토</td>
-								</tr>						
-							</thead>
-							<tbody>
-							
-							</tbody>		
-						</table>
-					</div>
-					<div class="calendar"></div>
-				</div>
-				<div class="notice">
-					<div>
-						<h3>공지사항</h3>
+				<div class="left_div">
+					left_div
+				
+				
+				
+				</div>		
+				<div class="right_div">
+					<div class="schedule">
+						<div class="hd">
+							<button type="button">&lt;</button>
+							<span>2023.11</span>
+							<button type="button">&gt;</button>
+						</div>
+						<div class="calendar">
+							<table style="width: 100%;">
+								<thead>
+									<tr style="border-bottom: 1px solid red;">
+										<td>일</td>
+										<td>월</td>
+										<td>화</td>
+										<td>수</td>
+										<td>목</td>
+										<td>금</td>
+										<td>토</td>
+									</tr>
+								</thead>
+								<tbody>
 
-						<button type="button">더보기</button>
+								</tbody>
+							</table>		
+						</div>
 					</div>
-				</div>
+					<div class="notice">
+						<div class="hd">
+							<span class="notice_name">공지사항</span>
+							<span><a href="#">더보기 &gt;</a></span>
+						</div>
+						<div class="noticeList">
+							<ul> 
+								<li>
+									<a href="#">
+										<span>2023-04-26</span>
+										<span>'자넷', '대한민국 브랜드파워 1위' IT 에</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span>2023-04-26</span>
+										<span>'자넷', '대한민국 브랜드파워 1위' IT 에</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span>2023-04-26</span>
+										<span>'자넷', '대한민국 브랜드파워 1위' IT 에</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span>2023-04-26</span>
+										<span>'자넷', '대한민국 브랜드파워 1위' IT 에</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 
+				</div>
 			</div>
 
 		</div>
-		<div class="module">
+		<div class="module" id="bottom_module">
 			<div class="article">
 				<!-- <h3>오늘의 자격증</h3> -->
-				<ul>
-					<li>
+				<ul class="licenseCardList">
+					<li class="licenseCard">
 						<div class="card border-dark mb-3" style="max-width: 18rem;">
 							<div class="card-header">Header</div>
 							<div class="card-body">
@@ -274,7 +381,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
+					<li class="licenseCardList">
 						<div class="card border-dark mb-3" style="max-width: 18rem;">
 							<div class="card-header">Header</div>
 							<div class="card-body">
@@ -284,7 +391,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
+					<li class="licenseCardList">
 						<div class="card border-dark mb-3" style="max-width: 18rem;">
 							<div class="card-header">Header</div>
 							<div class="card-body">
@@ -294,7 +401,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
+					<li class="licenseCardList">
 						<div class="card border-dark mb-3" style="max-width: 18rem;">
 							<div class="card-header">Header</div>
 							<div class="card-body">
@@ -304,7 +411,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
+					<li class="licenseCardList">
 						<div class="card border-dark mb-3" style="max-width: 18rem;">
 							<div class="card-header">Header</div>
 							<div class="card-body">
@@ -314,7 +421,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
+					<li class="licenseCardList">
 						<div class="card border-dark mb-3" style="max-width: 18rem;">
 							<div class="card-header">Header</div>
 							<div class="card-body">
@@ -324,7 +431,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
+					<li class="licenseCardList">
 						<div class="card border-dark mb-3" style="max-width: 18rem;">
 							<div class="card-header">Header</div>
 							<div class="card-body">
@@ -334,7 +441,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
+					<li class="licenseCardList">
 						<div class="card border-dark mb-3" style="max-width: 18rem;">
 							<div class="card-header">Header</div>
 							<div class="card-body">
@@ -355,10 +462,15 @@
 
 
 
-	<c:import url="/WEB-INF/views/include/buttom_info.jsp"/>
+	<c:import url="/WEB-INF/views/include/buttom_info.jsp" />
 
- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-   
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+		integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+		crossorigin="anonymous"></script>
 </body>
 </html>
