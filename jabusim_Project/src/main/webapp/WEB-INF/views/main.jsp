@@ -128,6 +128,7 @@
 		height : 10%;
 		padding-top: 5px;
 		padding-bottom: 5px;
+		
 	}
 		
 	#top_module .schedule .calendar{
@@ -159,24 +160,48 @@
 		margin-top: 20px;
 		padding-left: 5%;
 		padding-right: 5%;
+		display: inline-block;
 	}
 	
 	#top_module .notice .hd{
-		display:inline-block;
 		width:100%;
-		
+		height: 23%;
 		border-bottom: 1px solid black;
 	}
 	
-	#top_module .notice_name{
+	#top_module .hd .notice_name{
 		float: left;
-		margin : 5px;
+		margin : 7px 5px 3px  5px;
 		font-size: 20px;
-	}
-	
-	#top_module .notice_contents{
 		
 	}
+	
+	#top_module .hd .notice_showMore{	
+		float: right;
+    	margin-top: 12px;
+	}
+	
+	#top_module .noticeList{
+		width : 100%;
+		height: 77%;
+	}
+	
+	#top_module .noticeList ul{
+		height:100%;
+		padding : 0;
+		margin: 0;
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	
+	#top_module .noticeList li{
+		height:25%;
+		text-align: left;
+		padding-left: 5px;
+	
+		
+	}
+	
 	
 	/* =========================================================================== */
 	
@@ -297,11 +322,34 @@
 		<div class="module" id="top_module">
 			<div class="article">
 				<div class="left_div">
-					left_div
-				
-				
-				
-				</div>		
+					<div id="carouselExampleInterval" class="carousel slide"
+						data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active" data-bs-interval="10000">
+								<img src="${root }image/icon-spring-framework.svg" class="d-block w-100" alt="...">
+							</div>
+							<div class="carousel-item" data-bs-interval="2000">
+								<img src="${root }image/icon-spring-framework.svg" class="d-block w-100" alt="...">
+							</div>
+							<div class="carousel-item">
+								<img src="${root }image/icon-spring-framework.svg" class="d-block w-100" alt="...">
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button"
+							data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button"
+							data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+
+
+
+				</div>
 				<div class="right_div">
 					<div class="schedule">
 						<div class="hd">
@@ -325,44 +373,31 @@
 								<tbody>
 
 								</tbody>
-							</table>		
+							</table>
 						</div>
 					</div>
 					<div class="notice">
 						<div class="hd">
-							<span class="notice_name">공지사항</span>
-							<span><a href="#">더보기 &gt;</a></span>
+							<span class="notice_name">공지사항</span> <span
+								class="notice_showMore"><a href="#">더보기 &gt;</a></span>
 						</div>
 						<div class="noticeList">
-							<ul> 
-								<li>
-									<a href="#">
-										<span>2023-04-26</span>
-										<span>'자넷', '대한민국 브랜드파워 1위' IT 에</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span>2023-04-26</span>
-										<span>'자넷', '대한민국 브랜드파워 1위' IT 에</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span>2023-04-26</span>
-										<span>'자넷', '대한민국 브랜드파워 1위' IT 에</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<span>2023-04-26</span>
-										<span>'자넷', '대한민국 브랜드파워 1위' IT 에</span>
-									</a>
-								</li>
+							<ul>
+								<li><a href="#"> <span>2023-04-26</span> <span>'자넷',
+											'대한민국 브랜드파워 1위' IT 에</span>
+								</a></li>
+								<li><a href="#"> <span>2023-04-26</span> <span>'자넷',
+											'대한민국 브랜드파워 1위' IT 에</span>
+								</a></li>
+								<li><a href="#"> <span>2023-04-26</span> <span>'자넷',
+											'대한민국 브랜드파워 1위' IT 에</span>
+								</a></li>
+								<li><a href="#"> <span>2023-04-26</span> <span>'자넷',
+											'대한민국 브랜드파워 1위' IT 에</span>
+								</a></li>
 							</ul>
 						</div>
 					</div>
-
 				</div>
 			</div>
 
