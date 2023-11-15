@@ -104,11 +104,26 @@
 	
 	
 	/* 자겨증 캐러셀 */
-	#top_module .left_div{
-		
-		
+	#top_module .carousel{
+		margin : 10%;
+		width:80%;
+		height:80%;
 	}
 	
+	#top_module .carousel .carousel-inner {
+		width:100%;
+		height:100%;
+	}
+	
+	#top_module .carousel .carousel-inner div{
+		width:100%;
+		height:100%;
+	}
+	
+	#top_module .carousel .carousel-inner img{
+		width:100%;
+		height:100%;
+	}
 	
 	/* 달력 */
 	
@@ -325,14 +340,14 @@
 					<div id="carouselExampleInterval" class="carousel slide"
 						data-bs-ride="carousel">
 						<div class="carousel-inner">
-							<div class="carousel-item active" data-bs-interval="10000">
-								<img src="${root }image/icon-spring-framework.svg" class="d-block w-100" alt="...">
+							<div class="carousel-item active" data-bs-interval="5000">
+								<img src="${root }image/icon-spring-framework.svg" />
 							</div>
-							<div class="carousel-item" data-bs-interval="2000">
-								<img src="${root }image/icon-spring-framework.svg" class="d-block w-100" alt="...">
+							<div class="carousel-item" data-bs-interval="5000">
+								<img src="${root }image/icon-spring-framework.svg" />
 							</div>
-							<div class="carousel-item">
-								<img src="${root }image/icon-spring-framework.svg" class="d-block w-100" alt="...">
+							<div class="carousel-item" data-bs-interval="5000">
+								<img src="${root }image/icon-spring-framework.svg" />
 							</div>
 						</div>
 						<button class="carousel-control-prev" type="button"
@@ -346,9 +361,6 @@
 							<span class="visually-hidden">Next</span>
 						</button>
 					</div>
-
-
-
 				</div>
 				<div class="right_div">
 					<div class="schedule">
