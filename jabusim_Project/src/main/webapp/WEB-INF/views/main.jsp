@@ -11,23 +11,7 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-<script>
-	let nowDay = new Date();
-	let nowYear = nowDay.getFullYear(); // 년도  
-	let nowMonth = nowDay.getMonth() + 1; // 월   0~11
-	let nowDate = nowDay.getDate(); // 일   0~31
-	let nowWeek = nowDay.getDay(); // 요일   0(일)~6(토)
-	
-	//Date()
-	
-	//이번달 1일
-	let firstDate = new Date(nowYear, nowMonth, 1);
-	
-	//이번달 마지막날
-	let lastDate = new Date(nowYear, nowMonth+1, 0);
-	
 
-</script>
 
 
 
@@ -105,9 +89,9 @@
 	
 	/* 자겨증 캐러셀 */
 	#top_module .carousel{
-		margin : 10%;
-		width:80%;
-		height:80%;
+		
+		width:100%;
+		height:100%;
 	}
 	
 	#top_module .carousel .carousel-inner {
@@ -246,6 +230,61 @@
 </head>
 <body>
 
+<script>
+	var nowDay;
+	var nowYear; // 년도  
+	var nowMonth; // 월   0~11
+	var nowDate; // 일   0~31
+	var nowWeek; // 요일   0(일)~6(토)
+	
+	//이번달 1일
+	var firstDate;
+	
+	//이번달 마지막날
+	var lastDate;
+	
+	
+	window.onload = function(){
+		nowDate = new Date();
+		makeCalendar();
+	}
+	
+	function makeCalendar(){
+		
+		nowDay = nowDate.getDate();     //일 0~31
+		nowWeek = nowDate.getDay();		//요일
+		nowMonth = nowDate.getMonth();	//월 0~11
+		nowYear = nowDate.getFullYear();	// 년도
+		
+		firstDate = new Date(nowYear, nowMonth, 1);   //이번달 첫번쨰 날 date 정보 가져오기
+		lastDate = new Date(nowYear, nowMonth+1, 0);  //이번달 마지막 날 date 정보 가져오기
+ 		
+		
+		var calendar = document.querySelector("tbody");  //가져와서 쓸 html 변수 만들기
+		calendar.innerHTML = "";
+		
+		for(var day = firstDate.getDate(); day<= lastDate.getDate(); day++){
+			var cell = document.createElement("td");		// tobody 안에 추가할 요소 변수 만들기
+			cell.classList.add("day");
+			cell.textContent = day;
+			calendar.appendChild(cell);
+		}
+	}	
+	
+	
+	function preCalendar(){
+		nowDate = new Date(nowYear, nowMonth-1, nowDay);
+		makeCalendar();
+	}
+	
+	function proCalendar(){
+		nowDate = new Date(nowYear, nowMonth+1, nowDay);
+		makeCalendar();
+	}
+	
+
+</script>
+
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
@@ -365,9 +404,9 @@
 				<div class="right_div">
 					<div class="schedule">
 						<div class="hd">
-							<button type="button">&lt;</button>
+							<button type="button" onClick="preCalendar();">&lt;</button>
 							<span>2023.11</span>
-							<button type="button">&gt;</button>
+							<button type="button" onClick="proCalendar();">&gt;</button>
 						</div>
 						<div class="calendar">
 							<table style="width: 100%;">
