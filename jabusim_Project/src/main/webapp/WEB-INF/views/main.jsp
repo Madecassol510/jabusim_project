@@ -135,7 +135,8 @@
 		height: 90%;
 		border: 1px solid black;	
 	}
-
+	
+	
 	
 	
 	#top_module .schedule .hd span{
@@ -150,6 +151,16 @@
 		heigh:20px;
 	}
 	
+	#top_module .calendar .cbody{
+		display:grid;
+		grid-template-columns:repeat(7, 1fr);
+		grid-template-rows : repeat(6, 1fr);
+	}
+	
+	
+	#top_module .calendar .date{	
+		border: 1px solid red; 
+	}
 	
 	/*공지사항*/
 	#top_module .notice{
@@ -237,12 +248,14 @@
 	var nowDate; // 일   0~31
 	var nowWeek; // 요일   0(일)~6(토)
 	
-	//이번달 1일
-	var firstDate;
 	
-	//이번달 마지막날
-	var lastDate;
+	var firstDate; //이번달 1일	
+	var lastDate; //이번달 마지막날
 	
+	var preDate;
+	var proDate;
+	
+	var cell;
 	
 	window.onload = function(){
 		nowDate = new Date();
@@ -251,6 +264,8 @@
 	
 	function makeCalendar(){
 		
+		var dayNum = 0;
+		
 		nowDay = nowDate.getDate();     //일 0~31
 		nowWeek = nowDate.getDay();		//요일
 		nowMonth = nowDate.getMonth();	//월 0~11
@@ -258,17 +273,42 @@
 		
 		firstDate = new Date(nowYear, nowMonth, 1);   //이번달 첫번쨰 날 date 정보 가져오기
 		lastDate = new Date(nowYear, nowMonth+1, 0);  //이번달 마지막 날 date 정보 가져오기
- 		
 		
-		var calendar = document.querySelector("tbody");  //가져와서 쓸 html 변수 만들기
+		preDate = new Date(nowYear, nowMonth, -(firstDate.getDate())); 	// 이전달 첫번째 날
+		preLastMonth = new Date(nowYear, nowMonth, 0);
+		
+		proDate = new Date(nowYear, nowMonth+1, 1); // 달력 다음달 첫번쨰 날
+		
+		var calendar = document.querySelector(".cbody");  //가져와서 쓸 html 변수 만들기
 		calendar.innerHTML = "";
 		
-		for(var day = firstDate.getDate(); day<= lastDate.getDate(); day++){
-			var cell = document.createElement("td");		// tobody 안에 추가할 요소 변수 만들기
-			cell.classList.add("day");
-			cell.textContent = day;
+	/* 	
+		for(var date = preDate.getDate(); date<new Date(nowYear, nowMonth, 0); date++){
+			cell = document.createElement("div");		// tobody 안에 추가할 요소 변수 만들기
+			cell.classList.add("date");
+			cell.textContent = date;
+			calendar.appendChild(cell);
+		} */
+		
+		for()
+		
+		
+		for(var date = firstDate.getDate(); date<= lastDate.getDate(); date++){
+			cell = document.createElement("div");
+			cell.classList.add("date");
+			cell.textContent = date;
+			calendar.appendChild(cell);
+			
+			dayNum++;
+		} 
+		
+		for(var date = 1; date<=(42-dayNum); date++){
+			cell = document.createElement("div");
+			cell.classList.add("date");
+			cell.textContent = date;
 			calendar.appendChild(cell);
 		}
+		
 	}	
 	
 	
@@ -288,87 +328,9 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
-		<%-- 
-<div class="container text-center">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card" >
-  <img src="${root }image/image1.jpg" class="card-img-top" alt="이미지 1">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-    </div>
-    
-    
-    <div class="col-md-4">      
-<div class="card" >
-  <img src="${root }image/image1.jpg" class="card-img-top" alt="이미지 1">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-    </div>
-    
-    <div class="col-md-4">    
-     <div class="card" >
-  <img src="${root }image/image1.jpg" class="card-img-top" alt="이미지 1">
-  <div class="card-body">
-    <h5 class="card-title"></h5>
-    <p class="card-text"></p>
-    <a href="#" class="btn btn-primary">접수하기</a>
-  </div>
-</div>
+	
 
-    </div>
-  </div>
-</div>
-
-
-<!-- ================================== -->
-
-<div class="container text-center">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="card" >
-  <img src="${root }image/image1.jpg" class="card-img-top" alt="이미지 1">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-    </div>
-    
-    
-    <div class="col-md-6">      
-<div class="card" >
-  <img src="${root }image/image1.jpg" class="card-img-top" alt="이미지 1">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
-    </div>
-    
-    
-
-  </div>
-</div>
- --%>
-
-		<!-- 
-<form class="d-flex" style="width:650px; height:65px; margin:0 auto; border: 1px solid black;">
-	<input type="text" class="form-control me-2" style=" outline:none">
-	<button type="submit" class="btn btn-primary">Search</button>
-</form> 
-			
-			-->
+		
 
 
 
@@ -409,22 +371,18 @@
 							<button type="button" onClick="proCalendar();">&gt;</button>
 						</div>
 						<div class="calendar">
-							<table style="width: 100%;">
-								<thead>
-									<tr style="border-bottom: 1px solid red;">
-										<td>일</td>
-										<td>월</td>
-										<td>화</td>
-										<td>수</td>
-										<td>목</td>
-										<td>금</td>
-										<td>토</td>
-									</tr>
-								</thead>
-								<tbody>
-
-								</tbody>
-							</table>
+							<div class="cHead" style="border-bottom: 1px solid red; width:100%; height:15%;">
+								<span>일</span>
+								<span>월</span>
+								<span>화</span>
+								<span>수</span>
+								<span>목</span>
+								<span>금</span>
+								<span>토</span>
+							</div>
+							<div class="cbody" style="width: 100%; height:85%">
+								
+							</div>
 						</div>
 					</div>
 					<div class="notice">
