@@ -124,8 +124,8 @@
 		width : 100%;
 		margin : auto;
 		justify-content :space-between;
-		height : 10%;
-		padding-top: 5px;
+		height : 15%;
+		padding-top: 20px;
 		padding-bottom: 5px;
 		
 	}
@@ -149,6 +149,19 @@
 	#top_module .schedule .hd button{
 		width:30px;
 		heigh:20px;
+	}
+	
+	#top_module .calendar .chead{
+		display:grid;
+		grid-template-columns:repeat(7, 1fr);
+		border-bottom: 1px solid red; 
+		width:100%; 
+		height:10%;
+	
+	}
+	
+	#top_module .calendar .chead span{
+		padding-top: 7px;
 	}
 	
 	#top_module .calendar .cbody{
@@ -280,7 +293,7 @@
 		proDate = new Date(nowYear, nowMonth+1, 1); // 달력 다음달 첫번쨰 날
 		
 		
-		document.getElementById("calendarDate").innerText = "${nowYear}.${nowMonth}";
+		document.getElementById("calendarDate").textContent = nowYear + "." + (nowMonth+1);
 		
 		var calendar = document.querySelector(".cbody");  //가져와서 쓸 html 변수 만들기
 		calendar.innerHTML = "";
@@ -374,7 +387,7 @@
 							<button type="button" onClick="proCalendar();">&gt;</button>
 						</div>
 						<div class="calendar">
-							<div class="cHead" style="border-bottom: 1px solid red; width:100%; height:15%;">
+							<div class="chead">
 								<span>일</span>
 								<span>월</span>
 								<span>화</span>
