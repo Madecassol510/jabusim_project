@@ -13,11 +13,6 @@
 
 
 
-
-
-
-
-
 <style>
 
 	/* ==========================페이지 공용================================== */
@@ -61,52 +56,31 @@
 	
 	/* =========================================================================== */
 	
+	
 	/*top_module*/
 	
 	#top_module .article{
 		width : 94%;
-		height : 600px;
+		min-height : 600px;
+		display: inline-block;
 		
 	}
 	
 	#top_module .left_div{
 		border : 1px solid red;
 		display:inline-block;
-		width : 650px;
-		height : 100%;
+		width : 600px;
+		height : 600px;
 		float: left;
 	}
 	
 	#top_module .right_div{
 		display:inline-block;
 		border : 1px solid red;
-		width : 450px;
+		width : 530px;
 		height : 100%;
 		float: right;
 		text-align: center
-	}
-	
-	
-	/* 자겨증 캐러셀 */
-	#top_module .carousel{
-		
-		width:100%;
-		height:100%;
-	}
-	
-	#top_module .carousel .carousel-inner {
-		width:100%;
-		height:100%;
-	}
-	
-	#top_module .carousel .carousel-inner div{
-		width:100%;
-		height:100%;
-	}
-	
-	#top_module .carousel .carousel-inner img{
-		width:100%;
-		height:100%;
 	}
 	
 	/* 달력 */
@@ -177,18 +151,16 @@
 		border: 1px solid red;
 	}
 	
+	
+	
+	/* =========================================================================== */
 	/*스케줄리스트*/
 	#top_module .scheduleList{
 		border: 1px solid black;
 		width : 100%;
 		min-height : 180px;
-		padding-left: 5%;
-		padding-right: 5%;
 		display: inline-block;
 	}
-	
-	/* =========================================================================== */
-	
 	
 	
 	
@@ -288,12 +260,6 @@
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
-	
-	
-		
-
-
-
 	<div class="pageContainer">
 		<div class="module" id="top_module">
 			<div class="article">
@@ -322,7 +288,59 @@
 				</div>
 				<div class="right_div">			
 					<div class="scheduleList">
-						
+						<h3>날짜별 자격증일정</h3>
+						<div>
+							원서접수/ 시험일/ 합격자발표일
+						</div>
+						<div class="scheduleModule">
+							<div class="scheduleDate">
+								2023-07-01
+							</div>
+							<div class="scheduleLicense" style="width:100%; height:120px; border:1px solid green;">	
+							</div>
+						</div>
+						<div class="scheduleModule">
+							<div class="scheduleDate">
+								2023-07-01
+							</div>
+							<div class="scheduleLicense" style="width:100%; height:120px; border:1px solid green;">	
+							</div>
+						</div>
+						<div class="scheduleModule">
+							<div class="scheduleDate">
+								2023-07-01
+							</div>
+							<div class="scheduleLicense" style="width:100%; height:120px; border:1px solid green;">	
+							</div>
+						</div>
+						<div class="scheduleModule">
+							<div class="scheduleDate">
+								2023-07-01
+							</div>
+							<div class="scheduleLicense" style="width:100%; height:120px; border:1px solid green;">	
+							</div>
+							<div class="scheduleModule">
+							<div class="scheduleDate">
+								2023-07-01
+							</div>
+							<div class="scheduleLicense" style="width:100%; height:120px; border:1px solid green;">	
+							</div>
+						</div>
+						<div class="scheduleModule">
+							<div class="scheduleDate">
+								2023-07-01
+							</div>
+							<div class="scheduleLicense" style="width:100%; height:120px; border:1px solid green;">	
+							</div>
+						</div>
+						<div class="scheduleModule">
+							<div class="scheduleDate">
+								2023-07-01
+							</div>
+							<div class="scheduleLicense" style="width:100%; height:120px; border:1px solid green;">	
+							</div>
+						</div>
+						</div>
 					</div>
 				</div>
 			</div>
