@@ -159,7 +159,7 @@
 	
 	
 	#top_module .calendar .date{	
-		border: 1px solid red; 
+		border: 1px solid red;
 	}
 	
 	/*공지사항*/
@@ -274,23 +274,27 @@
 		firstDate = new Date(nowYear, nowMonth, 1);   //이번달 첫번쨰 날 date 정보 가져오기
 		lastDate = new Date(nowYear, nowMonth+1, 0);  //이번달 마지막 날 date 정보 가져오기
 		
-		preDate = new Date(nowYear, nowMonth, -(firstDate.getDate())); 	// 이전달 첫번째 날
-		preLastMonth = new Date(nowYear, nowMonth, 0);
+		preDate = new Date(nowYear, nowMonth, -(firstDate.getDay())); 	// 이전달 첫번째 날
+		preLastMonth = new Date(nowYear, nowMonth, 0); //이전달 마지막 날
 		
 		proDate = new Date(nowYear, nowMonth+1, 1); // 달력 다음달 첫번쨰 날
+		
+		
+		document.getElementById("calendarDate").innerText = "${nowYear}.${nowMonth}";
 		
 		var calendar = document.querySelector(".cbody");  //가져와서 쓸 html 변수 만들기
 		calendar.innerHTML = "";
 		
-	/* 	
-		for(var date = preDate.getDate(); date<new Date(nowYear, nowMonth, 0); date++){
+	 	
+		for(var date = preDate.getDate()+1; date<=preLastMonth.getDate(); date++){
 			cell = document.createElement("div");		// tobody 안에 추가할 요소 변수 만들기
 			cell.classList.add("date");
 			cell.textContent = date;
 			calendar.appendChild(cell);
-		} */
+			
+			dayNum++;
+		}
 		
-		for()
 		
 		
 		for(var date = firstDate.getDate(); date<= lastDate.getDate(); date++){
@@ -308,7 +312,6 @@
 			cell.textContent = date;
 			calendar.appendChild(cell);
 		}
-		
 	}	
 	
 	
@@ -367,7 +370,7 @@
 					<div class="schedule">
 						<div class="hd">
 							<button type="button" onClick="preCalendar();">&lt;</button>
-							<span>2023.11</span>
+							<span id="calendarDate"></span>
 							<button type="button" onClick="proCalendar();">&gt;</button>
 						</div>
 						<div class="calendar">
