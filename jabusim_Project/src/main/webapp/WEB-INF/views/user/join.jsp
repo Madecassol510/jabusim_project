@@ -11,18 +11,224 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>미니 프로젝트</title>
 <!-- Bootstrap CDN -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+	
+	
+<style>
+
+	/* ==========================페이지 공용================================== */
+
+	body{
+		width:100%;
+		min-height : 1200px;
+	}
+	
+	ul{
+		list-style:none;
+		padding : 5px;
+	}
+	
+	li{
+	
+	}
+	
+	.pageContainer{
+		position: relative;
+	    width: 1250px;
+	    min-height: 700px;
+	    margin: 0 auto;
+	   	padding-top: 80px;
+	    border: 1px solid red;
+	}
+	.module{
+		min-height : 600px;
+		width:100%;
+		border: 1px solid blue;
+		text-align:center;
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+	
+	.article{	
+		display : inline-block;
+		margin: 0 auto;
+		
+	}
+	
+	/* =========================================================================== */
+	
+	/*top_module*/
+	
+	#join_module .article{
+		width : 60%;
+		height : 650px;
+		border: 1px solid black;
+		text-align:left;
+		padding: 30px 50px;
+	}
+	
+	
+	#join_module .join_hd{
+		width:100%;
+		display: inline-block;
+		padding-bottom : 5px;
+		margin-bottom : 20px;
+		border-bottom: 1px solid black;
+		
+	} 
+	
+	#join_module .join_input{
+		display: inline-block;
+		width: 100%;
+		padding-left : 40px;
+	}
+	
+	
+	#join_module .input_box{
+		display: inline-block;	
+		width: 100%;
+		height: 60px;
+	}
+	
+	#join_module .input_box div{
+		padding-left: 10px;
+		padding-top: 15px;
+	}
+	
+	
+	#join_module .input_box .input_name{
+		display: inline-block;
+		width : 140px;
+		height:100%;
+		float: left;
+		padding-top: 20px;
+	}
+	
+	#join_module .input_box .input_place{
+		display: inline-block;
+		height:100%;
+		float: left;
+	}
+	
+	#join_module .input_box .input_place input{
+		width:200px;
+		height: 35px;
+	}
+	
+	#join_module .input_box .input_check{
+		display: inline-block;
+		height:100%;
+		float: left;
+	}
+	
+	
+	#join_module .input_box .input_check button{
+		width: 100px;
+		height: 35px;
+	}
+	
+	#join_module .input_footer{
+		margin-top: 50px;
+	}
+	
+	#join_module .input_footer button{
+		width: 200px;
+		height: 40px;
+	}
+	
+	
+</style>	
+	
 
 </head>
 <body>
-
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 
+	<div class="pageContainer">
+		<div class="module" id="join_module">
+			<div class="article">
+				<div class="join_hd">
+					<h2>회원가입</h2>
+					<!-- <span>*필수입력사항</span> -->
+				</div>
+					<form action="" class="join_input">
+						<div class="input_box"> 
+							<div class="input_name">
+								<span>이름</span>
+							</div>
+							<div class="input_place">
+								<input type="text" />
+							</div>
+						</div>
+						<div class="input_box"> 
+							<div class="input_name">
+								<span>아이디</span>
+							</div>
+							<div class="input_place">
+								<input type="text" />
+							</div>
+						</div>
+						<div class="input_box"> 
+							<div class="input_name">
+								<span>패스워드</span>
+							</div>
+							<div class="input_place">
+								<input type="text" />
+							</div>
+						</div>
+						<div class="input_box"> 
+							<div class="input_name">
+								<span>패스워드 확인</span>
+							</div>
+							<div class="input_place">
+								<input type="text" />
+							</div>
+						</div>
+						<div class="input_box"> 
+							<div class="input_name">
+								<span>성별</span>
+							</div>
+							<div class="input_place">
+								<input type="text" />
+							</div>
+						</div>
+						<div class="input_box"> 
+							<div class="input_name">
+								<span>생년월일</span>
+							</div>
+							<div class="input_place">
+								<input type="text" />
+							</div>
+						</div>
+						<div class="input_box"> 
+							<div class="input_name">
+								<span>휴대전화</span>
+							</div>
+							<div class="input_place">
+								<input type="text" />
+							</div>
+							<div class="input_check">
+								<button type="button">본인확인</button>
+							</div>
+						</div>
+						
+						<div class = "input_footer">
+							<div>
+								<button type="button" onClick="location.href='main'">취소</button>
+								<button type="submit">회원가입</button>
+							</div>
+						</div>
+					</form>										
+			</div>
+		</div>
+	</div>
+
+
+	<%-- 
 	<div class="container" style="margin-top: 100px">
 		<div class="row">
 			<div class="col-sm-3"></div>
@@ -72,18 +278,7 @@
 								<label for="career">경력</label> <input type="text" id="user_career" name="career" class="form-control" />
 							</div>
 
-							<!-- 추가된 소유 자격증 항목 -->
-							<div class="form-group">
-								<label for="license">소유 자격증</label>
-									
-									<select class="form-select" aria-label="Default select example">
-									<option selected>자격증을 선택하세요</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								</select>
-							</div>
-
+							
 							<!-- 추가된 개인사진 항목 -->
 							<div class="form-group">
 								<label for="photo">개인사진</label> 
@@ -102,7 +297,7 @@
 			</div>
 			<div class="col-sm-3"></div>
 		</div>
-	</div>
+	</div> --%>
 
 	<c:import url="/WEB-INF/views/include/buttom_info.jsp" />
 
