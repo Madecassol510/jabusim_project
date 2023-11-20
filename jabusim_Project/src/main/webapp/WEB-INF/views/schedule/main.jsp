@@ -12,6 +12,93 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
+<script>
+	var nowDay;
+	var nowYear; // 년도  
+	var nowMonth; // 월   0~11
+	var nowDate; // 일   0~31
+	var nowWeek; // 요일   0(일)~6(토)
+	
+	
+	var firstDate; //이번달 1일	
+	var lastDate; //이번달 마지막날
+	
+	var preDate;
+	var proDate;
+	
+	var cell;
+	
+	window.onload = function(){
+		nowDate = new Date();
+		makeCalendar();
+	}
+	
+	function makeCalendar(){
+		
+		var dayNum = 0;
+		
+		nowDay = nowDate.getDate();     //일 0~31
+		nowWeek = nowDate.getDay();		//요일
+		nowMonth = nowDate.getMonth();	//월 0~11
+		nowYear = nowDate.getFullYear();	// 년도
+		
+		firstDate = new Date(nowYear, nowMonth, 1);   //이번달 첫번쨰 날 date 정보 가져오기
+		lastDate = new Date(nowYear, nowMonth+1, 0);  //이번달 마지막 날 date 정보 가져오기
+		
+		preDate = new Date(nowYear, nowMonth, -(firstDate.getDay())); 	// 이전달 첫번째 날
+		preLastMonth = new Date(nowYear, nowMonth, 0); //이전달 마지막 날
+		
+		proDate = new Date(nowYear, nowMonth+1, 1); // 달력 다음달 첫번쨰 날
+		
+		
+		document.getElementById("calendarDate").textContent = nowYear + "." + (nowMonth+1);
+		
+		var calendar = document.querySelector(".cbody");  //가져와서 쓸 html 변수 만들기
+		calendar.innerHTML = "";
+		
+	 	
+		for(var date = preDate.getDate()+1; date<=preLastMonth.getDate(); date++){
+			cell = document.createElement("div");		// tobody 안에 추가할 요소 변수 만들기
+			cell.classList.add("date");
+			cell.textContent = date;
+			calendar.appendChild(cell);
+			
+			dayNum++;
+		}
+		
+		
+		
+		for(var date = firstDate.getDate(); date<= lastDate.getDate(); date++){
+			cell = document.createElement("div");
+			cell.classList.add("date");
+			cell.textContent = date;
+			calendar.appendChild(cell);
+			
+			dayNum++;
+		} 
+		
+		for(var date = 1; date<=(42-dayNum); date++){
+			cell = document.createElement("div");
+			cell.classList.add("date");
+			cell.textContent = date;
+			calendar.appendChild(cell);
+		}
+	}	
+	
+	
+	function preCalendar(){
+		nowDate = new Date(nowYear, nowMonth-1, nowDay);
+		makeCalendar();
+	}
+	
+	function proCalendar(){
+		nowDate = new Date(nowYear, nowMonth+1, nowDay);
+		makeCalendar();
+	}
+	
+
+</script>
+
 
 <style>
 
@@ -170,92 +257,7 @@
 </head>
 <body>
 
-<script>
-	var nowDay;
-	var nowYear; // 년도  
-	var nowMonth; // 월   0~11
-	var nowDate; // 일   0~31
-	var nowWeek; // 요일   0(일)~6(토)
-	
-	
-	var firstDate; //이번달 1일	
-	var lastDate; //이번달 마지막날
-	
-	var preDate;
-	var proDate;
-	
-	var cell;
-	
-	window.onload = function(){
-		nowDate = new Date();
-		makeCalendar();
-	}
-	
-	function makeCalendar(){
-		
-		var dayNum = 0;
-		
-		nowDay = nowDate.getDate();     //일 0~31
-		nowWeek = nowDate.getDay();		//요일
-		nowMonth = nowDate.getMonth();	//월 0~11
-		nowYear = nowDate.getFullYear();	// 년도
-		
-		firstDate = new Date(nowYear, nowMonth, 1);   //이번달 첫번쨰 날 date 정보 가져오기
-		lastDate = new Date(nowYear, nowMonth+1, 0);  //이번달 마지막 날 date 정보 가져오기
-		
-		preDate = new Date(nowYear, nowMonth, -(firstDate.getDay())); 	// 이전달 첫번째 날
-		preLastMonth = new Date(nowYear, nowMonth, 0); //이전달 마지막 날
-		
-		proDate = new Date(nowYear, nowMonth+1, 1); // 달력 다음달 첫번쨰 날
-		
-		
-		document.getElementById("calendarDate").textContent = nowYear + "." + (nowMonth+1);
-		
-		var calendar = document.querySelector(".cbody");  //가져와서 쓸 html 변수 만들기
-		calendar.innerHTML = "";
-		
-	 	
-		for(var date = preDate.getDate()+1; date<=preLastMonth.getDate(); date++){
-			cell = document.createElement("div");		// tobody 안에 추가할 요소 변수 만들기
-			cell.classList.add("date");
-			cell.textContent = date;
-			calendar.appendChild(cell);
-			
-			dayNum++;
-		}
-		
-		
-		
-		for(var date = firstDate.getDate(); date<= lastDate.getDate(); date++){
-			cell = document.createElement("div");
-			cell.classList.add("date");
-			cell.textContent = date;
-			calendar.appendChild(cell);
-			
-			dayNum++;
-		} 
-		
-		for(var date = 1; date<=(42-dayNum); date++){
-			cell = document.createElement("div");
-			cell.classList.add("date");
-			cell.textContent = date;
-			calendar.appendChild(cell);
-		}
-	}	
-	
-	
-	function preCalendar(){
-		nowDate = new Date(nowYear, nowMonth-1, nowDay);
-		makeCalendar();
-	}
-	
-	function proCalendar(){
-		nowDate = new Date(nowYear, nowMonth+1, nowDay);
-		makeCalendar();
-	}
-	
 
-</script>
 
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
