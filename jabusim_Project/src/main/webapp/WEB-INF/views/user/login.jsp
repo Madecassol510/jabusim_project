@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -79,6 +78,16 @@
 		margin-bottom: 5px;
 	}
 	
+	#login_module .login_hd_fail{
+		text-align: left;
+		border-bottom: 1px solid black;
+	}
+	
+	#login_module .login_hd_fail span{
+		display: inline-block;
+		margin-bottom: 5px;
+	}
+	
 	#login_module .login_input{
 		float : left;
 		margin-top: 10px;
@@ -132,20 +141,31 @@
 	<div class="pageContainer">
 		<div class="module" id="login_module">
 			<div class="article">
-				<div class="login_box">
-					<div class="login_hd">
-						<h3>로그인</h3>
-						<span>로그인이 필요한 서비스입니다</span>
-					</div>		
+				<div class="login_box">	
+					<c:choose>
+						<c:when test="${fail==true}">
+							<div class="login_hd_fail">
+								<h3>로그인 실패</h3>
+								<span>아이디와 비밀번호를 확인해주세요</span>
+							</div>	
+						</c:when>
+						<c:otherwise>
+							<div class="login_hd">		
+								<h3>로그인</h3>
+								<span>로그인이 필요한 서비스입니다</span>
+							</div>
+						</c:otherwise>					
+					</c:choose>					
+						
 					<div class="login_input">
-						<form>
-							<input type="text" placeholder="아이디 입력" /> <br /> 
-							<input type="password" placeholder="비밀번호 입력" /> <br />
-							<button type="submit">로그인</button>
-						</form>
+						<form:form action="${root}user/login_pro" method="post" modelAttribute="tempLoginUserBean">
+							<form:input path="user_id" placeholder="아이디 입력" /> <br /> 
+							<form:input path="user_pw" type="password" placeholder="비밀번호 입력" /> <br />
+							<form:button type="submit">로그인</form:button>
+						</form:form>
 						<div class="login_footer">
-								<a href="#">아이디찾기</a>&nbsp | &nbsp
-								<a href="#">비밀번호찾기</a>&nbsp | &nbsp
+								<a href="#">아이디찾기</a> &nbsp; | &nbsp;
+								<a href="#">비밀번호찾기</a> &nbsp; | &nbsp;
 								<a href="#">회원가입</a>
 						</div>
 					</div>

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
@@ -64,7 +64,7 @@
 	
 	#join_module .article{
 		width : 60%;
-		height : 650px;
+		min-height : 650px;
 		border: 1px solid black;
 		text-align:left;
 		padding: 30px 50px;
@@ -83,14 +83,15 @@
 	#join_module .join_input{
 		display: inline-block;
 		width: 100%;
-		padding-left : 40px;
+		
 	}
 	
 	
 	#join_module .input_box{
 		display: inline-block;	
 		width: 100%;
-		height: 60px;
+		min-height: 60px;
+		padding-left : 40px;
 	}
 	
 	#join_module .input_box div{
@@ -109,8 +110,23 @@
 	
 	#join_module .input_box .input_place{
 		display: inline-block;
-		height:100%;
+		min-height:100%;
 		float: left;
+		width: 60%;
+	}
+	
+	#join_module .input_box .input_place .input_placeTop{
+		padding-left:0;
+		padding-top:0;
+		display:inline-block;
+		width:100%;
+	}
+	
+	#join_module .input_box .input_place .input_placeBottom{
+		padding-left:0;
+		padding-top:0;
+		display:inline-block;
+		width:100%;
 	}
 	
 	#join_module .input_box .input_place input{
@@ -118,26 +134,32 @@
 		height: 35px;
 	}
 	
+	
 	#join_module .input_box .input_check{
-		display: inline-block;
-		height:100%;
-		float: left;
-	}
-	
-	
-	#join_module .input_box .input_check button{
 		width: 100px;
 		height: 35px;
 	}
 	
 	#join_module .input_footer{
-		margin-top: 50px;
+		margin-top: 30px;
+		padding-top:30px;
+		width : 100%;
+		display: inline-block;
+		text-align: center;
+		border-top: 1px solid black;
 	}
 	
+	#join_module .input_footer .input_footerDiv{
+		display: inline-block;
+	} 
+	
+	
 	#join_module .input_footer button{
-		width: 200px;
+		width: 100px;
 		height: 40px;
 	}
+	
+
 	
 	
 </style>	
@@ -152,16 +174,21 @@
 		<div class="module" id="join_module">
 			<div class="article">
 				<div class="join_hd">
-					<h2>회원가입</h2>
+					<h3>회원가입</h3>
 					<!-- <span>*필수입력사항</span> -->
 				</div>
-					<form action="" class="join_input">
+					<form:form action="${root}user/join_pro" method="post" class="join_input" modelAttribute="joinUserBean">
 						<div class="input_box"> 
 							<div class="input_name">
 								<span>이름</span>
 							</div>
 							<div class="input_place">
-								<input type="text" />
+								<div class="input_placeTop">
+									<form:input path="user_name" />
+								</div>
+								<div class="input_placeBottom">
+									<form:errors path="user_name" style="color:red"/>
+								</div>
 							</div>
 						</div>
 						<div class="input_box"> 
@@ -169,7 +196,12 @@
 								<span>아이디</span>
 							</div>
 							<div class="input_place">
-								<input type="text" />
+								<div class="input_placeTop">
+									<form:input path="user_id" />
+								</div>
+								<div class="input_placeBottom">
+									<form:errors path="user_id" style="color:red"/>
+								</div>						
 							</div>
 						</div>
 						<div class="input_box"> 
@@ -177,15 +209,26 @@
 								<span>패스워드</span>
 							</div>
 							<div class="input_place">
-								<input type="text" />
-							</div>
+								<div class="input_placeTop">
+									<form:input path="user_pw" type="password" />
+								</div>
+								<div class="input_placeBottom">
+									<form:errors path="user_pw" style="color:red"/>
+								</div>
+							</div> 
 						</div>
 						<div class="input_box"> 
 							<div class="input_name">
 								<span>패스워드 확인</span>
 							</div>
 							<div class="input_place">
-								<input type="text" />
+								<div class="input_placeTop">
+									<form:input path="user_pw2" type="password" />
+								</div>
+								<div class="input_placeBottom">
+									<form:errors path="user_pw2" style="color:red"/>
+									
+								</div>				
 							</div>
 						</div>
 						<div class="input_box"> 
@@ -193,7 +236,12 @@
 								<span>성별</span>
 							</div>
 							<div class="input_place">
-								<input type="text" />
+								<div class="input_placeTop">
+									<form:input path="user_gender"/>
+								</div>
+								<div class="input_placeBottom">
+									<form:errors path="user_gender" style="color:red"/>
+								</div>
 							</div>
 						</div>
 						<div class="input_box"> 
@@ -201,7 +249,12 @@
 								<span>생년월일</span>
 							</div>
 							<div class="input_place">
-								<input type="text" />
+								<div class="input_placeTop">
+									<form:input path="user_birthdate" />
+								</div>
+								<div class="input_placeBottom">
+									<form:errors path="user_birthdate" style="color:red"/>
+								</div>
 							</div>
 						</div>
 						<div class="input_box"> 
@@ -209,20 +262,24 @@
 								<span>휴대전화</span>
 							</div>
 							<div class="input_place">
-								<input type="text" />
-							</div>
-							<div class="input_check">
-								<button type="button">본인확인</button>
+								<div class="input_placeTop">
+									<form:input path="user_phoneNum" placeholder=" ex) 010-0000-0000" />
+									<button type="button" class="input_check">본인확인</button>
+								</div>
+								<div class="input_placeBottom">
+									<form:errors path="user_phoneNum" style="color:red"/>
+								</div>
+								
 							</div>
 						</div>
 						
 						<div class = "input_footer">
-							<div>
-								<button type="button" onClick="location.href='main'">취소</button>
-								<button type="submit">회원가입</button>
+							<div class="input_footerDiv">
+								<button type="button" onClick="location.href='${root}main'">취소</button>
+								<form:button type="submit" style="margin-left: 20px;">회원가입</form:button>
 							</div>
 						</div>
-					</form>										
+					</form:form>									
 			</div>
 		</div>
 	</div>
