@@ -4,6 +4,6 @@
 <c:set var="root" value="${pageContext.request.contextPath }/"/>
 
 <script>
-	alert('로그인에 실패하였습니다.');
-	location.href="${root}user/login?fail=true";
+	alert('회원가입이 완료되었습니다.');
+	location.href="${root}main";
 </script>

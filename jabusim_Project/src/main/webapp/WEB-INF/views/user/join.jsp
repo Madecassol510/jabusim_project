@@ -15,7 +15,10 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	
 <style>
 
@@ -159,12 +162,42 @@
 		height: 40px;
 	}
 	
-
-	
-	
 </style>	
 	
 
+<script>
+   function checkUserIdExist() {
+
+      var user_id = $("#user_id").val();
+
+      if (user_id.length == 0) {
+         alert('아이디를 입력하세요');
+         return;
+      }
+
+      $.ajax({
+         type : 'GET',
+         url : '${root}user/checkUserIdExist/'+user_id,
+         dataType : 'text',
+         success : function(result) {
+            if (result.trim() === 'true') {
+               alert('사용할 수 있는 아이디입니다.');
+               $("#userIdExist").val('true');
+            } else {
+               alert('사용할 수 없는 아이디입니다.');
+               $("#userIdExist").val('false');
+            }
+         }
+      });
+
+   }
+
+   function resetUserIdExist() {
+
+      $("#userIdExist").val('false');
+   }
+   
+</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -178,6 +211,7 @@
 					<!-- <span>*필수입력사항</span> -->
 				</div>
 					<form:form action="${root}user/join_pro" method="post" class="join_input" modelAttribute="joinUserBean">
+						<form:hidden path="userIdExist" />
 						<div class="input_box"> 
 							<div class="input_name">
 								<span>이름</span>
@@ -197,7 +231,8 @@
 							</div>
 							<div class="input_place">
 								<div class="input_placeTop">
-									<form:input path="user_id" />
+									<form:input path="user_id" onkeypress="resetUserIdExist()"/>
+									<button type="button" onclick='checkUserIdExist()'>중복확인</button>
 								</div>
 								<div class="input_placeBottom">
 									<form:errors path="user_id" style="color:red"/>

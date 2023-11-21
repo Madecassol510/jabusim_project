@@ -17,6 +17,16 @@ public class UserService {
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
 	
+	public boolean checkUserIdExist(String user_id) {
+		String user_name = userDao.checkUserIdExist(user_id);
+		
+		if(user_name==null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	
 	public void addUserInfo(UserBean joinUserBean) {
 		
