@@ -55,7 +55,7 @@ JaBuSim
 
 	<ul class="navbar-nav ml-auto">
 		<c:choose>
-			<c:when test="${loginUserBean.userLogin == true }">
+			<c:when test="${loginUserBean.isUserLogin() == true }">
 				<li class="nav-item"><a href="${root }user/logout" class="nav-link">로그아웃</a></li>
 				<li class="nav-item"><a href="${root }mypage/my_certificate" class="nav-link">마이페이지</a></li>			
 			</c:when>

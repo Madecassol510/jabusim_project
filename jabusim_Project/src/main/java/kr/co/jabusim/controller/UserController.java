@@ -1,7 +1,6 @@
 package kr.co.jabusim.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.service.UserService;
-import kr.co.jabusim.validator.UserValidator;
 import kr.co.jabusim.validator.UserValidator;
 
 @Controller
@@ -45,8 +43,7 @@ public class UserController {
 	public String login_pro(@ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean,
 			Model model) {
 		
-		
-		
+
 		// �α��� ���ɿ���
 		userService.getLoginUserInfo(tempLoginUserBean);
 

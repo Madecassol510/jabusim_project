@@ -36,14 +36,14 @@ public class UserService {
 	
 	public UserBean getLoginUserInfo(UserBean tempLoginUserBean) {
 		
-		UserBean userBean = userDao.getLoginUserInfo(tempLoginUserBean);
+		UserBean tempLoginUserBean2 = userDao.getLoginUserInfo(tempLoginUserBean);
 		
-		if(userBean != null) {
-			loginUserBean.setUser_idx(userBean.getUser_idx());
-			loginUserBean.setUser_name(userBean.getUser_name());
-			loginUserBean.setUserLogin(true);	
+		//가져온 값이 있다면 세션 영역으로 데이터 이동
+		if(tempLoginUserBean2 != null) {
+			loginUserBean.setUser_idx(tempLoginUserBean2.getUser_idx());
+			loginUserBean.setUser_name(tempLoginUserBean2.getUser_name());
+			loginUserBean.setUserLogin(true);
 		}
-		
 		return userDao.getLoginUserInfo(tempLoginUserBean);
 	}			
 }

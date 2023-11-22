@@ -23,7 +23,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.interceptor.CheckLoginInterceptor;
+import kr.co.jabusim.interceptor.TopMenuInterceptor;
 import kr.co.jabusim.mapper.UserMapper;
+
 
 
 
@@ -82,16 +84,18 @@ public class ServletAppContext implements WebMvcConfigurer {
 		WebMvcConfigurer.super.addInterceptors(registry);
 		
 		//�޼ҵ� ���ͼ��� �߰�
+		TopMenuInterceptor topMenuInterceptor = new TopMenuInterceptor(loginUserBean);
 		CheckLoginInterceptor checkLoginInterceptor = new CheckLoginInterceptor(loginUserBean);
 		
 		//���ͼ��� ���
-		//InterceptorRegistration reg1 = registry.addInterceptor(topMenuInterceptor);
+		InterceptorRegistration reg1 = registry.addInterceptor(topMenuInterceptor);
 		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
 		
-		//������ų �� ����
-		//reg1.addPathPatterns("/**"); // ��� ���� �Ѹ��ڴٰ� ����
-		reg2.addPathPatterns("/user/modify", "/user/logout", "/board/*"); //�α��� ���� ���� ���¿��� ������ ���� ī�װ�
-		reg2.excludePathPatterns("/board/main"); // ���� ��û
+		//������ų �� ����/		
+		reg1.addPathPatterns("/**"); 
+		// ��� ���� �Ѹ��ڴٰ� ����/		
+		reg2.addPathPatterns("/user/logout"); //�α��� ���� ���� ���¿��� ������ ���� ī�װ�
+		//reg2.excludePathPatterns("/board/main"); // ���� ��û	
 	}
 	
 	
