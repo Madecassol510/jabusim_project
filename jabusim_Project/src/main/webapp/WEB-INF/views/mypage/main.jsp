@@ -61,12 +61,20 @@
 	/* =========================================================================== */
 
 	
+	
+	
 	#myInfo_module .article{
 		width : 94%;
 		min-height : 600px;
 		border: 1px solid black;
 		
 	}
+	
+	#myInfo_module h3{
+		text-align: left;
+		padding-left: 37px;
+	}
+	
 	
 	#myInfo_module h5{
 		margin-bottom: 25px;
