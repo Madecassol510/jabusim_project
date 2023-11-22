@@ -2,8 +2,11 @@ package kr.co.jabusim.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.co.jabusim.beans.UserBean;
 
 @Controller
 @RequestMapping("/mypage")
@@ -19,9 +22,9 @@ public class MyPageController {
 		return "mypage/modify_info";
 	}
 	
-	@GetMapping("/my_certificate")
-	public String my_certificate() {
-		return "mypage/my_certificate";
+	@GetMapping("/main")
+	public String main(@ModelAttribute("joinUserBean") UserBean joinUserBean) {
+		return "mypage/main";
 	}
 	
 	@GetMapping("/valid_passwd")
