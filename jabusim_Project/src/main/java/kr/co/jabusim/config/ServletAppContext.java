@@ -1,6 +1,8 @@
 package kr.co.jabusim.config;
 
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -13,11 +15,16 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import kr.co.jabusim.beans.UserBean;
+import kr.co.jabusim.interceptor.CheckLoginInterceptor;
 import kr.co.jabusim.mapper.UserMapper;
+
 
 
 
@@ -41,6 +48,10 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Value("${db.password}")
 	private String db_password;
 
+	
+	@Resource(name="loginUserBean")
+	private UserBean loginUserBean;
+	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 
@@ -64,6 +75,27 @@ public class ServletAppContext implements WebMvcConfigurer {
 
 		return source;
 	}
+	//=================================================================================
+	//인터셉터 등록
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		WebMvcConfigurer.super.addInterceptors(registry);
+		
+		//�޼ҵ� ���ͼ��� �߰�
+		CheckLoginInterceptor checkLoginInterceptor = new CheckLoginInterceptor(loginUserBean);
+		
+		//���ͼ��� ���
+		//InterceptorRegistration reg1 = registry.addInterceptor(topMenuInterceptor);
+		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
+		
+		//������ų �� ����
+		//reg1.addPathPatterns("/**"); // ��� ���� �Ѹ��ڴٰ� ����
+		reg2.addPathPatterns("/user/modify", "/user/logout", "/board/*"); //�α��� ���� ���� ���¿��� ������ ���� ī�װ�
+		reg2.excludePathPatterns("/board/main"); // ���� ��û
+	}
+	
+	
+	//=================================================================================
 
 	// 쿼리문과 접속 정보를 관리하는 객체
 	@Bean

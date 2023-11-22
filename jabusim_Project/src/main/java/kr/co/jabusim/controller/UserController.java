@@ -80,12 +80,18 @@ public class UserController {
 		return "user/join_success";
 	}
 	
+	
+	
 	@GetMapping("/logout")
 	public String logout() {
+		
+		loginUserBean.setUserLogin(false);
+		
 		return "user/logout";
 	}
 	
-	@InitBinder //������ ���
+	
+	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		UserValidator Vaildator1 = new UserValidator();
 		binder.addValidators(Vaildator1);
