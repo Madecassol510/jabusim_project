@@ -65,7 +65,6 @@
 	
 	#myInfo_module .article{
 		width : 94%;
-		min-height : 600px;
 		border: 1px solid black;
 		
 	}
@@ -85,7 +84,7 @@
 	
 	#myInfo_module .left_div{
 		width : 60%;
-		min-height : 580px;
+		min-height : 520px;
 		border: 1px solid black;
 		text-align:left;
 		float:left;
@@ -183,7 +182,7 @@
 	/*mypage_module 활동 정보*/
 	#myInfo_module .right_div{
 		width : 38%;
-		height : 580px;
+		height : 520px;
 		border: 1px solid black;
 		float:right;
 	}
@@ -221,7 +220,7 @@
 	/*mypage_module 자격증 정보*/
 	
 	#myInfo_module .right_footer{
-		margin-top:	10%;
+		margin-top:	8.7%;
 		width:100%;
 		border: 1px solid black;
 		height : 33%;
@@ -320,6 +319,7 @@
 							<div class="photo_input">
 								<img src="${root }image/icon-spring-framework.svg" class="photo" />
 								<button type="button">사진등록</button>
+								<button type="button" onclick="location.href='${root}mypage/modify'">정보수정</button>
 							</div>
 						</div>
 						<div class="input_box">
