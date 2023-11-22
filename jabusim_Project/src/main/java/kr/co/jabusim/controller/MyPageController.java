@@ -35,9 +35,9 @@ public class MyPageController {
 	@PostMapping("/modify_pro")
 	public String modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result) {
 		
-		System.out.println("수정");
 		
 		if(result.hasErrors()) {
+			System.out.println("오류");
 			return "mypage/modify";
 		}
 		

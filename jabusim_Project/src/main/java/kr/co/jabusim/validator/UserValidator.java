@@ -28,7 +28,7 @@ public class UserValidator implements Validator{
 	            errors.rejectValue("user_pw", "NotEquals");
 	            errors.rejectValue("user_pw2", "NotEquals");
 	        }		
-			if(beanName.equals("joinUserBean")==true) {
+			if(beanName.equals("joinUserBean")==true && beanName.equals("modifyUserBean")==false) {
 				if(userBean.getUser_birthdate().isEmpty()) {
 					errors.rejectValue("user_birthdate", "NotNull");
 				}
