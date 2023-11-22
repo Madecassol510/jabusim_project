@@ -21,7 +21,6 @@
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 	<div class="container" style="margin-top: 56px">
-
 		<!-- 마이페이지메뉴 -->
 		<ul class="nav nav-pills">
 			<li class="nav-item"><a class="nav-link"
