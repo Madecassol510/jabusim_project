@@ -24,6 +24,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.interceptor.CheckLoginInterceptor;
 import kr.co.jabusim.interceptor.TopMenuInterceptor;
+import kr.co.jabusim.mapper.LicenseMapper;
 import kr.co.jabusim.mapper.UserMapper;
 
 
@@ -115,6 +116,12 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Bean
 	public MapperFactoryBean<UserMapper> getUserMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<UserMapper> factoryBean = new MapperFactoryBean<UserMapper>(UserMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	@Bean
+	public MapperFactoryBean<LicenseMapper> getLicenseMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<LicenseMapper> factoryBean = new MapperFactoryBean<LicenseMapper>(LicenseMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
