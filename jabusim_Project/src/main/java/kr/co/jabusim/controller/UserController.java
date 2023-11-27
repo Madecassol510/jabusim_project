@@ -35,6 +35,7 @@ public class UserController {
 			@RequestParam(value="fail", defaultValue = "false") boolean fail, // �ӽ� ����
 			Model model) {
 		
+		
 		model.addAttribute("fail", fail);
 		return "user/login";
 	}
@@ -52,7 +53,10 @@ public class UserController {
 			return "user/login_success";
 		} else {
 			boolean fail = true;
+			
+			tempLoginUserBean = new UserBean();
 			model.addAttribute("fail", fail);
+			model.addAttribute("tempLoginUserBean", tempLoginUserBean);
 			return "user/login";
 		}	
 	}
