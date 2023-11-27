@@ -212,6 +212,8 @@
 					<h3>정보수정</h3>
 				</div>
 				<form:form action="${root}mypage/modify_pro" method="post" class="modify_input" modelAttribute="modifyUserBean">
+					<form:hidden path="user_gender"/>
+					<form:hidden path="user_phoneNum"/>
 					<div class="input_box">
 						<div class="input_name">
 							<span>이름</span>
@@ -220,7 +222,9 @@
 							<div class="input_placeTop">
 								<form:input path="user_name" readonly="true" />
 							</div>
-							<div class="input_placeBottom"></div>
+							<div class="input_placeBottom">
+								<form:errors path="user_name" style="color:red" />
+							</div>
 						</div>
 					</div>
 					<div class="photo_box">
@@ -237,7 +241,9 @@
 							<div class="input_placeTop">
 								<form:input path="user_id" readonly="true" />
 							</div>
-							<div class="input_placeBottom"></div>
+							<div class="input_placeBottom">
+								<form:errors path="user_id" style="color:red" />
+							</div>
 						</div>
 					</div>
 
@@ -249,7 +255,9 @@
 							<div class="input_placeTop">
 								<form:input path="user_birthdate" readonly="true" />
 							</div>
-							<div class="input_placeBottom"></div>
+							<div class="input_placeBottom">
+								<form:errors path="user_id" style="color:red" />
+							</div>
 						</div>
 					</div>
 					<div class="input_box">

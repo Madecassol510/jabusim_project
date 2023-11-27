@@ -4,6 +4,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,13 +29,13 @@ public class UserBean {
 	@Pattern(regexp = "[a-zA-Z0-9]*")
 	private String user_pw2; 
 	
-	@NotNull
+	@NotBlank
 	private String user_birthdate;
 	
-	@NotNull
+	@NotBlank
 	private String user_gender;
 	
-	@NotNull
+	@NotBlank
 	@Pattern(regexp = "^[0-9]+$")
 	private String user_phoneNum;
 	

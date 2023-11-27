@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +25,22 @@ public class MyPageController {
 	@Autowired
 	private UserService userService;
 	
+	
+	@GetMapping("/main")
+	public String main(@ModelAttribute("MyPageUserBean") UserBean MyPageUserBean) {
+		
+		
+		
+		return "mypage/main";
+	}
+	
 
 	@GetMapping("/modify")
 	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
 		
-		userService.getModifyUserInfo(modifyUserBean);
+		userService.getModifyUserInfo(modifyUserBean); 
+		  
+		
 		return "mypage/modify";
 	}
 		
@@ -46,10 +58,7 @@ public class MyPageController {
 	}
 	
 	
-	@GetMapping("/main")
-	public String main(@ModelAttribute("joinUserBean") UserBean joinUserBean) {
-		return "mypage/main";
-	}
+	
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

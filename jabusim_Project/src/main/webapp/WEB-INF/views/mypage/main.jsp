@@ -524,7 +524,22 @@
 						<span>고객님의 관심 자격증은 0개입니다</span>
 					</div>
 					<div class="licenseList" id="interest_licenseList">
-
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
 								
 					</div>
 				</div>

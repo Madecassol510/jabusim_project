@@ -53,6 +53,8 @@ public class UserService {
 		modifyUserBean.setUser_id(tempModifyUserBean.getUser_id());
 		modifyUserBean.setUser_name(tempModifyUserBean.getUser_name());
 		modifyUserBean.setUser_birthdate(tempModifyUserBean.getUser_birthdate());
+		modifyUserBean.setUser_gender(tempModifyUserBean.getUser_gender());
+		modifyUserBean.setUser_phoneNum(tempModifyUserBean.getUser_phoneNum());
 		modifyUserBean.setUser_idx(tempModifyUserBean.getUser_idx());
 	}
 	
