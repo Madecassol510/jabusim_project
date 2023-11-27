@@ -24,13 +24,11 @@ public interface UserMapper {
 	UserBean getLoginUserInfo(UserBean tempLoginUserBean);
 	
 	//로그인한 유저의 정보 가져오기
-	
-	
 	@Select("select * "
 			+ "from user_table "
 			+ "where user_idx= #{user_idx}")
-	UserBean getModifyUserInfo(int user_idx);
-	
+	UserBean getAllUserInfo(int user_idx);
+
 	@Update("update user_table set user_pw=#{user_pw} where user_idx=#{user_idx}")
     void modifyUserInfo(UserBean modifyUserBean);
 }

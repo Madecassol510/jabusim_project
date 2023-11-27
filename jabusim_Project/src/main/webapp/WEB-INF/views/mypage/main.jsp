@@ -291,11 +291,49 @@
 		margin: auto;
 	}
 	
+	/* ======================임시 사이드바========================= */
+	
+	.sideMenubar{
+		position: fixed;
+	}
+	
 </style>
 
 </head>
 <body>
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
+
+	<div class="sideMenubar">
+		<ul>
+			<li>
+				<a href="${root}mypage/main">마이페이지</a>
+			</li>
+			<li>
+				<a href="#">나의 자격증</a>
+				<ul>
+					<li><a href="${root}mypage/myLicense/licenseManage">자격증 관리</a></li>
+					<li><a href="${root}mypage/myLicense/licenseSchedule">자격증 일정</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">나의 내역 관리</a>
+				<ul>
+					<li><a href="${root}mypage/myDetailManage/exam_result">자격증 시험 결과</a></li>
+					<li><a href="${root}mypage/myDetailManage/receiptDetail">자격증 접수 내역</a></li>
+					<li><a href="${root}mypage/myDetailManage/inquiryDetail">문의 결과 내역</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">나의 정보 관리</a>
+				<ul>
+					<li><a href="${root}mypage/myInfoManage/userInfoModify">개인 정보 수정</a></li>
+					<li><a href="${root}mypage/myInfoManage/careerModify">학력/경력 수정</a></li>
+					<li><a href="${root}mypage/myInfoManage/liceseAttestation">자격증 보유 신청</a></li>
+				</ul>
+			</li>		
+		</ul>
+	</div>
+
 
 	<div class="pageContainer">
 		<div class="module" id="myInfo_module">
@@ -303,7 +341,7 @@
 				<h3>나의 정보</h3>
 				<div class="left_div">
 					<h5>계정 정보</h5>
-					<form:form action="${root}user/join_pro" method="get" class="join_input" modelAttribute="joinUserBean">
+					<form:form  class="join_input" modelAttribute="myPageUserBean">
 						<div class="input_box">
 							<div class="input_name">
 								<span>이름</span>
@@ -319,7 +357,6 @@
 							<div class="photo_input">
 								<img src="${root }image/icon-spring-framework.svg" class="photo" />
 								<button type="button">사진등록</button>
-								<button type="button" onclick="location.href='${root}mypage/modify'">정보수정</button>
 							</div>
 						</div>
 						<div class="input_box">

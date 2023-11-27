@@ -47,8 +47,17 @@ public class UserService {
 		return userDao.getLoginUserInfo(tempLoginUserBean);
 	}
 	
+	
+	public UserBean getAllUserInfo() {
+		
+		UserBean tempModifyUserBean = userDao.getAllUserInfo(loginUserBean.getUser_idx());	
+		return tempModifyUserBean;
+	}
+	
+	
+	
 	public void getModifyUserInfo(UserBean modifyUserBean){
-		UserBean tempModifyUserBean =userDao.getModifyUserInfo(loginUserBean.getUser_idx());
+		UserBean tempModifyUserBean =userDao.getAllUserInfo(loginUserBean.getUser_idx());
 		
 		modifyUserBean.setUser_id(tempModifyUserBean.getUser_id());
 		modifyUserBean.setUser_name(tempModifyUserBean.getUser_name());
@@ -62,4 +71,6 @@ public class UserService {
 		modifyUserBean.setUser_idx(loginUserBean.getUser_idx());
 		userDao.modifyUserInfo(modifyUserBean);	
 	}
+	
+	
 }
