@@ -67,5 +67,7 @@ JaBuSim
 			</c:otherwise>
 		</c:choose>
 	</ul>
-
 </nav>
+
+
+

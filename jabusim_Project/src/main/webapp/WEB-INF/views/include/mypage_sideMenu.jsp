@@ -24,9 +24,9 @@
 			</ul></li>
 		<li><a href="#">나의 정보 관리</a>
 			<ul>
-				<li><a href="${root}mypage/myInfoManage/userInfoModify">개인 정보 수정</a></li>
-				<li><a href="${root}mypage/myInfoManage/careerModify">학력/경력 수정</a></li>
-				<li><a href="${root}mypage/myInfoManage/liceseAttestation">자격증 보유 신청</a></li>
+				<li><a href="${root}mypage/myInfoManage/checkPw?myInfoManagePage=1">개인 정보 수정</a></li>
+				<li><a href="${root}mypage/myInfoManage/checkPw?myInfoManagePage=2">학력/경력 수정</a></li>
+				<li><a href="${root}mypage/myInfoManage/checkPw?myInfoManagePage=3">자격증 보유 신청</a></li>
 			</ul></li>
 	</ul>
 </div>

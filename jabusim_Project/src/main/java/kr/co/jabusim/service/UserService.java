@@ -57,7 +57,7 @@ public class UserService {
 	
 	
 	public void getModifyUserInfo(UserBean modifyUserBean){
-		UserBean tempModifyUserBean =userDao.getAllUserInfo(loginUserBean.getUser_idx());
+		UserBean tempModifyUserBean = userDao.getAllUserInfo(loginUserBean.getUser_idx());
 		
 		modifyUserBean.setUser_id(tempModifyUserBean.getUser_id());
 		modifyUserBean.setUser_name(tempModifyUserBean.getUser_name());
@@ -73,4 +73,22 @@ public class UserService {
 	}
 	
 	
+	public void checkUserIdInfo(UserBean checkPwUserBean) {
+		UserBean tempModifyUserBean = userDao.getAllUserInfo(loginUserBean.getUser_idx());
+		
+		checkPwUserBean.setUser_id(tempModifyUserBean.getUser_id());
+		System.out.println(checkPwUserBean.getUser_id());
+	}
+	
+	public boolean loginPwCheck(UserBean checkPwUserBean) {
+		
+		UserBean tempModifyUserBean =userDao.getAllUserInfo(loginUserBean.getUser_idx());
+		
+		if(tempModifyUserBean.getUser_pw().equals(checkPwUserBean.getUser_pw())){
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

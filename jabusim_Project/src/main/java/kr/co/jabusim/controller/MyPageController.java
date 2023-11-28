@@ -72,12 +72,57 @@ public class MyPageController {
 
 	//--------------------------------myInfoManage------------------------------------
 
+	
+	
+	@GetMapping("/myInfoManage/checkPw")
+	public String checkPw(@ModelAttribute("checkPwUserBean") UserBean checkPwUserBean,
+						  @RequestParam("myInfoManagePage") int myInfoManagePage,
+						  Model model) {
+		
+		model.addAttribute("myInfoManagePage",myInfoManagePage);
+	
+		userService.checkUserIdInfo(checkPwUserBean);
+
+		
+		return "mypage/myInfoManage/checkPw";
+	}
+	
+	
+	@PostMapping("/myInfoManage/checkPw_pro")
+	public String checkPw_pro(@ModelAttribute("checkPwUserBean") UserBean checkPwUserBean,
+						  @RequestParam("myInfoManagePage") int myInfoManagePage,
+						  Model model) {
+		
+		
+		
+		if(!userService.loginPwCheck(checkPwUserBean)) {
+			System.out.println("비밀번호 틀림");
+			model.addAttribute("myInfoManagePage",myInfoManagePage);
+			return "mypage/myInfoManage/checkPw";
+		}
+		
+		
+		if(myInfoManagePage==1) {
+			System.out.println("이동");
+			return "redirect:/mypage/myInfoManage/userInfoModify";
+		}
+		
+		if(myInfoManagePage==2) {
+			System.out.println("이동");
+			return "redirect:/mypage/myInfoManage/careerModify";
+		}
+		else {
+			System.out.println("이동");
+			return "redirect:/mypage/myInfoManage/liceseAttestation";
+		}
+	}
+	
 	//개인정보 수정
 	@GetMapping("/myInfoManage/userInfoModify")
-	public String userInfoModify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
-		
+	public String userInfoModify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean, Model model) {
+			
 		userService.getModifyUserInfo(modifyUserBean); 
-		  
+		model.addAttribute(modifyUserBean);
 		
 		return "mypage/myInfoManage/userInfoModify";
 	}
@@ -103,7 +148,7 @@ public class MyPageController {
 		return "mypage/myInfoManage/careerModify";
 	}
 	
-	//학력/경력 수정
+	//자격증 보유 증명
 		@GetMapping("/myInfoManage/liceseAttestation")
 		public String liceseAttestation() {	
 			return "mypage/myInfoManage/liceseAttestation";
