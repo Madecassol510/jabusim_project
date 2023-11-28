@@ -42,6 +42,8 @@ JaBuSim
 			<li class="nav-item active"><a href="${root }schedule/main" class="nav-link"> 자격증 달력 </a></li>
 
 			<li class="nav-item active"><a href="${root }recept/main" class="nav-link"> 자격증 접수 </a></li>
+			
+			<li class="nav-item active"><a href="${root }board/main" class="nav-link"> 공지사항 </a></li>
 		</ul>
 	</div>
 
