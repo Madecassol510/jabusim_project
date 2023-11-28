@@ -42,8 +42,7 @@ import kr.co.jabusim.service.BoardService;
 @ComponentScan("kr.co.jabusim.service")
 @PropertySource("/WEB-INF/properties/db.properties")
 public class ServletAppContext implements WebMvcConfigurer {
-	@Autowired
-	private BoardService boardService;
+	
 
 	@Value("${db.classname}")
 	private String db_classname;
@@ -57,7 +56,10 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Value("${db.password}")
 	private String db_password;
 
-
+	@Autowired
+	private BoardService boardService;
+	
+	
 	@Resource(name="loginUserBean")
 	private UserBean loginUserBean;
 
@@ -93,8 +95,14 @@ public class ServletAppContext implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		WebMvcConfigurer.super.addInterceptors(registry);
 
+		
+		TopMenuInterceptor topMenuInterceptor = new TopMenuInterceptor(loginUserBean);
 		CheckLoginInterceptor checkLoginInterceptor = new CheckLoginInterceptor(loginUserBean);
+		
+		InterceptorRegistration reg1 = registry.addInterceptor(topMenuInterceptor);
 		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
+		
+		reg1.addPathPatterns("/**");
 		reg2.addPathPatterns("/user/modify", "/user/logout" /*, "/board/*" */);
 		reg2.excludePathPatterns("/board/main");
 	}

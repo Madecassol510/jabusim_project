@@ -14,17 +14,5 @@ public class LicenseBean {
     private String div_code;
     private String div_name;
     
-	public LicenseBean(int license_id, String type, int type_code, String license_name, int name_code, String div_code,
-			String div_name) {
-		super();
-		this.license_id = license_id;
-		this.type = type;
-		this.type_code = type_code;
-		this.license_name = license_name;
-		this.name_code = name_code;
-		this.div_code = div_code;
-		this.div_name = div_name;
-	}
-    
     
 }

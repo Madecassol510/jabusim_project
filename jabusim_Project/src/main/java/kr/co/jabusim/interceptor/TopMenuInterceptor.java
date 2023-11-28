@@ -14,10 +14,11 @@ import kr.co.jabusim.beans.UserBean;
 public class TopMenuInterceptor implements HandlerInterceptor{
 	
 	//HandlerInterceptor�� @Autowired�� ��� ���� ����
-	//private TopMenuService topMenuService;
+	// private TopMenuService topMenuService;
 	private UserBean loginUserBean;
 	
 	public TopMenuInterceptor( UserBean loginUserBean) {
+		// this.topMenuService = topMenuService;
 		this.loginUserBean = loginUserBean;
 	}
 
@@ -25,8 +26,8 @@ public class TopMenuInterceptor implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		//List<BoardInfoBean> topMenuList = topMenuService.getTopMenuList();
-		//request.setAttribute("topMenuList", topMenuList);
+		// List<BoardInfoBean> topMenuList = topMenuService.getTopMenuList();
+		// request.setAttribute("topMenuList", topMenuList);
 		request.setAttribute("loginUserBean", loginUserBean);
 		return true;
 	}
