@@ -14,5 +14,4 @@ public class LicenseBean {
     private String div_code;
     private String div_name;
     
-    
 }

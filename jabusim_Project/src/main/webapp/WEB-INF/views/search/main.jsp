@@ -5,6 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 외부스크립트파일 -->
+<script type="text/javascript" src="${root}js/licenseCode.js"></script>
+<script type="text/javascript" src="${root}js/codeMapping.js"></script>
+
 <meta charset="UTF-8">
 <title>자격증 검색</title>
 <!-- 부트스트랩 -->
@@ -14,13 +18,15 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <!-- AJAX -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script type="text/javascript">
-	<% request.setCharacterEncoding("UTF-8"); %>
+	<%request.setCharacterEncoding("UTF-8");%>
 	
 	/* 자바스크립트 el태그 변수 */
 	var rootContextPath = "<c:out value='${root}'/>";
+	/* 종류 숨기기 객체 */
+	var contentVisible = { 'content1': false, 'content2': false, 'content3': false };
 	
 	$(document).ready(function(){
 		/* Ajax 셋업!! */
@@ -33,6 +39,106 @@
             }
 		});//ajax setup
 		
+		$('[data-target]').click(function() {
+	        var target = $(this).data('target');
+	
+	        if (target === "content1") {
+	            $('#content1').empty(); // 이전 내용 초기화
+	            $('#content2').empty(); // content2 초기화
+	
+	            codeDivision(function(grouped) {
+	                for (let major in grouped) {
+	                    if (major.length === 2) {
+	                        let majorName = codeMapping[major];
+	                        // 대분류 버튼 추가
+	                        var majorButton = $("<button class='btn-major' data-major='" + major + "'><li><strong>" + majorName + "</strong></li></button>");
+	                        $('#content1').append(majorButton);
+	
+	                        // 대분류 버튼 클릭 이벤트
+	                        majorButton.click(function() {
+	                            $('#content2').empty(); // 이전 내용 초기화
+	                            var selectedMajor = $(this).data('major');
+	
+	                            grouped[selectedMajor].forEach(minor => {
+	                                const fullCode = selectedMajor + minor;
+	                                if (codeMapping[fullCode]) {
+	                                    var minorButton = $("<button class='btn-minor' data-fullcode='" + fullCode + "'><li>" + codeMapping[fullCode] + "</li></button>");
+	                                    $('#content2').append(minorButton);
+	
+	                                    // 소분류 버튼 클릭 이벤트 (추가하고 싶은 동작을 여기에 작성)
+	                                    minorButton.click(function() {
+	                                        var code = $(this).data('fullcode');
+	                                        console.log("Clicked minor code: " + code);
+	                                        // 여기에 소분류 버튼 클릭 시 수행할 작업 추가
+	                                    });
+	                                }
+	                            });
+	                        });
+	                    }
+	                }
+	            });
+	        }
+	    });//분야 선택시 발생이벤트
+		
+		
+		
+		/* 
+		//라이센스 코드요청
+	    $('[data-target]').click(function() {
+	        var target = $(this).data('target');
+	
+	        if (target === "content1") {
+	            $('#content1').empty(); // 이전 내용 초기화
+	            $('#content2').empty(); // content2 초기화
+	
+	            codeDivision(function(grouped) {
+	                for (let major in grouped) {
+	                    if (major.length === 2) {
+	                        let majorName = codeMapping[major];
+	                        // 대분류 버튼 추가
+	                        var majorButton = $("<button class='btn-major' data-major='" + major + "'><li><strong>" + majorName + "</strong></li></button>");
+	                        $('#content1').append(majorButton);
+	
+	                        // 대분류 버튼 클릭 이벤트
+	                        majorButton.click(function() {
+	                            $('#content2').empty(); // 이전 내용 초기화
+	                            var selectedMajor = $(this).data('major');
+	
+	                            grouped[selectedMajor].forEach(minor => {
+	                                const fullCode = selectedMajor + minor;
+	                                if (codeMapping[fullCode]) {
+	                                    var minorButton = $("<button class='btn-minor' data-fullcode='" + fullCode + "'><li>" + codeMapping[fullCode] + "</li></button>");
+	                                    $('#content2').append(minorButton);
+	
+	                                    // 소분류 버튼 클릭 이벤트 (추가하고 싶은 동작을 여기에 작성)
+	                                    minorButton.click(function() {
+	                                        var code = $(this).data('fullcode');
+	                                        console.log("Clicked minor code: " + code);
+	                                        // 여기에 소분류 버튼 클릭 시 수행할 작업 추가
+	                                    });
+	                                }
+	                            });
+	                        });
+	                    }
+	                }
+	            });
+	        }//
+	    });//분야 선택시 발생이벤트
+		
+		 */
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/* 
 		// 더미데이터 끌고오기
 		$.ajax({
 		    type: "GET",
@@ -90,10 +196,33 @@
 		    error: function(jqXHR){
 		        alert("Error: " + jqXHR.status);
 		    }
-		});
+		}); */
 		
+		/*		
+		$.ajax({
+		      url:  "/jabusim_Project/getLicenseCode",
+		      method: 'GET',
+		      success: function(licenseCode) {
+		    	   licenseCode.forEach(licenseCode => {
+		    	     const majorCategory = licenseCode.substring(0, 2); // 대분류 코드 추출
+		    	     const minorCategory = licenseCode.substring(2); // 소분류 코드 추출
+		    	     
+		    	     if (!grouped[majorCategory]) {
+		    	       grouped[majorCategory] = [];
+		    	     }
+		    	     grouped[majorCategory].push(minorCategory);
+		    	   });
+		    	   
+		    	   return grouped;
+		       
+		      },
+		      error: function(xhr, status, error) {
+		        // 오류 처리
+		      }
+		    });//ajax */
+		/*
 		//검색ajax
-		 $("#searchButton").click(function() {
+		$("#searchButton").click(function() {
 		        var query = $("#searchInput").val(); // 검색어 가져오기
 		        $.ajax({
 		            url: '/jabusim_Project/searchLicenseName',
@@ -128,12 +257,15 @@
 		            error: function(error) {
 		                console.error("Error: ", error);
 		            }
-		        });
-		    });
-		
+		        });//검색 ajax
+		    }); //search 버튼 클릭시
+		    */
+		    
+		    
 	}); //document ready
 	
 </script>
+
 
 <style>
 ul, li {
@@ -328,44 +460,47 @@ a, a:hover {
 
 	<script>
     	/* 탑 모듈 */
-    	const contents = {
+    	/* const contents = {
 		    content1: ["항목 1-1", "항목 1-2", "항목 1-3"],
 		    content2: ["항목 2-1", "항목 2-2"],
 		    content3: ["항목 3-1"]
-		  };
-
+		  }; 
+		  
+		  
+    	
 		let lastClicked = null;
-
+		  
 		function updatePreview(targetId) {
-		  const targetUl = $('#' + targetId); // 현재 대상이 되는 <ul> 요소
-
-		  if (lastClicked === targetId) {
-		    // 동일한 버튼을 다시 클릭한 경우
-		    targetUl.empty(); // 해당 <ul> 요소의 내용만 비움
-		    lastClicked = null;
-		  } else {
-		    // 다른 버튼을 클릭한 경우
-		    $('.list_serch_preview ul').empty(); // 모든 <ul> 요소의 내용을 비움
-		    let newContent = '';
-		    contents[targetId].forEach(item => {
-		      newContent += '<li class="d-block w-100">' + item + '</li>';
-		    });
-
-		    targetUl.html(newContent); // 새로운 내용으로 업데이트
-		    lastClicked = targetId;
-		  }
-		}
-
-		$('.list_serch_contents .btn').each(function() {
-		  $(this).on('click', function() {
-		    const targetContent = $(this).data('target');
-		    updatePreview(targetContent);
-		  });
-		});
-    	
-    	
-    	
+			
+			if (targetId === 'content1') {
+			    $.ajax({
+			      url:  "/jabusim_Project/content1",
+			      method: 'GET',
+			      success: function(response) {
+			       console.log(response);
+			      },
+			      error: function(xhr, status, error) {
+			        // 오류 처리
+			      }
+			    });//ajax
+			  } else if (targetId === 'content2') {
+			    // content2에 대한 AJAX 요청
+			    // 유사한 AJAX 요청 구조...
+			  } else if (targetId === 'content3') {
+			    // content3에 대한 AJAX 요청
+			    // 유사한 AJAX 요청 구조...
+			  }//if문 끝
+			  
+		}//updatePreview
+		
+		 $('.list_serch_contents .btn').each(function() {
+			  $(this).on('click', function() {
+			    const targetContent = $(this).data('target');
+			    updatePreview(targetContent);
+			  });
+			}); */
 	</script>
 
 </body>
+
 </html>

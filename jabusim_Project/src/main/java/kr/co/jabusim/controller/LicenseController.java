@@ -28,4 +28,11 @@ public class LicenseController {
        System.out.println("검색어: " + query);
        return licenseMapper.searchLicenseName(query);
    }
+   
+   @GetMapping("/getLicenseCode")
+   public List getLicenseCode() {
+       System.out.println("자격증 코드 출력");
+       return licenseMapper.getLicenseCode();
+   }
+
 }

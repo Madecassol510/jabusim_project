@@ -13,4 +13,7 @@ public interface LicenseMapper {
 	
 	@Select("select * from license where license_name like '%' || #{query} || '%'")
 	List<LicenseBean> searchLicenseName(String query);
+	
+	@Select("select DISTINCT licenseField From license ORDER BY licensefield")
+	List<String> getLicenseCode();
 }
