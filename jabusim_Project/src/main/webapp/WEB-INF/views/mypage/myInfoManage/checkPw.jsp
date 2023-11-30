@@ -163,9 +163,7 @@
 			<div class="article">
 				<div class="check_hd">
 					<h3>비밀번호 확인</h3>
-					<span>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인합니다.
-
-					</span>
+					<span>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인합니다</span>
 				</div>
 				<form:form action="${root}mypage/myInfoManage/checkPw_pro" method="post" class="check_input" modelAttribute="checkPwUserBean">
 					<input type="hidden" name="myInfoManagePage" value="${myInfoManagePage}" />

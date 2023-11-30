@@ -25,7 +25,6 @@
 
 	body{
 		width:100%;
-		min-height : 1200px;
 	}
 	
 	ul{
@@ -50,8 +49,10 @@
 		width:100%;
 		border: 1px solid blue;
 		text-align:center;
+		/* 
 		padding-top: 50px;
-		padding-bottom: 50px;
+		padding-bottom: 50px; 
+		*/
 	}
 	
 	.article{	
@@ -238,7 +239,60 @@
 		height:70%;
 	}
 	
+		/* =========================================================================== */
+
 	/*myLicense_module*/
+	
+	#myLicense_module .hd h3{
+		text-align: left;
+		padding-left: 37px;
+	}
+	
+	
+	#myLicense_module .article{
+		width : 94%;
+		min-height : 600px;
+		display: inline-block;
+		border: 1px solid black;
+	}
+	
+	#myLicense_module .licenseBox{
+		min-height: 350px;
+		width: 100%;
+		border: 1px solid red;
+		margin-bottom: 30px;
+	} 
+	
+	
+	#myLicense_module .licenseBox .licenseHd{
+		min-height: 50px;
+		width: 100%;
+		border: 1px solid blue;
+		text-align: left;
+		padding-left: 37.5px;
+		padding-top: 20px;
+	}
+	
+	#myLicense_module .licenseBox .licenseList{
+		min-height: 300px;
+		width: 100%;
+		border: 1px solid blue;
+		padding:30px;
+		display: inline-table;
+	} 
+	
+	#myLicense_module .licenseBox .licenseCardList{
+		height: 150px;
+		width: 25%;
+		/* border: 1px solid green; */
+		float: left;
+	} 
+	
+	#myLicense_module .licenseBox .licenseCardList .card{		
+		width: 95%;
+		height: 95%;
+		margin: auto;
+	}
 	
 </style>
 
@@ -358,6 +412,133 @@
 							소유하신 보유 자격증 0개 <br />
 							소유하신 관심 자격증 0개
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="module" id="myLicense_module">
+			<div class="article">
+				<div class="licenseBox" id="own_licenseBox">
+					<div class="licenseHd">
+						<h5>보유자격증</h5>
+						<span>고객님의 관심 자격증은 0개입니다</span>
+					</div>
+					<div class="licenseList" id="own_licenseList">
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>			
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>	
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="licenseBox" id="interest_licenseBox">
+					<div class="licenseHd">
+						<h5>관심 자격증</h5>
+						<span>고객님의 관심 자격증은 0개입니다</span>
+					</div>
+					<div class="licenseList" id="interest_licenseList">
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+						<div class="licenseCardList">
+							<div class="card text-bg-light">
+								<div class="card-header">Header</div>
+								<div>
+								
+								</div>
+							</div>
+						</div>
+								
 					</div>
 				</div>
 			</div>

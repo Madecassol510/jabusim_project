@@ -37,16 +37,11 @@ public class MyPageController {
 		return "mypage/main";
 	}
 	
-	//--------------------------------myLicense------------------------------------
-	//자격증관리
-	@GetMapping("/myLicense/licenseManage")
-	public String licenseManage() {
-		return "mypage/myLicense/licenseManage";
-	}
+
 	//자격증일정
-	@GetMapping("/myLicense/licenseSchedule")
+	@GetMapping("/licenseSchedule")
 	public String licenseSchedule() {
-		return "mypage/myLicense/licenseSchedule";
+		return "mypage/licenseSchedule";
 	}
 	
 	//--------------------------------myDetailManage------------------------------------
