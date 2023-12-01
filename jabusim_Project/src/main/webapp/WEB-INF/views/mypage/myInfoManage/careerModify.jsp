@@ -179,18 +179,148 @@
 		width:260px;
 	}
 	
+	
+	
+	
 	/* =========================================================================== */
 	
 	/* 모달창 */
+	.modalBackground {
+		width:100%;
+		height: 100%;
+		position: fixed;
+		top:0;
+		left:0;
+		justify-content: center;
+  		align-items: center;
+		background: rgba(0,0,0,0.5);
+		display: none;
+	}
+	
+	.modalContainer{
+		width:500px;
+		height:500px;
+		position: absolute;
+		background: white;
+		
+	}
+	
+	.modalContainer .modalContainerHd{
+		padding:10px;
+		width:100%;
+		height:12%;
+		border-bottom: 1px solid black;
+	}
+	
+	.modalContainer .modalContainerHd h3{
+		height:100%;
+		margin: auto 0px;
+		display:inline-block;
+		float: left;
+		padding-top: 5px;
+	}
+	
+	.modalContainer .modalContainerHd button{
+		float: right;
+		height : 40px;
+		width : 40px;
+		padding : 0;
+	}
+	
+	.modalContainer .modalContent{
+		width : 100%;
+		height: 88%;
+		padding : 5%;
+	}
+	
+	.modalContainer .searchHd{
+		width : 100%;
+		height: 17%;
+		margin-bottom: 3%;
+		border: 1px solid black;
+		display: flex;
+        justify-content: center;
+        align-items: center;
+	}
+	
+	
+	.modalContainer .searchResult{
+		width : 100%;
+		height: 80%;
+		border: 1px solid black;
+		overflow: auto;
+	}
+	
+	.modalContainer .searchResult ul{
+		width : 100%;
+		height : 100%;
+		display: inline-block;
+		padding : 0px 0px 0px 15px;
+		margin: 0;
+	}
 
+	.modalContainer .searchResult li{
+		height : 12.5%;
+		width: 100%;
+		padding: 10px;
+	}
+	
+	.modalContainer .searchResult li span{
+		cursor: pointer;
+	}
+	
 	
 	
 </style>
 
 <script type="text/javascript">
 
-	fuction
+	function openModal(modalId) {
+	    var modals = document.getElementsByClassName("modalBackground");
+	
+	    // HTMLCollection을 배열로 변환
+	    var modalArray = Array.from(modals);
+	
+	    
+	    
+	    modalArray.forEach(function (modal) {
+	    	console.log(modalId);
+	    	console.log(modal.id);
+	    	
+	        if (modalId == modal.id) {
+	            modal.style.display = 'flex';
+	        } else {
+	            modal.style.display = "none";
+	            
+	        }
+	    });
+	}
+		
+	function closeModal(){
+		var	modals = document.getElementsByClassName("modalBackground");
+		
+		// HTMLCollection을 배열로 변환
+		var modalArray = Array.from(modals);
+		
+		modalArray.forEach(function(modal){		
+			modal.style.display = 'none';	
+		});
+	}
 
+	function selectResult(result){	
+		var resultVal = result.textContent || result.innerText;
+		
+		if(result.id == 'selectSchool'){
+			var inputSchool = document.getElementById("inputSchool")
+			inputSchool.value = resultVal;
+		}
+		else if(result.id == 'selectMajor'){
+			var inputMajor = document.getElementById("inputMajor")
+			inputMajor.value = resultVal;
+		}		
+		closeModal();
+	}
+	
 </script>
 
 </head>
@@ -258,8 +388,8 @@
 										<th>학교(기관)명</th>
 										<td>
 											<div class="inputDetail">
-												<input type="text" name="schoolName" id="selectSchool" disabled/>
-												<button>학교선택</button>
+												<input type="text" name="schoolName" id="inputSchool" disabled/>
+												<button type="button" onclick="openModal('schoolModalBackground')">학교선택</button>
 											</div>
 										</td>
 									</tr>
@@ -268,7 +398,7 @@
 										<td>
 											<div class="inputDetail">
 												<input type="text" name="majorName" id="inputMajor" disabled />
-												<button type="button" onclik>전공선택</button>
+												<button type="button" onclick="openModal('majorModalBackground')">전공선택</button>
 											</div>
 										</td>
 									</tr>
@@ -361,13 +491,69 @@
 	<!-- 모달창 -->
 	
 	<!-- 학교선택 모달창 -->
-	<div class="modalContainer" id="schoolModalContainer">
-		<div class="modalContent" id="">
-			<div></div>
+	<div class="modalBackground" id="schoolModalBackground">
+		<div class="modalContainer" id="">
+			<div class="modalContainerHd">
+				<h3>학교(기관)검색</h3>
+				<button type="button" onclick="closeModal()">닫기</button>
+			</div>
+			<div class="modalContent">
+				<div class="searchHd">
+					<form action="" onsubmit="">
+						<span>학교(기관)명</span>
+						<input type="text"/>
+						<button type="submit">검색</button>
+					</form>
+				</div>
+				<div class="searchResult">
+					<ul class="resultResult">
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	
-	
+	<!-- 학교선택 모달창 -->
+	<div class="modalBackground" id="majorModalBackground">
+		<div class="modalContainer" id="">	
+			<div class="modalContainerHd">
+				<h3>학과/전공 검색</h3>
+				<button type="button" onclick="closeModal()">닫기</button>
+			</div>
+			<div class="modalContent">
+				<div class="searchHd">
+					<form action="" onsubmit="">
+						<span>학과/전공명</span>
+						<input type="text"/>
+						<button type="submit">검색</button>
+					</form>
+				</div>
+				<div class="searchResult">
+					<ul class="resultResult">
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 	<c:import url="/WEB-INF/views/include/buttom_info.jsp" />
 </body>
 </html>
