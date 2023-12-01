@@ -87,6 +87,7 @@
 		padding-top: 10px;
 		padding-bottom: 10px;
 		border: 1px solid black;
+		height: 50px;
 	}
 	
 	#modify_module .article .articleBox table td{
@@ -95,6 +96,7 @@
 		padding-top: 10px;
 		padding-bottom: 10px;
 		border: 1px solid black;
+		height: 50px;
 	}
 	
 	#modify_module h3{
@@ -114,8 +116,8 @@
 	#modify_module .articleBox .present_div, .modify_div {
 		width : 500px;
 		border: 1px solid red;
-		padding-bottom : 30px;
-		height: 300px;
+		padding-bottom : 20px;
+		min-height: 300px;
 	}
 		
 	#modify_module .articleBox .present_div {		
@@ -132,7 +134,7 @@
 		margin-right: 36px;
 	}
 	
-	#modify_module .articleBox .modify_div div{
+	#modify_module .articleBox .modify_div > div{
 		margin-left: 37px;
 		margin-right: 36px;
 	}
@@ -147,8 +149,49 @@
 		height: 45px;
 	}
 	
+	#modify_module .articleBox select {
+		width:260px;
+		height: 30px;
+	}
+	
+	#modify_module .articleBox .inputDetail {
+		width:260px;
+		height: 30px;
+		margin:0 auto;
+		
+	}
+	
+	#modify_module .articleBox .inputDetail input{
+		width:180px;
+		height: 30px;
+		float: left;
+		background: gray;
+	}
+	
+	#modify_module .articleBox .inputDetail button{
+		width:70px;
+		height: 30px;
+		font-size: 12px;
+		float: right;
+	}
+	
+	#modify_module .articleBox #inputCompany{
+		width:260px;
+	}
+	
+	/* =========================================================================== */
+	
+	/* 모달창 */
+
+	
 	
 </style>
+
+<script type="text/javascript">
+
+	fuction
+
+</script>
 
 </head>
 <body>
@@ -193,30 +236,53 @@
 						-->
 					</div>
 					<div class="modify_div">
-						<h5>학력 수정</h5>
+						<h5>학력 추가</h5>
 						<div>
-							<table>
-								<tr>
-									<th>학력구분</th>
-									<td>평생교육진흥원 인정학점(106학점 이상)</td>
-								</tr>
-								<tr>
-									<th>학력(기관)명</th>
-									<td>서울대학교</td>
-								</tr>
-								<tr>
-									<th>학과/전공</th>
-									<td>컴퓨터공학</td>
-								</tr>
-							</table>						
+							<form method="post" onsubmit="educationAdd()">
+								<table>
+									<tr>
+										<th>학력구분</th>
+										<td><select name="eduDivision" id="selectEdu">
+												<option>선택해주세요</option>
+												<option>고등학교 졸업 이하</option>
+												<option>고졸 검정고시</option>
+												<option>평생교육진흥원 인정학점(81학점 이상)</option>
+												<option>평생교육진흥원 인정학점(106학점 이상)</option>
+												<option>2년제대학</option>
+												<option>4년제대학</option>
+												<option>석학학위</option>
+												<option>박사학위</option>
+										</select></td>
+									</tr>
+									<tr>
+										<th>학교(기관)명</th>
+										<td>
+											<div class="inputDetail">
+												<input type="text" name="schoolName" id="selectSchool" disabled/>
+												<button>학교선택</button>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<th>학과/전공</th>
+										<td>
+											<div class="inputDetail">
+												<input type="text" name="majorName" id="inputMajor" disabled />
+												<button type="button" onclik>전공선택</button>
+											</div>
+										</td>
+									</tr>
+								</table>
+								<div class="button_div">
+									<button>신청</button>
+								</div>
+							</form>					
 						</div>
-						<div class="button_div">
-							<button>신청</button>
-						</div>
+						
 					</div>
 							
 				</div>
-				
+
 				<div class="articleBox" id="carrer_articleBox">
 					<h3>경력 수정</h3>
 					<div class="present_div">
@@ -229,13 +295,13 @@
 								</tr>
 								<tr>
 									<th>직무분야</th>
-									<td>사무관리</td>					
+									<td>사무관리</td>
 								</tr>
 								<tr>
 									<th>업체명</th>
 									<td>솔데스크</td>
 								</tr>
-							</table>					
+							</table>
 						</div>
 						<!-- 
 						경력구분
@@ -250,33 +316,58 @@
 						-->
 					</div>
 					<div class="modify_div">
-						<h5>경력 수정</h5>
+						<h5>경력 추가</h5>
 						<div>
-							<table>
-								<tr>
-									<th>학력구분</th>
-									<td>평생교육진흥원 인정학점(106학점 이상)</td>
-								</tr>
-								<tr>
-									<th>학력(기관)명</th>
-									<td>서울대학교</td>
-								</tr>
-								<tr>
-									<th>학과/전공</th>
-									<td>컴퓨터공학</td>
-								</tr>
-							</table>
-						</div>
-						<div class="button_div">
-							<button>신청</button>
-						</div>
+							<form method="post" onsubmit="careerAdd()">
+								<table>
+									<tr>
+										<th>경력구분</th>
+										<td><select name="careerDivision" id="selectCareer">
+												<option>선택해주세요</option>
+												<option>2년 이상</option>
+												<option>2년 이상</option>
+												<option>2년 이상</option>
+												<option>2년 이상</option>
+										</select></td>
+									</tr>
+									<tr>
+										<th>직무분야</th>
+										<td><select name="jobField" id="selectJob">
+												<option>선택해주세요</option>
+												<option>사무관리</option>
+												<option>사무관리</option>
+												<option>사무관리</option>
+												<option>사무관리</option>
+										</select></td>
+									</tr>
+									<tr>
+										<th>업체명</th>
+										<td>
+											<input type="text" name="companyName" id="inputCompany" />
+										</td>
+									</tr>
+								</table>
+								<div class="button_div">
+									<button type="submit">신청</button>
+								</div>
+							</form>
+						</div>		
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
 
-
+	<!-- 모달창 -->
+	
+	<!-- 학교선택 모달창 -->
+	<div class="modalContainer" id="schoolModalContainer">
+		<div class="modalContent" id="">
+			<div></div>
+		</div>
+	</div>
+	
+	
 	<c:import url="/WEB-INF/views/include/buttom_info.jsp" />
 </body>
 </html>
