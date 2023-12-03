@@ -117,7 +117,7 @@
 		width : 500px;
 		border: 1px solid red;
 		padding-bottom : 20px;
-		min-height: 300px;
+		min-height: 310px;
 	}
 		
 	#modify_module .articleBox .present_div {		
@@ -129,7 +129,7 @@
 		
 	}
 	
-	#modify_module .articleBox .present_div div{		
+	#modify_module .articleBox .present_div > div{		
 		margin-left: 36px;
 		margin-right: 36px;
 	}
@@ -144,9 +144,21 @@
 		padding-top: 20px;
 	}
 	
-	#modify_module .articleBox .button_div button{
+	#modify_module .articleBox .button_div #applyButton{
 		width: 120px;
 		height: 45px;
+	}
+	
+	#modify_module .articleBox .button_div .preButton, .nextButton{
+		width: 80px;
+		height: 35px;
+	}
+	
+	#modify_module .articleBox .button_div .preButton{
+		float: left;
+	}
+	#modify_module .articleBox .button_div .nextButton{
+		float: right;
 	}
 	
 	#modify_module .articleBox select {
@@ -352,18 +364,10 @@
 								</tr>
 							</table>					
 						</div>
-										
-						<!-- 
-						학력구분
-							고졸 검정고시
-							고등학교 졸업 이하
-							평생교육진흥원 인정학점(81학점 이상)
-							평생교육진흥원 인정학점(106학점 이상)
-							2년제대학
-							4년제대학
-							석학학위
-							박사학위 
-						-->
+						<div class="button_div">
+							<button class = "preButton" id="edu_preButton"> &lt;</button>
+							<button class = "nextButton" id="edu_nextButton"> &gt;</button>
+						</div>				
 					</div>
 					<div class="modify_div">
 						<h5>학력 추가</h5>
@@ -404,7 +408,7 @@
 									</tr>
 								</table>
 								<div class="button_div">
-									<button>신청</button>
+									<button type="submit" id="applyButton">신청</button>
 								</div>
 							</form>					
 						</div>
@@ -433,17 +437,10 @@
 								</tr>
 							</table>
 						</div>
-						<!-- 
-						경력구분
-							고졸 검정고시
-							고등학교 졸업 이하
-							평생교육진흥원 인정학점(81학점 이상)
-							평생교육진흥원 인정학점(106학점 이상)
-							2년제대학
-							4년제대학
-							석학학위
-							박사학위 
-						-->
+						<div class="button_div">
+							<button class = "preButton" id="career_preButton">&lt;</button>
+							<button class = "nextButton" id="career_nextButton">&gt;</button>
+						</div>
 					</div>
 					<div class="modify_div">
 						<h5>경력 추가</h5>
@@ -478,7 +475,7 @@
 									</tr>
 								</table>
 								<div class="button_div">
-									<button type="submit">신청</button>
+									<button type="submit" id="applyButton">신청</button>
 								</div>
 							</form>
 						</div>		

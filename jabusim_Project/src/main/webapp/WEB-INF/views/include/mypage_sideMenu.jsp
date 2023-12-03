@@ -12,7 +12,7 @@
 <div class="sideMenubar">
 	<ul>
 		<li><a href="${root}mypage/main">마이페이지</a></li>
-		<li><a href="${root}mypage/licenseSchedule">나의 일정</a></li>
+		<%-- <li><a href="${root}mypage/licenseSchedule">나의 일정</a></li> --%>
 		<li><a href="#">나의 내역 관리</a>
 			<ul>
 				<li><a href="${root}mypage/myDetailManage/exam_result">자격증 시험 결과</a></li>

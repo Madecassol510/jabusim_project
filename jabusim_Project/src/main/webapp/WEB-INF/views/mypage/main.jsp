@@ -76,9 +76,9 @@
 	}
 	
 	
-	#myInfo_module h5{
+/* 	#myInfo_module h5{
 		margin-bottom: 25px;
-	}
+	} */
 	
 	
 	/*mypage_module 나의 정보*/
@@ -312,7 +312,7 @@
 						<div class="input_box">
 							<div class="input_name">
 								<span>이름</span>
-							</div>
+							</div>						
 							<div class="input_place">
 								<div class="input_placeTop">
 									<form:input path="user_name" readonly="true" />
@@ -324,6 +324,17 @@
 							<div class="photo_input">
 								<img src="${root }image/icon-spring-framework.svg" class="photo" />
 								<button type="button">사진등록</button>
+							</div>
+						</div>
+						<div class="input_box">
+							<div class="input_name">
+								<span>닉네임</span>
+							</div>
+							<div class="input_place">
+								<div class="input_placeTop">
+									<input type="text" />
+								</div>
+								<div class="input_placeBottom"></div>
 							</div>
 						</div>
 						<div class="input_box">
@@ -356,17 +367,6 @@
 							<div class="input_place">
 								<div class="input_placeTop">
 									<form:input path="user_phoneNum" readonly="true" />
-								</div>
-								<div class="input_placeBottom"></div>
-							</div>
-						</div>
-						<div class="input_box">
-							<div class="input_name">
-								<span>보유경력</span>
-							</div>
-							<div class="input_place">
-								<div class="input_placeTop">
-									<input type="text" />
 								</div>
 								<div class="input_placeBottom"></div>
 							</div>
