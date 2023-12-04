@@ -38,7 +38,7 @@ li {
 
 .pageContainer {
 	position: relative;
-	width: 1325px;
+	width: 1400px;
 	min-height: 951px;
 	border: 1px solid red;
 	float: left;
@@ -72,20 +72,19 @@ li {
 	width: 100%;
 }
 
-#dashBoardModule .dashBoardBox {
+#dashBoardModule .dashBoard {
 	width: 95%;
 	height: 100%;
-	display: grid;
-	text-align: center;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(2, 510px);
-	grid-row-gap: 50px;
-	grid-column-gap: 50px;
+	border: 1px solid black;;
 }
 
-#dashBoardModule .dashBoard {
+/* #dashBoardModule .dashBoard {
 	border: 1px solid black;
-}
+	width: 100%;
+	height: 100%;
+} */
+
+/* =========================================================================== */
 
 #dashBoardModule .dashBoard .dashBoardHd {
 	border-bottom: 1px solid black;
@@ -102,7 +101,6 @@ li {
 	display: inline-block;
 	margin: 0;
 	margin-top: 3px;
-	
 }
 
 
@@ -112,14 +110,83 @@ li {
 
 .dashBoard .dashBoardArticle{
 	width:100%;
-	height: 450px;
+	min-height: 450px;
 }
 
 
 
+/* =========================================================================== */
+/* 검색조건 */
 
+
+.dashBoard .dashBoardSearch{
+	text-align: left;
+	border: 1px solid black;
+	margin-bottom : 60px; 
+}
+
+.dashBoard .dashBoardSearch form{
+	display: inline-block;
+	width: 100%;
+	position:relative;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.dashBoard .dashBoardSearch .searchTable{
+	width: 80%;
+	float: left;
+}
+
+.dashBoard .dashBoardSearch .searchTable th{
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.dashBoard .dashBoardSearch .searchTable td{
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.dashBoard .dashBoardSearch .searchHd{
+	width: 10%;
+	height: 100%;
+	text-align: center;
+}
+
+
+.dashBoard .dashBoardSearch  .searchTable .searchArticle{
+	width:80%;
+}
+
+
+
+.dashBoard .dashBoardSearch .searchTable .searchArticle .searchReq{
+	display: inline-block;
+	margin-left: 15px;
+}
+
+
+.dashBoard .dashBoardSearch .searchButton{
+	position:absolute;
+	width: 10%;
+	right:0;
+	bottom:20px;
+}	
+
+
+.dashBoard .dashBoardSearch .searchButton button{
+	width: 100px;
+	height: 60px;
+}
 
 /* =================================================== */
+
+/* 테이블 리스트 */
+
+.dashBoard .dashBoardArticle {
+	border:1px solid black; 
+}
 
 .dashBoard .dashBoardArticle table {
 	width:100%;
@@ -138,6 +205,26 @@ li {
 	border-bottom: 1px solid black;
 }
 
+.dashBoard .dashBoardArticle table th{
+	padding: 0 15px;
+}
+
+.dashBoard .dashBoardArticle table td{
+	padding: 0 15px;
+}
+
+
+
+
+/* ================================================ */
+
+#edu_list, #career_list{
+	width:200px;
+} 
+
+span {
+	text-align: left;
+}
 
 </style>
 
@@ -150,343 +237,568 @@ li {
 	<div class="pageContainer">
 
 		<div class="article">
-			<h3>${loginUserBean.getUser_name()}님환영합니다</h3>
+			<h3>${loginUserBean.getUser_name()}님 환영합니다</h3>
 			<div class="module" id="dashBoardModule">
-				<div class="dashBoardBox">
-					<div class="dashBoard">
-						<div class="dashBoardHd">
-							<h5>최근 가입자</h5>
-							<button>더보기</button>
-						</div>
-						<div class="dashBoardArticle">
-							<table>
-								<thead>
-									<tr>
-										<th><span>시험명</span></th>
-										<th><span>회차</span></th>
-										<th><span>구분</span></th>
-										<th><span>시험날짜</span></th>
-										<th><span>수험번호</span></th>
-										<th><span>응시장소</span></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+				<div class="dashBoard">
+					<div class="dashBoardHd">
+						<h5>최근 가입자</h5>
+						
 					</div>
-					<div class="dashBoard">
-						<div class="dashBoardHd">
-							<h5>최근 시험 일정</h5>
-							<button>더보기</button>
-						</div>
-						<div class="dashBoardArticle">
-							<table>
-								<thead>
-									<tr>
-										<th><span>시험명</span></th>
-										<th><span>회차</span></th>
-										<th><span>구분</span></th>
-										<th><span>시험날짜</span></th>
-										<th><span>수험번호</span></th>
-										<th><span>응시장소</span></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div class="dashBoard">
-						<div class="dashBoardHd">
-							<h5>최근 문의</h5>
-							<button>더보기</button>
-						</div>
-						<div class="dashBoardArticle">
-							<table>
-								<thead>
-									<tr>
-										<th><span>시험명</span></th>
-										<th><span>회차</span></th>
-										<th><span>구분</span></th>
-										<th><span>시험날짜</span></th>
-										<th><span>수험번호</span></th>
-										<th><span>응시장소</span></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div class="dashBoard">
-						<div class="dashBoardHd">
-							<h5>공지 사항</h5>
-							<button>더보기</button>
-						</div>
-						<div class="dashBoardArticle">
-							<table>
-								<thead>
-									<tr>
-										<th><span>시험명</span></th>
-										<th><span>회차</span></th>
-										<th><span>구분</span></th>
-										<th><span>시험날짜</span></th>
-										<th><span>수험번호</span></th>
-										<th><span>응시장소</span></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
-									<tr>
-										<td><span>2023정보처리기사</span></td>
-										<td><span>3회</span></td>
-										<td><span>실기</span></td>
-										<td><span>2023-11-12</span></td>
-										<td><span>01060742</span></td>
-										<td><span>서울고등학교</span></td>
-										<td><span><button>취소</button></span></td>
-									</tr>
+					
+					<div class="dashBoardSearch">
+						<form action="">
+							<table class="searchTable">
+								<tr>
+									<th class="searchHd">자격증분야</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<select>
+												<option value="">선택해주세요</option>
+			
+											</select>
+											<select>
+												<option value="">선택해주세요</option>
+											</select>
+										</div>
+										<button>추가</button>
+									</td>
+								</tr>
+								<tr>
+									<th class="searchHd">응시자격</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 고등학교 졸업 이하
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 고졸 검정고시
+										</div>
+										<br>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(81학점 이상)
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
+										</div>
+										<br>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 2년제대학
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 4년제대학
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 석사학위
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 박사학위
+										</div>
+										<br>
+									</td>
+								</tr>
+								
+								<tr>
+									<th class="searchHd">이름검색</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="text" />
+										</div>						
+									</td>
+								</tr>
 									
-								</tbody>
 							</table>
-						</div>
+							<div class="searchButton">
+								<button type="submit">검색</button>
+							</div>			
+						</form>
 					</div>
-				</div>
+					
+					<div class="searchResultCount" style="text-align: left; padding-left: 10px;">
+					<span>검색결과 : 13/ 총 13명 검색결과 </span>
+					</div>
+					
+					<div class="dashBoardArticle">
+						<table>
+							<thead>
+								<tr>
+									<th><input type="checkbox"></th>
+									<th><span>no.</span></th>
+									<th><span>이름</span></th>
+									<th><span>생년월일</span></th>
+									<th><span>휴대폰번호</span></th>
+									<th><span>관심분야</span></th>
+									<th><span>학력목록</span></th>
+									<th><span>경력목록</span></th>
+									<th><span>가입일</span></th>
+									<th><span>최근로그인</span></th>
+									<th><span></span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>20000807</span></td>
+									<td><span>01035641347</span></td>
+									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="edu_list">
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+											<option>평생교육진흥원 인정학점(106학점 이상)</option>
+									</select></td>
+									<td><select name="" id="career_list">
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+											<option>사무관리/2년 이상</option>
+									</select></td>
+									<td><span>2019-09-17</span></td>
+									<td><span>2023-12-04</span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
+				</div>
 			</div>
 		</div>
 	</div>

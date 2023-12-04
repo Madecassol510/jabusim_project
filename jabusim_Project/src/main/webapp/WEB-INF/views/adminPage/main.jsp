@@ -38,7 +38,7 @@ li {
 
 .pageContainer {
 	position: relative;
-	width: 1325px;
+	width: 1400px;
 	min-height: 951px;
 	border: 1px solid red;
 	float: left;
