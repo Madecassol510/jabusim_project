@@ -352,13 +352,13 @@
 						data-bs-ride="carousel">
 						<div class="carousel-inner">
 							<div class="carousel-item active" data-bs-interval="5000">
-								<img src="${root }image/icon-spring-framework.svg" />
+								<img src="${root }image/caruosel1.jpg" />
 							</div>
 							<div class="carousel-item" data-bs-interval="5000">
-								<img src="${root }image/icon-spring-framework.svg" />
+								<img src="${root }image/caruosel2.jpg" />
 							</div>
 							<div class="carousel-item" data-bs-interval="5000">
-								<img src="${root }image/icon-spring-framework.svg" />
+								<img src="${root }image/caruosel3.jpg" />
 							</div>
 						</div>
 						<button class="carousel-control-prev" type="button"
