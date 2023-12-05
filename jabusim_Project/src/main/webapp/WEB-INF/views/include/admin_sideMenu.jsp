@@ -45,14 +45,14 @@
 		<li onclick="location.href='${root}main'"><div >자부심</div></li>
 		<li onclick="location.href='${root}adminPage/main'"><div>HOME</div></li>
 		<li onclick="location.href='${root}adminPage/memberManage'"><div>회원관리</div></li>
-		<li onclick="location.href='${root}adminPage/inquiryManage'"><div>문의관리(일반)</div></li>
-		<li onclick="location.href='${root}adminPage/inquiryManage'"><div>문의관리(학력)</div></li>
-		<li onclick="location.href='${root}adminPage/inquiryManage'"><div>문의관리(경력)</div></li>
+		<li onclick="location.href='${root}adminPage/inquiryManage/eduInquiryManage'"><div>문의관리(학력)</div></li>
+		<li onclick="location.href='${root}adminPage/inquiryManage/carrerInquiryManage'"><div>문의관리(경력)</div></li>
 		<li onclick="location.href='${root}adminPage/licenseManage'"><div>자격증관리</div></li>
-		<li onclick="location.href='${root}adminPage/licenseManage'"><div>우대회사관리</div></li>
-		<li onclick="location.href='${root}adminPage/examManage'"><div>시험관리</div></li>
-		<li onclick="location.href='${root}adminPage/examManage'"><div>장소관리</div></li>
-		<li onclick="location.href='${root}adminPage/examManage'"><div>접수관리</div></li>
+		<li onclick="location.href='${root}adminPage/examManage/examManage'"><div>시험관리</div></li>
+		<li onclick="location.href='${root}adminPage/examManage/examPlaceManage'"><div>장소관리</div></li>
+		<li onclick="location.href='${root}adminPage/examManage/examReceiptManage'"><div>접수관리</div></li>
+		<li onclick="location.href='${root}adminPage/examManage/examResultManage'"><div>시험관리</div></li>
+		<li onclick="location.href='${root}adminPage/examManage/examPassingrate'"><div>시험합격률</div></li>
 	</ul>
 </div>
 

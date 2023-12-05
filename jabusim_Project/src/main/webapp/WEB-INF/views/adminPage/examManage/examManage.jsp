@@ -405,8 +405,7 @@ span {
 									<td><span>2023-12-31</span></td>
 									<td><span>일반</span></td>
 									<th><span><button>수정</button></span></th>
-								</tr>
-								
+								</tr>					
 							</tbody>
 						</table>
 					</div>
