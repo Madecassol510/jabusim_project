@@ -88,13 +88,11 @@ li {
 
 #dashBoardModule .dashBoard .dashBoardHd {
 	border-bottom: 1px solid black;
-}
-
-.dashBoard .dashBoardHd {
 	text-align: left;
 	margin: 0;
 	padding: 15px;
 	height: 60px;
+	margin-bottom: 40px;
 }
 
 .dashBoard .dashBoardHd h5{
@@ -237,14 +235,25 @@ span {
 	<div class="pageContainer">
 
 		<div class="article">
-			<h3>${loginUserBean.getUser_name()}님 환영합니다</h3>
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
 					<div class="dashBoardHd">
-						<h5>최근 가입자</h5>
-						
+						<h5>시험 관리</h5>
 					</div>
-					
+					<ul class="nav nav-tabs">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">시험관리</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${root}adminPage/examManage/examPlaceManage">시험장소</a>				
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${root}adminPage/examManage/examReceiptManage">시험접수</a>				
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="${root}adminPage/examManage/examResultManage">시험결과</a>				
+						</li>	
+					</ul>			
 					<div class="dashBoardSearch">
 						<form action="">
 							<table class="searchTable">

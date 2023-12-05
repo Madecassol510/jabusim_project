@@ -70,8 +70,8 @@ public class AdminPageController {
 	
 	
 	// 시험합격률
-	@GetMapping("/examManage/examPlaceManage/examPassingRate")
-	public String examPassingRate() {
-		return "adminPage/examManage/examPassingRate";
+	@GetMapping("/passingRate")
+	public String passingRate() {
+		return "adminPage/passingRate";
 	}
 }

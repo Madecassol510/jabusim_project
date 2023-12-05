@@ -88,14 +88,13 @@ li {
 
 #dashBoardModule .dashBoard .dashBoardHd {
 	border-bottom: 1px solid black;
-}
-
-.dashBoard .dashBoardHd {
 	text-align: left;
 	margin: 0;
 	padding: 15px;
 	height: 60px;
+	margin-bottom: 40px;
 }
+
 
 .dashBoard .dashBoardHd h5{
 	display: inline-block;
@@ -242,9 +241,15 @@ span {
 				<div class="dashBoard">
 					<div class="dashBoardHd">
 						<h5>최근 가입자</h5>
-						
 					</div>
-					
+					<ul class="nav nav-tabs">
+						<li class="nav-item">
+							<a class="nav-link" href="${root}adminPage/inquiryManage/eduInquiryManage">학력문의</a>				
+						</li>
+						<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#">경력문의</a>
+						</li>
+					</ul>
 					<div class="dashBoardSearch">
 						<form action="">
 							<table class="searchTable">
@@ -266,18 +271,18 @@ span {
 									<th class="searchHd">문의날짜</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
-										</div>	
+											<input type="date" /> ~ <input type="date" />
+											<!-- max="2077-06-20" -->
+										</div>
 									</td>
 								</tr>
 								<tr>
 									<th class="searchHd">처리날짜</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
-										</div>	
+											<input type="date" /> ~ <input type="date" />
+											<!-- max="2077-06-20" -->
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -299,17 +304,17 @@ span {
 									<td class="searchArticle">
 										<div class="searchReq">
 											<input type="text" />
-										</div>						
+										</div>
 									</td>
 								</tr>
-									
+
 							</table>
 							<div class="searchButton">
 								<button type="submit">검색</button>
-							</div>			
+							</div>
 						</form>
 					</div>
-					
+
 					<div class="searchResultCount" style="text-align: left; padding-left: 10px;">
 					<span>검색결과 : 13/ 총 13명 검색결과 </span>
 					</div>
@@ -571,7 +576,6 @@ span {
 									<td><span>처리대기</span></th>
 									<td><span><button>수정</button></span></th>
 								</tr>
-
 							</tbody>
 						</table>
 					</div>
