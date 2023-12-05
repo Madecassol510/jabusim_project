@@ -322,14 +322,11 @@ span {
 								<tr>
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
-									<th><span>이름</span></th>
-									<th><span>생년월일</span></th>
-									<th><span>휴대폰번호</span></th>
-									<th><span>관심분야</span></th>
-									<th><span>학력목록</span></th>
-									<th><span>경력목록</span></th>
-									<th><span>가입일</span></th>
-									<th><span>최근로그인</span></th>
+									<th><span>자격증명</span></th>
+									<th><span>대분야</span></th>
+									<th><span>세부분야</span></th>
+									<th><span>상세정보</span></th>
+									<th><span>우대회사목록</span></th>
 									<th><span></span></th>
 								</tr>
 							</thead>
@@ -337,463 +334,287 @@ span {
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
+									<td><span>정보처리기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
 									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
+											<option>네이버</option>
+											<option>네이버</option>
+											<option>네이버</option>								
 									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
 									<th><span><button>수정</button></span></th>
 								</tr>
+								
+								
+								
+								
 							</tbody>
 						</table>
 					</div>

@@ -45,7 +45,7 @@
 	    border: 1px solid red;
 	}
 	.module{
-		min-height : 600px;
+		min-height : 540px;
 		width:100%;
 		border: 1px solid blue;
 		text-align:center;
@@ -85,7 +85,7 @@
 	
 	#myInfo_module .left_div{
 		width : 60%;
-		min-height : 520px;
+		min-height : 460px;
 		border: 1px solid black;
 		text-align:left;
 		float:left;
@@ -183,7 +183,7 @@
 	/*mypage_module 활동 정보*/
 	#myInfo_module .right_div{
 		width : 38%;
-		height : 520px;
+		height : 460px;
 		border: 1px solid black;
 		float:right;
 	}
@@ -191,7 +191,7 @@
 	#myInfo_module .act_div{
 		width : 100%;
 		display:inline-block;
-		height : 60%;
+		height : 67%;
 		border: 1px solid black;
 		text-align:left;
 		padding: 30px 40px;
@@ -221,7 +221,6 @@
 	/*mypage_module 자격증 정보*/
 	
 	#myInfo_module .right_footer{
-		margin-top:	8.7%;
 		width:100%;
 		border: 1px solid black;
 		height : 33%;
@@ -251,7 +250,7 @@
 	
 	#myLicense_module .article{
 		width : 94%;
-		min-height : 600px;
+		min-height : 460px;
 		display: inline-block;
 		border: 1px solid black;
 	}
@@ -324,17 +323,6 @@
 							<div class="photo_input">
 								<img src="${root }image/icon-spring-framework.svg" class="photo" />
 								<button type="button">사진등록</button>
-							</div>
-						</div>
-						<div class="input_box">
-							<div class="input_name">
-								<span>닉네임</span>
-							</div>
-							<div class="input_place">
-								<div class="input_placeTop">
-									<input type="text" />
-								</div>
-								<div class="input_placeBottom"></div>
 							</div>
 						</div>
 						<div class="input_box">

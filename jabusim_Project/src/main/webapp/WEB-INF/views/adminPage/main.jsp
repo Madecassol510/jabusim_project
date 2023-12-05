@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!DOCTYPE html>
 <html>
 
@@ -17,7 +18,8 @@
 	crossorigin="anonymous">
 
 
-
+ 
+ 
 <style>
 
 /* ==========================페이지 공용================================== */
@@ -65,6 +67,31 @@ li {
 /* =========================================================================== */
 
 
+
+#statisticModule {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+#statisticModule .statisticBox{
+	width: 95%;
+	height: 100%;
+	display: grid;
+	text-align: center;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(1, 511px);
+	grid-column-gap: 50px;
+}
+
+#statisticModule .statistic{
+	border: 1px solid black;
+}
+
+
+
+/* =========================================================================== */
 #dashBoardModule {
 	display: flex;
 	align-items: center;
@@ -78,7 +105,7 @@ li {
 	display: grid;
 	text-align: center;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(2, 510px);
+	grid-template-rows: repeat(2, 512px);
 	grid-row-gap: 50px;
 	grid-column-gap: 50px;
 }
@@ -98,59 +125,113 @@ li {
 	height: 60px;
 }
 
-.dashBoard .dashBoardHd h5{
+.dashBoard .dashBoardHd h5 {
 	display: inline-block;
 	margin: 0;
 	margin-top: 3px;
-	
 }
 
-
-.dashBoard .dashBoardHd button{
+.dashBoard .dashBoardHd button {
 	float: right;
 }
 
-.dashBoard .dashBoardArticle{
-	width:100%;
+.dashBoard .dashBoardArticle {
+	width: 100%;
 	height: 450px;
 }
 
-
-
-
-
 /* =================================================== */
-
 .dashBoard .dashBoardArticle table {
-	width:100%;
+	width: 100%;
+	text-align: center;
 }
 
-.dashBoard .dashBoardArticle table tr{
-	width:100%;
+.dashBoard .dashBoardArticle table tr {
+	width: 100%;
 	height: 50px;
 }
 
-.dashBoard .dashBoardArticle table thead{
+.dashBoard .dashBoardArticle table td {
+	height: 50px;
+}
+
+.dashBoard .dashBoardArticle table thead {
 	border-bottom: 2px solid black;
 }
 
-.dashBoard .dashBoardArticle table tbody{
+.dashBoard .dashBoardArticle table tbody {
 	border-bottom: 1px solid black;
 }
 
 
 </style>
 
+<script type="text/javascript">
+	//차트를 생성할 canvas 요소를 가져옵니다.
+	var ctx = document.getElementById('myChart').getContext('2d');
+	
+	// 데이터 배열을 정의합니다. 여기서는 간단한 원형 그래프를 위한 데이터입니다.
+	var data = {
+	    labels: ['데이터1', '데이터2', '데이터3', '데이터4', '데이터5'],
+	    datasets: [{
+	        label: '차트 제목',
+	        backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+	        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)'],
+	        borderWidth: 1,
+	        data: [10, 20, 30, 40, 50]
+	    }]
+	};
+	
+	// 차트를 생성합니다.
+	var myChart = new Chart(ctx, {
+	    type: 'doughnut', // 차트 유형 설정 (원형 그래프)
+	    data: data,
+	    options: {
+	        // 추가적인 차트 옵션을 설정할 수 있습니다.
+	    }
+	});
+
+</script>
+
 
 </head>
 <body>
-
 	<c:import url="/WEB-INF/views/include/admin_sideMenu.jsp" />
 
 	<div class="pageContainer">
-
 		<div class="article">
 			<h3>${loginUserBean.getUser_name()}님환영합니다</h3>
+			<div class="module" id="statisticModule">
+				<div class="statisticBox">
+					<div class="statistic">
+						<div>
+							접수 통계
+						</div>
+						<canvas></canvas>
+						<div>
+						
+						</div>
+					</div>
+					<div class="statistic">
+						<div>
+							관심분야 통계
+						</div>
+						<canvas></canvas>
+						<div>
+						
+						</div>
+					</div>
+					<div class="statistic">
+						<div>
+							합격률 통계
+						</div>
+						<canvas></canvas>
+						<div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoardBox">
 					<div class="dashBoard">
