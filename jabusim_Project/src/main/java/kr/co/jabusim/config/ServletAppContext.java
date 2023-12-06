@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
@@ -28,6 +29,7 @@ import kr.co.jabusim.interceptor.CheckLoginInterceptor;
 import kr.co.jabusim.interceptor.TopMenuInterceptor;
 import kr.co.jabusim.mapper.BoardMapper;
 import kr.co.jabusim.mapper.LicenseMapper;
+import kr.co.jabusim.mapper.SearchLicenseMapper;
 import kr.co.jabusim.mapper.UserMapper;
 import kr.co.jabusim.service.BoardService;
 
@@ -115,6 +117,7 @@ public class ServletAppContext implements WebMvcConfigurer {
 	public SqlSessionFactory factory(BasicDataSource source) throws Exception {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(source);
+		factoryBean.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
 		SqlSessionFactory factory = factoryBean.getObject();
 		return factory;
 	}
@@ -135,6 +138,12 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Bean
 	public MapperFactoryBean<LicenseMapper> getLicenseMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<LicenseMapper> factoryBean = new MapperFactoryBean<LicenseMapper>(LicenseMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	@Bean
+	public MapperFactoryBean<SearchLicenseMapper> getSearchLicenseMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<SearchLicenseMapper> factoryBean = new MapperFactoryBean<SearchLicenseMapper>(SearchLicenseMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}

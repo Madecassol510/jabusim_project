@@ -9,11 +9,13 @@ import kr.co.jabusim.beans.LicenseBean;
 public interface LicenseMapper {
 
 	@Select("select * from license")
-	List<LicenseBean> getAllLicenseList();
-	
-	@Select("select * from license where license_name like '%' || #{query} || '%'")
-	List<LicenseBean> searchLicenseName(String query);
+	List<LicenseBean> getAllLicense();
 	
 	@Select("select DISTINCT licenseField From license ORDER BY licensefield")
 	List<String> getLicenseCode();
+	
+	@Select("select DISTINCT licenseType From license")
+	List<String> getLicenseType();
+	
+	
 }

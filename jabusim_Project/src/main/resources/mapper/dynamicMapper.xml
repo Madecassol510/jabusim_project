@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.jabusim.mapper.SearchLicenseMapper">
+	
+	<resultMap id="searchLicenseBean" type="kr.co.jabusim.beans.SearchLicenseBean">
+	    <result property="licenseID" column="licenseID"/>
+	    <result property="licenseName" column="licenseName"/>
+	    <result property="majorCode" column="majorCode"/>
+	    <result property="fullCode" column="fullCode"/>
+	    <result property="licenseType" column="licenseType"/>
+	    <result property="examName" column="examName"/>
+	    <result property="registrationPeriod" column="registrationPeriod"/>
+	    <result property="examDate" column="examDate"/>
+	</resultMap>
+
+
+	
+	<select id="selectMajorCode" parameterType="list" resultMap="searchLicenseBean">
+	    SELECT
+	        L.licenseID,
+	        L.licenseName,
+	        (SELECT DISTINCT SUBSTR(L.licenseField, 1, 2) FROM License WHERE License.licenseID = L.licenseID) AS majorCode,
+	        L.licenseField AS fullCode,
+	        L.licenseType,
+	        E.examName,
+	        TO_CHAR(ED.registrationStartDate, 'YYYY-MM-DD') || ' ~ ' || TO_CHAR(ED.registrationEndDate, 'YYYY-MM-DD') AS registrationPeriod,
+	        TO_CHAR(ED.examDate, 'YYYY-MM-DD') AS examDate
+	    FROM License L
+	    JOIN Exam E ON L.licenseID = E.licenseID
+	    JOIN ExamDate ED ON E.examID = ED.examID
+	    WHERE (SUBSTR(L.licenseField, 1, 2)) IN
+	    <foreach item="item" collection="majorCode" open="(" separator="," close=")">
+	        #{item}
+	    </foreach>
+	</select>
+	
+	<select id="selectFullCode" parameterType="list" resultMap="searchLicenseBean">
+	    SELECT
+	        L.licenseID,
+	        L.licenseName,
+	        (SELECT DISTINCT SUBSTR(L.licenseField, 1, 2) FROM License WHERE License.licenseID = L.licenseID) AS majorCode,
+	        L.licenseField AS fullCode,
+	        L.licenseType,
+	        E.examName,
+	        TO_CHAR(ED.registrationStartDate, 'YYYY-MM-DD') || ' ~ ' || TO_CHAR(ED.registrationEndDate, 'YYYY-MM-DD') AS registrationPeriod,
+	        TO_CHAR(ED.examDate, 'YYYY-MM-DD') AS examDate
+	    FROM License L
+	    JOIN Exam E ON L.licenseID = E.licenseID
+	    JOIN ExamDate ED ON E.examID = ED.examID
+	    WHERE L.licenseField in
+	    <foreach item="item" collection="fullCode" open="(" separator="," close=")">
+	        #{item}
+	    </foreach>
+	</select>
+	
+	<select id="selectLicenseType" parameterType="list" resultMap="searchLicenseBean">
+	    SELECT
+	        L.licenseID,
+	        L.licenseName,
+	        (SELECT DISTINCT SUBSTR(L.licenseField, 1, 2) FROM License WHERE License.licenseID = L.licenseID) AS majorCode,
+	        L.licenseField AS fullCode,
+	        L.licenseType,
+	        E.examName,
+	        TO_CHAR(ED.registrationStartDate, 'YYYY-MM-DD') || ' ~ ' || TO_CHAR(ED.registrationEndDate, 'YYYY-MM-DD') AS registrationPeriod,
+	        TO_CHAR(ED.examDate, 'YYYY-MM-DD') AS examDate
+	    FROM License L
+	    JOIN Exam E ON L.licenseID = E.licenseID
+	    JOIN ExamDate ED ON E.examID = ED.examID
+	    WHERE L.licenseType IN
+	    <foreach item="item" collection="licenseType" open="(" separator="," close=")">
+	        #{item}
+	    </foreach>
+	</select>
+	
+	<!-- <select id="selectSchedule" parameterType="list" resultMap="searchLicenseBean">
+	    SELECT
+	        L.licenseID,
+	        L.licenseName,
+	        (SELECT DISTINCT SUBSTR(L.licenseField, 1, 2) FROM License WHERE License.licenseID = L.licenseID) AS majorCode,
+	        L.licenseField AS fullCode,
+	        L.licenseType,
+	        E.examName,
+	        TO_CHAR(ED.registrationStartDate, 'YYYY-MM-DD') || ' ~ ' || TO_CHAR(ED.registrationEndDate, 'YYYY-MM-DD') AS registrationPeriod,
+	        TO_CHAR(ED.examDate, 'YYYY-MM-DD') AS examDate
+	    FROM License L
+	    JOIN Exam E ON L.licenseID = E.licenseID
+	    JOIN ExamDate ED ON E.examID = ED.examID
+	    <choose>
+	    	<when test="selectSchedule['schedule'] != null">
+	    		<foreach item="code" collection="selectAnyParmas['majorCode']" open="(" separator="," close=")">
+                        #{code}
+                    </foreach>
+	    	</when>
+	    </choose>
+	</select> -->
+
+	<!-- 변수 여러개 -->
+	<select id="selectAnyCategories" parameterType="map" resultMap="searchLicenseBean">
+	    SELECT
+	        L.licenseID,
+	        L.licenseName,
+	        (SELECT DISTINCT SUBSTR(L.licenseField, 1, 2) FROM License WHERE License.licenseID = L.licenseID) AS majorCode,
+	        L.licenseField AS fullCode,
+	        L.licenseType,
+	        E.examName,
+	        TO_CHAR(ED.registrationStartDate, 'YYYY-MM-DD') || ' ~ ' || TO_CHAR(ED.registrationEndDate, 'YYYY-MM-DD') AS registrationPeriod,
+	        TO_CHAR(ED.examDate, 'YYYY-MM-DD') AS examDate
+	    FROM License L
+	    JOIN Exam E ON L.licenseID = E.licenseID
+	    JOIN ExamDate ED ON E.examID = ED.examID
+    <where>
+        <choose>
+            <when test="selectAnyParmas['majorCode'] != null and selectAnyParmas['fullCode'] != null">
+                AND (
+                    (SUBSTR(L.licenseField, 1, 2) IN 
+                    <foreach item="code" collection="selectAnyParmas['majorCode']" open="(" separator="," close=")">
+                        #{code}
+                    </foreach>)
+                    OR
+                    (L.licenseField IN 
+                    <foreach item="code" collection="selectAnyParmas['fullCode']" open="(" separator="," close=")">
+                        #{code}
+                    </foreach>)
+                )
+            </when>
+            <when test="selectAnyParmas['majorCode'] != null">
+                AND SUBSTR(L.licenseField, 1, 2) IN 
+                <foreach item="code" collection="selectAnyParmas['majorCode']" open="(" separator="," close=")">
+                    #{code}
+                </foreach>
+            </when>
+            <when test="selectAnyParmas['fullCode'] != null">
+                AND L.licenseField IN 
+                <foreach item="code" collection="selectAnyParmas['fullCode']" open="(" separator="," close=")">
+                    #{code}
+                </foreach>
+            </when>
+        </choose>
+        <if test="selectAnyParmas['licenseType'] != null">
+            AND L.licenseType IN 
+            <foreach item="code" collection="selectAnyParmas['licenseType']" open="(" separator="," close=")">
+                #{code}
+            </foreach>
+        </if>
+        <if test="selectAnyParmas['schedule'] != null and 'examDate' in selectAnyParmas['schedule']">
+		    AND SYSDATE BETWEEN ED.registrationStartDate AND registrationEndDate
+		</if>
+        <if test="selectAnyParmas['schedule'] != null and 'beRegisting' in selectAnyParmas['schedule']">
+		    ORDER BY ed.examdate
+		</if>
+        <if test="selectAnyParmas['schedule'] != null and 'notRegisted' in selectAnyParmas['schedule']">
+		    AND ED.registrationStartDate > SYSDATE
+		</if>
+        <if test="selectAnyParmas['schedule'] != null and 'closeRegisted' in selectAnyParmas['schedule']">
+		    (ed.registrationenddate = TRUNC(SYSDATE))
+		</if>
+    </where>
+	</select>
+	
+</mapper>

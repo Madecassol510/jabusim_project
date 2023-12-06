@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.jabusim.mapper.LicenseMapper;
+import kr.co.jabusim.service.LicenseService;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 @RestController
@@ -16,23 +17,21 @@ public class LicenseController {
 
    @Autowired
    private LicenseMapper licenseMapper;
+
+   @Autowired
+   private LicenseService licenseService;
    
-   @GetMapping("/licenses")
-   public List getAllLicenseList() {
-      System.out.println("getAllLicenseList 성공");
-      return licenseMapper.getAllLicenseList();
-   }
-   
-   @GetMapping("/searchLicenseName")
-   public List searchLicenseName(@RequestParam String query) {
-       System.out.println("검색어: " + query);
-       return licenseMapper.searchLicenseName(query);
-   }
-   
+
    @GetMapping("/getLicenseCode")
    public List getLicenseCode() {
-       System.out.println("자격증 코드 출력");
-       return licenseMapper.getLicenseCode();
+      System.out.println("getLicenseCode 성공");
+      return licenseMapper.getLicenseCode();
    }
 
+   @GetMapping("/getLicenseType")
+   public List getLicenseType() {
+	   System.out.println("getLicenseType 성공");
+	   return licenseMapper.getLicenseType();
+   }
+   
 }

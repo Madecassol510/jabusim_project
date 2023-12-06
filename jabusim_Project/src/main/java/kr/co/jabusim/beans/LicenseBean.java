@@ -6,12 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LicenseBean {
-    private int license_id;
-    private String type;
-    private int type_code;
-    private String license_name;
-    private int name_code;
-    private String div_code;
-    private String div_name;
+	
+    private int licenseID;
+    private String licenseName;
+    private String licenseType;
+    private String licenseField;
     
 }
