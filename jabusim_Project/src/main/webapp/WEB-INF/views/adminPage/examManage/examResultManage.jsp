@@ -312,20 +312,15 @@ span {
 									<th class="searchHd">상태</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 일반
+											<input type="checkbox" name="edu_list" /> 대기
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 접수중
+											<input type="checkbox" name="edu_list" /> 합격
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 접수예정
+											<input type="checkbox" name="edu_list" /> 불합격
 										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 시험예정
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 시험일
-										</div>
+										
 									</td>
 								</tr>
 								<tr>
@@ -352,18 +347,15 @@ span {
 						</form>
 					</div>
 					
-					<div class="searchResultCount" style="text-align: left; padding-left: 10px;">
-					<span>검색결과 : 13/ 총 13명 검색결과 </span>
-					</div>
-					
 					<div class="dashBoardArticle">
 						<table>
 							<thead>
 								<tr>
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
-									<th><span>시험명</span></th>
-									<th><span>응시종목</span></th>
+									<th><span>이름</span></th>
+									<th><span>아이디</span></th>
+									<th><span>연도</span></th>
 									<th><span>회차</span></th>
 									<th><span>구분</span></th>
 									<th><span>접수시작일</span></th>
@@ -377,28 +369,15 @@ span {
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
-									<td><span>2023정보처리기사</span></td>
-									<td><span>정보처리기사</span></td>
+									<td><span>홍길동</span></td>
+									<td><span>boradory</span></td>
+									<td><span>2023</span></td>
 									<td><span>3회차</span></td>
 									<td><span>필기</span></td>
-									<td><input type="date" /></td>
-									<td><input type="date" /></td>
-									<td><input type="date" /></td>
-									<td><span>시험예정</span></td>
-									<th><span><button>완료</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>2023정보처리기사</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>3회차</span></td>
-									<td><span>필기</span></td>
-									<td><span>2023-12-04</span></td>
-									<td><span>2023-12-11</span></td>
-									<td><span>2023-12-31</span></td>
-									<td><span>일반</span></td>
-									<th><span><button>수정</button></span></th>
+									<td><span>2023-12-06</span></td>
+									<td><span>81</span></td>
+									<td><span>합격</span></td>
+									<th><span><button>점수입력</button></span></th>
 								</tr>					
 							</tbody>
 						</table>

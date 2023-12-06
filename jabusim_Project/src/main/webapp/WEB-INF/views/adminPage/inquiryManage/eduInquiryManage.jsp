@@ -292,10 +292,7 @@ span {
 											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
 										</div> <br>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 4년제대학
+											<input type="checkbox" name="edu_list" /> 학사학위
 										</div>
 										<div class="searchReq">
 											<input type="checkbox" name="edu_list" /> 석사학위

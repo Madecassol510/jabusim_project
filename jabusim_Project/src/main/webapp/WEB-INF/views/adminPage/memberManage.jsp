@@ -358,78 +358,53 @@ span {
 						<form action="">
 							<table class="searchTable">
 								<tr>
-									<th class="searchHd">보유학력</th>
+									<th class="searchHd">이름검색</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고등학교 졸업 이하
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고졸 검정고시
-										</div> <br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(81학점 이상)
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
-										</div> <br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 4년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 석사학위
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 박사학위
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">보유경력</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<select>
-												<option value="">경력분야</option>
-											</select>
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2년 이상
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 4년 이상
-										</div>
+											<input type="text" />
+										</div>						
 									</td>
 								</tr>
 								<tr>
 									<th class="searchHd">관심분야</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고등학교 졸업 이하
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고졸 검정고시
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(81학점 이상)
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 4년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 석사학위
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 박사학위
+											<select>
+												<option>선택해주세요</option>
+												<option>건설기계운전</option>
+												<option>채광</option>
+												<option>기계제작</option>
+												<option>기계장비설비.설치</option>
+												<option>철도</option>
+												<option>조선</option>
+												<option>항공</option>
+												<option>자동차</option>
+												<option>금형.공작기계</option>
+												<option>금속.재료</option>
+												<option>판금.제관.새시</option>
+												<option>단조.주조</option>
+												<option>용접</option>
+												<option>도장.도금</option>
+												<option>화공</option>
+												<option>위험물</option>
+												<option>섬유</option>
+												<option>의복</option>
+												<option>전기</option>
+												<option>전자</option>
+												<option>정보기술</option>
+												<option>식품</option>
+												<option>제과.제빵</option>
+												<option>인쇄.사진</option>
+												<option>목재.가구.공예</option>
+												<option>농업</option>
+												<option>축산</option>
+												<option>임업</option>
+												<option>어업</option>
+												<option>안전관리</option>
+												<option>비파괴검사</option>
+												<option>환경</option>
+												<option>에너지.기상</option>
+											</select>
 										</div>
 									</td>
 								</tr>
@@ -443,23 +418,21 @@ span {
 									</td>
 								</tr>
 								<tr>
-									<th class="searchHd">이름검색</th>
+									<th class="searchHd">최근로그인</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
-										</div>						
+											<input type="date" /> ~
+											<input type="date" /> <!-- max="2077-06-20" -->
+										</div>					
 									</td>
 								</tr>
+								
 									
 							</table>
 							<div class="searchButton">
 								<button type="submit">검색</button>
 							</div>			
 						</form>
-					</div>
-					
-					<div class="searchResultCount" style="text-align: left; padding-left: 10px;">
-					<span>검색결과 : 13/ 총 13명 검색결과 </span>
 					</div>
 					
 					<div class="dashBoardArticle">

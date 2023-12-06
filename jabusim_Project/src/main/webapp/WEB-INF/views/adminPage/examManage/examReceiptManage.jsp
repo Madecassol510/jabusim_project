@@ -270,30 +270,8 @@ span {
 									<th class="searchHd">응시종목</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고등학교 졸업 이하
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고졸 검정고시
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(81학점 이상)
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 4년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 석사학위
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 박사학위
+											<input type="text" />
+											<button>검색</button>
 										</div>
 									</td>
 								</tr>

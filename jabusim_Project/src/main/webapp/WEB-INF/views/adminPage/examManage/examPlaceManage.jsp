@@ -237,11 +237,8 @@ span {
 
 </head>
 <body>
-
 	<c:import url="/WEB-INF/views/include/admin_sideMenu.jsp" />
-
 	<div class="pageContainer">
-
 		<div class="article">
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
@@ -266,108 +263,25 @@ span {
 						<form action="">
 							<table class="searchTable">
 								<tr>
-									<th class="searchHd">응시종목</th>
+									<th class="searchHd">지역구</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고등학교 졸업 이하
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고졸 검정고시
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(81학점 이상)
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 4년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 석사학위
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 박사학위
+											<select>
+												<option>서울특별자치도
+												<option>
+											</select>
 										</div>
 									</td>
-								</tr>
+								</tr>							
 								<tr>
-									<th class="searchHd">회차</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 1회
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2회
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 3회
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">구분</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 필기
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 실기
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">접수일</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
-										</div>	
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">시험일</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
-										</div>	
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">상태</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 일반
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 접수중
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 접수예정
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 시험예정
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 시험일
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">시험명</th>
+									<th class="searchHd">장소명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
 											<input type="text" />
 										</div>						
 									</td>
 								</tr>
-									
+								
 							</table>
 							<div class="searchButton">
 								<button type="submit">검색</button>
@@ -385,48 +299,53 @@ span {
 								<tr>
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
-									<th><span>시험명</span></th>
-									<th><span>응시종목</span></th>
-									<th><span>회차</span></th>
-									<th><span>구분</span></th>
-									<th><span>접수시작일</span></th>
-									<th><span>접수마감일</span></th>
-									<th><span>시험일</span></th>
-									<th><span>상태</span></th>
+									<th><span>장소명</span></th>
+									<th><span>지역구</span></th>
+									<th><span>주소</span></th>
+									<th><span>최대수용인</span></th>
 									<th><span></span></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>2023정보처리기사</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>3회차</span></td>
-									<td><span>필기</span></td>
-									<td><input type="date" /></td>
-									<td><input type="date" /></td>
-									<td><input type="date" /></td>
-									<td><span>시험예정</span></td>
-									<th><span><button>완료</button></span></th>
+									<td><input type="checkbox"></td>
+									<td><span>no.</span></td>
+									<td><span>서울대학교</span></td>
+									<td><span>서울특별자치도</span></td>
+									<td><span>서울특별시 관악구 관악로 1</span></td>
+									<td><span>300</span></td>
+									<td><span><button>수정</button></span></td>				
 								</tr>
 								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>2023정보처리기사</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>3회차</span></td>
-									<td><span>필기</span></td>
-									<td><span>2023-12-04</span></td>
-									<td><span>2023-12-11</span></td>
-									<td><span>2023-12-31</span></td>
-									<td><span>일반</span></td>
-									<th><span><button>수정</button></span></th>
+									<td><input type="checkbox"></td>
+									<td><span>no.</span></td>
+									<td><span>서울대학교</span></td>
+									<td><span>서울특별자치도</span></td>
+									<td><span>서울특별시 관악구 관악로 1</span></td>
+									<td><span>300</span></td>
+									<td><span><button>수정</button></span></td>				
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td><span>no.</span></td>
+									<td><span>서울대학교</span></td>
+									<td><span>서울특별자치도</span></td>
+									<td><span>서울특별시 관악구 관악로 1</span></td>
+									<td><span>300</span></td>
+									<td><span><button>수정</button></span></td>				
+								</tr>
+								<tr>
+									<td><input type="checkbox"></td>
+									<td><span>no.</span></td>
+									<td><span>서울대학교</span></td>
+									<td><span>서울특별자치도</span></td>
+									<td><span>서울특별시 관악구 관악로 1</span></td>
+									<td><span>300</span></td>
+									<td><span><button>수정</button></span></td>				
 								</tr>					
 							</tbody>
 						</table>
 					</div>
-
 				</div>
 			</div>
 		</div>

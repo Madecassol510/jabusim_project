@@ -243,23 +243,19 @@ span {
 						<form action="">
 							<table class="searchTable">
 								<tr>
-									<th class="searchHd">자격증분야</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 국가기술자격       
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 국가전문자격
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">자격증분야</th>
+									<th class="searchHd">대분야</th>
 									<td class="searchArticle">
 										<div class="searchReq">
 											<select>
 												<option value="">선택해주세요</option>
 											</select>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th class="searchHd">세부분야</th>
+									<td class="searchArticle">
+										<div class="searchReq">
 											<select>
 												<option value="">선택해주세요</option>
 											</select>
@@ -270,9 +266,6 @@ span {
 									<th class="searchHd">자격증계열</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 없음
-										</div>
-										<div class="searchReq">
 											<input type="checkbox" name="edu_list" /> 기술사
 										</div>
 										<div class="searchReq">
@@ -280,9 +273,6 @@ span {
 										</div>
 										<div class="searchReq">
 											<input type="checkbox" name="edu_list" /> 기사       
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 산업기사       
 										</div>
 										<div class="searchReq">
 											<input type="checkbox" name="edu_list" /> 기능사       
@@ -303,12 +293,7 @@ span {
 								<button type="submit">검색</button>
 							</div>			
 						</form>
-					</div>
-					
-					<div class="searchResultCount" style="text-align: left; padding-left: 10px;">
-					<span>검색결과 : 13/ 총 13명 검색결과 </span>
-					</div>
-					
+					</div>				
 					<div class="dashBoardArticle">
 						<table>
 							<thead>
@@ -316,7 +301,6 @@ span {
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
 									<th><span>자격증명</span></th>
-									<th><span>구분</span></th>
 									<th><span>계열</span></th>
 									<th><span>대분야</span></th>
 									<th><span>세부분야</span></th>
@@ -330,18 +314,25 @@ span {
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
 									<td><span>정보처리기사</span></td>
-									<td><span>국가기술자격</span></td>
 									<td><span>기사</span></td>
 									<td><span>대분야</span></td>
 									<td><span>세부분야</span></td>
 									<td><span><button>상세내용</button></span></td>
 									<th><span><button>수정</button></span></th>
-								</tr>					
-								
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>1</span></td>
+									<td><span>정보산업기사</span></td>
+									<td><span>기사</span></td>
+									<td><span>대분야</span></td>
+									<td><span>세부분야</span></td>
+									<td><span><button>상세내용</button></span></td>
+									<th><span><button>수정</button></span></th>
+								</tr>												
 							</tbody>
 						</table>
 					</div>
-
 				</div>
 			</div>
 		</div>
