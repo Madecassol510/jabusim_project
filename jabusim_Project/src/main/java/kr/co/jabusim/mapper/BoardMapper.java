@@ -12,8 +12,8 @@ import kr.co.jabusim.beans.ContentBean;
 
 public interface BoardMapper {
 
-	//jdbcType=VARCHAR :NULL°ªÀ» Çã¿ëÇÏµµ·Ï
-	//jdbcType=VARCHAR:MyBatis¿¡¼­ null°ªÀ» ¹®ÀÚ·Î ÀÎÁöÇÏµµ·ÏÇÑ´Ù
+	//jdbcType=VARCHAR :NULLï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½
+	//jdbcType=VARCHAR:MyBatisï¿½ï¿½ï¿½ï¿½ nullï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	@Insert("insert into content_table(content_idx, content_subject, content_text, " +
 			"content_file, content_writer_idx, content_date) " +
 			"values (content_seq.nextval, #{content_subject}, #{content_text}, #{content_file, jdbcType=VARCHAR}, " +

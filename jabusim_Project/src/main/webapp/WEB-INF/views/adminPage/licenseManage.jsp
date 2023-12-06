@@ -51,7 +51,7 @@ li {
 	width: 100%;
 	border: 1px solid blue;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 10px;
 	padding-bottom: 50px;
 }
 
@@ -94,10 +94,10 @@ li {
 	text-align: left;
 	margin: 0;
 	padding: 15px;
-	height: 60px;
+	margin-bottom: 20px;
 }
 
-.dashBoard .dashBoardHd h5{
+.dashBoard .dashBoardHd h2{
 	display: inline-block;
 	margin: 0;
 	margin-top: 3px;
@@ -123,6 +123,7 @@ li {
 	text-align: left;
 	border: 1px solid black;
 	margin-bottom : 60px; 
+	
 }
 
 .dashBoard .dashBoardSearch form{
@@ -213,9 +214,6 @@ li {
 	padding: 0 15px;
 }
 
-
-
-
 /* ================================================ */
 
 #edu_list, #career_list{
@@ -235,16 +233,12 @@ span {
 	<c:import url="/WEB-INF/views/include/admin_sideMenu.jsp" />
 
 	<div class="pageContainer">
-
 		<div class="article">
-			<h3>${loginUserBean.getUser_name()}님 환영합니다</h3>
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
 					<div class="dashBoardHd">
-						<h5>최근 가입자</h5>
-						
+						<h2>최근 가입자</h2>
 					</div>
-					
 					<div class="dashBoardSearch">
 						<form action="">
 							<table class="searchTable">
@@ -252,52 +246,51 @@ span {
 									<th class="searchHd">자격증분야</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<select>
-												<option value="">선택해주세요</option>
-			
-											</select>
-											<select>
-												<option value="">선택해주세요</option>
-											</select>
+											<input type="checkbox" name="edu_list" /> 국가기술자격       
 										</div>
-										<button>추가</button>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 국가전문자격
+										</div>
 									</td>
 								</tr>
 								<tr>
-									<th class="searchHd">응시자격</th>
+									<th class="searchHd">자격증분야</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고등학교 졸업 이하
+											<select>
+												<option value="">선택해주세요</option>
+											</select>
+											<select>
+												<option value="">선택해주세요</option>
+											</select>
 										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고졸 검정고시
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(81학점 이상)
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 4년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 석사학위
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 박사학위
-										</div>
-										<br>
 									</td>
 								</tr>
-								
 								<tr>
-									<th class="searchHd">이름검색</th>
+									<th class="searchHd">자격증계열</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 없음
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 기술사
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 기능장       
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 기사       
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 산업기사       
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 기능사       
+										</div>
+									</td>
+								</tr>				
+								<tr>
+									<th class="searchHd">자격증명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
 											<input type="text" />
@@ -323,10 +316,12 @@ span {
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
 									<th><span>자격증명</span></th>
+									<th><span>구분</span></th>
+									<th><span>계열</span></th>
 									<th><span>대분야</span></th>
 									<th><span>세부분야</span></th>
 									<th><span>상세정보</span></th>
-									<th><span>우대회사목록</span></th>
+									<th><span>수정</span></th>
 									<th><span></span></th>
 								</tr>
 							</thead>
@@ -335,285 +330,13 @@ span {
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
 									<td><span>정보처리기사</span></td>
+									<td><span>국가기술자격</span></td>
+									<td><span>기사</span></td>
 									<td><span>대분야</span></td>
 									<td><span>세부분야</span></td>
 									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
 									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><select name="" id="career_list">
-											<option>네이버</option>
-											<option>네이버</option>
-											<option>네이버</option>								
-									</select></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								
-								
-								
+								</tr>					
 								
 							</tbody>
 						</table>

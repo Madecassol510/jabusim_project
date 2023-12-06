@@ -51,7 +51,7 @@ li {
 	width: 100%;
 	border: 1px solid blue;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 10px;
 	padding-bottom: 50px;
 }
 
@@ -91,12 +91,11 @@ li {
 	text-align: left;
 	margin: 0;
 	padding: 15px;
-	height: 60px;
-	margin-bottom: 40px;
+	margin-bottom: 15px;
 }
 
 
-.dashBoard .dashBoardHd h5{
+.dashBoard .dashBoardHd h2{
 	display: inline-block;
 	margin: 0;
 	margin-top: 3px;
@@ -121,6 +120,7 @@ li {
 .dashBoard .dashBoardSearch{
 	text-align: left;
 	border: 1px solid black;
+	border-top: none;
 	margin-bottom : 60px; 
 }
 
@@ -225,6 +225,16 @@ span {
 	text-align: left;
 }
 
+/* ================================================ */
+/* 부트스트랩 */
+.nav-tabs {
+    border-bottom: 1px solid black;
+}
+
+.nav-tabs .nav-link.active {
+	border-color: black black #fff;
+}
+
 </style>
 
 
@@ -235,12 +245,11 @@ span {
 
 	<div class="pageContainer">
 
-		<div class="article">
-			<h3>${loginUserBean.getUser_name()}님 환영합니다</h3>
+		<div class="article">			
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
 					<div class="dashBoardHd">
-						<h5>최근 가입자</h5>
+						<h2>최근 가입자</h2>
 					</div>
 					<ul class="nav nav-tabs">
 						<li class="nav-item">
@@ -267,6 +276,28 @@ span {
 										</div>
 									</td>
 								</tr> -->
+								<tr>
+									<th class="searchHd">직무분야</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<select>
+												<option value="">경력분야</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th class="searchHd">경력구분</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 2년 이상
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 4년 이상
+										</div>
+									</td>
+								</tr>
+								
 								<tr>
 									<th class="searchHd">문의날짜</th>
 									<td class="searchArticle">
@@ -326,13 +357,14 @@ span {
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
 									<th><span>이름</span></th>
-									<th><span>생년월일</span></th>
-									<th><span>휴대폰번호</span></th>									
-									<th><span>상세내용</span></th>									
+									<th><span>아이디</span></th>
+									<th><span>직무분야</span></th>									
+									<th><span>경력구분</span></th>									
+									<th><span>업체명</span></th>
 									<th><span>문의날짜</span></th>
 									<th><span>처리날짜</span></th>
 									<th><span>처리상태</span></th>						
-									<th><span></span></th>
+									
 								</tr>
 							</thead>
 							<tbody>
@@ -340,241 +372,253 @@ span {
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
 									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
+									<td><span>boradory</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-02</span></td>
+									<td><span>처리완료</span></td>
+								</tr>				
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>2</span></td>
+									<td><span>이순신</span></td>
+									<td><span>qwe123456</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>4년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span></span></td>
+									<td><span>처리대기</span></td>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>3</span></td>
+									<td><span>세종대왕</span></td>
+									<td><span>gksrmf1234</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-03</span></td>
+									<td><span>처리거절</span></td>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
 									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
+									<td><span>boradory</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-02</span></td>
+									<td><span>처리완료</span></td>
+								</tr>				
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>2</span></td>
+									<td><span>이순신</span></td>
+									<td><span>qwe123456</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>4년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span></span></td>
+									<td><span>처리대기</span></td>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>3</span></td>
+									<td><span>세종대왕</span></td>
+									<td><span>gksrmf1234</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-03</span></td>
+									<td><span>처리거절</span></td>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
 									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
+									<td><span>boradory</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-02</span></td>
+									<td><span>처리완료</span></td>
+								</tr>				
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>2</span></td>
+									<td><span>이순신</span></td>
+									<td><span>qwe123456</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>4년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span></span></td>
+									<td><span>처리대기</span></td>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>3</span></td>
+									<td><span>세종대왕</span></td>
+									<td><span>gksrmf1234</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-03</span></td>
+									<td><span>처리거절</span></td>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
 									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
+									<td><span>boradory</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-02</span></td>
+									<td><span>처리완료</span></td>
+								</tr>				
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>2</span></td>
+									<td><span>이순신</span></td>
+									<td><span>qwe123456</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>4년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span></span></td>
+									<td><span>처리대기</span></td>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>3</span></td>
+									<td><span>세종대왕</span></td>
+									<td><span>gksrmf1234</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-03</span></td>
+									<td><span>처리거절</span></td>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
 									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
+									<td><span>boradory</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-02</span></td>
+									<td><span>처리완료</span></td>
+								</tr>				
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>2</span></td>
+									<td><span>이순신</span></td>
+									<td><span>qwe123456</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>4년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span></span></td>
+									<td><span>처리대기</span></td>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>3</span></td>
+									<td><span>세종대왕</span></td>
+									<td><span>gksrmf1234</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-03</span></td>
+									<td><span>처리거절</span></td>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
 									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
+									<td><span>boradory</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-02</span></td>
+									<td><span>처리완료</span></td>
+								</tr>				
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>2</span></td>
+									<td><span>이순신</span></td>
+									<td><span>qwe123456</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>4년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span></span></td>
+									<td><span>처리대기</span></td>
+								</tr>
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>3</span></td>
+									<td><span>세종대왕</span></td>
+									<td><span>gksrmf1234</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-03</span></td>
+									<td><span>처리거절</span></td>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
 									<td><span>1</span></td>
 									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
+									<td><span>boradory</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-02</span></td>
+									<td><span>처리완료</span></td>
+								</tr>				
+								<tr>
+									<th><input type="checkbox"></th>
+									<td><span>2</span></td>
+									<td><span>이순신</span></td>
+									<td><span>qwe123456</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>4년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span></span></td>
+									<td><span>처리대기</span></td>
 								</tr>
 								<tr>
 									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<td><span>2023-12-01</span></th>
-									<td><span>2023-12-02</span></th>
-									<td><span>처리대기</span></th>
-									<td><span><button>수정</button></span></th>
+									<td><span>3</span></td>
+									<td><span>세종대왕</span></td>
+									<td><span>gksrmf1234</span></td>
+									<td><span>사무관리</span></td>
+									<td><span>2년이상</span></td>
+									<td><span>솔데스크</span></td>
+									<td><span>2023-12-01</span></td>
+									<td><span>2023-12-03</span></td>
+									<td><span>처리거절</span></td>
 								</tr>
 							</tbody>
 						</table>

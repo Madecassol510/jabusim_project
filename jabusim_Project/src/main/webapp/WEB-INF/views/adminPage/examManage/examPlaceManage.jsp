@@ -51,7 +51,7 @@ li {
 	width: 100%;
 	border: 1px solid blue;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 10px;
 	padding-bottom: 50px;
 }
 
@@ -91,11 +91,10 @@ li {
 	text-align: left;
 	margin: 0;
 	padding: 15px;
-	height: 60px;
-	margin-bottom: 40px;
+	margin-bottom: 15px;
 }
 
-.dashBoard .dashBoardHd h5{
+.dashBoard .dashBoardHd h2{
 	display: inline-block;
 	margin: 0;
 	margin-top: 3px;
@@ -120,7 +119,8 @@ li {
 .dashBoard .dashBoardSearch{
 	text-align: left;
 	border: 1px solid black;
-	margin-bottom : 60px; 
+	margin-bottom : 60px;
+	border-top: none;
 }
 
 .dashBoard .dashBoardSearch form{
@@ -223,7 +223,15 @@ li {
 span {
 	text-align: left;
 }
+/* ================================================ */
+/* 부트스트랩 */
+.nav-tabs {
+    border-bottom: 1px solid black;
+}
 
+.nav-tabs .nav-link.active {
+	border-color: black black #fff;
+}
 </style>
 
 
@@ -235,23 +243,25 @@ span {
 	<div class="pageContainer">
 
 		<div class="article">
-			<h3>${loginUserBean.getUser_name()}님 환영합니다</h3>
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
 					<div class="dashBoardHd">
-						<h5>최근 가입자</h5>
+						<h2>최근 가입자</h2>
 					</div>
 					<ul class="nav nav-tabs">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">시험관리</a>
+						<li class="nav-item">					
+							<a class="nav-link" href="${root}adminPage/examManage/examManage">시험관리</a>		
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="${root}adminPage/examManage/examPlaceManage">장소문의</a>				
+							<a class="nav-link active" aria-current="page" href="#">시험장소</a>			
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="${root}adminPage/examManage/examReceiptManage">접수문의</a>				
+							<a class="nav-link" href="${root}adminPage/examManage/examReceiptManage">시험접수</a>				
 						</li>
-					</ul>			
+						<li class="nav-item">
+							<a class="nav-link" href="${root}adminPage/examManage/examResultManage">시험결과</a>				
+						</li>	
+					</ul>				
 					<div class="dashBoardSearch">
 						<form action="">
 							<table class="searchTable">

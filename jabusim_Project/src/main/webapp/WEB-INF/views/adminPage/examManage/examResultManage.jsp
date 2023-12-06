@@ -51,7 +51,7 @@ li {
 	width: 100%;
 	border: 1px solid blue;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 10px;
 	padding-bottom: 50px;
 }
 
@@ -91,11 +91,10 @@ li {
 	text-align: left;
 	margin: 0;
 	padding: 15px;
-	height: 60px;
-	margin-bottom: 40px;
+	margin-bottom: 15px;
 }
 
-.dashBoard .dashBoardHd h5{
+.dashBoard .dashBoardHd h2{
 	display: inline-block;
 	margin: 0;
 	margin-top: 3px;
@@ -120,7 +119,8 @@ li {
 .dashBoard .dashBoardSearch{
 	text-align: left;
 	border: 1px solid black;
-	margin-bottom : 60px; 
+	margin-bottom : 60px;
+	border-top: none;
 }
 
 .dashBoard .dashBoardSearch form{
@@ -211,9 +211,6 @@ li {
 	padding: 0 15px;
 }
 
-
-
-
 /* ================================================ */
 
 #edu_list, #career_list{
@@ -223,6 +220,17 @@ li {
 span {
 	text-align: left;
 }
+
+/* =========================================================================== */
+/* 부트스트랩 */
+.nav-tabs {
+    border-bottom: 1px solid black;
+}
+
+.nav-tabs .nav-link.active {
+	border-color: black black #fff;
+}
+
 
 </style>
 
@@ -235,57 +243,28 @@ span {
 	<div class="pageContainer">
 
 		<div class="article">
-			<h3>${loginUserBean.getUser_name()}님 환영합니다</h3>
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
 					<div class="dashBoardHd">
-						<h5>최근 가입자</h5>
+						<h2>최근 가입자</h2>
 					</div>
 					<ul class="nav nav-tabs">
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">시험관리</a>
+						<li class="nav-item">					
+							<a class="nav-link" href="${root}adminPage/examManage/examManage">시험관리</a>		
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="${root}adminPage/examManage/examPlaceManage">장소문의</a>				
+							<a class="nav-link" href="${root}adminPage/examManage/examPlaceManage">시험장소</a>			
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="${root}adminPage/examManage/examReceiptManage">접수문의</a>				
+							<a class="nav-link" href="${root}adminPage/examManage/examReceiptManage">시험접수</a>			
 						</li>
-					</ul>			
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">시험결과</a>			
+						</li>	
+					</ul>				
 					<div class="dashBoardSearch">
 						<form action="">
 							<table class="searchTable">
-								<tr>
-									<th class="searchHd">응시종목</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고등학교 졸업 이하
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고졸 검정고시
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(81학점 이상)
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
-										</div>
-										<br>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 4년제대학
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 석사학위
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 박사학위
-										</div>
-									</td>
-								</tr>
 								<tr>
 									<th class="searchHd">회차</th>
 									<td class="searchArticle">
@@ -350,14 +329,22 @@ span {
 									</td>
 								</tr>
 								<tr>
+									<th class="searchHd">응시종목</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="text" />
+											<button>검색</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
 									<th class="searchHd">시험명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
 											<input type="text" />
 										</div>						
 									</td>
-								</tr>
-									
+								</tr>				
 							</table>
 							<div class="searchButton">
 								<button type="submit">검색</button>

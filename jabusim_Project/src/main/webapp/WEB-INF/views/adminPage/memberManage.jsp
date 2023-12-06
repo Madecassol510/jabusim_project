@@ -51,7 +51,7 @@ li {
 	width: 100%;
 	border: 1px solid blue;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 10px;
 	padding-bottom: 50px;
 }
 
@@ -88,16 +88,15 @@ li {
 
 #dashBoardModule .dashBoard .dashBoardHd {
 	border-bottom: 1px solid black;
-}
-
-.dashBoard .dashBoardHd {
 	text-align: left;
 	margin: 0;
 	padding: 15px;
-	height: 60px;
+	margin-bottom: 20px;
 }
 
-.dashBoard .dashBoardHd h5{
+
+
+.dashBoard .dashBoardHd h2{
 	display: inline-block;
 	margin: 0;
 	margin-top: 3px;
@@ -218,8 +217,12 @@ li {
 
 /* ================================================ */
 
+#inter_list{
+	width:150px;
+}
+
 #edu_list, #career_list{
-	width:200px;
+	width:150px;
 } 
 
 span {
@@ -314,6 +317,11 @@ span {
 		cursor: pointer;
 	}
 
+/* =========================================================================== */
+	
+	/* 부트스트랩 */
+
+	
 
 </style>
 
@@ -339,36 +347,31 @@ span {
 	<c:import url="/WEB-INF/views/include/admin_sideMenu.jsp" />
 
 	<div class="pageContainer">
-
 		<div class="article">
-			<h3>${loginUserBean.getUser_name()}님 환영합니다</h3>
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
 					<div class="dashBoardHd">
-						<h5>최근 가입자</h5>
-						
+						<h2>회원 관리</h2>
 					</div>
 					
 					<div class="dashBoardSearch">
 						<form action="">
 							<table class="searchTable">
 								<tr>
-									<th class="searchHd">학력목록</th>
+									<th class="searchHd">보유학력</th>
 									<td class="searchArticle">
 										<div class="searchReq">
 											<input type="checkbox" name="edu_list" /> 고등학교 졸업 이하
 										</div>
 										<div class="searchReq">
 											<input type="checkbox" name="edu_list" /> 고졸 검정고시
-										</div>
-										<br>
+										</div> <br>
 										<div class="searchReq">
 											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(81학점 이상)
 										</div>
 										<div class="searchReq">
 											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
-										</div>
-										<br>
+										</div> <br>
 										<div class="searchReq">
 											<input type="checkbox" name="edu_list" /> 2년제대학
 										</div>
@@ -384,7 +387,7 @@ span {
 									</td>
 								</tr>
 								<tr>
-									<th class="searchHd">경력목록</th>
+									<th class="searchHd">보유경력</th>
 									<td class="searchArticle">
 										<div class="searchReq">
 											<select>
@@ -483,7 +486,11 @@ span {
 									<td><span>홍길동</span></td>
 									<td><span>20000807</span></td>
 									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
+									<td><select name="" id="inter_list">
+											<option></option>
+											<option></option>
+											<option></option>
+									</select></td>
 									<td><select name="" id="edu_list">
 											<option>평생교육진흥원 인정학점(106학점 이상)</option>
 											<option>평생교육진흥원 인정학점(106학점 이상)</option>
