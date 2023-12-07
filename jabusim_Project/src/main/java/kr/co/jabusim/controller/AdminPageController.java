@@ -1,6 +1,7 @@
 package kr.co.jabusim.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.jabusim.beans.ExamPlaceBean;
+import kr.co.jabusim.beans.LicenseBean;
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.beans.UserCareerBean;
 import kr.co.jabusim.beans.UserEduBean;
+import kr.co.jabusim.mapper.ExamPlaceMapper;
+import kr.co.jabusim.mapper.LicenseMapper;
 import kr.co.jabusim.mapper.UserCareerMapper;
 import kr.co.jabusim.mapper.UserEduMapper;
 import kr.co.jabusim.service.UserService;
@@ -27,6 +32,12 @@ public class AdminPageController {
 	
 	@Autowired
 	private UserCareerMapper userCareerMapper;
+	
+	@Autowired
+	private LicenseMapper licenseMapper;
+	
+	@Autowired
+	private ExamPlaceMapper examPlaceMapper;
 	
 	
 	
@@ -73,7 +84,12 @@ public class AdminPageController {
 	
 	// 자격증관리	
 	@GetMapping("/licenseManage")
-	public String licenseManage() {
+	public String licenseManage(Model model) {
+		
+		List<LicenseBean> allLicenseBeans = licenseMapper.getAllLicense();
+		
+		model.addAttribute("allLicenseBeans", allLicenseBeans);
+		
 		return "adminPage/licenseManage";
 	}
 		
@@ -93,7 +109,12 @@ public class AdminPageController {
 
 	// 시험장소
 	@GetMapping("/examManage/examPlaceManage")
-	public String examPlaceManage() {
+	public String examPlaceManage(Model model) {
+		
+		ArrayList<ExamPlaceBean> allExamPlaceBeans = examPlaceMapper.allExamPlaceInfo();
+		
+		model.addAttribute("allExamPlaceBeans", allExamPlaceBeans);
+		
 		return "adminPage/examManage/examPlaceManage";
 	}
 	

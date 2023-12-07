@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jabusim.beans.UserCareerBean;
 import kr.co.jabusim.beans.UserEduBean;
@@ -28,9 +29,10 @@ public interface UserCareerMapper {
 	            @Param("inquriyStart") String inquriyStart,
 	            @Param("inquriyEnd") String inquriyEnd,
 	            @Param("processStart") String processStart,
-	            @Param("processEnd") String processEnd,
-	            @Param("processStatus") String processStatus,
-				@Param("eudList") List<String> eudList
+	            @Param("processEnd") String processEnd,     
+	            @Param("careerField") String careerField,
+	            @Param("careerType") List<String> careerType,        
+	            @Param("processStatus") List<String> processStatus
 				);
 	
 }

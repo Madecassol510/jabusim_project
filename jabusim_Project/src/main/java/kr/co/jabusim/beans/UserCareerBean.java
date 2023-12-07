@@ -10,7 +10,7 @@ public class UserCareerBean {
 	private String userCareer_company;
 	private String userCareer_inquiryDate;
 	private String userCareer_processDate;
-	private String userCareer_statusl;
+	private String userCareer_status;
 	 
 	
 	public int getUserCareer_idx() {
@@ -61,11 +61,11 @@ public class UserCareerBean {
 	public void setUserCareer_processDate(String userCareer_processDate) {
 		this.userCareer_processDate = userCareer_processDate;
 	}
-	public String getUserCareer_statusl() {
-		return userCareer_statusl;
+	public String getuserCareer_status() {
+		return userCareer_status;
 	}
-	public void setUserCareer_statusl(String userCareer_statusl) {
-		this.userCareer_statusl = userCareer_statusl;
+	public void setuserCareer_status(String userCareer_status) {
+		this.userCareer_status = userCareer_status;
 	}
 	 
 }

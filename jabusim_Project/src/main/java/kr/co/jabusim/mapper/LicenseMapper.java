@@ -1,10 +1,14 @@
 package kr.co.jabusim.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jabusim.beans.LicenseBean;
+import kr.co.jabusim.beans.UserBean;
 
 public interface LicenseMapper {
 
@@ -16,6 +20,19 @@ public interface LicenseMapper {
 	
 	@Select("select DISTINCT licenseType From license")
 	List<String> getLicenseType();
+	
+	
+	
+	
+	
+	
+	//ajax 유저테이블 가져오기
+	ArrayList<LicenseBean> licenseTableSearch (
+			@Param("licenseName") String licenseName,
+			@Param("licenseType") String licenseType,
+			@Param("licenseMainCategory") String licenseMainCategory,		
+			@Param("licenseSubCategory") String licenseSubCategory
+			);
 	
 	
 }

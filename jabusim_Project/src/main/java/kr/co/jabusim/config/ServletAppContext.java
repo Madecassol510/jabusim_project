@@ -28,6 +28,7 @@ import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.interceptor.CheckLoginInterceptor;
 import kr.co.jabusim.interceptor.TopMenuInterceptor;
 import kr.co.jabusim.mapper.BoardMapper;
+import kr.co.jabusim.mapper.ExamPlaceMapper;
 import kr.co.jabusim.mapper.LicenseMapper;
 import kr.co.jabusim.mapper.SearchLicenseMapper;
 import kr.co.jabusim.mapper.UserCareerMapper;
@@ -163,6 +164,14 @@ public class ServletAppContext implements WebMvcConfigurer {
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
+	
+	@Bean
+	public MapperFactoryBean<ExamPlaceMapper> getExamPlaceMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<ExamPlaceMapper> factoryBean = new MapperFactoryBean<ExamPlaceMapper>(ExamPlaceMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+
 
 	// ==============================================================
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.jabusim.mapper.UserEduMapper">
+
+	
+	<resultMap id="examPlaceBeanResult" type="kr.co.jabusim.beans.ExamPlaceBean">
+        <id property="examPlace_idx" column="examPlace_idx"/>
+        <result property="examPlace_name" column="examPlace_name"/>
+        <result property="examPlace_region" column="examPlace_region"/>
+        <result property="examPlace_address" column="examPlace_address"/>
+        <result property="examPlace_maximum" column="examPlace_maximum"/>
+        <!-- 나머지 필드들에 대한 매핑 추가 -->
+    </resultMap>
+    
+    
+	<select id="examPlaceTableSearch" resultMap="examPlaceBeanResult">
+		SELECT * FROM userEdu_table
+		<where>
+			<choose>
+				<when test="placeName != null and placeName != '') or
+					(placeRegion != null and placeRegion != '') or  
+		        	(placeAddress != null and placeAddress != '') or 
+		        	(placeNumStart != null and placeNumStart != '') or
+		        	(placeNumEnd != null and placeNumEnd != '')
+		        	">
+		
+					<!-- 각 파라미터에 대한 조건을 추가 -->
+					
+					
+					<if test="placeName != null and placeName != ''">
+						 AND examPlace_name LIKE CONCAT('%', #{placeName}, '%')
+					</if>
+					
+					<if test="placeRegion != null and placeRegion != ''">
+						AND examPlace_region = #{placeRegion}
+					</if>	
+					
+					
+					<if test="placeAddress != null and placeAddress != ''">
+						 AND examPlace_address LIKE CONCAT('%', #{placeAddress}, '%')
+					</if>
+												
+					
+					<if test="placeNumStart != null and placeNumStart != ''">
+						AND examPlace_maximum >=  placeNumStart
+					</if>			
+					<if test="placeNumEnd != null and placeNumEnd != ''">
+		            <![CDATA[ AND examPlace_maximum <= placeNumEnd ]]>
+					</if>
+
+		    	</when>
+			</choose>
+		</where>
+    </select>
+    
+    
+</mapper>
