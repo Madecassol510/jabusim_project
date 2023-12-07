@@ -35,15 +35,6 @@ public class RestApiController {
 	}
 	
 	
-	@GetMapping("/user/userTableSearch")
-	public ResponseEntity<List<UserBean>> userTableSearch( @RequestParam String name,
-            @RequestParam String interests,
-            @RequestParam String joinStart,
-            @RequestParam String joinEnd){
-		
-		List<UserBean> searchList = userMapper.userTableSearch(name, interests, joinStart, joinEnd);
-
-		return ResponseEntity.ok(searchList);
-	}
+	
 	
 }

@@ -16,6 +16,9 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
 <style>
@@ -237,6 +240,97 @@ span {
 
 </style>
 
+<script type="text/javascript">
+
+	/* function memberModify() {
+		
+		var popupWidth = 650;
+		var popupHeight = 700;
+		
+		var popupX = (window.screen.width / 2) - (popupWidth / 2);
+		var popupY= (window.screen.height / 2) - (popupHeight / 2);
+		
+		window.open('${root }adminPage/main', '_blank' , 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+	} */
+	
+	
+	//검색 필드
+	var name;
+	var inquriyStart;
+	var inquriyEnd;
+	var processStart;
+	var processEnd;
+	
+	var processStatus;
+
+	var eudList;
+	
+	//검색 필드에 값넣기
+	function fieldSearch(){
+		
+		/* var myform = document.form */
+		
+		name = document.getElementById("nameInput").value;
+		inquriyStart = document.getElementById("inquriyStartInput").value;
+		inquriyEnd = document.getElementById("inquriyEndInput").value;
+		processStart = document.getElementById("processStartInput").value;
+		processEnd = document.getElementById("processEndInput").value;
+		
+		
+		$("input[name='processStatusInput']:checked").each(function(i) {
+			processStatus.push($(this).val());
+			console.log("현재 인덱스: " + i);
+		});
+		
+		
+		$("input[name='eudListInput']:checked").each(function(i) {
+			eudList.push($(this).val());	    
+		});
+		
+		var inquriyStartDate = new Date(inquriyStart);
+		var inquriyEndDate = new Date(inquriyEnd);
+		
+		var processStartDate = new Date(processStart);
+		var processEndDate = new Date(processEnd);
+		
+		if(inquriyStartDate > inquriyEndDate){
+			alert("문의기간을 제대로 기입해주세요");
+		}
+		else if(processStartDate > processEndDate){
+			alert("처리기간을 제대로 기입해주세요");		
+		}	
+		else{
+			//ajax 검색
+			tableSearch();
+		}
+	}
+		
+	// ajax 검색
+	
+	function tableSearch(){
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/userEduTableSearch/?name=' + name + 
+	        		'&inquriyStart=' + inquriyStart + 
+	        		'&inquriyEnd=' + inquriyEnd + 
+	        		'&processStart=' + processStart +
+	        		'&processEnd=' + processEnd + 
+	        		'&processStatus=' + processStatus +
+	        		'&eudList=' + eudList,
+	        success : function(result) {
+	           console.log("왜 안돼?");
+	        }
+	     });
+	}
+	
+	// 결과물 업데이트
+	function updateModel(result) {
+		allUserBeans = result;
+		const test = document.getElementById('testtpdyd');
+		test.innerHTML = '';
+	}
+</script>
+
 
 </head>
 <body>
@@ -280,25 +374,25 @@ span {
 									<th class="searchHd">학력구분</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고등학교 졸업 이하
+											<input type="checkbox" name="eudListInput" /> 고등학교 졸업 이하
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 고졸 검정고시
+											<input type="checkbox" name="eudListInput" /> 고졸 검정고시
 										</div> <br>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(81학점 이상)
+											<input type="checkbox" name="eudListInput" /> 평생교육진흥원 인정학점(81학점 이상)
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 평생교육진흥원 인정학점(106학점 이상)
+											<input type="checkbox" name="eudListInput" /> 평생교육진흥원 인정학점(106학점 이상)
 										</div> <br>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 학사학위
+											<input type="checkbox" name="eudListInput" /> 학사학위
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 석사학위
+											<input type="checkbox" name="eudListInput" /> 석사학위
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 박사학위
+											<input type="checkbox" name="eudListInput" /> 박사학위
 										</div>
 									</td>
 								</tr>
@@ -306,7 +400,8 @@ span {
 									<th class="searchHd">문의날짜</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~ <input type="date" />
+											<input type="date" id="inquriyStartInput"/> ~ 
+											<input type="date" id="inquriyEndInput"/>
 											<!-- max="2077-06-20" -->
 										</div>
 									</td>
@@ -315,7 +410,8 @@ span {
 									<th class="searchHd">처리날짜</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~ <input type="date" />
+											<input type="date" id="processStartInput"/> ~ 
+											<input type="date" id="processEndInput"/>
 											<!-- max="2077-06-20" -->
 										</div>
 									</td>
@@ -324,13 +420,13 @@ span {
 									<th class="searchHd">처리상태</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 처리완료
+											<input type="checkbox" name="processStatusInput" /> 처리완료
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 처리불가
+											<input type="checkbox" name="processStatusInput" /> 처리불가
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 처리대기
+											<input type="checkbox" name="processStatusInput" /> 처리대기
 										</div>
 									</td>
 								</tr>
@@ -338,14 +434,14 @@ span {
 									<th class="searchHd">이름검색</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
+											<input type="text" id="nameInput"/>
 										</div>
 									</td>
 								</tr>
 
 							</table>
 							<div class="searchButton">
-								<button type="submit">검색</button>
+								<button type="button" onclick="fieldSearch()">검색</button>
 							</div>
 						</form>
 					</div>
@@ -371,294 +467,47 @@ span {
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>boradory</span></td>
-									<td><span>학사학위</span></td>
-									<td><span>솔데스크대학교</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-02</span></td>
-									<td><span>처리완료</span></td>
-								</tr>				
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>2</span></td>
-									<td><span>이순신</span></td>
-									<td><span>qwe123456</span></td>
-									<td><span>고졸 검정고시</span></td>
-									<td><span></span></td>
-									<td><span></span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span></span></td>
-									<td><span>처리대기</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>3</span></td>
-									<td><span>세종대왕</span></td>
-									<td><span>gksrmf1234</span></td>
-									<td><span>박사학위</span></td>
-									<td><span>서울대학원</span></td>
-									<td><span>정치학</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-03</span></td>
-									<td><span>처리거절</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>boradory</span></td>
-									<td><span>학사학위</span></td>
-									<td><span>솔데스크대학교</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-02</span></td>
-									<td><span>처리완료</span></td>
-								</tr>				
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>2</span></td>
-									<td><span>이순신</span></td>
-									<td><span>qwe123456</span></td>
-									<td><span>고졸 검정고시</span></td>
-									<td><span></span></td>
-									<td><span></span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span></span></td>
-									<td><span>처리대기</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>3</span></td>
-									<td><span>세종대왕</span></td>
-									<td><span>gksrmf1234</span></td>
-									<td><span>박사학위</span></td>
-									<td><span>서울대학원</span></td>
-									<td><span>정치학</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-03</span></td>
-									<td><span>처리거절</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>boradory</span></td>
-									<td><span>학사학위</span></td>
-									<td><span>솔데스크대학교</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-02</span></td>
-									<td><span>처리완료</span></td>
-								</tr>				
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>2</span></td>
-									<td><span>이순신</span></td>
-									<td><span>qwe123456</span></td>
-									<td><span>고졸 검정고시</span></td>
-									<td><span></span></td>
-									<td><span></span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span></span></td>
-									<td><span>처리대기</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>3</span></td>
-									<td><span>세종대왕</span></td>
-									<td><span>gksrmf1234</span></td>
-									<td><span>박사학위</span></td>
-									<td><span>서울대학원</span></td>
-									<td><span>정치학</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-03</span></td>
-									<td><span>처리거절</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>boradory</span></td>
-									<td><span>학사학위</span></td>
-									<td><span>솔데스크대학교</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-02</span></td>
-									<td><span>처리완료</span></td>
-								</tr>				
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>2</span></td>
-									<td><span>이순신</span></td>
-									<td><span>qwe123456</span></td>
-									<td><span>고졸 검정고시</span></td>
-									<td><span></span></td>
-									<td><span></span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span></span></td>
-									<td><span>처리대기</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>3</span></td>
-									<td><span>세종대왕</span></td>
-									<td><span>gksrmf1234</span></td>
-									<td><span>박사학위</span></td>
-									<td><span>서울대학원</span></td>
-									<td><span>정치학</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-03</span></td>
-									<td><span>처리거절</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>boradory</span></td>
-									<td><span>학사학위</span></td>
-									<td><span>솔데스크대학교</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-02</span></td>
-									<td><span>처리완료</span></td>
-								</tr>				
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>2</span></td>
-									<td><span>이순신</span></td>
-									<td><span>qwe123456</span></td>
-									<td><span>고졸 검정고시</span></td>
-									<td><span></span></td>
-									<td><span></span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span></span></td>
-									<td><span>처리대기</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>3</span></td>
-									<td><span>세종대왕</span></td>
-									<td><span>gksrmf1234</span></td>
-									<td><span>박사학위</span></td>
-									<td><span>서울대학원</span></td>
-									<td><span>정치학</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-03</span></td>
-									<td><span>처리거절</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>boradory</span></td>
-									<td><span>학사학위</span></td>
-									<td><span>솔데스크대학교</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-02</span></td>
-									<td><span>처리완료</span></td>
-								</tr>				
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>2</span></td>
-									<td><span>이순신</span></td>
-									<td><span>qwe123456</span></td>
-									<td><span>고졸 검정고시</span></td>
-									<td><span></span></td>
-									<td><span></span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span></span></td>
-									<td><span>처리대기</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>3</span></td>
-									<td><span>세종대왕</span></td>
-									<td><span>gksrmf1234</span></td>
-									<td><span>박사학위</span></td>
-									<td><span>서울대학원</span></td>
-									<td><span>정치학</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-03</span></td>
-									<td><span>처리거절</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>boradory</span></td>
-									<td><span>학사학위</span></td>
-									<td><span>솔데스크대학교</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-02</span></td>
-									<td><span>처리완료</span></td>
-								</tr>				
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>2</span></td>
-									<td><span>이순신</span></td>
-									<td><span>qwe123456</span></td>
-									<td><span>고졸 검정고시</span></td>
-									<td><span></span></td>
-									<td><span></span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span></span></td>
-									<td><span>처리대기</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>3</span></td>
-									<td><span>세종대왕</span></td>
-									<td><span>gksrmf1234</span></td>
-									<td><span>박사학위</span></td>
-									<td><span>서울대학원</span></td>
-									<td><span>정치학</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-03</span></td>
-									<td><span>처리거절</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>boradory</span></td>
-									<td><span>학사학위</span></td>
-									<td><span>솔데스크대학교</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-02</span></td>
-									<td><span>처리완료</span></td>
-								</tr>				
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>2</span></td>
-									<td><span>이순신</span></td>
-									<td><span>qwe123456</span></td>
-									<td><span>고졸 검정고시</span></td>
-									<td><span></span></td>
-									<td><span></span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span></span></td>
-									<td><span>처리대기</span></td>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>3</span></td>
-									<td><span>세종대왕</span></td>
-									<td><span>gksrmf1234</span></td>
-									<td><span>박사학위</span></td>
-									<td><span>서울대학원</span></td>
-									<td><span>정치학</span></td>
-									<td><span>2023-12-01</span></td>
-									<td><span>2023-12-03</span></td>
-									<td><span>처리거절</span></td>
-								</tr>
+								<c:forEach items="${allUserEduBeans}" var="userEduBean">
+									<tr>
+										<th><input type="checkbox" value="${userEduBean.getUser_idx()}"></th>
+										<td><span>${userEduBean.getUser_idx()}</span></td>
+										<td><span>${userEduBean.getUser_name()}</span></td>
+										<td><span>${userEduBean.getUserEdu_type()}</span></td>
+										<td><span>${userEduBean.getUserEdu_academy()}</span></td>
+										<td><span>${userEduBean.getUserEdu_major()}</span></td>
+																		
+										<c:choose>
+											<c:when test="${userEduBean.getUserEdu_academy()==null}">
+												<td><span></span></td>
+											</c:when>
+											<c:otherwise>
+												<td><span>${userEduBean.getUserEdu_academy()}</span></td>
+											</c:otherwise>
+										</c:choose>	
+										<c:choose>
+											<c:when test="${userEduBean.getUserEdu_major()==null}">
+												<td><span></span></td>
+											</c:when>
+											<c:otherwise>
+												<td><span>${userEduBean.getUserEdu_major()}</span></td>
+											</c:otherwise>
+										</c:choose>	
+										
+										<td><span>${userEduBean.getUserEdu_inquiryDate()}</span></td>
+										
+										
+										<c:choose>
+											<c:when test="${userEduBean.getUserEdu_processDate()==null}">
+												<td><span></span></td>
+											</c:when>
+											<c:otherwise>
+												<td><span>${userEduBean.getUserEdu_processDate()}</span></td>
+											</c:otherwise>
+										</c:choose>	
+										
+										<td><span>${userEduBean.getUserEdu_processStatus()}</span></td>		
+									</tr>
+								</c:forEach>	
 							</tbody>
 						</table>
 					</div>

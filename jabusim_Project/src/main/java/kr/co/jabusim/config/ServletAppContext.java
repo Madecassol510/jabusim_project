@@ -30,6 +30,8 @@ import kr.co.jabusim.interceptor.TopMenuInterceptor;
 import kr.co.jabusim.mapper.BoardMapper;
 import kr.co.jabusim.mapper.LicenseMapper;
 import kr.co.jabusim.mapper.SearchLicenseMapper;
+import kr.co.jabusim.mapper.UserCareerMapper;
+import kr.co.jabusim.mapper.UserEduMapper;
 import kr.co.jabusim.mapper.UserMapper;
 import kr.co.jabusim.service.BoardService;
 
@@ -144,6 +146,20 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Bean
 	public MapperFactoryBean<SearchLicenseMapper> getSearchLicenseMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<SearchLicenseMapper> factoryBean = new MapperFactoryBean<SearchLicenseMapper>(SearchLicenseMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<UserEduMapper> getUserEduMapper (SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<UserEduMapper> factoryBean = new MapperFactoryBean<UserEduMapper>(UserEduMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<UserCareerMapper> getUserCareerMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<UserCareerMapper> factoryBean = new MapperFactoryBean<UserCareerMapper>(UserCareerMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}

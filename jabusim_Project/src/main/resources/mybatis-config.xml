@@ -7,5 +7,7 @@
     <mappers>
         <mapper resource="mapper/dynamicMapper.xml"/>
         <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/UserEduMapper.xml"/>
+        
     </mappers>
 </configuration>

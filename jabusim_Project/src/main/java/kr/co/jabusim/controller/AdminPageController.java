@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.jabusim.beans.UserBean;
+import kr.co.jabusim.beans.UserCareerBean;
+import kr.co.jabusim.beans.UserEduBean;
+import kr.co.jabusim.mapper.UserCareerMapper;
+import kr.co.jabusim.mapper.UserEduMapper;
 import kr.co.jabusim.service.UserService;
 
 @Controller
@@ -17,6 +21,14 @@ public class AdminPageController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserEduMapper userEduMapper;
+	
+	@Autowired
+	private UserCareerMapper userCareerMapper;
+	
+	
 	
 	@GetMapping("/main")
 	public String main() {
@@ -33,19 +45,27 @@ public class AdminPageController {
 		return "adminPage/memberManage";
 	}
 	
-	
-	
 	//================================문의관리===================================
 	
 	// 학력추가
 	@GetMapping("/inquiryManage/eduInquiryManage")
-	public String eduInquiryManage() {
+	public String eduInquiryManage(Model model) {
+		
+		ArrayList<UserEduBean> allUserEduBeans = userEduMapper.allUserEduInfo();
+		model.addAttribute("allUserEduBeans", allUserEduBeans);
+		
 		return "adminPage/inquiryManage/eduInquiryManage";
 	}
 	
 	// 경력추가
 	@GetMapping("/inquiryManage/carrerInquiryManage")
-	public String carrerInquiryManage() {
+	public String carrerInquiryManage(Model model) {
+		
+		ArrayList<UserCareerBean> allUserCareerBeans = userCareerMapper.allUserCareerInfo();
+		
+		model.addAttribute("allUserCareerBeans", allUserCareerBeans);
+		
+		
 		return "adminPage/inquiryManage/carrerInquiryManage";
 	}
 	

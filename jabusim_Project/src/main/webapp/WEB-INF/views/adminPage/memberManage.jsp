@@ -374,7 +374,7 @@ span {
 	function tableSearch(){
 		$.ajax({
 	        type : 'GET',
-	        url: '/jabusim_Project/user/userTableSearch/?name=' + name + '&interests=' + interests + '&joinStart=' + joinStart + '&joinEnd=' + joinEnd,
+	        url: '/jabusim_Project/admin/userTableSearch/?name=' + name + '&interests=' + interests + '&joinStart=' + joinStart + '&joinEnd=' + joinEnd,
 	        success : function(result) {
 	           updateModel(result);
 	           console.log("왜 안돼?");
@@ -466,7 +466,7 @@ span {
 									<td class="searchArticle">
 										<div class="searchReq">
 											<input type="date" id="joinStartInput" /> ~
-											<input type="date" id="joinEndInput" / > <!-- max="2077-06-20" -->
+											<input type="date" id="joinEndInput" /> <!-- max="2077-06-20" -->
 										</div>					
 									</td>
 								</tr>
@@ -498,7 +498,7 @@ span {
 								<c:forEach items="${allUserBeans}" var="userBean">
 									<tr>
 										<th><input type="checkbox" value="${userBean.getUser_idx()}"></th>
-										<td><span>${userBean.getUser_idx()}</span></td>
+										<td><span>${loopStatus.index+1}</span></td>
 										<td><span>${userBean.getUser_role()}</span></td>
 										<td><span>${userBean.getUser_name()}</span></td>
 										<td><span>${userBean.getUser_id()}</span></td>
