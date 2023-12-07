@@ -212,7 +212,6 @@
 					<h3>정보수정</h3>
 				</div>
 				<form:form action="${root}mypage/myInfoManage/userInfoModify_pro" method="post" class="modify_input" modelAttribute="modifyUserBean">
-					<form:hidden path="user_gender"/>
 					<form:hidden path="user_phoneNum"/>
 					<div class="input_box">
 						<div class="input_name">

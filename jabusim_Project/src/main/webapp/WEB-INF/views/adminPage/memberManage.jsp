@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
+
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +17,9 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -327,7 +330,7 @@ span {
 
 <script type="text/javascript">
 
-	function memberModify() {
+	/* function memberModify() {
 		
 		var popupWidth = 650;
 		var popupHeight = 700;
@@ -336,7 +339,55 @@ span {
 		var popupY= (window.screen.height / 2) - (popupHeight / 2);
 		
 		window.open('${root }adminPage/main', '_blank' , 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+	} */
+	
+	//검색 필드
+	var name;
+	var interests;
+	var joinStart;
+	var joinEnd; 
+	
+	
+	//검색 필드에 값넣기
+	function fieldSearch(){
+		
+		/* var myform = document.form */
+		
+		name = document.getElementById("nameInput").value;
+		interests = document.getElementById("interestsInput").value;
+		joinStart = document.getElementById("joinStartInput").value;
+		joinEnd = document.getElementById("joinEndInput").value;
+		
+		var joinStartDate = new Date(joinStart);
+		var joinEndDate = new Date(joinEnd);
+		
+		if(joinStartDate > joinEndDate){
+			alert("가입일을 제대로 기입해주세요");
+		}
+		else{
+			//ajax 검색
+			tableSearch();
+		}
 	}
+	
+	// ajax 검색
+	function tableSearch(){
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/user/userTableSearch/?name=' + name + '&interests=' + interests + '&joinStart=' + joinStart + '&joinEnd=' + joinEnd,
+	        success : function(result) {
+	           updateModel(result);
+	           console.log("왜 안돼?");
+	        }
+	     });
+	}
+	
+	// 결과물 업데이트
+	function updateModel(result){
+		allUserBeans = result;		
+	}
+	
+	
 	
 	
 </script>
@@ -355,13 +406,13 @@ span {
 					</div>
 					
 					<div class="dashBoardSearch">
-						<form action="">
+						<form id="myForm">
 							<table class="searchTable">
 								<tr>
 									<th class="searchHd">이름검색</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
+											<input type="text" id="nameInput" />
 										</div>						
 									</td>
 								</tr>
@@ -369,8 +420,8 @@ span {
 									<th class="searchHd">관심분야</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<select>
-												<option>선택해주세요</option>
+											<select id="interestsInput">
+												<option></option>
 												<option>건설기계운전</option>
 												<option>채광</option>
 												<option>기계제작</option>
@@ -412,25 +463,14 @@ span {
 									<th class="searchHd">가입일</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
+											<input type="date" id="joinStartInput" /> ~
+											<input type="date" id="joinEndInput" / > <!-- max="2077-06-20" -->
 										</div>					
 									</td>
 								</tr>
-								<tr>
-									<th class="searchHd">최근로그인</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
-										</div>					
-									</td>
-								</tr>
-								
-									
 							</table>
 							<div class="searchButton">
-								<button type="submit">검색</button>
+								<button type="button" onclick="fieldSearch()">검색</button>
 							</div>			
 						</form>
 					</div>
@@ -441,321 +481,42 @@ span {
 								<tr>
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
+									<th><span>권한</span></th>
 									<th><span>이름</span></th>
+									<th><span>아이디</span></th>
 									<th><span>생년월일</span></th>
 									<th><span>휴대폰번호</span></th>
 									<th><span>관심분야</span></th>
-									<th><span>학력목록</span></th>
-									<th><span>경력목록</span></th>
 									<th><span>가입일</span></th>
 									<th><span>최근로그인</span></th>
 									<th><span></span></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><select name="" id="inter_list">
-											<option></option>
-											<option></option>
-											<option></option>
-									</select></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>20000807</span></td>
-									<td><span>01035641347</span></td>
-									<td><span>컴퓨터전공</span></td>
-									<td><select name="" id="edu_list">
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-											<option>평생교육진흥원 인정학점(106학점 이상)</option>
-									</select></td>
-									<td><select name="" id="career_list">
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-											<option>사무관리/2년 이상</option>
-									</select></td>
-									<td><span>2019-09-17</span></td>
-									<td><span>2023-12-04</span></td>
-									<th><span><button type="button"  onclick="memberModify()">수정</button></span></th>
-								</tr>
+								<c:forEach items="${allUserBeans}" var="userBean">
+									<tr>
+										<th><input type="checkbox" value="${userBean.getUser_idx()}"></th>
+										<td><span>${userBean.getUser_idx()}</span></td>
+										<td><span>${userBean.getUser_role()}</span></td>
+										<td><span>${userBean.getUser_name()}</span></td>
+										<td><span>${userBean.getUser_id()}</span></td>
+										<td><span>${userBean.getUser_birthdate()}</span></td>
+										<td><span>${userBean.getUser_phoneNum()}</span></td>
+											
+										<c:choose>
+											<c:when test="${userBean.getUser_interests()==null}">
+												<td><span></span></td>
+											</c:when>
+											<c:otherwise>
+												<td><span>${userBean.getUser_interests()}</span></td>
+											</c:otherwise>
+										</c:choose>	
+										
+										
+										<td><span>${userBean.getUser_joinDate()}</span></td>			
+										<td><span>${userBean.getUser_visitCount()}회</span></td>		
+									</tr>
+								</c:forEach>			
 							</tbody>
 						</table>
 					</div>

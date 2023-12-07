@@ -369,20 +369,28 @@
 							<div class="act_info">
 								<div class="act_infotitle">가입일</div>
 								<div>
-									2019-09-17
-									에 가입하였습니다.
+									${myPageUserBean.getUser_joinDate()}
+									<br />
+									가입했습니다.
 								</div>
 							</div>
 							<div class="act_info">
-								<div class="act_infotitle">로그인</div>
+								<div class="act_infotitle">방문횟수</div>
 								<div>
-									2일전(10회)
+									${myPageUserBean.getUser_visitCount()}회
 								</div>
 							</div>
 							<div class="act_info">
 								<div class="act_infotitle">관심분야</div>
 								<div>
-									컴퓨터공학
+									<c:choose>
+										<c:when test="${myPageUserBean.getUser_interests()==null}">
+											없음
+										</c:when>
+										<c:otherwise>
+											${myPageUserBean.getUser_interests()}
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 							<div class="act_info">

@@ -31,7 +31,7 @@ public class MyPageController {
 	public String main(Model model) {
 		
 			
-		UserBean myPageUserBean = userService.getAllUserInfo();
+		UserBean myPageUserBean = userService.getUserAllInfo();
 		model.addAttribute("myPageUserBean", myPageUserBean);
 		
 		return "mypage/main";

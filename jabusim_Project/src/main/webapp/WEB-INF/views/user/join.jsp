@@ -197,6 +197,18 @@
       $("#userIdExist").val('false');
    }
    
+   // 현재 날짜를 얻기 위해 Date 객체를 생성
+   var currentDate = new Date();
+
+   // 년, 월, 일을 가져오기
+   var year = currentDate.getFullYear();
+   var month = currentDate.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
+   var day = currentDate.getDate();
+   
+   var joinDate = (year + "-" + month + "-" + day);
+   
+   document.getElementById("user_joinDate").value = joinDate;
+   
 </script>
 </head>
 <body>
@@ -212,6 +224,9 @@
 				</div>
 					<form:form action="${root}user/join_pro" method="post" class="join_input" modelAttribute="joinUserBean">
 						<form:hidden path="userIdExist" />
+						<form:hidden path="user_joinDate"/>
+						<form:hidden path="user_role" value="회원"/>
+						<form:hidden path="user_visitCount" value="${1}"/>
 						<div class="input_box"> 
 							<div class="input_name">
 								<span>이름</span>
@@ -266,19 +281,7 @@
 								</div>				
 							</div>
 						</div>
-						<div class="input_box"> 
-							<div class="input_name">
-								<span>성별</span>
-							</div>
-							<div class="input_place">
-								<div class="input_placeTop">
-									<form:input path="user_gender"/>
-								</div>
-								<div class="input_placeBottom">
-									<form:errors path="user_gender" style="color:red"/>
-								</div>
-							</div>
-						</div>
+
 						<div class="input_box"> 
 							<div class="input_name">
 								<span>생년월일</span>

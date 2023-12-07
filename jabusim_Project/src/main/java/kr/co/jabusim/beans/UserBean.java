@@ -12,6 +12,7 @@ import lombok.Setter;
 public class UserBean {
 
 	private int user_idx;
+	private String user_role;
 	
 	@Size(min=2, max=10)
 	@Pattern(regexp = "[가-힣]*")
@@ -33,13 +34,22 @@ public class UserBean {
 	private String user_birthdate;
 	
 	@NotBlank
-	private String user_gender;
-	
-	@NotBlank
 	@Pattern(regexp = "^[0-9]+$")
 	private String user_phoneNum;
 	
+	private String user_joinDate;	
+	
+	private int user_visitCount;
+	
+	private String user_interests;
+	
 	private String user_photo;
+	
+	
+	
+	
+	
+	
 	
 	private boolean userIdExist; 
 	private boolean userLogin; 
@@ -55,6 +65,14 @@ public class UserBean {
 
 	public void setUser_idx(int user_idx) {
 		this.user_idx = user_idx;
+	}
+
+	public String getUser_role() {
+		return user_role;
+	}
+
+	public void setUser_role(String user_role) {
+		this.user_role = user_role;
 	}
 
 	public String getUser_name() {
@@ -97,20 +115,36 @@ public class UserBean {
 		this.user_birthdate = user_birthdate;
 	}
 
-	public String getUser_gender() {
-		return user_gender;
-	}
-
-	public void setUser_gender(String user_gender) {
-		this.user_gender = user_gender;
-	}
-
 	public String getUser_phoneNum() {
 		return user_phoneNum;
 	}
 
 	public void setUser_phoneNum(String user_phoneNum) {
 		this.user_phoneNum = user_phoneNum;
+	}
+
+	public String getUser_joinDate() {
+		return user_joinDate;
+	}
+
+	public void setUser_joinDate(String user_joinDate) {
+		this.user_joinDate = user_joinDate;
+	}
+
+	public int getUser_visitCount() {
+		return user_visitCount;
+	}
+
+	public void setUser_visitCount(int user_visitCount) {
+		this.user_visitCount = user_visitCount;
+	}
+
+	public String getUser_interests() {
+		return user_interests;
+	}
+
+	public void setUser_interests(String user_interests) {
+		this.user_interests = user_interests;
 	}
 
 	public String getUser_photo() {
@@ -136,8 +170,9 @@ public class UserBean {
 	public void setUserLogin(boolean userLogin) {
 		this.userLogin = userLogin;
 	}
+
 	
 	
 	
-	
+
 }

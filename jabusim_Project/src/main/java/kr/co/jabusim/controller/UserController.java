@@ -50,6 +50,7 @@ public class UserController {
 
 		// �α��� ��������
 		if (loginUserBean.isUserLogin() == true) {
+			userService.raiseVisitCount(loginUserBean.getUser_idx());
 			return "user/login_success";
 		} else {
 			boolean fail = true;
@@ -62,7 +63,7 @@ public class UserController {
 	}
 
 	
-	
+	//회원가입
 	@GetMapping("/join")
 	public String join(@ModelAttribute("joinUserBean") UserBean joinUserBean) {
 		return "user/join";
