@@ -184,7 +184,7 @@
 	
 	async function createLicenseList(licenseData) {
 	    list_area.innerHTML = '';
-
+	 
 	    licenseData.forEach(allLi => {
 	        const licenseID = allLi.licenseID;
 	        const licenseName = allLi.licenseName;

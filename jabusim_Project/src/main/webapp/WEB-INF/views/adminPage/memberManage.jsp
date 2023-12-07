@@ -385,6 +385,8 @@ span {
 	// 결과물 업데이트
 	function updateModel(result){
 		allUserBeans = result;		
+		const test = document.getElementById('testtpdyd');
+		test.innerHTML = '';
 	}
 	
 	
@@ -492,7 +494,7 @@ span {
 									<th><span></span></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="testtpdyd">
 								<c:forEach items="${allUserBeans}" var="userBean">
 									<tr>
 										<th><input type="checkbox" value="${userBean.getUser_idx()}"></th>
