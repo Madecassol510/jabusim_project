@@ -14,7 +14,7 @@
     
     
 	<select id="examPlaceTableSearch" resultMap="examPlaceBeanResult">
-		SELECT * FROM userEdu_table
+		SELECT * FROM examPlace_table
 		<where>
 			<choose>
 				<when test="placeName != null and placeName != '') or
@@ -47,7 +47,7 @@
 					<if test="placeNumEnd != null and placeNumEnd != ''">
 		            <![CDATA[ AND examPlace_maximum <= placeNumEnd ]]>
 					</if>
-
+					ORDER BY examPlace_idx;
 		    	</when>
 			</choose>
 		</where>

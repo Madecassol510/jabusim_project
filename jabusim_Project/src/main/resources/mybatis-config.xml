@@ -6,10 +6,12 @@
 <configuration>
     <mappers>
         <mapper resource="mapper/dynamicMapper.xml"/>
+        
         <mapper resource="mapper/UserMapper.xml"/>
         <mapper resource="mapper/UserEduMapper.xml"/>
         <mapper resource="mapper/UserCareerMapper.xml"/>
         <mapper resource="mapper/ExamPlaceMapper.xml"/>
+        <mapper resource="mapper/LicenseMapper.xml"/>
         
     </mappers>
 </configuration>

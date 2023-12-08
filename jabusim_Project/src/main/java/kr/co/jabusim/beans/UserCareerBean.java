@@ -11,7 +11,9 @@ public class UserCareerBean {
 	private String userCareer_inquiryDate;
 	private String userCareer_processDate;
 	private String userCareer_status;
-	 
+	
+	
+	
 	
 	public int getUserCareer_idx() {
 		return userCareer_idx;
@@ -66,8 +68,7 @@ public class UserCareerBean {
 	}
 	public void setuserCareer_status(String userCareer_status) {
 		this.userCareer_status = userCareer_status;
-	}
-	 
+	}	 
 }
 
 

@@ -18,7 +18,7 @@
     
     
 	<select id="userCareerTableSearch" resultMap="userCareerBeanResult">
-		SELECT * FROM userEdu_table
+		SELECT * FROM userCareer_table
 		<where>
 			<choose>
 				<when test="(name != null and name != '') or 
@@ -72,7 +72,7 @@
 							</foreach>
 							)
 						</if>
-		
+					ORDER BY userCareer_idx;
 		    	</when>
 			</choose>
 		</where>

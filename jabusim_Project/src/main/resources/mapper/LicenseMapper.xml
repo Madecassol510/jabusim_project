@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.jabusim.mapper.UserEduMapper">
+
+	
+	<resultMap id="licenseBeanResult" type="kr.co.jabusim.beans.LicenseBean">
+        <id property="license_idx" column="license_idx"/>
+        <result property="license_name" column="license_name"/>
+        <result property="license_type" column="license_type"/>
+        <result property="license_mainCategory" column="license_mainCategory"/>
+        <result property="license_subCategory" column="license_subCategory"/>
+        <result property="license_info" column="license_info"/>
+        <!-- 나머지 필드들에 대한 매핑 추가 -->
+    </resultMap>
+    
+    
+	<select id="licenseTableSearch" resultMap="licenseBeanResult">
+		SELECT * FROM license_Table
+		<where>
+			<choose>
+				<when test="licenseName != null and licenseName != '') or
+					(licenseType != null and licenseType != '') or  
+		        	(licenseMainCategory != null and licenseMainCategory != '') or 
+		        	(licenseSubCategory != null and licenseSubCategory != '') or
+		        	">
+		
+					<!-- 각 파라미터에 대한 조건을 추가 -->
+					
+					
+					<if test="licenseName != null and licenseName != ''">
+						 AND license_name LIKE CONCAT('%', #{licenseName}, '%')
+					</if>
+					
+					<if test="licenseType != null and licenseType != ''">
+						AND license_type = #{licenseType}
+					</if>	
+					
+					<if test="licenseMainCategory != null and licenseMainCategory != ''">
+						AND license_mainCategory = #{licenseMainCategory}
+					</if>	
+												
+					<if test="licenseSubCategory != null and licenseSubCategory != ''">
+						AND license_subCategory = #{licenseSubCategory}
+					</if>
+					ORDER BY license_idx;
+		    	</when>
+			</choose>
+		</where>
+    </select>
+    
+    
+</mapper>

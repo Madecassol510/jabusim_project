@@ -64,7 +64,7 @@
 							</foreach>
 							)
 						</if>
-		
+					ORDER BY userEdu_idx;
 		    	</when>
 			</choose>
 		</where>

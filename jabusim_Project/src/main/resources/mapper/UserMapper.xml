@@ -32,6 +32,8 @@
 					<if test="joinEnd != null and joinEnd != ''">
 		            <![CDATA[ AND user_joinDate <= TO_DATE(#{joinEnd}, 'YYYY-MM-DD') ]]>
 					</if>
+					
+					ORDER BY user_idx;
 		    	</when>
 			</choose>
 		</where>

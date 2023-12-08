@@ -28,6 +28,7 @@ import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.interceptor.CheckLoginInterceptor;
 import kr.co.jabusim.interceptor.TopMenuInterceptor;
 import kr.co.jabusim.mapper.BoardMapper;
+import kr.co.jabusim.mapper.ExamMapper;
 import kr.co.jabusim.mapper.ExamPlaceMapper;
 import kr.co.jabusim.mapper.LicenseMapper;
 import kr.co.jabusim.mapper.SearchLicenseMapper;
@@ -132,18 +133,25 @@ public class ServletAppContext implements WebMvcConfigurer {
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
+	
+	
+	//유저 mapper
 	@Bean
 	public MapperFactoryBean<UserMapper> getUserMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<UserMapper> factoryBean = new MapperFactoryBean<UserMapper>(UserMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
+	
+	//자격증 mapper
 	@Bean
 	public MapperFactoryBean<LicenseMapper> getLicenseMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<LicenseMapper> factoryBean = new MapperFactoryBean<LicenseMapper>(LicenseMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
+	
+	
 	@Bean
 	public MapperFactoryBean<SearchLicenseMapper> getSearchLicenseMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<SearchLicenseMapper> factoryBean = new MapperFactoryBean<SearchLicenseMapper>(SearchLicenseMapper.class);
@@ -151,6 +159,8 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factoryBean;
 	}
 	
+	
+	//유저학력 mapper
 	@Bean
 	public MapperFactoryBean<UserEduMapper> getUserEduMapper (SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<UserEduMapper> factoryBean = new MapperFactoryBean<UserEduMapper>(UserEduMapper.class);
@@ -158,6 +168,8 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factoryBean;
 	}
 	
+	
+	//유저경력 mapper
 	@Bean
 	public MapperFactoryBean<UserCareerMapper> getUserCareerMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<UserCareerMapper> factoryBean = new MapperFactoryBean<UserCareerMapper>(UserCareerMapper.class);
@@ -165,6 +177,17 @@ public class ServletAppContext implements WebMvcConfigurer {
 		return factoryBean;
 	}
 	
+	
+	//시험 mapper
+	@Bean
+	public MapperFactoryBean<ExamMapper> getExamMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<ExamMapper> factoryBean = new MapperFactoryBean<ExamMapper>(ExamMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	
+	//시험장소 mapper
 	@Bean
 	public MapperFactoryBean<ExamPlaceMapper> getExamPlaceMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<ExamPlaceMapper> factoryBean = new MapperFactoryBean<ExamPlaceMapper>(ExamPlaceMapper.class);
