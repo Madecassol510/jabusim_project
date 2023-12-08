@@ -310,26 +310,17 @@ span {
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<th><span><button>수정</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>정보산업기사</span></td>
-									<td><span>기사</span></td>
-									<td><span>대분야</span></td>
-									<td><span>세부분야</span></td>
-									<td><span><button>상세내용</button></span></td>
-									<th><span><button>수정</button></span></th>
-								</tr>												
+								<c:forEach items="${allLicenseBeans}" var="licenseBean">
+									<tr>
+										<th><input type="checkbox" value="${licenseBean.getLicense_idx()}"/></th>
+										<td><span>${loopStatus.index+1}</span></td>
+										<td><span>${licenseBean.getLicense_name()}</span></td>
+										<td><span>${licenseBean.getLicense_type()}</span></td>
+										<td><span>${licenseBean.getLicense_mainCategory()}</span></td>
+										<td><span>${licenseBean.getLicense_subCategory()}</span></td>
+										<td><span>${licenseBean.getLicense_info()}</span></td>					
+									</tr>
+								</c:forEach>								
 							</tbody>
 						</table>
 					</div>

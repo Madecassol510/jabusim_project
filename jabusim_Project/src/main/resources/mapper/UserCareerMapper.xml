@@ -27,8 +27,8 @@
 		        	(processStart != null and processStart != '') or
 		        	(processEnd != null and processEnd != '') or
 		        	(careerField != null and careerField != '') or
-		        	(careerType != null) or
-		        	(processStatus != null)
+		        	(careerType != null and careerType.size() > 0) or
+              		(processStatus != null and processStatus.size() > 0)
 		        	">
 		
 					<!-- 각 파라미터에 대한 조건을 추가 -->
@@ -55,23 +55,22 @@
 		            <![CDATA[ AND userCareer_processDate <= TO_DATE(#{processEnd}, 'YYYY-MM-DD') ]]>
 					</if>
 					
-					
 									
-						<if test="careerType != null">
-							AND (
-							<foreach item="item" collection="careerType" separator="OR">
-								userCareer_type = #{item}
-							</foreach>
-							)
-						</if>
+					<if test="careerType.size() > 0">
+						AND (
+						<foreach item="item" collection="careerType" separator="OR">
+							userCareer_type = #{item}
+						</foreach>
+						)
+					</if>
 					
-						<if test="processStatus != null">
-							AND (
-							<foreach item="item" collection="processStatus" separator="OR">
-								userCareer_status = #{processStatus}
-							</foreach>
-							)
-						</if>
+					<if test="processStatus.size() > 0">
+						AND (
+						<foreach item="item" collection="processStatus" separator="OR">
+							userCareer_status = #{processStatus}
+						</foreach>
+						)
+					</if>
 					
 		    	</when>
 			</choose>

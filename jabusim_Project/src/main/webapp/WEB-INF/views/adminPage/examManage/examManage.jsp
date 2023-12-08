@@ -267,11 +267,19 @@ span {
 						<form action="">
 							<table class="searchTable">
 								<tr>
-									<th class="searchHd">응시종목</th>
+									<th class="searchHd">계열</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
-											<button>검색</button>
+											<input type="checkbox" name="edu_list" /> 기능사
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 기사
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 기능장
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" name="edu_list" /> 기술사
 										</div>
 									</td>
 								</tr>
@@ -361,43 +369,35 @@ span {
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
 									<th><span>시험명</span></th>
-									<th><span>응시종목</span></th>
+									<th><span>연도</span></th>
 									<th><span>회차</span></th>
 									<th><span>구분</span></th>
+									<th><span>계열</span></th>
 									<th><span>접수시작일</span></th>
 									<th><span>접수마감일</span></th>
 									<th><span>시험일</span></th>
+									<th><span>결과발표일</span></th>
 									<th><span>상태</span></th>
 									<th><span></span></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>2023정보처리기사</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>3회차</span></td>
-									<td><span>필기</span></td>
-									<td><input type="date" /></td>
-									<td><input type="date" /></td>
-									<td><input type="date" /></td>
-									<td><span>시험예정</span></td>
-									<th><span><button>완료</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>2023정보처리기사</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>3회차</span></td>
-									<td><span>필기</span></td>
-									<td><span>2023-12-04</span></td>
-									<td><span>2023-12-11</span></td>
-									<td><span>2023-12-31</span></td>
-									<td><span>일반</span></td>
-									<th><span><button>수정</button></span></th>
-								</tr>					
+								<c:forEach items="${allExamBeans}" var="examBean">
+									<tr>
+										<th><input type="checkbox" value="${examBean.getExam_idx()}"/></th>
+										<td><span>${loopStatus.index+1}</span></td>
+										<td><span>${examBean.getExam_name()}</span></td>
+										<td><span>${examBean.getExam_year()}</span></td>
+										<td><span>${examBean.getExam_round()}</span></td>
+										<td><span>${examBean.getExam_type()}</span></td>
+										<td><span>${examBean.getExam_licenseType()}</span></td>
+										<td><span>${examBean.getExam_receiptStartDate()}</span></td>
+										<td><span>${examBean.getExam_receiptEndDate()}</span></td>					
+										<td><span>${examBean.getExam_date()}</span></td>					
+										<td><span>${examBean.getExam_resultDate()}</span></td>					
+										<td><span>${examBean.getExam_status()}</span></td>		
+									</tr>
+								</c:forEach>												
 							</tbody>
 						</table>
 					</div>

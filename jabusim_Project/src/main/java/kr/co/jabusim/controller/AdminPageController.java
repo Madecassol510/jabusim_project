@@ -9,11 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.jabusim.beans.ExamBean;
 import kr.co.jabusim.beans.ExamPlaceBean;
 import kr.co.jabusim.beans.LicenseBean;
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.beans.UserCareerBean;
 import kr.co.jabusim.beans.UserEduBean;
+import kr.co.jabusim.mapper.ExamMapper;
 import kr.co.jabusim.mapper.ExamPlaceMapper;
 import kr.co.jabusim.mapper.LicenseMapper;
 import kr.co.jabusim.mapper.UserCareerMapper;
@@ -35,6 +37,9 @@ public class AdminPageController {
 	
 	@Autowired
 	private LicenseMapper licenseMapper;
+	
+	@Autowired
+	private ExamMapper examMapper;
 	
 	@Autowired
 	private ExamPlaceMapper examPlaceMapper;
@@ -86,7 +91,7 @@ public class AdminPageController {
 	@GetMapping("/licenseManage")
 	public String licenseManage(Model model) {
 		
-		List<LicenseBean> allLicenseBeans = licenseMapper.getAllLicense();
+		ArrayList<LicenseBean> allLicenseBeans = licenseMapper.allLicenseInfo();
 		
 		model.addAttribute("allLicenseBeans", allLicenseBeans);
 		
@@ -97,9 +102,26 @@ public class AdminPageController {
 	
 	//시험관리
 	@GetMapping("/examManage/examManage")
-	public String examManage() {
+	public String examManage(Model model) {
+		
+		ArrayList<ExamBean> allExamBeans = examMapper.allExamInfo();
+		
+		model.addAttribute("allExamBeans", allExamBeans);
+		
 		return "adminPage/examManage/examManage";
 	}
+	
+	// 시험장소
+	@GetMapping("/examManage/examPlaceManage")
+	public String examPlaceManage(Model model) {
+			
+		ArrayList<ExamPlaceBean> allExamPlaceBeans = examPlaceMapper.allExamPlaceInfo();
+			
+		model.addAttribute("allExamPlaceBeans", allExamPlaceBeans);
+			
+		return "adminPage/examManage/examPlaceManage";
+	}
+	
 	
 	// 시험접수
 	@GetMapping("/examManage/examReceiptManage")
@@ -107,16 +129,7 @@ public class AdminPageController {
 		return "adminPage/examManage/examReceiptManage";
 	}
 
-	// 시험장소
-	@GetMapping("/examManage/examPlaceManage")
-	public String examPlaceManage(Model model) {
-		
-		ArrayList<ExamPlaceBean> allExamPlaceBeans = examPlaceMapper.allExamPlaceInfo();
-		
-		model.addAttribute("allExamPlaceBeans", allExamPlaceBeans);
-		
-		return "adminPage/examManage/examPlaceManage";
-	}
+	
 	
 	// 시험결과
 	@GetMapping("/examManage/examResultManage")

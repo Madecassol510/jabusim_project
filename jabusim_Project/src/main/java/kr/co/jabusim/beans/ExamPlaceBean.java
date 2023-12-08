@@ -1,5 +1,8 @@
 package kr.co.jabusim.beans;
 
+import lombok.NoArgsConstructor;
+
+
 public class ExamPlaceBean {
 	
 	   

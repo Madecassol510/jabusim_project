@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jabusim.beans.LicenseBean;
 import kr.co.jabusim.beans.UserBean;
+import kr.co.jabusim.beans.UserEduBean;
 
 public interface LicenseMapper {
 
-	@Select("select * from license")
-	List<LicenseBean> getAllLicense();
+	
 	
 	@Select("select DISTINCT licenseField From license ORDER BY licensefield")
 	List<String> getLicenseCode();
@@ -25,6 +25,10 @@ public interface LicenseMapper {
 	
 	
 	
+	//모든 유저의 학력 리스트
+	@Select("select * from license_table")
+	ArrayList<LicenseBean> allLicenseInfo();
+	
 	
 	//ajax 유저테이블 가져오기
 	ArrayList<LicenseBean> licenseTableSearch (
@@ -32,7 +36,7 @@ public interface LicenseMapper {
 			@Param("licenseType") String licenseType,
 			@Param("licenseMainCategory") String licenseMainCategory,		
 			@Param("licenseSubCategory") String licenseSubCategory
-			);
+	);
 	
 	
 }

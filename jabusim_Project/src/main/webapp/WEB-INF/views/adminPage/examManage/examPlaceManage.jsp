@@ -272,6 +272,14 @@ span {
 											</select>
 										</div>
 									</td>
+								</tr>
+								<tr>
+									<th class="searchHd">주소명</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="text" />
+										</div>						
+									</td>
 								</tr>							
 								<tr>
 									<th class="searchHd">장소명</th>
@@ -281,6 +289,15 @@ span {
 										</div>						
 									</td>
 								</tr>
+								<tr>
+									<th class="searchHd">최대수용인</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="text" />명 ~
+											<input type="text" />명
+										</div>						
+									</td>
+								</tr>	
 								
 							</table>
 							<div class="searchButton">
@@ -307,42 +324,16 @@ span {
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td><span>no.</span></td>
-									<td><span>서울대학교</span></td>
-									<td><span>서울특별자치도</span></td>
-									<td><span>서울특별시 관악구 관악로 1</span></td>
-									<td><span>300</span></td>
-									<td><span><button>수정</button></span></td>				
-								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td><span>no.</span></td>
-									<td><span>서울대학교</span></td>
-									<td><span>서울특별자치도</span></td>
-									<td><span>서울특별시 관악구 관악로 1</span></td>
-									<td><span>300</span></td>
-									<td><span><button>수정</button></span></td>				
-								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td><span>no.</span></td>
-									<td><span>서울대학교</span></td>
-									<td><span>서울특별자치도</span></td>
-									<td><span>서울특별시 관악구 관악로 1</span></td>
-									<td><span>300</span></td>
-									<td><span><button>수정</button></span></td>				
-								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td><span>no.</span></td>
-									<td><span>서울대학교</span></td>
-									<td><span>서울특별자치도</span></td>
-									<td><span>서울특별시 관악구 관악로 1</span></td>
-									<td><span>300</span></td>
-									<td><span><button>수정</button></span></td>				
-								</tr>					
+								<c:forEach items="${allExamPlaceBeans}" var="examPlaceBean" varStatus="loopStatus">
+									<tr>
+										<th><input type="checkbox" value="${examPlaceBean.getExamPlace_idx()}" ></th>
+										<td><span>${loopStatus.index + 1}</span></td>
+										<td><span>${examPlaceBean.getExamPlace_name()}</span></td>
+										<td><span>${examPlaceBean.getExamPlace_region()}</span></td>
+										<td><span>${examPlaceBean.getExamPlace_address()}</span></td>
+										<td><span>${examPlaceBean.getExamPlace_maximum()}</span></td> 		
+									</tr>
+								</c:forEach>			
 							</tbody>
 						</table>
 					</div>
