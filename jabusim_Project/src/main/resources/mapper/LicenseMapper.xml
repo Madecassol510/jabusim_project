@@ -42,7 +42,7 @@
 					<if test="licenseSubCategory != null and licenseSubCategory != ''">
 						AND license_subCategory = #{licenseSubCategory}
 					</if>
-					ORDER BY license_idx;
+					
 		    	</when>
 			</choose>
 		</where>

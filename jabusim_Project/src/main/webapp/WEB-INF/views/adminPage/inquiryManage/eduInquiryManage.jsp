@@ -260,10 +260,8 @@ span {
 	var inquriyEnd;
 	var processStart;
 	var processEnd;
-	
-	var processStatus;
-
-	var eudList;
+	var eudList = [];
+	var processStatus =[];
 	
 	//검색 필드에 값넣기
 	function fieldSearch(){
@@ -374,25 +372,25 @@ span {
 									<th class="searchHd">학력구분</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="eudListInput" /> 고등학교 졸업 이하
+											<input type="checkbox" value="고등학교 졸업 이하" name="eudListInput" /> 고등학교 졸업 이하
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="eudListInput" /> 고졸 검정고시
+											<input type="checkbox" value="고졸 검정고시" name="eudListInput" /> 고졸 검정고시
 										</div> <br>
 										<div class="searchReq">
-											<input type="checkbox" name="eudListInput" /> 평생교육진흥원 인정학점(81학점 이상)
+											<input type="checkbox" value="평생교육진흥원 인정학점(81학점 이상)" name="eudListInput" /> 평생교육진흥원 인정학점(81학점 이상)
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="eudListInput" /> 평생교육진흥원 인정학점(106학점 이상)
+											<input type="checkbox" value="평생교육진흥원 인정학점(106학점 이상)" name="eudListInput" /> 평생교육진흥원 인정학점(106학점 이상)
 										</div> <br>
 										<div class="searchReq">
-											<input type="checkbox" name="eudListInput" /> 학사학위
+											<input type="checkbox" value="학사학위" name="eudListInput" /> 학사학위
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="eudListInput" /> 석사학위
+											<input type="checkbox" value="석사학위" name="eudListInput" /> 석사학위
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="eudListInput" /> 박사학위
+											<input type="checkbox" value="박사학위" name="eudListInput" /> 박사학위
 										</div>
 									</td>
 								</tr>
@@ -420,13 +418,13 @@ span {
 									<th class="searchHd">처리상태</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="processStatusInput" /> 처리완료
+											<input type="checkbox" value="수락"  name="processStatusInput" /> 수락
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="processStatusInput" /> 처리불가
+											<input type="checkbox" value="거절" name="processStatusInput" /> 거절
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="processStatusInput" /> 처리대기
+											<input type="checkbox" value="대기" name="processStatusInput" /> 대기
 										</div>
 									</td>
 								</tr>
@@ -467,18 +465,17 @@ span {
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${allUserEduBeans}" var="userEduBean">
+								<c:forEach items="${allUserEduBeans}" var="userEduBean" varStatus="loopStatus">
 									<tr>
-										<th><input type="checkbox" value="${userEduBean.getUser_idx()}"></th>
-										<td><span>${userEduBean.getUser_idx()}</span></td>
+										<th><input type="checkbox" value="${userEduBean.getUserEdu_idx()}" ></th>
+										<td><span>${loopStatus.index + 1}</span></td>
 										<td><span>${userEduBean.getUser_name()}</span></td>
+										<td><span>${userEduBean.getUser_id()}</span></td>
 										<td><span>${userEduBean.getUserEdu_type()}</span></td>
-										<td><span>${userEduBean.getUserEdu_academy()}</span></td>
-										<td><span>${userEduBean.getUserEdu_major()}</span></td>
 																		
 										<c:choose>
 											<c:when test="${userEduBean.getUserEdu_academy()==null}">
-												<td><span></span></td>
+												<td><span>없음</span></td>
 											</c:when>
 											<c:otherwise>
 												<td><span>${userEduBean.getUserEdu_academy()}</span></td>
@@ -486,7 +483,7 @@ span {
 										</c:choose>	
 										<c:choose>
 											<c:when test="${userEduBean.getUserEdu_major()==null}">
-												<td><span></span></td>
+												<td><span>없음</span></td>
 											</c:when>
 											<c:otherwise>
 												<td><span>${userEduBean.getUserEdu_major()}</span></td>
@@ -505,9 +502,9 @@ span {
 											</c:otherwise>
 										</c:choose>	
 										
-										<td><span>${userEduBean.getUserEdu_processStatus()}</span></td>		
+										<td><span>${userEduBean.getUserEdu_processStatus()}</span></td> 		
 									</tr>
-								</c:forEach>	
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>

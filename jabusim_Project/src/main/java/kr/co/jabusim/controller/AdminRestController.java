@@ -114,16 +114,16 @@ public class AdminRestController {
 	
 	
 	// 시험관리 검색
-	@GetMapping("/admin/examTableSearch")
-	public ResponseEntity<List<ExamPlaceBean>> examPlaceTableSearch(@RequestParam("placeName") String placeName,
-			@RequestParam("placeRegion") String placeRegion, @RequestParam("placeAddress") String placeAddress,
-			@RequestParam("placeNumStart") int placeNumStart, @RequestParam("placeNumEnd") int placeNumEnd) {
-
-		ArrayList<ExamPlaceBean> searchList = examPlaceMapper.examPlaceTableSearch(placeName, placeRegion, placeAddress,
-				placeNumStart, placeNumEnd);
-
-		return ResponseEntity.ok(searchList);
-	}
+//	@GetMapping("/admin/examTableSearch")
+//	public ResponseEntity<List<ExamPlaceBean>> examPlaceTableSearch(@RequestParam("placeName") String placeName,
+//			@RequestParam("placeRegion") String placeRegion, @RequestParam("placeAddress") String placeAddress,
+//			@RequestParam("placeNumStart") int placeNumStart, @RequestParam("placeNumEnd") int placeNumEnd) {
+//
+//		ArrayList<ExamPlaceBean> searchList = examPlaceMapper.examPlaceTableSearch(placeName, placeRegion, placeAddress,
+//				placeNumStart, placeNumEnd);
+//
+//		return ResponseEntity.ok(searchList);
+//	}
 	
 	
 	//시험장소 검색

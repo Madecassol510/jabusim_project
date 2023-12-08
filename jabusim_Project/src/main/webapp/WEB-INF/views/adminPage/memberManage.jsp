@@ -495,7 +495,7 @@ span {
 								</tr>
 							</thead>
 							<tbody id="testtpdyd">
-								<c:forEach items="${allUserBeans}" var="userBean">
+								<c:forEach items="${allUserBeans}" var="userBean" varStatus="loopStatus">
 									<tr>
 										<th><input type="checkbox" value="${userBean.getUser_idx()}"></th>
 										<td><span>${loopStatus.index+1}</span></td>
@@ -514,7 +514,7 @@ span {
 											</c:otherwise>
 										</c:choose>	
 										
-										
+											
 										<td><span>${userBean.getUser_joinDate()}</span></td>			
 										<td><span>${userBean.getUser_visitCount()}회</span></td>		
 									</tr>

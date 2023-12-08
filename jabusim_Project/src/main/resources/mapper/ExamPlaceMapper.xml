@@ -47,7 +47,7 @@
 					<if test="placeNumEnd != null and placeNumEnd != ''">
 		            <![CDATA[ AND examPlace_maximum <= placeNumEnd ]]>
 					</if>
-					ORDER BY examPlace_idx;
+					
 		    	</when>
 			</choose>
 		</where>

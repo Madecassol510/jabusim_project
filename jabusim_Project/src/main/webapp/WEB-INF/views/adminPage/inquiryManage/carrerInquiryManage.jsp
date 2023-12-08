@@ -16,7 +16,9 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -371,16 +373,14 @@ span {
 							<tbody>
 								<c:forEach items="${allUserCareerBeans}" var="userCareerBean">
 									<tr>
-										<th><input type="checkbox" value="${userEduBean.getUser_idx()}"></th>
+										<th><input type="checkbox" value="${userCareerBean.getUserCareer_idx()}"></th>
 										<td><span>${loopStatus.index+1}</span></td>
 										<td><span>${userCareerBean.getUser_name()}</span></td>
-										<td><span>${userCareerBean.getUserCareer_Field()}</span></td>
-										<td><span>${userCareerBean.getUserEdu_academy()}</span></td>
-										<td><span>${userCareerBean.getUserEdu_major()}</span></td>	
-										<td><span>${userCareerBean.getUserEdu_academy()}</span></td>	
-										<td><span>${userCareerBean.getUserCareer_major()}</span></td>								
+										<td><span>${userCareerBean.getUser_id()}</span></td>
+										<td><span>${userCareerBean.getUserCareer_field()}</span></td>
+										<td><span>${userCareerBean.getUserCareer_type()}</span></td>
+										<td><span>${userCareerBean.getUserCareer_company()}</span></td>								
 										<td><span>${userCareerBean.getUserCareer_inquiryDate()}</span></td>	
-										<td><span>${userCareerBean.getUserCareer_processDate()}</span></td>
 										
 										<c:choose>
 											<c:when test="${userCareerBean.getUserCareer_processDate()==null}">
@@ -391,7 +391,7 @@ span {
 											</c:otherwise>
 										</c:choose>	
 										
-										<td><span>${userCareerBean.getUserCareer_processStatus()}</span></td>		
+										<td><span>${userCareerBean.getUserCareer_status()}</span></td>
 									</tr>
 								</c:forEach>
 							</tbody>

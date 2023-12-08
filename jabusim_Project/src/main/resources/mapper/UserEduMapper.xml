@@ -16,59 +16,58 @@
         <!-- 나머지 필드들에 대한 매핑 추가 -->
     </resultMap>
     
-    
-	<select id="userEduTableSearch" resultMap="userEduBeanResult">
-		SELECT * FROM userEdu_table
-		<where>
-			<choose>
-				<when test="(name != null and name != '') or 
-		        	(inquriyStart != null and inquriyStart != '') or 
-		        	(inquriyEnd != null and inquriyEnd != '') or
-		        	(processStart != null and processStart != '') or
-		        	(processEnd != null and processEnd != '') or
-		        	(processStatus != null) or
-		        	(eudList != null)
-		        	">
-		
-					<!-- 각 파라미터에 대한 조건을 추가 -->
-					<if test="name != null and name != ''">
-						AND user_name = #{name}
-					</if>			
-					
-					<if test="inquriyStart != null and inquriyStart != ''">
-						AND userEdu_inquiryDate >= TO_DATE(#{inquriyStart}, 'YYYY-MM-DD')
-					</if>			
-					<if test="inquriyEnd != null and inquriyEnd != ''">
-		            <![CDATA[ AND userEdu_inquiryDate <= TO_DATE(#{inquriyEnd}, 'YYYY-MM-DD') ]]>
-					</if>
-					
-					<if test="processStart != null and processStart != ''">
-						AND userEdu_processDate >= TO_DATE(#{processStart}, 'YYYY-MM-DD')
-					</if>			
-					<if test="processEnd != null and processEnd != ''">
-		            <![CDATA[ AND userEdu_processDate <= TO_DATE(#{processEnd}, 'YYYY-MM-DD') ]]>
-					</if>
-					
-						<if test="processStatus != null">
-							AND (
-							<foreach item="item" collection="processStatus" separator="OR">
-								userEdu_processStatus = #{item}
-							</foreach>
-							)
-						</if>
-					
-						<if test="eudList != null">
-							AND (
-							<foreach item="item" collection="eudList" separator="OR">
-								userEdu_type = #{item}
-							</foreach>
-							)
-						</if>
-					ORDER BY userEdu_idx;
-		    	</when>
-			</choose>
-		</where>
-    </select>
+      
+<select id="userEduTableSearch" resultMap="userEduBeanResult">
+    SELECT * FROM userEdu_table
+    <where>
+        <choose>
+            <when test="(name != null and name != '') or 
+                (inquriyStart != null and inquriyStart != '') or 
+                (inquriyEnd != null and inquriyEnd != '') or
+                (processStart != null and processStart != '') or
+                (processEnd != null and processEnd != '') or
+                (processStatus != null and processStatus.size() > 0) or
+                (eudList != null and eudList.size() > 0)
+             	">
+                
+                <!-- 각 파라미터에 대한 조건을 추가 -->
+                <if test="name != null and name != ''">
+                    AND user_name = #{name}
+                </if>            
+                
+                <if test="inquriyStart != null and inquriyStart != ''">
+                    AND userEdu_inquiryDate >= TO_DATE(#{inquriyStart}, 'YYYY-MM-DD')
+                </if>            
+                <if test="inquriyEnd != null and inquriyEnd != ''">
+                   <![CDATA[ AND userEdu_processDate <= TO_DATE(#{processEnd}, 'YYYY-MM-DD') ]]>
+                </if>
+                
+                <if test="processStart != null and processStart != ''">
+                    AND userEdu_processDate >= TO_DATE(#{processStart}, 'YYYY-MM-DD')
+                </if>            
+                <if test="processEnd != null and processEnd != ''">
+                   <![CDATA[ AND userEdu_processDate <= TO_DATE(#{processEnd}, 'YYYY-MM-DD') ]]>
+                </if>
+                
+                <if test="processStatus.size() > 0">
+                    AND (
+                        <foreach item="item" collection="processStatus" separator=" OR ">
+                            userEdu_processStatus = #{item}
+                        </foreach>
+                    )
+                </if>
+                
+                <if test="eudList.size() > 0">
+                    AND (
+                        <foreach item="item" collection="eudList" separator=" OR ">
+                            userEdu_type = #{item}
+                        </foreach>
+                    )
+                </if>            
+            </when>
+        </choose>
+    </where>
+</select>
     
     
 </mapper>

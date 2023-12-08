@@ -63,12 +63,15 @@ public class UserCareerBean {
 	public void setUserCareer_processDate(String userCareer_processDate) {
 		this.userCareer_processDate = userCareer_processDate;
 	}
-	public String getuserCareer_status() {
+	public String getUserCareer_status() {
 		return userCareer_status;
 	}
-	public void setuserCareer_status(String userCareer_status) {
+	public void setUserCareer_status(String userCareer_status) {
 		this.userCareer_status = userCareer_status;
-	}	 
+	}
+	
+	
+	
 }
 
 
