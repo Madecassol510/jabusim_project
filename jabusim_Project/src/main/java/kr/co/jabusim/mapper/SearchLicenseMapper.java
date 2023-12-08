@@ -13,51 +13,27 @@ import kr.co.jabusim.dao.SearchLicenseDao;
 public interface SearchLicenseMapper {
 	
 	List<SearchLicenseBean> selectMajorCode(@Param("majorCode") List<String> majorCode);
-	List<SearchLicenseBean> selectFullCode(@Param("fullCode") List<String> fullCode);
-	List<SearchLicenseBean> selectLicenseType(@Param("licenseType") List<String> licenseType);
-	/*
-	 * List<SearchLicenseBean> selectSchedule(@Param("schedule") List<String>
-	 * schedule);
-	 */
+	List<SearchLicenseBean> selectMinorCode(@Param("minorCode") List<String> minorCode);
+	List<SearchLicenseBean> selectSchedule(@Param("schedule") List<String> schedule);
 
-	List<SearchLicenseBean> selectAnyCategories(@Param("selectAnyParmas") Map<String, List<String>> anyParams);
+	List<SearchLicenseBean> selectAnyCategories(@Param("selectAnyParams") Map<String, List<String>> anyParms);
 	
 	
 	
-	@Select("SELECT \r\n"
-			+ "    L.licenseID,\r\n"
-			+ "    L.licenseName,\r\n"
-			+ "    (SELECT DISTINCT SUBSTR(L.licenseField, 1, 2) FROM License WHERE License.licenseID = L.licenseID) AS majorCode,\r\n"
-			+ "    L.licenseField AS fullCode,\r\n"
-			+ "    L.licenseType,\r\n"
-			+ "    E.examName,\r\n"
-			+ "    TO_CHAR(ED.registrationStartDate, 'YYYY-MM-DD') || ' ~ ' || TO_CHAR(ED.registrationEndDate, 'YYYY-MM-DD') AS registrationPeriod,\r\n"
-			+ "    TO_CHAR(ED.examDate, 'YYYY-MM-DD') AS examDate\r\n"
-			+ "FROM \r\n"
-			+ "    License L\r\n"
-			+ "JOIN \r\n"
-			+ "    Exam E ON L.licenseID = E.licenseID\r\n"
-			+ "JOIN \r\n"
-			+ "    ExamDate ED ON E.examID = ED.examID")
+	@Select("SELECT\r\n"
+			+ "    l.license_idx,\r\n"
+			+ "    l.license_name,\r\n"
+			+ "    l.license_maincategory AS majorCode,\r\n"
+			+ "    l.license_subcategory AS minorCode,\r\n"
+			+ "    e.exam_name,\r\n"
+			+ "    TO_CHAR(e.exam_receiptStartDate) AS receiptStartDate,\r\n"
+			+ "    TO_CHAR(e.exam_receiptEndDate) AS exam_receiptEndDate,\r\n"
+			+ "    TO_CHAR(e.exam_date) AS examDate\r\n"
+			+ "FROM license_table l\r\n"
+			+ "JOIN exam_table e ON l.license_type = e.exam_licensetype\r\n"
+			+ "WHERE \r\n"
+			+ "    e.exam_date > SYSDATE\r\n"
+			+ "order by e.exam_date")
 	List<SearchLicenseBean> getAllLicenseList();
-	
-
-	/*
-	 * @Select("SELECT \r\n" + "    L.licenseID,\r\n" + "    L.licenseName,\r\n" +
-	 * "    L.licenseField,\r\n" + "    L.licenseType,\r\n" + "    E.examName,\r\n"
-	 * +
-	 * "    TO_CHAR(ED.registrationStartDate, 'YYYY-MM-DD') || ' ~ ' || TO_CHAR(ED.registrationEndDate, 'YYYY-MM-DD') AS registrationPeriod,\r\n"
-	 * + "    TO_CHAR(ED.examDate, 'YYYY-MM-DD') AS examDate \r\n" + "FROM \r\n" +
-	 * "    License L\r\n" + "JOIN \r\n" +
-	 * "    Exam E ON L.licenseID = E.licenseID\r\n" + "JOIN \r\n" +
-	 * "    ExamDate ED ON E.examID = ED.examID " +
-	 * "where L.licenseName like '%' || #{query} || '%'") List<SearchLicenseBean>
-	 * searchLicenseName(String query);
-	 */
-	
-	/*
-	 * List<SearchLicenseBean> selectAnyCategories(@Param("categoryList")
-	 * List<String> categoryList);
-	 */
 	
 }

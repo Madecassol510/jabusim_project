@@ -1,4 +1,4 @@
-function getCodeDivision() {
+/*function getCodeDivision() {
     return new Promise((resolve, reject) => {
         $.ajax({
             url: "/jabusim_Project/getLicenseCode",
@@ -21,7 +21,7 @@ function getCodeDivision() {
             }
         });
     });
-}
+}*/
 
 function getLicenseType() {
     return new Promise((resolve, reject) => {
@@ -52,3 +52,5 @@ function getAllLicenseList() {
         })
     })
 }
+
+

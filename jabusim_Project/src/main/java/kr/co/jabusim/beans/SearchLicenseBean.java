@@ -8,13 +8,13 @@ import lombok.Setter;
 @Setter
 public class SearchLicenseBean {
 	
-	private int licenseID;
-    private String licenseName;
+	private int license_idx;
+    private String license_name;
     private String majorCode;
-    private String fullCode;
-    private String licenseType;
-    private String examName;
-    private String registrationPeriod;
+    private String minorCode;
+    private String exam_name;
+    private String receiptStartDate;
+    private String exam_receiptEndDate;
     private String examDate;
     
 }

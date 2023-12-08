@@ -25,17 +25,13 @@ public class SearchLicenseService {
 	    if (params.containsKey("majorCode")) {
 	        List<String> majorCodes = params.get("majorCode");
 	        return searchLicenseDao.selectMajorCode(majorCodes);
-	    } else if (params.containsKey("fullCode")) {
-	        List<String> fullCodes = params.get("fullCode");
-	        return searchLicenseDao.selectFullCode(fullCodes);
-	    } else if (params.containsKey("licenseType")) {
-	        List<String> licenseTypes = params.get("licenseType");
-	        return searchLicenseDao.selectLicenseType(licenseTypes);
+	    } else if (params.containsKey("minorCode")) {
+	        List<String> minorCodes = params.get("minorCode");
+	        return searchLicenseDao.selectMinorCode(minorCodes);
+	    } else if (params.containsKey("schedule")) {
+	        List<String> schedules = params.get("schedule");
+	        return searchLicenseDao.selectSchedule(schedules);
 	    } 
-		/*
-		 * else if (params.containsKey("schedule")) { List<String> schedule =
-		 * params.get("schedule"); return searchLicenseDao.selectSchedule("schedule"); }
-		 */
 
 	    return new ArrayList<>();
 	}
@@ -45,13 +41,11 @@ public class SearchLicenseService {
 		Map<String, List<String>> anyParams = new HashMap<String, List<String>>();
 			
 			List<String> majorCodes = params.get("majorCode");
-			List<String> fullCodes = params.get("fullCode");
-			List<String> licenseTypes = params.get("licenseType");
+			List<String> minorCodes = params.get("minorCode");
 			List<String> schedule = params.get("schedule");
 			
 			anyParams.put("majorCode", majorCodes);
-			anyParams.put("fullCode", fullCodes);
-			anyParams.put("licenseType", licenseTypes);
+			anyParams.put("minorCode", minorCodes);
 			anyParams.put("schedule", schedule);
 			
 			return searchLicenseDao.selectAnyCategories(anyParams);

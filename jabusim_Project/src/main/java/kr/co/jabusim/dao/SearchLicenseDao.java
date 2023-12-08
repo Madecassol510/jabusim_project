@@ -24,16 +24,12 @@ public class SearchLicenseDao {
 	public List<SearchLicenseBean> selectMajorCode(List<String> majorCode) {
 		return searchLicenseMapper.selectMajorCode(majorCode);
 	}
-	public List<SearchLicenseBean> selectFullCode(List<String> fullCode) {
-		return searchLicenseMapper.selectFullCode(fullCode);
+	public List<SearchLicenseBean> selectMinorCode(List<String> minorCode) {
+		return searchLicenseMapper.selectMinorCode(minorCode);
 	}
-	public List<SearchLicenseBean> selectLicenseType(List<String> licenseType) {
-		return searchLicenseMapper.selectLicenseType(licenseType);
+	public List<SearchLicenseBean> selectSchedule(List<String> schedule) {
+		return searchLicenseMapper.selectSchedule(schedule); 
 	}
-	/*
-	 * public List<SearchLicenseBean> selectSchedule(List<String> schedule) { return
-	 * searchLicenseMapper.selectSchedule(schedule); }
-	 */
 	
 
 	public List<SearchLicenseBean> selectAnyCategories(Map<String, List<String>> anyParms) {

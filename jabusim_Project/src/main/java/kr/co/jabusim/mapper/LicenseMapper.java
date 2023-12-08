@@ -18,7 +18,7 @@ public interface LicenseMapper {
 	@Select("select DISTINCT licenseField From license ORDER BY licensefield")
 	List<String> getLicenseCode();
 	
-	@Select("select DISTINCT licenseType From license")
+	@Select("select distinct license_mainCategory from license_table")
 	List<String> getLicenseType();
 	
 	

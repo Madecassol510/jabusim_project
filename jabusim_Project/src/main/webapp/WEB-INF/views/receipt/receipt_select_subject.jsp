@@ -19,7 +19,7 @@
 
 <!-- 외부 css파일 -->
 <link rel="stylesheet" href="${root}css/testTpdyd.css" />
-<link rel="stylesheet" href="${root}css/receptCSS/recept_select_subject.css" />
+<link rel="stylesheet" href="${root}css/receiptCSS/receipt_select_subject.css" />
 <!-- 외부 js파일 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -133,7 +133,7 @@
 							<td>기계</td>
 							<td>기계장비설비.설치</td>
 							<td>
-								<form action="${root}recept/selectPlace" method="post">
+								<form action="${root}receipt/selectPlace" method="post">
 									<!-- 폼 입력 필드들 -->
 									<button type="submit">제출</button>
 								</form>
@@ -148,7 +148,7 @@
 								<td>${data.session}</td>
 								<td>${data.registrationStart}</td>
 								<td>
-									<form action="${root}recept/selectPlace" method="post">
+									<form action="${root}receipt/selectPlace" method="post">
 										<!-- 폼 입력 필드들 -->
 										<button type="submit">선택</button>
 									</form>
@@ -174,5 +174,5 @@
 
 </body>
 
-<script type="text/javascript" src="${root}js/receptJS/recept_select_subject.js"></script>
+<script type="text/javascript" src="${root}js/receiptJS/receipt_select_subject.js"></script>
 </html>

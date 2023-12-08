@@ -14,7 +14,7 @@
 
 <!-- 외부 css파일 -->
 <link rel="stylesheet" href="${root}css/testTpdyd.css" />
-<link rel="stylesheet" href="${root}css/receptCSS/selectPlace.css" />
+<link rel="stylesheet" href="${root}css/receiptCSS/selectPlace.css" />
 <!-- 외부 js파일 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -146,6 +146,6 @@
 </body>
 
 
-<script type="text/javascript" src="${root}js/receptJS/selectPlace.js" ></script>
+<script type="text/javascript" src="${root}js/receiptJS/selectPlace.js" ></script>
 
 </html>

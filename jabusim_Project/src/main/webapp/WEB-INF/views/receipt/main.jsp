@@ -14,7 +14,7 @@
 
 <!-- 외부 css파일 -->
 <link rel="stylesheet" href="${root}css/testTpdyd.css" />
-<link rel="stylesheet" href="${root}css/receptCSS/main.css" />
+<link rel="stylesheet" href="${root}css/receiptCSS/main.css" />
 <!-- 외부 js파일 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -81,33 +81,17 @@
 		            </thead>
 		            
 		            <tbody>
-						<tr>
-		                   <td>예시 시험명</td>
-		                   <td>예시 계열</td>
-		                   <td>예시 구분</td>
-		                   <td>1</td>
-		                   <td>2023-01-01</td>
-		                   <td>2023-01-10</td>
-		                   <td>2023-02-01</td>
-		                   <td>
-		                   	<form action="${root}recept/recept_select_subject" method="post">
-							    <!-- 폼 입력 필드들 -->
-							    <button type="submit">제출</button>
-							</form>
-		                   </td>
-		                </tr>
-		            
-		               	<c:forEach var="data" items="${dataList}">
+		            	<c:forEach items="${getRegisting}" var="examBean" varStatus="data">
 		                   <tr>
-		                       <td>${data.examName}</td>
-		                       <td>${data.major}</td>
-		                       <td>${data.category}</td>
-		                       <td>${data.session}</td>
-		                       <td>${data.registrationStart}</td>
-		                       <td>${data.registrationEnd}</td>
-		                       <td>${data.examDate}</td>
+		                       <td>${examBean.exam_name}</td>
+		                       <td>${examBean.exam_type}</td>
+		                       <td>${examBean.exam_licenseType}</td>
+		                       <td>${examBean.exam_round}</td>
+		                       <td>${examBean.exam_receiptStartDate}</td>
+		                       <td>${examBean.exam_receiptEndDate}</td>
+		                       <td>${examBean.exam_date}</td>
 		                       <td>
-		                       	<form action="${root}recept/recept_select_subject" method="post">
+		                       	<form action="${root}receipt/receipt_select_subject" method="post">
 								    <!-- 폼 입력 필드들 -->
 								    <button type="submit">제출</button>
 								</form>

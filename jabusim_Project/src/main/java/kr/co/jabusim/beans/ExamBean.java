@@ -10,50 +10,42 @@ import lombok.Setter;
 @Setter
 public class ExamBean {
 
-
-	   
 	private int exam_idx;
-	private String exam_name;
-	private String exam_type;				//필기, 실기
-	private String exam_licenseType;		// 기사, 기능사. 기술사
-	
-	private String exam_receiptStartDate;
-	private String exam_receiptEndDate;
-	private String exam_date;
-	private String exam_resultDate;
+	   private String exam_name;
+	   private String exam_type;            //필기, 실기
+	   private String exam_licenseType;      // 기사, 기능사. 기술사
+	   private int exam_year;
+	   private int exam_round;
+	   private String exam_receiptStartDate;
+	   private String exam_receiptEndDate;
+	   private String exam_date;
+	   private String exam_resultDate;
 	
 	//db에 없는 컬럼
 	private String exam_status;
 	
 	
 	
-	public ExamBean() {
-		
-		//현재 날짜
-		LocalDate currentDate = LocalDate.now();
-		
-		// DateTimeFormatter를 사용하여 문자열을 LocalDate로 변환
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDate receiptStartDate = LocalDate.parse(exam_receiptStartDate, formatter);
-		LocalDate receiptEndDate = LocalDate.parse(exam_receiptEndDate, formatter);
-		LocalDate examDate = LocalDate.parse(exam_date, formatter);
-		
-		if(currentDate.compareTo(receiptStartDate.minusDays(14))>=0 && currentDate.compareTo(receiptStartDate)<0) {
-			exam_status = "접수예정";
-		}
-		else if(currentDate.compareTo(receiptStartDate)>=0 && currentDate.compareTo(receiptEndDate)<=0){
-			exam_status = "접수중";
-		}
-		else if(currentDate.compareTo(receiptEndDate)>0 && currentDate.compareTo(examDate)<0){
-			exam_status = "시험예정";
-		}
-		else if(currentDate.compareTo(examDate)==0){
-			exam_status = "시험일";
-		}
-		else{
-			exam_status = "일반";
-		}
-	}
+	/*
+	 * public ExamBean() {
+	 * 
+	 * //현재 날짜 LocalDate currentDate = LocalDate.now();
+	 * 
+	 * // DateTimeFormatter를 사용하여 문자열을 LocalDate로 변환 DateTimeFormatter formatter =
+	 * DateTimeFormatter.ofPattern("yyyy-MM-dd"); LocalDate receiptStartDate =
+	 * LocalDate.parse(exam_receiptStartDate, formatter); LocalDate receiptEndDate =
+	 * LocalDate.parse(exam_receiptEndDate, formatter); LocalDate examDate =
+	 * LocalDate.parse(exam_date, formatter);
+	 * 
+	 * if(currentDate.compareTo(receiptStartDate.minusDays(14))>=0 &&
+	 * currentDate.compareTo(receiptStartDate)<0) { exam_status = "접수예정"; } else
+	 * if(currentDate.compareTo(receiptStartDate)>=0 &&
+	 * currentDate.compareTo(receiptEndDate)<=0){ exam_status = "접수중"; } else
+	 * if(currentDate.compareTo(receiptEndDate)>0 &&
+	 * currentDate.compareTo(examDate)<0){ exam_status = "시험예정"; } else
+	 * if(currentDate.compareTo(examDate)==0){ exam_status = "시험일"; } else{
+	 * exam_status = "일반"; } }
+	 */
 
 
 	
@@ -162,6 +154,8 @@ public class ExamBean {
 	public void setExam_status(String exam_status) {
 		this.exam_status = exam_status;
 	}
+	
+	
 }
 
 
