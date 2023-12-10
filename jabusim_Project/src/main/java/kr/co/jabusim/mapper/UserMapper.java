@@ -61,5 +61,9 @@ public interface UserMapper {
 	
 	
 	
+	//ajax 유저삭제 가져오기
+	void userTableDelete (@Param("checkedList") List<String> checkedList);
+	
+	
 	
 }

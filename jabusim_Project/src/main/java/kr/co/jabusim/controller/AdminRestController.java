@@ -73,7 +73,7 @@ public class AdminRestController {
 	private ExamResultMapper examResultMapper;
 	
 	
-	
+	//==========================================================================================================
 	//회원관리 검색
 	@GetMapping("/admin/userTableSearch")
 	public ResponseEntity<List<UserBean>> userTableSearch(
@@ -89,6 +89,19 @@ public class AdminRestController {
 		return ResponseEntity.ok(searchList);
 	}
 	
+	//회원관리 삭제
+	@GetMapping("/admin/userTableDelete")
+	public ResponseEntity<Void> userTableDelete(
+			@RequestParam("checkedList") List<String> checkedList         
+			){
+		
+		userMapper.userTableDelete(checkedList);
+
+		return ResponseEntity.noContent().build();
+	}
+	
+	
+	//==========================================================================================================
 	//학력문의 검색
 	@GetMapping("/admin/userEduTableSearch")
 	public ResponseEntity<List<UserEduBean>> userEduTableSearch( 

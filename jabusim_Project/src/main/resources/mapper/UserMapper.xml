@@ -26,16 +26,31 @@
 					<if test="interests != null and interests != ''">
 						AND user_interests = #{interests}
 					</if>
+					
 					<if test="joinStart != null and joinStart != ''">
 						AND user_joinDate >= TO_DATE(#{joinStart}, 'YYYY-MM-DD')
 					</if>
-					<if test="joinEnd != null and joinEnd != ''">
+					<if test="joinEnd != null and joinEnd != '' ">
 		            <![CDATA[ AND user_joinDate <= TO_DATE(#{joinEnd}, 'YYYY-MM-DD') ]]>
-					</if>
-					
-					
+					</if>	
 		    	</when>
 			</choose>
 		</where>
     </select>
+    
+    
+   	<delete id="userTableDelete">
+	    DELETE FROM user_table
+	    <where>
+	        <if test="checkedList != null and checkedList.size() > 0">
+	            AND (
+	            <foreach item="item" collection="checkedList" separator="OR">
+	                user_idx = #{item}
+	            </foreach>
+	            )
+	        </if>
+	    </where>
+	</delete>
+    
+    
 </mapper>
