@@ -30,6 +30,8 @@ import kr.co.jabusim.interceptor.TopMenuInterceptor;
 import kr.co.jabusim.mapper.BoardMapper;
 import kr.co.jabusim.mapper.ExamMapper;
 import kr.co.jabusim.mapper.ExamPlaceMapper;
+import kr.co.jabusim.mapper.ExamReceiptMapper;
+import kr.co.jabusim.mapper.ExamResultMapper;
 import kr.co.jabusim.mapper.LicenseMapper;
 import kr.co.jabusim.mapper.SearchLicenseMapper;
 import kr.co.jabusim.mapper.UserCareerMapper;
@@ -194,7 +196,23 @@ public class ServletAppContext implements WebMvcConfigurer {
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
-
+	
+	//시험접수 mapper
+	@Bean
+	public MapperFactoryBean<ExamReceiptMapper> getExamrReceiptMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<ExamReceiptMapper> factoryBean = new MapperFactoryBean<ExamReceiptMapper>(ExamReceiptMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	//시험결과 mapper
+	@Bean
+	public MapperFactoryBean<ExamResultMapper> getExamrResultMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<ExamResultMapper> factoryBean = new MapperFactoryBean<ExamResultMapper>(ExamResultMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
 
 	// ==============================================================
 

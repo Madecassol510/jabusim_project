@@ -29,7 +29,7 @@ public interface UserCareerMapper {
 	            @Param("inquriyStart") String inquriyStart,
 	            @Param("inquriyEnd") String inquriyEnd,
 	            @Param("processStart") String processStart,
-	            @Param("processEnd") String processEnd,     
+	            @Param("processEnd") String processEnd,    
 	            @Param("careerField") String careerField,
 	            @Param("careerType") List<String> careerType,        
 	            @Param("processStatus") List<String> processStatus

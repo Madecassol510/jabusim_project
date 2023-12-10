@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.jabusim.mapper.ExamReceiptMapper">
+
+	
+	<resultMap id="ExamReceiptBeanResult" type="kr.co.jabusim.beans.ExamReceiptBean">
+        <id property="examReceipt_idx" column="examReceipt_idx"/>
+        <result property="exam_name" column="exam_name"/>
+        <result property="exam_type" column="exam_type"/>
+        <result property="exam_subject" column="exam_subject"/>
+        <result property="examReceipt_date" column="examReceipt_date"/>
+        <result property="exam_date" column="exam_date"/>
+        <result property="exam_resultDate" column="exam_resultDate"/>
+        <result property="examPlace_name" column="examPlace_name"/>
+        <result property="examReceipt_status" column="examReceipt_status"/>
+        <!-- 나머지 필드들에 대한 매핑 추가 -->
+    </resultMap>
+    
+      
+<select id="examReciptTableSearch" resultMap="ExamReceiptBeanResult">
+    SELECT * FROM examReceipt_table
+   <where>
+        <choose>
+            <when test="(examName != null and examName != '') or 
+                (examSubject != null and examSubject != '') or 
+                (examPlace != null and examPlace != '') or 
+                (examStart != null and examStart != '') or
+                (examEnd != null and examEnd != '') or
+                (resultStart != null and resultStart != '') or
+                (resultEnd != null and resultEnd != '') or
+                (examType.size() > 0)
+                ">
+                
+                <!-- 각 파라미터에 대한 조건을 추가 -->
+                <if test="examName != null and examName != ''">
+				    AND exam_name LIKE '%' || #{examName} || '%'
+				</if>            
+                
+                
+                
+                <if test="examSubject != null and examSubject != ''">
+				    AND exam_subject LIKE '%' || #{examSubject} || '%'
+				</if>            
+				
+				<if test="examPlace != null and examPlace != ''">
+				    AND examPlace_name LIKE '%' || #{examPlace} || '%'
+				</if>
+              
+
+                
+                <if test="examStart != null and examStart != ''">
+                    AND exam_date >= TO_DATE(#{examStart}, 'YYYY-MM-DD')
+                </if>            
+                <if test="examEnd != null and examEnd != ''">
+                   <![CDATA[ AND exam_date <= TO_DATE(#{examEnd}, 'YYYY-MM-DD') ]]>
+                </if>
+                           
+                <if test="resultStart != null and resultStart != ''">
+                    AND exam_resultDate >= TO_DATE(#{resultStart}, 'YYYY-MM-DD')
+                </if>            
+                <if test="resultEnd != null and resultEnd != ''">
+                   <![CDATA[ AND exam_resultDate <= TO_DATE(#{resultEnd}, 'YYYY-MM-DD') ]]>
+                </if>          
+                                             
+                           
+                <if test="examType.size() > 0">
+				    AND (
+				        <foreach item="item" collection="examType" separator=" OR ">
+				            exam_type = #{item}
+				        </foreach>
+				    )
+				</if>
+            </when>
+        </choose>
+    </where>
+</select>
+
+    
+    
+</mapper>

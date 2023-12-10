@@ -16,7 +16,9 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -234,7 +236,129 @@ span {
 	border-color: black black #fff;
 }
 </style>
+<script type="text/javascript">
 
+	
+	
+	
+	//검색 필드
+	var examName;
+	var examType = [];
+	var exmaLicenseType =[];
+	var examYear;
+	var examRound = [];
+	var receiptStart;
+	var receiptEnd;
+	var examStart;
+	var examEnd;
+	var examStatus =[];
+
+	
+	// 검색 필드에 값넣기
+	 function fieldSearch(){
+			
+		examName = null;		
+		examYear = null;	
+		receiptStart = null;
+		receiptEnd = null;
+		examStart = null;
+		examEnd = null;
+		
+		
+		examType = [];
+		exmaLicenseType = [];
+		examRound = [];
+		examStatus = [];
+
+		examName = document.getElementById("examNameInput").value;
+		examYear = document.getElementById("examYearInput").value;
+		receiptStart = document.getElementById("receiptStartInput").value;
+		receiptEnd = document.getElementById("receiptEndInput").value;
+		examStart = document.getElementById("examStartInput").value;
+		examEnd = document.getElementById("examEndInput").value;
+
+
+		$("input[name='examTypeInput']:checked").each(function(i) {
+			examType.push($(this).val());
+		});
+
+		$("input[name='exmaLicenseTypeInput']:checked").each(function(i) {
+			exmaLicenseType.push($(this).val());
+		});
+		$("input[name='examRoundInput']:checked").each(function(i) {
+			examRound.push($(this).val());
+		});
+		$("input[name='examStatusInput']:checked").each(function(i) {
+			examStatus.push($(this).val());
+		});
+
+		var receiptStartDate = new Date(receiptStart); // 여기도 동일하게 수정
+		var receiptEndDate = new Date(receiptEnd);
+
+		var examStartDate = new Date(examStart);
+		var examEndDate = new Date(examEnd);
+
+		if (receiptStartDate > receiptEndDate) {
+			alert("접수기간 범위을 제대로 기입해주세요");
+		} else if (examStartDate > examEndDate) {
+			alert("시험기간 범위을 제대로 기입해주세요");
+		} else {
+			//ajax 검색
+			tableSearch();
+		}
+	}
+
+	// ajax 검색
+
+	// Ajax 검색
+	function tableSearch() {
+		$.ajax({
+					type : 'GET',
+					url : '/jabusim_Project/admin/examTableSearch/?examName='
+							+ examName + '&examType=' + examType
+							+ '&exmaLicenseType=' + exmaLicenseType
+							+ '&examYear=' + examYear + '&examRound='
+							+ examRound + '&receiptStart=' + receiptStart
+							+ '&receiptEnd=' + receiptEnd + '&examStart='
+							+ examStart + '&examEnd=' + examEnd
+							+ '&examStatus=' + examStatus,
+					success : function(examBeanList) {
+						console.log("왜 안돼?");
+						updateModel(examBeanList);
+					}
+				});
+	}
+
+	function updateModel(examBeanList) {
+	    // 동적으로 HTML을 변경할 컨테이너 요소를 가져옵니다.
+	    var dynamicHtml = document.getElementById('searchResultContainer');
+	    // 컨테이너의 내부 HTML을 초기화합니다.
+	    dynamicHtml.innerHTML = '';
+
+	    // 시험 빈 목록을 순회하면서 HTML을 동적으로 생성합니다.
+	    for (var i = 0; i < examBeanList.length; i++) {
+	        var examBean = examBeanList[i];
+
+	        // 생성한 HTML을 dynamicHtml에 추가합니다.
+	        dynamicHtml.innerHTML += "<tr>" +
+	            "<th><input type='checkbox' value='" + examBean.exam_idx + "' ></th>" +
+	            "<td><span>" + (i + 1) + "</span></td>" +
+	            "<td><span>" + examBean.exam_name + "</span></td>" +
+	            "<td><span>" + examBean.exam_year + "</span></td>" +
+	            "<td><span>" + examBean.exam_round + "</span></td>" +
+	            "<td><span>" + examBean.exam_type + "</span></td>" +
+	            "<td><span>" + examBean.exam_licenseType + "</span></td>" +
+	            "<td><span>" + examBean.exam_receiptStartDate + "</span></td>" +
+	            "<td><span>" + examBean.exam_receiptEndDate + "</span></td>" +
+	            "<td><span>" + examBean.exam_date + "</span></td>" +
+	            "<td><span>" + examBean.exam_resultDate + "</span></td>" +
+	            "<td><span>" + examBean.exam_status + "</span></td></tr>";
+	    }
+
+	    // 완성된 HTML을 컨테이너에 적용합니다.
+	    document.getElementById("searchResultContainer").innerHTML = dynamicHtml.innerHTML;
+	}
+</script>
 
 </head>
 <body>
@@ -267,19 +391,19 @@ span {
 						<form action="">
 							<table class="searchTable">
 								<tr>
-									<th class="searchHd">계열</th>
+									<th class="searchHd">자격증계열</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 기능사
+											<input type="checkbox" value="기술사"name="exmaLicenseTypeInput" /> 기술사
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 기사
+											<input type="checkbox" value="기능장" name="exmaLicenseTypeInput" /> 기능장       
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 기능장
+											<input type="checkbox" value="기사" name="exmaLicenseTypeInput" /> 기사       
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 기술사
+											<input type="checkbox" value="기능사" name="exmaLicenseTypeInput" /> 기능사       
 										</div>
 									</td>
 								</tr>
@@ -287,13 +411,13 @@ span {
 									<th class="searchHd">회차</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 1회
+											<input type="checkbox" value="1" name="examRoundInput" /> 1회
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2회
+											<input type="checkbox" value="2" name="examRoundInput" /> 2회
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 3회
+											<input type="checkbox" value="3" name="examRoundInput" /> 3회
 										</div>
 									</td>
 								</tr>
@@ -301,19 +425,28 @@ span {
 									<th class="searchHd">구분</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 필기
+											<input type="checkbox" value="필기" name="examTypeInput" /> 필기
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 실기
+											<input type="checkbox" value="실기" name="examTypeInput" /> 실기
 										</div>
 									</td>
 								</tr>
 								<tr>
+									<th class="searchHd">년도</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="text" id="examYearInput" min="1900" max="2100"/>
+										</div>						
+									</td>
+								</tr>
+								
+								<tr>
 									<th class="searchHd">접수일</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
+											<input type="date" id="receiptStartInput"/> ~
+											<input type="date" id="receiptEndInput"/> <!-- max="2077-06-20" -->
 										</div>	
 									</td>
 								</tr>
@@ -321,8 +454,8 @@ span {
 									<th class="searchHd">시험일</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
+											<input type="date" id="examStartInput"/> ~
+											<input type="date" id="examEndInput"/> <!-- max="2077-06-20" -->
 										</div>	
 									</td>
 								</tr>
@@ -330,19 +463,19 @@ span {
 									<th class="searchHd">상태</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 일반
+											<input type="checkbox" value="일반" name="examStatusInput" /> 일반
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 접수중
+											<input type="checkbox" value="접수중" name="examStatusInput" /> 접수중
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 접수예정
+											<input type="checkbox" value="접수예정" name="examStatusInput" /> 접수예정
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 시험예정
+											<input type="checkbox" value="시험예정" name="examStatusInput" /> 시험예정
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 시험일
+											<input type="checkbox" value="시험일" name="examStatusInput" /> 시험일
 										</div>
 									</td>
 								</tr>
@@ -350,14 +483,14 @@ span {
 									<th class="searchHd">시험명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
+											<input type="text" id="examNameInput"/>
 										</div>						
 									</td>
 								</tr>
 									
 							</table>
 							<div class="searchButton">
-								<button type="submit">검색</button>
+								<button type="button" onclick="fieldSearch()">검색</button>
 							</div>			
 						</form>
 					</div>
@@ -381,7 +514,7 @@ span {
 									<th><span></span></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="searchResultContainer">
 								<c:forEach items="${allExamBeans}" var="examBean">
 									<tr>
 										<th><input type="checkbox" value="${examBean.getExam_idx()}"/></th>

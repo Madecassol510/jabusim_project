@@ -14,7 +14,6 @@ public class UserCareerBean {
 	
 	
 	
-	
 	public int getUserCareer_idx() {
 		return userCareer_idx;
 	}

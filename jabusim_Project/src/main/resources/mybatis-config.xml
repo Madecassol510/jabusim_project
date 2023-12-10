@@ -10,7 +10,10 @@
         <mapper resource="mapper/UserMapper.xml"/>
         <mapper resource="mapper/UserEduMapper.xml"/>
         <mapper resource="mapper/UserCareerMapper.xml"/>
+        <mapper resource="mapper/ExamMapper.xml"/>
         <mapper resource="mapper/ExamPlaceMapper.xml"/>
+        <mapper resource="mapper/ExamReceiptMapper.xml"/>
+        <mapper resource="mapper/ExamResultMapper.xml"/>
         <mapper resource="mapper/LicenseMapper.xml"/>
         
     </mappers>

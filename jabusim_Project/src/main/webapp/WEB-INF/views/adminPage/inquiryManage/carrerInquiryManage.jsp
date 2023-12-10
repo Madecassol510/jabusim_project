@@ -239,7 +239,111 @@ span {
 
 </style>
 
+<script type="text/javascript">
 
+	
+	
+	//검색 필드
+	var name;
+	var inquriyStart;
+	var inquriyEnd;
+	var processStart;
+	var processEnd;
+	var careerField;
+	var careerType = [];
+	var processStatus =[];
+	
+	// 검색 필드에 값넣기
+	 function fieldSearch(){
+	     name = null;
+	     inquiryStart = null;  // 여기를 변경하려는 변수명으로 수정해야 합니다.
+	     inquiryEnd = null;
+	     processStart = null;
+	     processEnd = null;
+	     careerField = null;     
+	     careerType = [];
+	     processStatus = [];
+	     
+	     name = document.getElementById("nameInput").value;
+		 inquriyStart = document.getElementById("inquriyStartInput").value;
+		 inquriyEnd = document.getElementById("inquriyEndInput").value;
+		 processStart = document.getElementById("processStartInput").value;
+		 processEnd = document.getElementById("processEndInput").value;
+
+	     // select 태그의 DOM 요소 가져오기
+	     var selectElement = document.getElementById("careerFieldInput");
+	     careerField = selectElement.value;
+	     
+	     $("input[name='processStatusInput']:checked").each(function(i) {
+	         processStatus.push($(this).val());
+	         console.log("현재 인덱스: " + i);
+	     });
+	     
+	     $("input[name='careerTypeInput']:checked").each(function(i) {
+	         careerType.push($(this).val());    
+	     });
+
+	     var inquiryStartDate = new Date(inquiryStart);  // 여기도 동일하게 수정
+	     var inquiryEndDate = new Date(inquiryEnd);
+
+	     var processStartDate = new Date(processStart);
+	     var processEndDate = new Date(processEnd);
+
+	     if(inquiryStartDate > inquiryEndDate){
+	         alert("문의기간을 제대로 기입해주세요");
+	     } else if(processStartDate > processEndDate){
+	         alert("처리기간을 제대로 기입해주세요");        
+	     } else{
+	         //ajax 검색
+	         tableSearch();
+	     }
+	 }
+		
+	// ajax 검색
+	
+	// Ajax 검색
+	function tableSearch(){
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/userCareerTableSearch/?name=' + name + 
+	        		'&inquriyStart=' + inquriyStart + 
+	        		'&inquriyEnd=' + inquriyEnd + 
+	        		'&processStart=' + processStart +
+	        		'&processEnd=' + processEnd + 
+	        		'&careerField=' + careerField +
+	        		'&careerType=' + careerType +
+	        		'&processStatus=' + processStatus,
+	        success : function(userCareerBeanList) {
+	           console.log("왜 안돼?");
+	           updateModel(userCareerBeanList);
+	        }
+	     });
+	}
+	
+	function updateModel(userCareerBeanList){
+		
+		var dynamicHtml = document.getElementById('searchResultContainer');
+	    dynamicHtml.innerHTML = '';
+
+	    for (var i = 0; i < userCareerBeanList.length; i++) {
+	        var userCareerBean = userCareerBeanList[i];
+
+	        dynamicHtml.innerHTML += "<tr>" +
+	            "<th><input type='checkbox' value='" + userCareerBean.userCareer_idx + "' ></th>" +
+	            "<td><span>" + (i + 1) + "</span></td>" +
+	            "<td><span>" + userCareerBean.user_name + "</span></td>" +
+	            "<td><span>" + userCareerBean.user_id + "</span></td>" +
+	            "<td><span>" + userCareerBean.userCareer_field + "</span></td>" +
+	            "<td><span>" + userCareerBean.userCareer_type + "</span></td>" +
+	            "<td><span>" + userCareerBean.userCareer_company + "</span></td>" +
+	            "<td><span>" + userCareerBean.userCareer_inquiryDate + "</span></td>" +
+	            "<td><span>" + (userCareerBean.userCareer_processDate ? userCareerBean.userCareer_processDate : "") + "</span></td>" +
+	            "<td><span>" + userCareerBean.userCareer_status + "</span></td></tr>";
+	    }
+
+	    document.getElementById("searchResultContainer").innerHTML = dynamicHtml.innerHTML;
+	}
+</script>
 
 
 </head>
@@ -266,26 +370,13 @@ span {
 					<div class="dashBoardSearch">
 						<form action="">
 							<table class="searchTable">
-								<!-- <tr>
-									<th class="searchHd">문의종류</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 학력 추가
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 경력 추가
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 자격증 보유 인증
-										</div>
-									</td>
-								</tr> -->
 								<tr>
 									<th class="searchHd">직무분야</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<select>
-												<option value="">경력분야</option>
+											<select id="careerFieldInput">
+												<option value="">선택해주세요</option>
+												<option value="정보기술">정보기술</option>
 											</select>
 										</div>
 									</td>
@@ -294,10 +385,10 @@ span {
 									<th class="searchHd">경력구분</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2년 이상
+											<input type="checkbox" name="careerTypeInput" value="2년 이상"/> 2년 이상
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 4년 이상
+											<input type="checkbox" name="careerTypeInput"  value="4년 이상"/> 4년 이상
 										</div>
 									</td>
 								</tr>
@@ -306,7 +397,8 @@ span {
 									<th class="searchHd">문의날짜</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~ <input type="date" />
+											<input type="date" id="inquriyStartInput"/> ~ 
+											<input type="date" id="inquriyEndInput"/>
 											<!-- max="2077-06-20" -->
 										</div>
 									</td>
@@ -315,7 +407,8 @@ span {
 									<th class="searchHd">처리날짜</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~ <input type="date" />
+											<input type="date" id="processStartInput"/> ~ 
+											<input type="date" id="processEndInput"/>
 											<!-- max="2077-06-20" -->
 										</div>
 									</td>
@@ -324,13 +417,13 @@ span {
 									<th class="searchHd">처리상태</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 처리완료
+											<input type="checkbox" value="수락"  name="processStatusInput" /> 수락
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 처리불가
+											<input type="checkbox" value="거절" name="processStatusInput" /> 거절
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 처리대기
+											<input type="checkbox" value="대기" name="processStatusInput" /> 대기
 										</div>
 									</td>
 								</tr>
@@ -338,15 +431,15 @@ span {
 									<th class="searchHd">이름검색</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
+											<input type="text"  id="nameInput"/>
 										</div>
 									</td>
 								</tr>
 
 							</table>
 							<div class="searchButton">
-								<button type="submit">검색</button>
-							</div>
+								<button type="button" onclick="fieldSearch()">검색</button>
+							</div>		
 						</form>
 					</div>
 
@@ -370,7 +463,7 @@ span {
 									<th><span>처리상태</span></th>								
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="searchResultContainer">
 								<c:forEach items="${allUserCareerBeans}" var="userCareerBean">
 									<tr>
 										<th><input type="checkbox" value="${userCareerBean.getUserCareer_idx()}"></th>

@@ -33,7 +33,7 @@ public interface LicenseMapper {
 	//ajax 유저테이블 가져오기
 	ArrayList<LicenseBean> licenseTableSearch (
 			@Param("licenseName") String licenseName,
-			@Param("licenseType") String licenseType,
+			@Param("licenseType") List<String> licenseType,
 			@Param("licenseMainCategory") String licenseMainCategory,		
 			@Param("licenseSubCategory") String licenseSubCategory
 	);

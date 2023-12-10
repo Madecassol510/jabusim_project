@@ -16,6 +16,9 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
 <style>
@@ -234,7 +237,109 @@ span {
 	border-color: black black #fff;
 }
 </style>
+<script type="text/javascript">
 
+	
+	
+	//검색 필드
+	var examName;
+	var examSubject;
+	var examPlace;
+	
+	var examStart;
+	var examEnd;
+	var resultStart;
+	var resultEnd;
+	
+	var examType = [];
+	var receiptStatus =[];
+	
+	// 검색 필드에 값넣기
+	function fieldSearch(){
+		
+		 examName=null;
+		 examSubject=null;
+		 examPlace=null;
+		
+		 examStart=null;
+		 examEnd=null;
+		 resultStart=null;
+		 resultEnd=null;
+		
+		 examType = [];
+		 receiptStatus =[];
+		
+		
+		
+		examName = document.getElementById("examNameInput").value;
+		examSubject = document.getElementById("examSubjectInput").value;
+		examPlace = document.getElementById("examPlaceInput").value;
+		
+		examStart = document.getElementById("examStartInput").value;
+		examEnd = document.getElementById("examEndInput").value;		
+		resultStart = document.getElementById("resultStartInput").value;
+		resultEnd = document.getElementById("resultEndInput").value;
+	   
+		   
+	     $("input[name='examTypeInput']:checked").each(function(i) {
+	    	 examType.push($(this).val());
+	         console.log("현재 인덱스: " + i);
+	     });
+	     
+	     $("input[name='receiptStatusInput']:checked").each(function(i) {
+	    	 receiptStatus.push($(this).val());    
+	     });
+
+	     
+	     
+	     tableSearch();
+	 }
+		
+	// ajax 검색
+	
+	// Ajax 검색
+	function tableSearch(){
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/examReciptTableSearch/?examName=' + examName + 
+	       			'&examSubject=' + examSubject + 
+	        		'&examPlace=' + examPlace + 
+	        		'&examStart=' + examStart + 
+	        		'&examEnd=' + examEnd +
+	        		'&resultStart=' + resultStart + 
+	        		'&resultEnd=' + resultEnd +
+	        		'&examType=' + examType +
+	        		'&receiptStatus=' + receiptStatus,
+	        success : function(examReceiptBeanList) {
+	           console.log("왜 안돼?");
+	           updateModel(examReceiptBeanList);
+	        }
+	     });
+	}
+	
+	function updateModel(examReceiptBeanList) {
+	    var dynamicHtml = document.getElementById('searchResultContainer');
+	    dynamicHtml.innerHTML = '';
+
+	    for (var i = 0; i < examReceiptBeanList.length; i++) {
+	        var examReceiptBean = examReceiptBeanList[i];
+
+	        dynamicHtml.innerHTML += "<tr>" +
+	            "<th><input type='checkbox' value='" + examReceiptBean.examReceipt_idx + "'></th>" +
+	            "<td><span>" + (i + 1) + "</span></td>" +
+	            "<td><span>" + examReceiptBean.user_name + "</span></td>" +
+	            "<td><span>" + examReceiptBean.user_id + "</span></td>" +
+	            "<td><span>" + examReceiptBean.exam_name + "</span></td>" +
+	            "<td><span>" + examReceiptBean.exam_subject + "</span></td>" +
+	            "<td><span>" + examReceiptBean.exam_type + "</span></td>" +
+	            "<td><span>" + examReceiptBean.exam_date + "</span></td>" +
+	            "<td><span>" + examReceiptBean.exam_resultDate + "</span></td>" +
+	            "<td><span>" + examReceiptBean.examPlace_name + "</span></td>" +
+	            "<td><span>" + examReceiptBean.examReceipt_status + "</span></td></tr>";
+	    }
+	    document.getElementById("searchResultContainer").innerHTML = dynamicHtml.innerHTML;
+	}
+</script>
 
 </head>
 <body>
@@ -270,22 +375,7 @@ span {
 									<th class="searchHd">응시종목</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
-											<button>검색</button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">회차</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 1회
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2회
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 3회
+											<input type="text"  id="examSubjectInput"/>
 										</div>
 									</td>
 								</tr>
@@ -293,28 +383,28 @@ span {
 									<th class="searchHd">구분</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 필기
+											<input type="checkbox" value="필기" name="examTypeInput" /> 필기
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 실기
+											<input type="checkbox" value="실기" name="examTypeInput" /> 실기
 										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">접수일</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
-										</div>	
 									</td>
 								</tr>
 								<tr>
 									<th class="searchHd">시험일</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
+											<input type="date" id="examStartInput"/> ~
+											<input type="date" id="examEndInput"/> 
+										</div>	
+									</td>
+								</tr>
+								<tr>
+									<th class="searchHd">결과발표일</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="date" id="resultStartInput"/> ~
+											<input type="date" id="resultEndInput"/> 
 										</div>	
 									</td>
 								</tr>
@@ -322,34 +412,38 @@ span {
 									<th class="searchHd">상태</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 일반
+											<input type="checkbox" value="처리대기" name="receiptStatusInput" /> 처리대기
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 접수중
+											<input type="checkbox" value="삭제예정" name="receiptStatusInput" /> 삭제예정
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 접수예정
+											<input type="checkbox" value="접수완료" name="receiptStatusInput" /> 접수완료
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 시험예정
+											<input type="checkbox" value="접수거부"  name="receiptStatusInput" /> 접수거부
 										</div>
+									</td>
+								</tr>
+								<tr>
+									<th class="searchHd">응시장소</th>
+									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 시험일
-										</div>
+											<input type="text" id="examPlaceInput" />
+										</div>						
 									</td>
 								</tr>
 								<tr>
 									<th class="searchHd">시험명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
+											<input type="text" id="examNameInput" />
 										</div>						
 									</td>
 								</tr>
-									
 							</table>
 							<div class="searchButton">
-								<button type="submit">검색</button>
+								<button type="button" onclick="fieldSearch()">검색</button>
 							</div>			
 						</form>
 					</div>
@@ -364,44 +458,33 @@ span {
 								<tr>
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
+									<th><span>응시자</span></th>
+									<th><span>응시자ID</span></th>
 									<th><span>시험명</span></th>
 									<th><span>응시종목</span></th>
-									<th><span>회차</span></th>
 									<th><span>구분</span></th>
-									<th><span>접수시작일</span></th>
-									<th><span>접수마감일</span></th>
 									<th><span>시험일</span></th>
-									<th><span>상태</span></th>
-									<th><span></span></th>
+									<th><span>결과발표일</span></th>
+									<th><span>시험장소</span></th>									
+									<th><span>처리상태</span></th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>2023정보처리기사</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>3회차</span></td>
-									<td><span>필기</span></td>
-									<td><input type="date" /></td>
-									<td><input type="date" /></td>
-									<td><input type="date" /></td>
-									<td><span>시험예정</span></td>
-									<th><span><button>완료</button></span></th>
-								</tr>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>2023정보처리기사</span></td>
-									<td><span>정보처리기사</span></td>
-									<td><span>3회차</span></td>
-									<td><span>필기</span></td>
-									<td><span>2023-12-04</span></td>
-									<td><span>2023-12-11</span></td>
-									<td><span>2023-12-31</span></td>
-									<td><span>일반</span></td>
-									<th><span><button>수정</button></span></th>
-								</tr>					
+							<tbody id="searchResultContainer">
+								<c:forEach items="${allExamReceiptBeans}" var="examReceiptBean">
+									<tr>
+										<th><input type="checkbox" value="${examReceiptBean.examReceipt_idx}"/></th>
+										<td><span>${loopStatus.index+1}</span></td>
+										<td><span>${examReceiptBean.user_name}</span></td>
+										<td><span>${examReceiptBean.user_id}</span></td>
+										<td><span>${examReceiptBean.exam_name}</span></td>
+										<td><span>${examReceiptBean.exam_subject}</span></td>
+										<td><span>${examReceiptBean.exam_type}</span></td>				
+										<td><span>${examReceiptBean.exam_date}</span></td>					
+										<td><span>${examReceiptBean.exam_resultDate}</span></td>					
+										<td><span>${examReceiptBean.examPlace_name}</span></td>					
+										<td><span>${examReceiptBean.examReceipt_status}</span></td>		
+									</tr>
+								</c:forEach>				
 							</tbody>
 						</table>
 					</div>

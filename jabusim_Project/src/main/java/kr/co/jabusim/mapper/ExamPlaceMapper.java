@@ -21,9 +21,7 @@ public interface ExamPlaceMapper {
 	//ajax 시험장소테이블 가져오기
 	ArrayList<ExamPlaceBean> examPlaceTableSearch (
 			@Param("placeName") String placeName,
-			@RequestParam("placeRegion") String placeRegion,
-			@Param("placeAddress") String placeAddress,
-			@Param("placeNumStart") int placeNumStart,
-			@Param("placeNumEnd") int placeNumEnd
+			@Param("placeRegion") String placeRegion,
+			@Param("placeAddress") String placeAddress
 			);
 }

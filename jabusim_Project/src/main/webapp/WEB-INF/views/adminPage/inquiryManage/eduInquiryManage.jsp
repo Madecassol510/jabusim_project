@@ -242,16 +242,7 @@ span {
 
 <script type="text/javascript">
 
-	/* function memberModify() {
-		
-		var popupWidth = 650;
-		var popupHeight = 700;
-		
-		var popupX = (window.screen.width / 2) - (popupWidth / 2);
-		var popupY= (window.screen.height / 2) - (popupHeight / 2);
-		
-		window.open('${root }adminPage/main', '_blank' , 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
-	} */
+	
 	
 	
 	//검색 필드
@@ -267,14 +258,21 @@ span {
 	function fieldSearch(){
 		
 		/* var myform = document.form */
+		name = null;
+		inquriyStart = null;
+		inquriyEnd = null;
+		processStart = null;
+		processEnd = null; 
+		eudList = [];
+		processStatus =[];
+		
 		
 		name = document.getElementById("nameInput").value;
 		inquriyStart = document.getElementById("inquriyStartInput").value;
 		inquriyEnd = document.getElementById("inquriyEndInput").value;
 		processStart = document.getElementById("processStartInput").value;
 		processEnd = document.getElementById("processEndInput").value;
-		
-		
+				
 		$("input[name='processStatusInput']:checked").each(function(i) {
 			processStatus.push($(this).val());
 			console.log("현재 인덱스: " + i);
@@ -315,17 +313,35 @@ span {
 	        		'&processEnd=' + processEnd + 
 	        		'&processStatus=' + processStatus +
 	        		'&eudList=' + eudList,
-	        success : function(result) {
+	        success : function(userEduBeanList) {
 	           console.log("왜 안돼?");
+	           updateModel(userEduBeanList);
 	        }
 	     });
 	}
 	
-	// 결과물 업데이트
-	function updateModel(result) {
-		allUserBeans = result;
-		const test = document.getElementById('testtpdyd');
-		test.innerHTML = '';
+	function updateModel(userEduBeanList){
+		
+		var dynamicHtml  = document.getElementById('searchResultContainer');
+		dynamicHtml .innerHTML = '';
+		
+		for (var i = 0; i < userEduBeanList.length; i++) {
+			var userEduBean = userEduBeanList[i];
+
+			 dynamicHtml += "<tr>" +
+		        "<th><input type='checkbox' value='" + userEduBean.userEdu_idx + "' ></th>" +
+		        "<td><span>" + (i + 1) + "</span></td>" +
+		        "<td><span>" + userEduBean.user_name + "</span></td>" +
+		        "<td><span>" + userEduBean.user_id + "</span></td>" +
+		        "<td><span>" + userEduBean.userEdu_type + "</span></td>" +
+		        "<td><span>" + (userEduBean.userEdu_academy ? userEduBean.userEdu_academy : "없음") + "</span></td>" +
+		        "<td><span>" + (userEduBean.userEdu_major ? userEduBean.userEdu_major : "없음") + "</span></td>" +
+		        "<td><span>" + userEduBean.userEdu_inquiryDate + "</span></td>" +
+		        "<td><span>" + (userEduBean.userEdu_processDate ? userEduBean.userEdu_processDate : "") + "</span></td>" +
+		        "<td><span>" + userEduBean.userEdu_processStatus + "</span></td></tr>";
+		}
+		
+		document.getElementById("searchResultContainer").innerHTML = dynamicHtml;
 	}
 </script>
 
@@ -354,20 +370,6 @@ span {
 					<div class="dashBoardSearch">
 						<form action="">
 							<table class="searchTable">
-								<!-- <tr>
-									<th class="searchHd">문의종류</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 학력 추가
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 경력 추가
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 자격증 보유 인증
-										</div>
-									</td>
-								</tr> -->
 								<tr>
 									<th class="searchHd">학력구분</th>
 									<td class="searchArticle">
@@ -464,7 +466,7 @@ span {
 									<th><span>처리상태</span></th>						
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="searchResultContainer">
 								<c:forEach items="${allUserEduBeans}" var="userEduBean" varStatus="loopStatus">
 									<tr>
 										<th><input type="checkbox" value="${userEduBean.getUserEdu_idx()}" ></th>

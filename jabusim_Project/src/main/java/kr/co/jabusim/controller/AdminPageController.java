@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.jabusim.beans.ExamBean;
 import kr.co.jabusim.beans.ExamPlaceBean;
+import kr.co.jabusim.beans.ExamReceiptBean;
+import kr.co.jabusim.beans.ExamResultBean;
 import kr.co.jabusim.beans.LicenseBean;
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.beans.UserCareerBean;
 import kr.co.jabusim.beans.UserEduBean;
 import kr.co.jabusim.mapper.ExamMapper;
 import kr.co.jabusim.mapper.ExamPlaceMapper;
+import kr.co.jabusim.mapper.ExamReceiptMapper;
+import kr.co.jabusim.mapper.ExamResultMapper;
 import kr.co.jabusim.mapper.LicenseMapper;
 import kr.co.jabusim.mapper.UserCareerMapper;
 import kr.co.jabusim.mapper.UserEduMapper;
@@ -44,6 +48,11 @@ public class AdminPageController {
 	@Autowired
 	private ExamPlaceMapper examPlaceMapper;
 	
+	@Autowired
+	private ExamReceiptMapper examReceiptMapper;
+	
+	@Autowired
+	private ExamResultMapper examResultMapper;
 	
 	
 	@GetMapping("/main")
@@ -125,7 +134,13 @@ public class AdminPageController {
 	
 	// 시험접수
 	@GetMapping("/examManage/examReceiptManage")
-	public String examReceiptManage() {
+	public String examReceiptManage(Model model) {
+		
+		ArrayList<ExamReceiptBean> allExamReceiptBeans = examReceiptMapper.allExamReceiptInfo();
+		
+		model.addAttribute("allExamReceiptBeans", allExamReceiptBeans);
+			
+		
 		return "adminPage/examManage/examReceiptManage";
 	}
 
@@ -133,9 +148,20 @@ public class AdminPageController {
 	
 	// 시험결과
 	@GetMapping("/examManage/examResultManage")
-	public String examResultManage() {
+	public String examResultManage(Model model) {
+			
+		ArrayList<ExamResultBean> allExamResultBeans = examResultMapper.allExamReceiptInfo();
+		
+		model.addAttribute("allExamResultBeans", allExamResultBeans);
+			
+		
 		return "adminPage/examManage/examResultManage";
+		
 	}
+	
+	
+	
+	
 	
 	// 시험합격률
 	@GetMapping("/passingRate")
@@ -143,3 +169,12 @@ public class AdminPageController {
 		return "adminPage/passingRate";
 	}
 }
+
+
+
+
+
+
+
+
+

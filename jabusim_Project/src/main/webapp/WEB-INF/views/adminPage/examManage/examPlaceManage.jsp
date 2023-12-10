@@ -16,7 +16,9 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -234,6 +236,76 @@ span {
 }
 </style>
 
+<script type="text/javascript">
+
+	
+	
+	
+	//검색 필드
+	var placeName;
+	var placeRegion;
+	var placeAddress;
+	var placeNumStart;
+	var placeNumEnd;
+
+	// 검색 필드에 값넣기
+	 function fieldSearch(){
+		 placeName = null;
+		 placeRegion = null;  // 여기를 변경하려는 변수명으로 수정해야 합니다.
+		 placeAddress = null;
+		 placeNumStart = null;
+		 placeNumEnd = null;
+
+		 placeName = document.getElementById("placeNameInput").value;
+	     placeAddress = document.getElementById("placeAddressInput").value;
+
+	     // select 태그의 DOM 요소 가져오기
+	     var selectElement = document.getElementById("placeRegionInput");
+	     placeRegion = selectElement.value;
+	     
+	   
+	     //ajax 검색
+	     tableSearch();
+	     
+	 }
+		
+	// ajax 검색
+	
+	// Ajax 검색
+	function tableSearch(){
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/examPlaceTableSearch/?placeName=' + placeName + 
+	        		'&placeRegion=' + placeRegion + 
+	        		'&placeAddress=' + placeAddress + 
+	        		'&placeNumStart=' + placeNumStart +
+	        		'&placeNumEnd=' + placeNumEnd,
+	        success : function(allExamPlaceBeans) {
+	           console.log("왜 안돼?");
+	           updateModel(allExamPlaceBeans);
+	        }
+	     });
+	}
+	
+	function updateModel(allExamPlaceBeans) {
+	    var dynamicHtml = document.getElementById('searchResultContainer');
+	    dynamicHtml.innerHTML = '';
+
+	    for (var i = 0; i < allExamPlaceBeans.length; i++) {
+	        var examPlaceBean = allExamPlaceBeans[i];
+
+	        dynamicHtml.innerHTML += "<tr>" +
+	            "<th><input type='checkbox' value='" + examPlaceBean.examPlace_idx + "' ></th>" +
+	            "<td><span>" + (i + 1) + "</span></td>" +
+	            "<td><span>" + examPlaceBean.examPlace_name + "</span></td>" +
+	            "<td><span>" + examPlaceBean.examPlace_region + "</span></td>" +
+	            "<td><span>" + examPlaceBean.examPlace_address + "</span></td>" +
+	            "<td><span>" + examPlaceBean.examPlace_maximum + "</span></td></tr>";
+	    }
+
+	    document.getElementById("searchResultContainer").innerHTML = dynamicHtml.innerHTML;
+	}
+</script>
 
 </head>
 <body>
@@ -266,9 +338,9 @@ span {
 									<th class="searchHd">지역구</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<select>
-												<option>서울특별자치도
-												<option>
+											<select id="placeRegionInput">
+												<option value="">선택해주세요<option>
+												<option value="서울">서울<option>
 											</select>
 										</div>
 									</td>
@@ -277,7 +349,7 @@ span {
 									<th class="searchHd">주소명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
+											<input type="text" id="placeAddressInput"/>
 										</div>						
 									</td>
 								</tr>							
@@ -285,24 +357,14 @@ span {
 									<th class="searchHd">장소명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
+											<input type="text" id="placeNameInput"/>
 										</div>						
 									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">최대수용인</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="text" />명 ~
-											<input type="text" />명
-										</div>						
-									</td>
-								</tr>	
-								
+								</tr>							
 							</table>
 							<div class="searchButton">
-								<button type="submit">검색</button>
-							</div>			
+								<button type="button" onclick="fieldSearch()">검색</button>
+							</div>				
 						</form>
 					</div>
 					
@@ -323,7 +385,7 @@ span {
 									<th><span></span></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="searchResultContainer">
 								<c:forEach items="${allExamPlaceBeans}" var="examPlaceBean" varStatus="loopStatus">
 									<tr>
 										<th><input type="checkbox" value="${examPlaceBean.getExamPlace_idx()}" ></th>

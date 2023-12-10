@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.jabusim.mapper.ExamMapper">
+
+	
+	<resultMap id="ExamBeanResult" type="kr.co.jabusim.beans.ExamBean">
+        <id property="exam_idx" column="exam_idx"/>
+        <result property="exam_name" column="exam_name"/>
+        <result property="exam_type" column="exam_type"/>
+        <result property="exam_licenseType" column="exam_licenseType"/>
+        <result property="exam_year" column="exam_year"/>
+        <result property="exam_round" column="exam_round"/>
+        <result property="exam_receiptStartDate" column="exam_receiptStartDate"/>
+        <result property="exam_receiptEndDate" column="exam_receiptEndDate"/>
+        <result property="exam_date" column="exam_date"/>
+        <result property="exam_resultDate" column="exam_resultDate"/>
+        <result property="exam_status" column="exam_status"/>
+        <!-- 나머지 필드들에 대한 매핑 추가 -->
+    </resultMap>
+    
+      
+<select id="examTableSearch" resultMap="ExamBeanResult">
+    SELECT * FROM exam_table
+    <where>
+        <choose>
+            <when test="(examName != null and examName != '') or 
+                (receiptStart != null and receiptStart != '') or 
+                (receiptEnd != null and receiptEnd != '') or
+                (examStart != null and examStart != '') or
+                (examEnd != null and examEnd != '') or
+                (examType.size() > 0) or
+                (exmaLicenseType.size() > 0) or
+                (examRound.size() > 0)
+                
+                ">
+                
+                <!-- 각 파라미터에 대한 조건을 추가 -->
+                <if test="examName != null and examName != ''">
+				    AND exam_name LIKE '%' || #{examName} || '%'
+				</if>            
+                
+                			
+                <if test="examYear != null and examYear != ''">
+                   AND exam_year = #{examYear}
+                </if>
+                         
+                          
+                <if test="receiptStart != null and receiptStart != ''">
+                    AND exam_receiptStartDate >= TO_DATE(#{receiptStart}, 'YYYY-MM-DD')
+                </if>            
+                <if test="receiptEnd != null and receiptEnd != ''">
+                   <![CDATA[ AND exam_receiptStartDate <= TO_DATE(#{receiptEnd}, 'YYYY-MM-DD') ]]>
+                </if>
+                
+                <if test="examStart != null and examStart != ''">
+                    AND exam_resultDate >= TO_DATE(#{examStart}, 'YYYY-MM-DD')
+                </if>            
+                <if test="examEnd != null and examEnd != ''">
+                   <![CDATA[ AND exam_resultDate <= TO_DATE(#{examEnd}, 'YYYY-MM-DD') ]]>
+                </if>
+                           
+                <if test="examType.size() > 0">
+                    AND (
+                        <foreach item="item" collection="examType" separator=" OR ">
+                            exam_type = #{item}
+                        </foreach>
+                    )
+                </if>
+                
+                <if test="exmaLicenseType.size() > 0">
+                    AND (
+                        <foreach item="item" collection="exmaLicenseType" separator=" OR ">
+                            exam_licenseType = #{item}
+                        </foreach>
+                    )
+                </if>
+                
+                <if test="examRound.size() > 0">
+                    AND (
+                        <foreach item="item" collection="examRound" separator=" OR ">
+                            exam_round = #{item}
+                        </foreach>
+                    )
+                </if>             
+            </when>
+        </choose>
+    </where>
+</select>
+
+    
+    
+</mapper>

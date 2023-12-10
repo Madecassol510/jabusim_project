@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.jabusim.mapper.UserEduMapper">
+<mapper namespace="kr.co.jabusim.mapper.ExamPlaceMapper">
 
 	
 	<resultMap id="examPlaceBeanResult" type="kr.co.jabusim.beans.ExamPlaceBean">
@@ -17,18 +17,15 @@
 		SELECT * FROM examPlace_table
 		<where>
 			<choose>
-				<when test="placeName != null and placeName != '') or
+				<when test="(placeName != null and placeName != '') or
 					(placeRegion != null and placeRegion != '') or  
-		        	(placeAddress != null and placeAddress != '') or 
-		        	(placeNumStart != null and placeNumStart != '') or
-		        	(placeNumEnd != null and placeNumEnd != '')
+		        	(placeAddress != null and placeAddress != '')
 		        	">
 		
 					<!-- 각 파라미터에 대한 조건을 추가 -->
-					
-					
+									
 					<if test="placeName != null and placeName != ''">
-						 AND examPlace_name LIKE CONCAT('%', #{placeName}, '%')
+						  AND examPlace_name LIKE '%' || #{placeName} || '%'
 					</if>
 					
 					<if test="placeRegion != null and placeRegion != ''">
@@ -37,17 +34,9 @@
 					
 					
 					<if test="placeAddress != null and placeAddress != ''">
-						 AND examPlace_address LIKE CONCAT('%', #{placeAddress}, '%')
+						 AND examPlace_address LIKE '%' || #{placeAddress} || '%'
 					</if>
-												
-					
-					<if test="placeNumStart != null and placeNumStart != ''">
-						AND examPlace_maximum >=  placeNumStart
-					</if>			
-					<if test="placeNumEnd != null and placeNumEnd != ''">
-		            <![CDATA[ AND examPlace_maximum <= placeNumEnd ]]>
-					</if>
-					
+				
 		    	</when>
 			</choose>
 		</where>

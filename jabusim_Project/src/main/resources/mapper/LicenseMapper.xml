@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.jabusim.mapper.UserEduMapper">
+<mapper namespace="kr.co.jabusim.mapper.LicenseMapper">
 
 	
 	<resultMap id="licenseBeanResult" type="kr.co.jabusim.beans.LicenseBean">
@@ -18,22 +18,28 @@
 		SELECT * FROM license_Table
 		<where>
 			<choose>
-				<when test="licenseName != null and licenseName != '') or
-					(licenseType != null and licenseType != '') or  
+				<when test="(licenseName != null and licenseName != '') or
+					(licenseType != null and licenseType.size() > 0) or  
 		        	(licenseMainCategory != null and licenseMainCategory != '') or 
-		        	(licenseSubCategory != null and licenseSubCategory != '') or
+		        	(licenseSubCategory != null and licenseSubCategory != '')
 		        	">
 		
 					<!-- 각 파라미터에 대한 조건을 추가 -->
 					
 					
 					<if test="licenseName != null and licenseName != ''">
-						 AND license_name LIKE CONCAT('%', #{licenseName}, '%')
+						<!-- AND license_name = #{licenseName} -->
+						AND license_name LIKE '%' || #{licenseName} || '%'
+					</if>
+									
+					<if test="licenseType != null and licenseType.size() > 0">
+						AND (
+						<foreach item="item" collection="licenseType" separator="OR">
+							license_type = #{item}
+						</foreach>
+						)
 					</if>
 					
-					<if test="licenseType != null and licenseType != ''">
-						AND license_type = #{licenseType}
-					</if>	
 					
 					<if test="licenseMainCategory != null and licenseMainCategory != ''">
 						AND license_mainCategory = #{licenseMainCategory}
@@ -46,6 +52,7 @@
 		    	</when>
 			</choose>
 		</where>
+		order by license_idx
     </select>
     
     

@@ -39,7 +39,7 @@
                     AND userEdu_inquiryDate >= TO_DATE(#{inquriyStart}, 'YYYY-MM-DD')
                 </if>            
                 <if test="inquriyEnd != null and inquriyEnd != ''">
-                   <![CDATA[ AND userEdu_processDate <= TO_DATE(#{processEnd}, 'YYYY-MM-DD') ]]>
+                   <![CDATA[ AND userEdu_processDate <= TO_DATE(#{inquriyEnd}, 'YYYY-MM-DD') ]]>
                 </if>
                 
                 <if test="processStart != null and processStart != ''">

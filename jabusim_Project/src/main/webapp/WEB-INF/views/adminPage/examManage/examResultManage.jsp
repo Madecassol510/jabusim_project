@@ -16,6 +16,9 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
 <style>
@@ -233,7 +236,92 @@ span {
 
 
 </style>
+<script type="text/javascript">
 
+	
+	
+	//검색 필드
+	var name;
+	var examName;
+	var examSubject;
+	
+	var examStart;
+	var examEnd;
+	var resultStart;
+	var resultEnd;
+	
+	var examType = [];
+	var resultStatus =[];
+	
+	// 검색 필드에 값넣기
+	function fieldSearch(){
+		
+		
+		 name=null;
+		 examName=null;
+		 examSubject=null;
+		
+		 examStart=null;
+		 examEnd=null;
+		 resultStart=null;
+		 resultEnd=null;
+		
+		 examType = [];
+		 resultStatus =[];
+		
+		
+		
+		name = document.getElementById("nameInput").value;
+		examName = document.getElementById("examNameInput").value;
+		examSubject = document.getElementById("examSubjectInput").value;
+		
+		examStart = document.getElementById("examStartInput").value;
+		examEnd = document.getElementById("examEndInput").value;		
+		resultStart = document.getElementById("resultStartInput").value;
+		resultEnd = document.getElementById("resultEndInput").value;
+	   
+		$("input[name='examTypeInput']:checked").each(function(i) {
+	    	 examType.push($(this).val());
+	         console.log("현재 인덱스: " + i);
+	     });
+	     
+	     $("input[name='receiptStatusInput']:checked").each(function(i) {
+	    	 resultStatus.push($(this).val());    
+	     });
+   
+	    
+	     
+	     
+	     tableSearch();
+	 }
+		
+	// ajax 검색
+	
+	// Ajax 검색
+	function tableSearch(){
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/examResultTableSearch/?name=' + name + 
+	       			'&examName=' + examName + 
+	        		'&examSubject=' + examSubject + 
+	        		'&examStart=' + examStart + 
+	        		'&examEnd=' + examEnd +
+	        		'&resultStart=' + resultStart + 
+	        		'&resultEnd=' + resultEnd +
+	        		'&examType=' + examType +
+	        		'&resultStatus=' + resultStatus,
+	        		
+	        success : function(examResultBeanList) {
+	           console.log("왜 안돼?");
+	           updateModel(examResultBeanList);
+	        }
+	     });
+	}
+	
+	function updateModel(examResultBeanList) {
+
+	}
+</script>
 
 </head>
 <body>
@@ -266,45 +354,31 @@ span {
 						<form action="">
 							<table class="searchTable">
 								<tr>
-									<th class="searchHd">회차</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 1회
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 2회
-										</div>
-										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 3회
-										</div>
-									</td>
-								</tr>
-								<tr>
 									<th class="searchHd">구분</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 필기
+											<input type="checkbox" value="필기" name="examTypeInput" /> 필기
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 실기
+											<input type="checkbox" value="실기" name="examTypeInput" /> 실기
 										</div>
-									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">접수일</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
-										</div>	
 									</td>
 								</tr>
 								<tr>
 									<th class="searchHd">시험일</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" /> ~
-											<input type="date" /> <!-- max="2077-06-20" -->
+											<input type="date" id="examStartInput" /> ~
+											<input type="date" id="examEndInput"/> <!-- max="2077-06-20" -->
+										</div>	
+									</td>
+								</tr>
+								<tr>
+									<th class="searchHd">결과발표일</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="date" id="resultStartInput" /> ~
+											<input type="date" id="resultEndInput"/> <!-- max="2077-06-20" -->
 										</div>	
 									</td>
 								</tr>
@@ -312,23 +386,27 @@ span {
 									<th class="searchHd">상태</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 대기
+											<input type="checkbox" value="대기" name="resultStatusInput" /> 대기
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 합격
+											<input type="checkbox" value="합격예정" name="resultStatusInput" /> 합격예정
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 불합격
+											<input type="checkbox" value="불합격예정" name="resultStatusInput" /> 불합격예정
 										</div>
-										
+										<div class="searchReq">
+											<input type="checkbox" value="합격" name="resultStatusInput" /> 합격
+										</div>
+										<div class="searchReq">
+											<input type="checkbox" value="불합격" name="resultStatusInput" /> 불합격
+										</div>							
 									</td>
 								</tr>
 								<tr>
 									<th class="searchHd">응시종목</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
-											<button>검색</button>
+											<input type="text" id="examSubjectInput"/>
 										</div>
 									</td>
 								</tr>
@@ -336,13 +414,21 @@ span {
 									<th class="searchHd">시험명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
+											<input type="text" id="examNameInput" />
 										</div>						
 									</td>
-								</tr>				
+								</tr>
+								<tr>
+									<th class="searchHd">응시자</th>
+									<td class="searchArticle">
+										<div class="searchReq">
+											<input type="text" id="nameInput" />
+										</div>						
+									</td>
+								</tr>			
 							</table>
 							<div class="searchButton">
-								<button type="submit">검색</button>
+								<button type="button" onclick="fieldSearch()">검색</button>
 							</div>			
 						</form>
 					</div>
@@ -353,32 +439,32 @@ span {
 								<tr>
 									<th><input type="checkbox"></th>
 									<th><span>no.</span></th>
-									<th><span>이름</span></th>
-									<th><span>아이디</span></th>
-									<th><span>연도</span></th>
-									<th><span>회차</span></th>
+									<th><span>응시자</span></th>
+									<th><span>응시자ID</span></th>
+									<th><span>시험</span></th>
+									<th><span>응시과목</span></th>
 									<th><span>구분</span></th>
-									<th><span>접수시작일</span></th>
-									<th><span>접수마감일</span></th>
 									<th><span>시험일</span></th>
-									<th><span>상태</span></th>
+									<th><span>결과발표일</span></th>
+									<th><span>결과상태</span></th>
 									<th><span></span></th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<th><input type="checkbox"></th>
-									<td><span>1</span></td>
-									<td><span>홍길동</span></td>
-									<td><span>boradory</span></td>
-									<td><span>2023</span></td>
-									<td><span>3회차</span></td>
-									<td><span>필기</span></td>
-									<td><span>2023-12-06</span></td>
-									<td><span>81</span></td>
-									<td><span>합격</span></td>
-									<th><span><button>점수입력</button></span></th>
-								</tr>					
+							<tbody id="searchResultContainer">
+								<c:forEach items="${allExamResultBeans}" var="examResultBean">
+									<tr>
+										<th><input type="checkbox" value="${examResultBean.examResult_idx}"/></th>
+										<td><span>${loopStatus.index+1}</span></td>
+										<td><span>${examResultBean.user_name}</span></td>
+										<td><span>${examResultBean.user_id}</span></td>
+										<td><span>${examResultBean.exam_name}</span></td>
+										<td><span>${examResultBean.exam_subject}</span></td>
+										<td><span>${examResultBean.exam_type}</span></td>				
+										<td><span>${examResultBean.exam_date}</span></td>					
+										<td><span>${examResultBean.exam_resultDate}</span></td>					
+										<td><span>${examResultBean.examResult_status}</span></td>		
+									</tr>
+								</c:forEach>				
 							</tbody>
 						</table>
 					</div>

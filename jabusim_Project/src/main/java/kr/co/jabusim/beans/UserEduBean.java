@@ -1,5 +1,8 @@
 package kr.co.jabusim.beans;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class UserEduBean {
 	
 	private int userEdu_idx;
@@ -51,13 +54,15 @@ public class UserEduBean {
 	public void setUserEdu_major(String userEdu_major) {
 		this.userEdu_major = userEdu_major;
 	}
-	public String getUserEdu_inquiryDate() {
+	public String getUserEdu_inquiryDate() {	
+		        
 		return userEdu_inquiryDate;
 	}
 	public void setUserEdu_inquiryDate(String userEdu_inquiryDate) {
 		this.userEdu_inquiryDate = userEdu_inquiryDate;
 	}
-	public String getUserEdu_processDate() {
+	public String getUserEdu_processDate() {       
+		
 		return userEdu_processDate;
 	}
 	public void setUserEdu_processDate(String userEdu_processDate) {

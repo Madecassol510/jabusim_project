@@ -351,6 +351,12 @@ span {
 	//검색 필드에 값넣기
 	function fieldSearch(){
 		
+		name = null;
+		interests = null;
+		joinStart = null;
+		joinEnd = null;
+		
+		
 		/* var myform = document.form */
 		
 		name = document.getElementById("nameInput").value;
@@ -375,18 +381,39 @@ span {
 		$.ajax({
 	        type : 'GET',
 	        url: '/jabusim_Project/admin/userTableSearch/?name=' + name + '&interests=' + interests + '&joinStart=' + joinStart + '&joinEnd=' + joinEnd,
-	        success : function(result) {
-	           updateModel(result);
+	        success : function(userBeanList) {
+	           updateModel(userBeanList);
 	           console.log("왜 안돼?");
 	        }
 	     });
 	}
 	
 	// 결과물 업데이트
-	function updateModel(result){
-		allUserBeans = result;		
-		const test = document.getElementById('testtpdyd');
-		test.innerHTML = '';
+	function updateModel(userBeanList){		
+		var dynamicHtml  = document.getElementById('searchResultContainer');
+		dynamicHtml .innerHTML = '';
+		
+		for (var i = 0; i < userBeanList.length; i++) {
+			var userBean = userBeanList[i];
+
+		    dynamicHtml += "<tr>" +
+		        "<th><input type='checkbox' value='" + userBean.user_idx + "'></th>" +
+		        "<td><span>" + (i + 1) + "</span></td>" +
+		        "<td><span>" + userBean.user_role + "</span></td>" +
+		        "<td><span>" + userBean.user_name + "</span></td>" +
+		        "<td><span>" + userBean.user_id + "</span></td>" +
+		        "<td><span>" + userBean.user_birthdate + "</span></td>" +
+		        "<td><span>" + userBean.user_phoneNum + "</span></td>";
+
+		    // user_interests가 null 또는 undefined일 경우에 대한 처리
+		    dynamicHtml += "<td><span>" + (userBean.user_interests || "") + "</span></td>";
+
+		    dynamicHtml += "<td><span>" + userBean.user_joinDate + "</span></td>" +
+		        "<td><span>" + userBean.user_visitCount + "회</span></td>" +
+		        "</tr>";
+		}
+		
+		document.getElementById("searchResultContainer").innerHTML = dynamicHtml;
 	}
 	
 	
@@ -494,7 +521,7 @@ span {
 									<th><span></span></th>
 								</tr>
 							</thead>
-							<tbody id="testtpdyd">
+							<tbody id="searchResultContainer">
 								<c:forEach items="${allUserBeans}" var="userBean" varStatus="loopStatus">
 									<tr>
 										<th><input type="checkbox" value="${userBean.getUser_idx()}"></th>

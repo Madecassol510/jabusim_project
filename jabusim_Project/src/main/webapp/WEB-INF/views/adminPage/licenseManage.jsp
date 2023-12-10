@@ -16,7 +16,9 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style>
 
@@ -225,7 +227,79 @@ span {
 }
 
 </style>
+<script type="text/javascript">
+	
+	//검색 필드
+	var licenseName;
+	var licenseType = [];
+	var licenseMainCategory;
+	var licenseSubCategory;
+	
+	//검색 필드에 값넣기
+	function fieldSearch(){
+		
+		/* var myform = document.form */
+		
+		licenseName = null;		
+		licenseMainCategory = null;
+		licenseSubCategory = null;
+		
+		licenseType = [];
+		
+		licenseName = document.getElementById("licenseNameInput").value;
+		
+		// select 태그의 DOM 요소 가져오기
+	    var mainCategoryElement = document.getElementById("mainCategoryInput");
+	    licenseMainCategory = mainCategoryElement.value;
+	    
+	    var subCategoryElement = document.getElementById("subCategoryInput");
+	    licenseSubCategory = subCategoryElement.value;
+      
+		
+		$("input[name='licenseTypeInput']:checked").each(function(i) {
+			licenseType.push($(this).val());	    
+		});
+		
+	
+		//ajax 검색
+		tableSearch();
+		
+	}
+		
+	// ajax 검색
+	
+	function tableSearch(){
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/licenseTableSearch/?licenseName=' + licenseName + 
+	        		'&licenseType=' + licenseType + 
+	        		'&licenseMainCategory=' + licenseMainCategory + 
+	        		'&licenseSubCategory=' + licenseSubCategory,
+	        success : function(licenseBeanList) {
+	           console.log("왜 안돼?");
+	           updateModel(licenseBeanList);
+	        }
+	     });
+	}
+	
+	function updateModel(licenseBeanList) {
+	    var dynamicHtml = document.getElementById('searchResultContainer');
+	    dynamicHtml.innerHTML = '';
 
+	    for (var i = 0; i < licenseBeanList.length; i++) {
+	        var licenseBean = licenseBeanList[i];
+
+	        dynamicHtml.innerHTML += "<tr>" +
+	            "<th><input type='checkbox' value='" + licenseBean.license_idx + "' ></th>" +
+	            "<td><span>" + (i + 1) + "</span></td>" +
+	            "<td><span>" + licenseBean.license_name + "</span></td>" +
+	            "<td><span>" + licenseBean.license_type + "</span></td>" +
+	            "<td><span>" + licenseBean.license_mainCategory + "</span></td>" +
+	            "<td><span>" + licenseBean.license_subCategory + "</span></td>" +
+	            "<td><span>" + licenseBean.license_info + "</span></td></tr>";
+	    }
+	}
+</script>
 
 </head>
 <body>
@@ -246,7 +320,7 @@ span {
 									<th class="searchHd">대분야</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<select>
+											<select id="mainCategoryInput">
 												<option value="">선택해주세요</option>
 											</select>
 										</div>
@@ -256,7 +330,7 @@ span {
 									<th class="searchHd">세부분야</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<select>
+											<select id="subCategoryInput">
 												<option value="">선택해주세요</option>
 											</select>
 										</div>
@@ -266,16 +340,16 @@ span {
 									<th class="searchHd">자격증계열</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 기술사
+											<input type="checkbox" value="기술사"name="licenseTypeInput" /> 기술사
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 기능장       
+											<input type="checkbox" value="기능장" name="licenseTypeInput" /> 기능장       
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 기사       
+											<input type="checkbox" value="기사" name="licenseTypeInput" /> 기사       
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" name="edu_list" /> 기능사       
+											<input type="checkbox" value="기능사" name="licenseTypeInput" /> 기능사       
 										</div>
 									</td>
 								</tr>				
@@ -283,15 +357,15 @@ span {
 									<th class="searchHd">자격증명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" />
+											<input type="text" id="licenseNameInput" />
 										</div>						
 									</td>
 								</tr>
 									
 							</table>
 							<div class="searchButton">
-								<button type="submit">검색</button>
-							</div>			
+								<button type="button" onclick="fieldSearch()">검색</button>
+							</div>		
 						</form>
 					</div>				
 					<div class="dashBoardArticle">
@@ -309,7 +383,7 @@ span {
 									<th><span></span></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="searchResultContainer">
 								<c:forEach items="${allLicenseBeans}" var="licenseBean">
 									<tr>
 										<th><input type="checkbox" value="${licenseBean.getLicense_idx()}"/></th>
