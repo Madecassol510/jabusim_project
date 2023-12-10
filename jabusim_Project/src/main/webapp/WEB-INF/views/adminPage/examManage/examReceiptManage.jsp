@@ -301,7 +301,7 @@ span {
 	function tableSearch(){
 		$.ajax({
 	        type : 'GET',
-	        url: '/jabusim_Project/admin/examReciptTableSearch/?examName=' + examName + 
+	        url: '/jabusim_Project/admin/examReceiptTableSearch/?examName=' + examName + 
 	       			'&examSubject=' + examSubject + 
 	        		'&examPlace=' + examPlace + 
 	        		'&examStart=' + examStart + 

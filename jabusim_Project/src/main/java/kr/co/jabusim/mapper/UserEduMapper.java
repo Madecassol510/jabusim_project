@@ -3,6 +3,7 @@ package kr.co.jabusim.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,4 +33,14 @@ public interface UserEduMapper {
 			@Param("eudList") List<String> eudList
 			);
 	
+	
+	//ajax 유저학력 삭제
+	@Delete("Delete from userEdu_table where userEdu_idx = #{userEdu_idx}")
+	void userEduTableDelete (String userEdu_idx);
+	
 }
+
+
+
+
+

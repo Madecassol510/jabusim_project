@@ -3,6 +3,7 @@ package kr.co.jabusim.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -61,8 +62,9 @@ public interface UserMapper {
 	
 	
 	
-	//ajax 유저삭제 가져오기
-	void userTableDelete (@Param("checkedList") List<String> checkedList);
+	//ajax 유저삭제
+	@Delete("Delete from user_table where user_idx = #{user_idx}")
+	void userTableDelete (String user_idx);
 	
 	
 	

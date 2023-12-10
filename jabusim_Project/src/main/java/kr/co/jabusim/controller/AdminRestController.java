@@ -29,6 +29,7 @@ import kr.co.jabusim.mapper.UserEduMapper;
 import kr.co.jabusim.mapper.UserMapper;
 import kr.co.jabusim.service.ExamReceiptService;
 import kr.co.jabusim.service.ExamService;
+import kr.co.jabusim.service.UserService;
 
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -44,8 +45,11 @@ public class AdminRestController {
 	@Autowired
 	private UserMapper userMapper;
 	
+	
 	@Autowired
 	private UserEduMapper userEduMapper;
+	
+	
 	
 	@Autowired
 	private UserCareerMapper userCareerMapper;
@@ -94,8 +98,12 @@ public class AdminRestController {
 	public ResponseEntity<Void> userTableDelete(
 			@RequestParam("checkedList") List<String> checkedList         
 			){
+	
 		
-		userMapper.userTableDelete(checkedList);
+		for(int i=0; i<checkedList.size(); i++) {
+			userMapper.userTableDelete(checkedList.get(i));
+		}
+		
 
 		return ResponseEntity.noContent().build();
 	}
@@ -127,7 +135,19 @@ public class AdminRestController {
 		return ResponseEntity.ok(searchList);
 	}
 	
-	
+	//학력문의 삭제
+	@GetMapping("/admin/userEduTableDelete")
+	public ResponseEntity<Void> userEduTableDelete(@RequestParam("checkedList") List<String> checkedList) {
+
+		
+		for(int i=0; i<checkedList.size(); i++) {
+			userEduMapper.userEduTableDelete(checkedList.get(i));
+		}
+		
+		return ResponseEntity.noContent().build();
+	}
+			
+	//==========================================================================================================
 	//경력문의 검색
 	@GetMapping("/admin/userCareerTableSearch")
 	public ResponseEntity<List<UserCareerBean>> userCareerTableSearch( 
@@ -160,6 +180,20 @@ public class AdminRestController {
 		return ResponseEntity.ok(searchList);
 	}
 	
+	//경력문의 삭제
+	@GetMapping("/admin/userCareerTableDelete")
+	public ResponseEntity<Void> userCareerTableDelete(@RequestParam("checkedList") List<String> checkedList) {
+		
+		for(int i=0; i<checkedList.size(); i++) {
+			userCareerMapper.userCareerTableDelete(checkedList.get(i));
+		}
+		
+		return ResponseEntity.noContent().build();
+	}
+			
+	//==========================================================================================================
+	
+		
 	//자격증관리 검색
 	@GetMapping("/admin/licenseTableSearch")
 	public ResponseEntity<List<LicenseBean>> licenseTableSearch(
@@ -182,6 +216,20 @@ public class AdminRestController {
 		
 		return ResponseEntity.ok(searchList);
 	}
+	
+	//자격증 삭제
+	@GetMapping("/admin/licenseTableDelete")
+	public ResponseEntity<Void> licenseTableDelete(@RequestParam("checkedList") List<String> checkedList) {
+
+		
+		for(int i=0; i<checkedList.size(); i++) {
+			licenseMapper.licenseTableDelete(checkedList.get(i));
+		}
+		
+		return ResponseEntity.noContent().build();
+	}
+			
+	//==========================================================================================================
 	
 	
 	//시험관리
@@ -222,6 +270,19 @@ public class AdminRestController {
 		
 	}
 	
+	//시험 삭제
+	@GetMapping("/admin/examTableDelete")
+	public ResponseEntity<Void> examTableDelete(@RequestParam("checkedList") List<String> checkedList) {
+			
+			for(int i=0; i<checkedList.size(); i++) {
+				examMapper.examTableDelete(checkedList.get(i));
+			}
+			
+			return ResponseEntity.noContent().build();
+		}
+				
+	//==========================================================================================================
+	
 	
 	//시험장소 검색
 	@GetMapping("/admin/examPlaceTableSearch")
@@ -241,10 +302,25 @@ public class AdminRestController {
 
 		return ResponseEntity.ok(searchList);
 	}
-
+	
+	
+	//시험장소 삭제
+	@GetMapping("/admin/examPlaceTableDelete")
+	public ResponseEntity<Void> examPlaceTableDelete(@RequestParam("checkedList") List<String> checkedList) {
+				
+				for(int i=0; i<checkedList.size(); i++) {
+					examPlaceMapper.examPlaceTableDelete(checkedList.get(i));
+				}
+				
+				return ResponseEntity.noContent().build();
+			}
+					
+	//==========================================================================================================
+	
+	
 	// 시험접수 검색
-	@GetMapping("/admin/examReciptTableSearch")
-	public ResponseEntity<List<ExamReceiptBean>> examReciptTableSearch(@RequestParam("examName") String examName,
+	@GetMapping("/admin/examReceiptTableSearch")
+	public ResponseEntity<List<ExamReceiptBean>> examReceiptTableSearch(@RequestParam("examName") String examName,
 			@RequestParam("examSubject") String examSubject, @RequestParam("examPlace") String examPlace,
 
 			@RequestParam("examStart") String examStart, @RequestParam("examEnd") String examEnd,
@@ -271,6 +347,20 @@ public class AdminRestController {
 
 		return ResponseEntity.ok(searchList);
 	}
+	
+	
+	//시험접수 삭제
+	@GetMapping("/admin/examReceiptTableDelete")
+	public ResponseEntity<Void> examReceiptTableDelete(@RequestParam("checkedList") List<String> checkedList) {
+					
+					for(int i=0; i<checkedList.size(); i++) {
+						examReceiptMapper.examReceiptTableDelete(checkedList.get(i));
+					}
+					
+					return ResponseEntity.noContent().build();
+				}
+						
+	//==========================================================================================================
 	
 	//시험결과 검색
 	@GetMapping("/admin/examResultTableSearch")
@@ -301,6 +391,19 @@ public class AdminRestController {
 
 		return ResponseEntity.ok(searchList);
 	}
+	
+	//시험결과 삭제
+	@GetMapping("/admin/examResultTableDelete")
+	public ResponseEntity<Void> examResultTableDelete(@RequestParam("checkedList") List<String> checkedList) {
+						
+						for(int i=0; i<checkedList.size(); i++) {
+							examResultMapper.examResultTableDelete(checkedList.get(i));
+						}
+						
+						return ResponseEntity.noContent().build();
+					}
+							
+	//==========================================================================================================
 }
 
 

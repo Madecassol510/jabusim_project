@@ -3,6 +3,7 @@ package kr.co.jabusim.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.dao.UserDao;
+import kr.co.jabusim.mapper.UserMapper;
 
 @Service
 public class UserService {
@@ -18,8 +20,15 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired
+	private UserMapper userMapper;
+	
+	
 	@Resource(name = "loginUserBean")
 	private UserBean loginUserBean;
+	
+	
+	
 	
 	public boolean checkUserIdExist(String user_id) {
 		String user_name = userDao.checkUserIdExist(user_id);
@@ -117,7 +126,12 @@ public class UserService {
 	public ArrayList<UserBean> getAllUserInfo() {
 		return userDao.getAllUserInfo();
 	};
-	
-	
-	
 }
+
+
+
+
+
+
+
+

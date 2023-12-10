@@ -3,6 +3,7 @@ package kr.co.jabusim.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,7 @@ import kr.co.jabusim.beans.UserEduBean;
 public interface ExamResultMapper {
 
 	// 모든 시험 테이블 가져오기
-	@Select("select * from examReceipt_table")
+	@Select("select * from examResult_table")
 	ArrayList<ExamResultBean> allExamReceiptInfo();
 
 	ArrayList<ExamResultBean> examResultTableSearch(
@@ -32,4 +33,8 @@ public interface ExamResultMapper {
 			@Param("examType") List<String> examType, 
 			@Param("resultStatus") List<String> resultStatus
 			);
+	
+	//ajax 유저학력 삭제
+	@Delete("Delete from examResult_table where examResult_idx = #{examResult_idx}")
+	void examResultTableDelete (String examResult_idx);
 }

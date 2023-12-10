@@ -3,6 +3,7 @@ package kr.co.jabusim.mapper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,5 +39,8 @@ public interface LicenseMapper {
 			@Param("licenseSubCategory") String licenseSubCategory
 	);
 	
+	//ajax 유저학력 삭제
+	@Delete("Delete from license_table where license_idx = #{license_idx}")
+	void licenseTableDelete (String license_idx);
 	
 }

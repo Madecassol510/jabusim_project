@@ -38,19 +38,5 @@
 		</where>
     </select>
     
-    
-   	<delete id="userTableDelete">
-	    DELETE FROM user_table
-	    <where>
-	        <if test="checkedList != null and checkedList.size() > 0">
-	            AND (
-	            <foreach item="item" collection="checkedList" separator="OR">
-	                user_idx = #{item}
-	            </foreach>
-	            )
-	        </if>
-	    </where>
-	</delete>
-    
-    
+   	  
 </mapper>
