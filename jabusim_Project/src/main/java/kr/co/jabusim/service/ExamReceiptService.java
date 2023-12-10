@@ -32,7 +32,7 @@ public class ExamReceiptService {
 	        @Param("receiptStatus") List<String> receiptStatus
 			){
 		
-		ArrayList<ExamReceiptBean> tempExamReceiptBeanList = examReceiptMapper.examReciptTableSearch(examName, examSubject, examPlace, examStart, examEnd, resultStart, resultEnd, examType);
+		ArrayList<ExamReceiptBean> tempExamReceiptBeanList = examReceiptMapper.examReceiptTableSearch(examName, examSubject, examPlace, examStart, examEnd, resultStart, resultEnd, examType);
 		
 		
 		ArrayList<ExamReceiptBean> exaReceiptBeanList = new ArrayList<ExamReceiptBean>();  

@@ -286,7 +286,7 @@ span {
 /* =========================================================================== */
 	
 	/* 모달창 */
-	/* .modalBackground {
+	.modalBackground {
 		width:100%;
 		height: 100%;
 		position: fixed;
@@ -299,8 +299,8 @@ span {
 	}
 	
 	.modalContainer{
-		width:650px;
-		height:700px;
+		width:500px;
+		height:500px;
 		position: absolute;
 		background: white;
 		
@@ -309,11 +309,11 @@ span {
 	.modalContainer .modalContainerHd{
 		padding:10px;
 		width:100%;
-		height:9%;
+		height:12%;
 		border-bottom: 1px solid black;
 	}
 	
-	.modalContainer .modalContainerHd h4{
+	.modalContainer .modalContainerHd h3{
 		height:100%;
 		margin: auto 0px;
 		display:inline-block;
@@ -368,7 +368,7 @@ span {
 	
 	.modalContainer .searchResult li span{
 		cursor: pointer;
-	} */
+	}
 
 /* =========================================================================== */
 	
@@ -553,6 +553,58 @@ span {
 		}
 	}
 	
+	//==============================================================================
+	//상세 모달창
+	function getUserInfo(userIdx){
+		openModal();
+		
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/userTableDelete/?userIdx=' + userIdx,
+	        success : function(userBean) {
+	           console.log("유저 정보 띄우기 성공");
+	        }
+	    });
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/userTableDelete/?userIdx=' + userIdx,
+	        success : function(userBean) {
+	           console.log("보유 경력 정보 띄우기 성공");
+	        }
+	    });
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/userTableDelete/?userIdx=' + userIdx,
+	        success : function(userBean) {
+	           console.log("보유 학력 정보 띄우기 성공");
+	        }
+	    });
+		
+		$.ajax({
+	        type : 'GET',
+	        url: '/jabusim_Project/admin/userTableDelete/?userIdx=' + userIdx,
+	        success : function(userBean) {
+	           console.log("보유 자격증 정보 띄우기 성공");
+	        }
+	    });	
+	}
+		
+	function openModal() {
+	    var modal = document.getElementById('userModalBackground');
+	    modal.style.display = 'flex';
+	}
+		
+	function closeModal(){
+		var modal = document.getElementById('userModalBackground');
+	    modal.style.display = 'none';
+	}
+	
+	function userBean(){
+		var modal = document.getElementById('userModalBackground');
+	    modal.style.display = 'none';
+	}
+	
+	
 </script>
 
 </head>
@@ -674,10 +726,10 @@ span {
 												<td><span>${userBean.getUser_interests()}</span></td>
 											</c:otherwise>
 										</c:choose>	
-										
-											
+																			
 										<td><span>${userBean.getUser_joinDate()}</span></td>			
-										<td><span>${userBean.getUser_visitCount()}회</span></td>		
+										<td><span>${userBean.getUser_visitCount()}회</span></td>
+										<td><span><button type="button" onclick="getUserInfo(${userBean.getUser_idx()})">상세정보</button></span></td>	
 									</tr>
 								</c:forEach>			
 							</tbody>
@@ -696,6 +748,38 @@ span {
 			</div>
 			<div class="footerButton">
 				<button type="button" onclick="deleteList()">삭제</button>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 상세정보 모달창 -->
+	<div class="modalBackground" id="userModalBackground">
+		<div class="modalContainer" id="">	
+			<div class="modalContainerHd">
+				<h3>학과/전공 검색</h3>
+				<button type="button" onclick="closeModal()">닫기</button>
+			</div>
+			<div class="modalContent">
+				<div class="searchHd">
+					<form action="" onsubmit="">
+						<span>학과/전공명</span>
+						<input type="text"/>
+						<button type="submit">검색</button>
+					</form>
+				</div>
+				<div class="searchResult">
+					<ul class="resultResult">
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

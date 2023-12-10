@@ -237,13 +237,63 @@ span {
 .nav-tabs .nav-link.active {
 	border-color: black black #fff;
 }
+/* =========================================================================== */
+	/* 버튼 창 */
+	.footer{
+		position: fixed;
+        bottom: 0;
+       	left: 0;
+        width: 100%;
+        height:120px;
+        display: none;
+	    align-items: flex-end; /* 수직 방향으로 가운데 정렬 */
+  		justify-content: flex-end;
+        background-color: #f1f1f1; /* 배경색 설정 */
+        padding: 10px; /* 필요에 따라 여백 설정 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+	}
+	
+	
+	.footer .footerBox{
+		display: grid;
+        grid-template-columns: repeat(2, 180px); /* 2개의 동일한 폭의 칸으로 나눔 */
+        grid-template-rows: repeat(1, 90px);
+        gap: 20px;
+        margin-right: 100px;
+	}
+	
+	
+	.footer .footerHd{
+		display: flex;
+		align-items: center;
+	    justify-content: center;
+	}
+	
+	.footer span{
+		font-size: 30px;
+	}
+	
+	
+	.footer .footerButton{
+		display: flex;
+		align-items: center;
+	    justify-content: center;
+	}
+	
+	
+	.footer button{
+		width : 150px;
+		height: 70px;
+	}
+	
+
+
 
 </style>
 
 <script type="text/javascript">
-
 	
-	
+	var checkedCount=0;
 	
 	//검색 필드
 	var name;
@@ -329,7 +379,7 @@ span {
 			var userEduBean = userEduBeanList[i];
 
 			 dynamicHtml += "<tr>" +
-		        "<th><input type='checkbox' value='" + userEduBean.userEdu_idx + "' ></th>" +
+		        "<th><input type='checkbox' class='checkList' onclick='updateCounter()' value='" + userEduBean.userEdu_idx + "' ></th>" +
 		        "<td><span>" + (i + 1) + "</span></td>" +
 		        "<td><span>" + userEduBean.user_name + "</span></td>" +
 		        "<td><span>" + userEduBean.user_id + "</span></td>" +
@@ -342,6 +392,99 @@ span {
 		}
 		
 		document.getElementById("searchResultContainer").innerHTML = dynamicHtml;
+	}
+	
+	
+	function updateCounter() {
+		  // 동일한 ID를 갖는 체크박스를 모두 가져옵니다.
+		  var checkboxes = document.querySelectorAll('.checkList');
+		  
+		  // 체크된 체크박스 수를 세기 위한 변수 초기화
+		  checkedCount = 0;
+		  
+		  
+		  
+		  
+		  // 각 체크박스에 대해 반복하여 체크 상태를 확인하고 카운터를 업데이트합니다.
+		  checkboxes.forEach(function(checkbox) {
+		    if (checkbox.checked) {
+		      checkedCount++;
+		    }
+		  });
+		  
+		  var footerHd = document.querySelector('.footerHd span');
+		  footerHd.textContent = "총 " + checkedCount + "개 선택";
+		  
+		  var footer = document.querySelector('.footer');
+
+		  if (checkedCount <= 0) {
+		     footer.style.display = 'none'; // 체크된 체크 박스가 없을 때 푸터를 숨김
+		  } else {
+		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
+		  }
+	}
+
+	function updateCounter() {
+		  // 동일한 ID를 갖는 체크박스를 모두 가져옵니다.
+		  var checkboxes = document.querySelectorAll('.checkList');
+		  
+		  // 체크된 체크박스 수를 세기 위한 변수 초기화
+		  checkedCount = 0;
+	  
+		  // 각 체크박스에 대해 반복하여 체크 상태를 확인하고 카운터를 업데이트합니다.
+		  checkboxes.forEach(function(checkbox) {
+		    if (checkbox.checked) {
+		      checkedCount++;
+		    }
+		  });
+		  
+		  var footerHd = document.querySelector('.footerHd span');
+		  footerHd.textContent = "총 " + checkedCount + "개 선택";
+		  
+		  var footer = document.querySelector('.footer');
+
+		  if (checkedCount <= 0) {
+		     footer.style.display = 'none'; // 체크된 체크 박스가 없을 때 푸터를 숨김
+		  } else {
+		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
+		  }
+	}	
+
+
+	
+	function deleteList(){
+		var checkboxes = document.querySelectorAll('.checkList');
+		
+		var checkedList = [];
+		
+		checkboxes.forEach(function(checkbox) {
+		    if (checkbox.checked) {
+		      checkedList.push(checkbox.value); // 체크된 체크박스의 값을 배열에 추가
+		    }
+		  });
+		
+		if(checkedCount>0){
+			$.ajax({
+		        type : 'GET',
+		        url: '/jabusim_Project/admin/userTableDelete/?checkedList=' + checkedList,
+		        success : function(result) {
+		           console.log("성공");
+		           alert("삭제했습니다");
+		           resetCheck();
+		           fieldSearch();
+		        }
+		     });		
+		}				
+	}
+	
+	function resetCheck(){	
+		checkedCount = 0;
+		
+		if (checkedCount <= 0) {
+		     footer.style.display = 'none'; // 체크된 체크 박스가 없을 때 푸터를 숨김
+		} else {
+		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
+		}
 	}
 </script>
 
@@ -469,7 +612,7 @@ span {
 							<tbody id="searchResultContainer">
 								<c:forEach items="${allUserEduBeans}" var="userEduBean" varStatus="loopStatus">
 									<tr>
-										<th><input type="checkbox" value="${userEduBean.getUserEdu_idx()}" ></th>
+										<th><input type="checkbox" class='checkList' onclick="updateCounter()" value="${userEduBean.getUserEdu_idx()}" ></th>
 										<td><span>${loopStatus.index + 1}</span></td>
 										<td><span>${userEduBean.getUser_name()}</span></td>
 										<td><span>${userEduBean.getUser_id()}</span></td>
@@ -514,6 +657,17 @@ span {
 						
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer" id="footer">
+		<div class="footerBox">
+			<div class="footerHd">
+				<span>총 ${checkedCount}개 선택</span>
+			</div>
+			<div class="footerButton">
+				<button type="button" onclick="deleteList()">삭제</button>
 			</div>
 		</div>
 	</div>

@@ -234,11 +234,60 @@ span {
 	border-color: black black #fff;
 }
 
+/* =========================================================================== */
+	/* 버튼 창 */
+	.footer{
+		position: fixed;
+        bottom: 0;
+       	left: 0;
+        width: 100%;
+        height:120px;
+        display: none;
+	    align-items: flex-end; /* 수직 방향으로 가운데 정렬 */
+  		justify-content: flex-end;
+        background-color: #f1f1f1; /* 배경색 설정 */
+        padding: 10px; /* 필요에 따라 여백 설정 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+	}
+	
+	
+	.footer .footerBox{
+		display: grid;
+        grid-template-columns: repeat(2, 180px); /* 2개의 동일한 폭의 칸으로 나눔 */
+        grid-template-rows: repeat(1, 90px);
+        gap: 20px;
+        margin-right: 100px;
+	}
+	
+	
+	.footer .footerHd{
+		display: flex;
+		align-items: center;
+	    justify-content: center;
+	}
+	
+	.footer span{
+		font-size: 30px;
+	}
+	
+	
+	.footer .footerButton{
+		display: flex;
+		align-items: center;
+	    justify-content: center;
+	}
+	
+	
+	.footer button{
+		width : 150px;
+		height: 70px;
+	}
+	
 
 </style>
 <script type="text/javascript">
 
-	
+	var checkedCount=0;
 	
 	//검색 필드
 	var name;
@@ -318,8 +367,28 @@ span {
 	     });
 	}
 	
-	function updateModel(examResultBeanList) {
+	unction updateModel(examResultBeanList) {
+	    var dynamicHtml = "";
+	    var searchResultContainer = document.getElementById('searchResultContainer');
 
+	    for (var i = 0; i < examResultBeanList.length; i++) {
+	        var examResultBean = examResultBeanList[i];
+
+	        dynamicHtml += "<tr>" +
+	            "<th><input type='checkbox' class='checkList' onclick='updateCounter()' value='" + examResultBean.examResult_idx + "'></th>" +
+	            "<td><span>" + (i + 1) + "</span></td>" +
+	            "<td><span>" + examResultBean.user_name + "</span></td>" +
+	            "<td><span>" + examResultBean.user_id + "</span></td>" +
+	            "<td><span>" + examResultBean.exam_name + "</span></td>" +
+	            "<td><span>" + examResultBean.exam_subject + "</span></td>" +
+	            "<td><span>" + examResultBean.exam_type + "</span></td>" +
+	            "<td><span>" + examResultBean.exam_date + "</span></td>" +
+	            "<td><span>" + examResultBean.exam_resultDate + "</span></td>" +
+	            "<td><span>" + examResultBean.examResult_status + "</span></td>" +
+	            "</tr>";
+	    }
+
+	    searchResultContainer.innerHTML = dynamicHtml;
 	}
 </script>
 

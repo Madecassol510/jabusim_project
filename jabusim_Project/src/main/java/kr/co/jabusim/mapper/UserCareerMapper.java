@@ -39,5 +39,4 @@ public interface UserCareerMapper {
 	//ajax 유저학력 삭제
 	@Delete("Delete from userCareer_table where userCareer_idx = #{userCareer_idx}")
 	void userCareerTableDelete (String userCareer_idx);
-		
 }

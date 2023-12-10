@@ -138,7 +138,6 @@ public class AdminRestController {
 	//학력문의 삭제
 	@GetMapping("/admin/userEduTableDelete")
 	public ResponseEntity<Void> userEduTableDelete(@RequestParam("checkedList") List<String> checkedList) {
-
 		
 		for(int i=0; i<checkedList.size(); i++) {
 			userEduMapper.userEduTableDelete(checkedList.get(i));
@@ -180,6 +179,7 @@ public class AdminRestController {
 		return ResponseEntity.ok(searchList);
 	}
 	
+
 	//경력문의 삭제
 	@GetMapping("/admin/userCareerTableDelete")
 	public ResponseEntity<Void> userCareerTableDelete(@RequestParam("checkedList") List<String> checkedList) {
@@ -190,6 +190,19 @@ public class AdminRestController {
 		
 		return ResponseEntity.noContent().build();
 	}
+	
+	
+	//경력문의 업데이트
+	@GetMapping("/admin/userCareerTableUpdate")
+	public ResponseEntity<Void> userCareerTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
+			
+		for(int i=0; i<checkedList.size(); i++) {
+			//userCareerMapper.userCareerTableUpdate(checkedList.get(i));
+		}
+			
+		return ResponseEntity.noContent().build();
+	}
+		
 			
 	//==========================================================================================================
 	
@@ -226,6 +239,17 @@ public class AdminRestController {
 			licenseMapper.licenseTableDelete(checkedList.get(i));
 		}
 		
+		return ResponseEntity.noContent().build();
+	}
+	
+	//자격증 업데이트
+	@GetMapping("/admin/licenseTableUpdate")
+	public ResponseEntity<Void> licenseTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
+				
+		for(int i=0; i<checkedList.size(); i++) {
+			//licenseMapper.licenseTableUpdate(checkedList.get(i));
+		}
+				
 		return ResponseEntity.noContent().build();
 	}
 			
@@ -280,6 +304,18 @@ public class AdminRestController {
 			
 			return ResponseEntity.noContent().build();
 		}
+	
+	
+	//자격증 업데이트
+	@GetMapping("/admin/examTableUpdate")
+	public ResponseEntity<Void> examTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
+					
+		for(int i=0; i<checkedList.size(); i++) {
+			//examMapper.licenseTableUpdate(checkedList.get(i));
+		}
+					
+		return ResponseEntity.noContent().build();
+	}
 				
 	//==========================================================================================================
 	
@@ -314,7 +350,19 @@ public class AdminRestController {
 				
 				return ResponseEntity.noContent().build();
 			}
-					
+	
+	
+	//시험장소 업데이트
+	@GetMapping("/admin/examPlaceTableUpdate")
+	public ResponseEntity<Void> examPlaceTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
+						
+		for(int i=0; i<checkedList.size(); i++) {
+			//examPlaceMapper.examPlaceTableUpdate(checkedList.get(i));
+		}
+						
+		return ResponseEntity.noContent().build();
+	}
+	
 	//==========================================================================================================
 	
 	
@@ -359,7 +407,18 @@ public class AdminRestController {
 					
 					return ResponseEntity.noContent().build();
 				}
-						
+	
+	
+	//시험접수 업데이트
+	@GetMapping("/admin/examReceiptTableUpdate")
+	public ResponseEntity<Void> examReceiptTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
+							
+		for(int i=0; i<checkedList.size(); i++) {
+			//examReceiptMapper.examReceiptTableUpdate(checkedList.get(i));
+		}
+							
+		return ResponseEntity.noContent().build();
+	}
 	//==========================================================================================================
 	
 	//시험결과 검색
@@ -402,7 +461,18 @@ public class AdminRestController {
 						
 						return ResponseEntity.noContent().build();
 					}
-							
+	
+	
+	//시험결과 업데이트
+	@GetMapping("/admin/examResultTableUpdate")
+	public ResponseEntity<Void> examResultTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
+								
+		for(int i=0; i<checkedList.size(); i++) {
+			//examResultMapper.examResultTableUpdate(checkedList.get(i));
+		}
+								
+		return ResponseEntity.noContent().build();
+	}
 	//==========================================================================================================
 }
 
