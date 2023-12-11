@@ -43,4 +43,13 @@ public interface ExamMapper {
 	//ajax 유저학력 삭제
 	@Delete("Delete from exam_table where exam_idx = #{exam_idx}")
 	void examTableDelete (String exam_idx);
+	
+	
+	@Select("select * from exam_table where exam_licenseType = #{exam_licenseType}")
+	ArrayList<ExamBean> licenseExamInfo(String exam_licenseType);
 }
+
+
+
+
+

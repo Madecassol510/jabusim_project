@@ -391,7 +391,6 @@ span {
 	    document.getElementById("searchResultContainer").innerHTML = dynamicHtml.innerHTML;
 	}
 	
-
 	function updateCounter() {
 		  // 동일한 ID를 갖는 체크박스를 모두 가져옵니다.
 		  var checkboxes = document.querySelectorAll('.checkList');
@@ -420,34 +419,6 @@ span {
 		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
 		  }
 	}
-
-	function updateCounter() {
-		  // 동일한 ID를 갖는 체크박스를 모두 가져옵니다.
-		  var checkboxes = document.querySelectorAll('.checkList');
-		  
-		  // 체크된 체크박스 수를 세기 위한 변수 초기화
-		  checkedCount = 0;
-	  
-		  // 각 체크박스에 대해 반복하여 체크 상태를 확인하고 카운터를 업데이트합니다.
-		  checkboxes.forEach(function(checkbox) {
-		    if (checkbox.checked) {
-		      checkedCount++;
-		    }
-		  });
-		  
-		  var footerHd = document.querySelector('.footerHd span');
-		  footerHd.textContent = "총 " + checkedCount + "개 선택";
-		  
-		  var footer = document.querySelector('.footer');
-
-		  if (checkedCount <= 0) {
-		     footer.style.display = 'none'; // 체크된 체크 박스가 없을 때 푸터를 숨김
-		  } else {
-		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
-		  }
-	}	
-
-
 	
 	function deleteList(){
 		var checkboxes = document.querySelectorAll('.checkList');
@@ -463,10 +434,37 @@ span {
 		if(checkedCount>0){
 			$.ajax({
 		        type : 'GET',
-		        url: '/jabusim_Project/admin/userTableDelete/?checkedList=' + checkedList,
+		        url: '/jabusim_Project/admin/examReceiptTableDelete/?checkedList=' + checkedList,
 		        success : function(result) {
 		           console.log("성공");
 		           alert("삭제했습니다");
+		           resetCheck();
+		           fieldSearch();
+		        }
+		     });		
+		}				
+	}
+	
+
+	function updateList(status){
+		var checkboxes = document.querySelectorAll('.checkList');
+		
+		var checkedList = [];
+		
+		checkboxes.forEach(function(checkbox) {
+		    if (checkbox.checked) {
+		      checkedList.push(checkbox.value); // 체크된 체크박스의 값을 배열에 추가
+		    }
+		  });
+		
+		if(checkedCount>0){
+			$.ajax({
+		        type : 'GET',
+		        url: '/jabusim_Project/admin/examReceiptTableUpdate/?checkedList=' + checkedList + 
+		        '&status=' + status,
+		        success : function(result) {
+		           console.log("성공");
+		           alert("수정했습니다");
 		           resetCheck();
 		           fieldSearch();
 		        }
@@ -649,7 +647,7 @@ span {
 								</tr>
 							</thead>
 							<tbody id="searchResultContainer">
-								<c:forEach items="${allExamReceiptBeans}" var="examReceiptBean">
+								<c:forEach items="${allExamReceiptBeans}" var="examReceiptBean" varStatus="loopStatus">
 									<tr>
 										<th><input type="checkbox" class="checkList"  onclick="updateCounter()" value="${examReceiptBean.examReceipt_idx}"/></th>
 										<td><span>${loopStatus.index+1}</span></td>
@@ -680,6 +678,8 @@ span {
 			</div>
 			<div class="footerButton">
 				<button type="button" onclick="deleteList()">삭제</button>
+				<button type="button" onclick="updateList('접수완료')">접수완료</button>
+				<button type="button" onclick="updateList('접수거부')">접수거부</button>
 			</div>
 		</div>
 	</div>

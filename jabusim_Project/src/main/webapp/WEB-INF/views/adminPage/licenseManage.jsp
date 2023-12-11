@@ -564,7 +564,7 @@ span {
 								</tr>
 							</thead>
 							<tbody id="searchResultContainer">
-								<c:forEach items="${allLicenseBeans}" var="licenseBean">
+								<c:forEach items="${allLicenseBeans}" var="licenseBean" varStatus="loopStatus">
 									<tr>
 										<th><input type="checkbox" class="checkList"  onclick="updateCounter()" value="${licenseBean.getLicense_idx()}"/></th>
 										<td><span>${loopStatus.index+1}</span></td>

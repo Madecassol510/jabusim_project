@@ -430,7 +430,7 @@ span {
 		if(checkedCount>0){
 			$.ajax({
 		        type : 'GET',
-		        url: '/jabusim_Project/admin/userTableDelete/?checkedList=' + checkedList,
+		        url: '/jabusim_Project/admin/examPlaceTableDelete/?checkedList=' + checkedList,
 		        success : function(result) {
 		           console.log("성공");
 		           alert("삭제했습니다");

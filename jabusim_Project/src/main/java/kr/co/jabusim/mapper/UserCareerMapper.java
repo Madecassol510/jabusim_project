@@ -28,7 +28,7 @@ public interface UserCareerMapper {
 	ArrayList<UserCareerBean> getUserCareerInfo(String user_idx);
 	
 	
-	//ajax 유저학력 검색
+	//ajax 유저학력 조회
 	@Select("select * from userCareer_table where userCareer_idx = #{userCareer_idx}")
 	UserCareerBean  getUserCareer(String userCareer_idx);
 	

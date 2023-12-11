@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.beans.UserCareerBean;
 import kr.co.jabusim.beans.UserEduBean;
+import kr.co.jabusim.beans.UserLicenseBean;
 import kr.co.jabusim.beans.CareerBean;
 import kr.co.jabusim.beans.EduBean;
 import kr.co.jabusim.beans.ExamBean;
@@ -30,6 +31,7 @@ import kr.co.jabusim.mapper.UserCareerMapper;
 import kr.co.jabusim.mapper.UserEduMapper;
 import kr.co.jabusim.mapper.UserMapper;
 import kr.co.jabusim.service.ExamReceiptService;
+import kr.co.jabusim.service.ExamResultService;
 import kr.co.jabusim.service.ExamService;
 import kr.co.jabusim.service.UserService;
 
@@ -77,6 +79,10 @@ public class AdminRestController {
 	
 	@Autowired
 	private ExamResultMapper examResultMapper;
+	
+	@Autowired
+	private ExamResultService examResultService;
+	
 	
 	
 	//==========================================================================================================
@@ -296,8 +302,8 @@ public class AdminRestController {
 	}
 	
 	//자격증 삭제
-	@GetMapping("/admin/licenseTableDelete")
-	public ResponseEntity<Void> licenseTableDelete(@RequestParam("checkedList") List<String> checkedList) {
+	@GetMapping("/admin/LicenseTableDelete")
+	public ResponseEntity<Void> LicenseTableDelete(@RequestParam("checkedList") List<String> checkedList) {
 
 		
 		for(int i=0; i<checkedList.size(); i++) {
@@ -306,18 +312,7 @@ public class AdminRestController {
 		
 		return ResponseEntity.noContent().build();
 	}
-	
-	//자격증 업데이트
-	@GetMapping("/admin/licenseTableUpdate")
-	public ResponseEntity<Void> licenseTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
 				
-		for(int i=0; i<checkedList.size(); i++) {
-			//licenseMapper.licenseTableUpdate(checkedList.get(i));
-		}
-				
-		return ResponseEntity.noContent().build();
-	}
-			
 	//==========================================================================================================
 	
 	
@@ -370,18 +365,7 @@ public class AdminRestController {
 			return ResponseEntity.noContent().build();
 		}
 	
-	
-	//자격증 업데이트
-	@GetMapping("/admin/examTableUpdate")
-	public ResponseEntity<Void> examTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
-					
-		for(int i=0; i<checkedList.size(); i++) {
-			//examMapper.licenseTableUpdate(checkedList.get(i));
-		}
-					
-		return ResponseEntity.noContent().build();
-	}
-				
+			
 	//==========================================================================================================
 	
 	
@@ -415,18 +399,7 @@ public class AdminRestController {
 				
 				return ResponseEntity.noContent().build();
 			}
-	
-	
-	//시험장소 업데이트
-	@GetMapping("/admin/examPlaceTableUpdate")
-	public ResponseEntity<Void> examPlaceTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
-						
-		for(int i=0; i<checkedList.size(); i++) {
-			//examPlaceMapper.examPlaceTableUpdate(checkedList.get(i));
-		}
-						
-		return ResponseEntity.noContent().build();
-	}
+
 	
 	//==========================================================================================================
 	
@@ -464,26 +437,70 @@ public class AdminRestController {
 	
 	//시험접수 삭제
 	@GetMapping("/admin/examReceiptTableDelete")
-	public ResponseEntity<Void> examReceiptTableDelete(@RequestParam("checkedList") List<String> checkedList) {
-					
-					for(int i=0; i<checkedList.size(); i++) {
-						examReceiptMapper.examReceiptTableDelete(checkedList.get(i));
-					}
-					
-					return ResponseEntity.noContent().build();
+	public ResponseEntity<Void> examReceiptTableDelete(@RequestParam("checkedList") List<String> checkedList) {					
+			for(int i=0; i<checkedList.size(); i++) {			
+				ExamReceiptBean examReceiptBean = examReceiptMapper.getExamReceipt(checkedList.get(i));			
+				System.out.println(examReceiptBean.getExamReceipt_status());
+				
+				if(examReceiptBean.getExamReceipt_status().equals("삭제예정")) {	
+					examReceiptMapper.examReceiptTableDelete(checkedList.get(i));					
 				}
+				
+			}
+					
+			return ResponseEntity.noContent().build();
+	}
 	
 	
 	//시험접수 업데이트
 	@GetMapping("/admin/examReceiptTableUpdate")
-	public ResponseEntity<Void> examReceiptTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
+	public ResponseEntity<Void> examReceiptTableUpdate(
+			@RequestParam("checkedList") List<String> checkedList,
+			@RequestParam("status") String status
+			) {
 							
 		for(int i=0; i<checkedList.size(); i++) {
-			//examReceiptMapper.examReceiptTableUpdate(checkedList.get(i));
+			ExamReceiptBean examReceiptBean = examReceiptMapper.getExamReceipt(checkedList.get(i));
+			System.out.println(examReceiptBean.getExamReceipt_status());
+			
+			if(examReceiptBean.getExamReceipt_status().equals("처리대기")) {
+				if(status.equals("접수완료")) {
+					
+					String user_name = examReceiptBean.getUser_name();
+					String user_id = examReceiptBean.getUser_id();
+					String exam_name = examReceiptBean.getExam_name();
+					String exam_subject = examReceiptBean.getExam_subject();
+					String exam_type = examReceiptBean.getExam_type();
+					String exam_date = examReceiptBean.getExam_date();
+					String exam_resultDate = examReceiptBean.getExam_resultDate();
+					String examResult_status = "미입력";
+					String examResult_processStatus = "미처리";
+					
+					ExamResultBean examResultBean = new ExamResultBean();
+					
+					examResultBean.setUser_name(user_name);
+					examResultBean.setUser_id(user_id);
+					examResultBean.setExam_name(exam_name);
+					examResultBean.setExam_subject(exam_subject);
+					examResultBean.setExam_type(exam_type);
+					examResultBean.setExam_date(exam_date);
+					examResultBean.setExam_resultDate(exam_resultDate);
+					examResultBean.setExamResult_status(examResult_status);
+					examResultBean.setExamResult_processStatus(examResult_processStatus);
+					
+					
+					examResultMapper.insertExamResult(examResultBean);
+					
+					examReceiptMapper.examReceiptTableUpdate(examReceiptBean.getExamReceipt_idx(), status);	
+						
+				}
+				else if(status.equals("접수거부")) {
+					examReceiptMapper.examReceiptTableUpdate(examReceiptBean.getExamReceipt_idx(), status);
+				}
+			}											
 		}
-							
 		return ResponseEntity.noContent().build();
-	}
+	}	
 	//==========================================================================================================
 	
 	//시험결과 검색
@@ -499,7 +516,9 @@ public class AdminRestController {
 			@RequestParam("resultEnd") String resultEnd,
 
 			@RequestParam("examType") List<String> examType,
-			@RequestParam("resultStatus") List<String> resultStatus){
+			@RequestParam("resultStatus") List<String> resultStatus,
+			@RequestParam("processStatus") List<String> processStatus			
+			){
 
 		System.out.println(name);
 		System.out.println(examName);
@@ -510,9 +529,10 @@ public class AdminRestController {
 		System.out.println(resultEnd);
 		System.out.println(examType);
 		System.out.println(resultStatus);
+		System.out.println(processStatus);
 
-		ArrayList<ExamResultBean> searchList=examResultMapper.examResultTableSearch(name, examName, examSubject, examStart, examEnd, resultStart, resultEnd, examType, resultStatus);
-
+		//ArrayList<ExamResultBean> searchList=examResultMapper.examResultTableSearch(name, examName, examSubject, examStart, examEnd, resultStart, resultEnd, examType, resultStatus);
+		ArrayList<ExamResultBean> searchList=examResultService.examResultTableSearch(name, examName, examSubject, examStart, examEnd, resultStart, resultEnd, examType, resultStatus, processStatus);
 		return ResponseEntity.ok(searchList);
 	}
 	
@@ -530,16 +550,85 @@ public class AdminRestController {
 	
 	//시험결과 업데이트
 	@GetMapping("/admin/examResultTableUpdate")
-	public ResponseEntity<Void> examResultTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
-								
+	public ResponseEntity<Void> examResultTableUpdate(
+			@RequestParam("checkedList") List<String> checkedList,
+			@RequestParam("status") String status
+			) {
+			
 		for(int i=0; i<checkedList.size(); i++) {
-			//examResultMapper.examResultTableUpdate(checkedList.get(i));
-		}
-								
+			ExamResultBean examResultBean = examResultMapper.getExamResult(checkedList.get(i));
+			System.out.println(examResultBean.getExamResult_status());
+			System.out.println(examResultBean.getExamResult_processStatus());
+			
+			if(!examResultBean.getExamResult_processStatus().equals("처리완료") && !(status.equals("처리완료"))) {			
+				examResultMapper.examResultTableUpdate(examResultBean.getExamResult_idx(), status);
+			}
+		}	
 		return ResponseEntity.noContent().build();
 	}
+	
+	
+	@GetMapping("/admin/examResultTableProcess")
+	public ResponseEntity<Void> examResultTableProcess(
+			@RequestParam("checkedList") List<String> checkedList,
+			@RequestParam("status") String status
+			) {
+			
+		for(int i=0; i<checkedList.size(); i++) {
+			ExamResultBean examResultBean = examResultMapper.getExamResult(checkedList.get(i));
+			System.out.println(examResultBean.getExamResult_status());
+			System.out.println(examResultBean.getExamResult_processStatus());
+			
+			if(!examResultBean.getExamResult_status().equals("미입력")) {
+				if(examResultBean.getExamResult_processStatus().equals("처리가능")){
+					if(examResultBean.getExamResult_status().equals("합격예정")) {
+					
+						String user_id = examResultBean.getUser_id();
+						String license_name = examResultBean.getExam_subject();
+						
+						int license_idx = licenseMapper.getLicenseidx(license_name);
+						
+						
+						UserLicenseBean userLicenseBean = new UserLicenseBean();
+						userLicenseBean.setUser_id(user_id);
+						userLicenseBean.setLicense_idx(license_idx);
+						
+						licenseMapper.insertUserLicense(userLicenseBean);
+						
+					}
+					examResultMapper.examResultTableProcess(examResultBean.getExamResult_idx(), status);			
+				}
+			}
+		}
+		
+		return ResponseEntity.noContent().build();
+	}
+	
 	//==========================================================================================================
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

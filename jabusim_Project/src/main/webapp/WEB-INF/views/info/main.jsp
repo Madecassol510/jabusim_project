@@ -87,7 +87,8 @@
         <div id="banner-section" class="card mx-auto my-5">
             <div class="card-body text-center">
                 <img src="자격증_이미지_URL" alt="자격증 이미지" class="img-fluid">
-                <h1 class="card-title mt-3">자격증명</h1>
+                <!-- <h1 class="card-title mt-3">자격증명</h1> -->
+                <h1 class="card-title mt-3">${infoLicenseBean.getLicense_name()}</h1>
                 <a href="시험접수_링크" class="btn btn-primary mt-2">시험 접수</a>
             </div>
         </div>
@@ -95,7 +96,8 @@
         <div id="info-section" class="card mx-auto my-5">
             <div class="card-body">
                 <h2 class="card-title">자격증 정보</h2>
-                <p class="card-text">자격증 데이터</p>
+                <!-- <p class="card-text">자격증 데이터</p> -->
+                <p class="card-text">${infoLicenseBean.getLicense_info()}</p>
             </div>
         </div>
 
@@ -103,17 +105,6 @@
             <div class="card-body">
                 <h2 class="card-title">시험 합격률</h2>
                 <canvas id="passRateChart"></canvas>
-            </div>
-        </div>
-
-        <div id="companies-section" class="card mx-auto my-5">
-            <div class="card-body">
-                <h2 class="card-title">자격증을 우대하는 회사</h2>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">회사 1</li>
-                    <li class="list-group-item">회사 2</li>
-                    <!-- 여기에 추가 회사 정보를 적습니다 -->
-                </ul>
             </div>
         </div>
     </div>

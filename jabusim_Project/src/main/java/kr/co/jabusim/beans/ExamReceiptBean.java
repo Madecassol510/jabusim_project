@@ -91,7 +91,6 @@ public class ExamReceiptBean {
        
 	        try {
 	            Date examDate = formatter.parse(exam_date);
-	
 	            
 	            if (currentDate.compareTo(examDate) >= 0) {
 	            	examReceipt_status = "삭제예정";

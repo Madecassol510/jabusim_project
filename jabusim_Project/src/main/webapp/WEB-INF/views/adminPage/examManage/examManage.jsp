@@ -479,7 +479,7 @@ span {
 		if(checkedCount>0){
 			$.ajax({
 		        type : 'GET',
-		        url: '/jabusim_Project/admin/userTableDelete/?checkedList=' + checkedList,
+		        url: '/jabusim_Project/admin/examTableDelete/?checkedList=' + checkedList,
 		        success : function(result) {
 		           console.log("성공");
 		           alert("삭제했습니다");
@@ -693,7 +693,7 @@ span {
 								</tr>
 							</thead>
 							<tbody id="searchResultContainer">
-								<c:forEach items="${allExamBeans}" var="examBean">
+								<c:forEach items="${allExamBeans}" var="examBean" varStatus="loopStatus">
 									<tr>
 										<th><input type="checkbox"  class="checkList"  onclick="updateCounter()" value="${examBean.getExam_idx()}"/></th>
 										<td><span>${loopStatus.index+1}</span></td>
