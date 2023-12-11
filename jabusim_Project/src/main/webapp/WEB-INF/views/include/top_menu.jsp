@@ -60,12 +60,12 @@ JaBuSim
 			<c:when test="${loginUserBean.isUserLogin() == true }">
 				<li class="nav-item"><a href="${root }user/logout" class="nav-link">로그아웃</a></li>
 				<li class="nav-item"><a href="${root }mypage/main" class="nav-link">마이페이지</a></li>
-				<li class="nav-item"><a href="${root }adminPage/main" class="nav-link">관리자페이지</a></li>		
+				<li class="nav-item"><a href="${root}adminPage/memberManage" class="nav-link">관리자페이지</a></li>		
 			</c:when>
 			<c:otherwise>
 				<li class="nav-item"><a href="${root }user/login" class="nav-link">로그인</a></li>
 				<li class="nav-item"><a href="${root }user/join" class="nav-link">회원가입</a></li>
-				<li class="nav-item"><a href="${root }adminPage/main" class="nav-link">관리자페이지</a></li>
+				<li class="nav-item"><a href="${root}adminPage/memberManage" class="nav-link">관리자페이지</a></li>
 			</c:otherwise>
 		</c:choose>
 	</ul>

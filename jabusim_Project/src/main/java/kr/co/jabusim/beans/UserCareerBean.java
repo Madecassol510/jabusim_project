@@ -9,7 +9,6 @@ public class UserCareerBean {
 	private String userCareer_type;
 	private String userCareer_company;
 	private String userCareer_inquiryDate;
-	private String userCareer_processDate;
 	private String userCareer_status;
 	
 	
@@ -51,16 +50,10 @@ public class UserCareerBean {
 		this.userCareer_company = userCareer_company;
 	}
 	public String getUserCareer_inquiryDate() {
-		return userCareer_inquiryDate;
+		return userCareer_inquiryDate.replace(" 00:00:00", "");
 	}
 	public void setUserCareer_inquiryDate(String userCareer_inquiryDate) {
 		this.userCareer_inquiryDate = userCareer_inquiryDate;
-	}
-	public String getUserCareer_processDate() {
-		return userCareer_processDate;
-	}
-	public void setUserCareer_processDate(String userCareer_processDate) {
-		this.userCareer_processDate = userCareer_processDate;
 	}
 	public String getUserCareer_status() {
 		return userCareer_status;

@@ -253,7 +253,7 @@ span {
 	
 	.footer .footerBox{
 		display: grid;
-        grid-template-columns: repeat(2, 180px); /* 2개의 동일한 폭의 칸으로 나눔 */
+        grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
         grid-template-rows: repeat(1, 90px);
         gap: 20px;
         margin-right: 100px;
@@ -439,24 +439,20 @@ span {
 		for (var i = 0; i < userBeanList.length; i++) {
 			var userBean = userBeanList[i];
 
-		    dynamicHtml += "<tr>" +
+		    dynamicHtml.innerHTML += "<tr>" +
 		        "<th><input type='checkbox' class='checkList' onclick='updateCounter()' value='" + userBean.user_idx + "'></th>" +
 		        "<td><span>" + (i + 1) + "</span></td>" +
 		        "<td><span>" + userBean.user_role + "</span></td>" +
 		        "<td><span>" + userBean.user_name + "</span></td>" +
 		        "<td><span>" + userBean.user_id + "</span></td>" +
 		        "<td><span>" + userBean.user_birthdate + "</span></td>" +
-		        "<td><span>" + userBean.user_phoneNum + "</span></td>";
-
-		    // user_interests가 null 또는 undefined일 경우에 대한 처리
-		    dynamicHtml += "<td><span>" + (userBean.user_interests || "") + "</span></td>";
-
-		    dynamicHtml += "<td><span>" + userBean.user_joinDate + "</span></td>" +
+		        "<td><span>" + userBean.user_phoneNum + "</span></td>" +
+		        "<td><span>" + userBean.user_joinDate + "</span></td>" +
 		        "<td><span>" + userBean.user_visitCount + "회</span></td>" +
 		        "</tr>";
 		}
 		
-		document.getElementById("searchResultContainer").innerHTML = dynamicHtml;
+		document.getElementById("searchResultContainer").innerHTML = dynamicHtml.innerHTML;
 	}
 	
 
@@ -552,6 +548,44 @@ span {
 		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
 		}
 	}
+	
+	
+	function checkAll(clickedCheckbox) {
+		
+	    // 클릭한 체크박스의 상태 가져오기
+	    var isChecked = clickedCheckbox.checked;
+	    
+		if(isChecked){
+			checkedCount = 0;
+			
+			var checkboxes = document.querySelectorAll('.checkList');
+		    checkboxes.forEach(function(checkbox) {
+		    	checkedCount++;
+		    	checkbox.checked = isChecked;
+		    });
+			
+		}
+		else{
+			var checkboxes = document.querySelectorAll('.checkList');
+		    checkboxes.forEach(function(checkbox) {
+		    	checkbox.checked = isChecked;
+		    });
+			
+		    checkedCount = 0;
+		}
+		
+		
+		var footerHd = document.querySelector('.footerHd span');
+		footerHd.textContent = "총 " + checkedCount + "개 선택";
+		
+		if (checkedCount <= 0) {
+		     footer.style.display = 'none'; // 체크된 체크 박스가 없을 때 푸터를 숨김
+		} else {
+		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
+		}    
+	}
+	
+	
 	
 	//==============================================================================
 	//상세 모달창
@@ -694,16 +728,15 @@ span {
 						<table>
 							<thead>
 								<tr>
-									<th><input type="checkbox"></th>
+									<th><input type="checkbox" onclick="checkAll(this)"></th>
 									<th><span>no.</span></th>
 									<th><span>권한</span></th>
 									<th><span>이름</span></th>
 									<th><span>아이디</span></th>
 									<th><span>생년월일</span></th>
 									<th><span>휴대폰번호</span></th>
-									<th><span>관심분야</span></th>
 									<th><span>가입일</span></th>
-									<th><span>최근로그인</span></th>
+									<th><span>방문횟수</span></th>
 									<th><span></span></th>
 								</tr>
 							</thead>
@@ -716,20 +749,10 @@ span {
 										<td><span>${userBean.getUser_name()}</span></td>
 										<td><span>${userBean.getUser_id()}</span></td>
 										<td><span>${userBean.getUser_birthdate()}</span></td>
-										<td><span>${userBean.getUser_phoneNum()}</span></td>
-											
-										<c:choose>
-											<c:when test="${userBean.getUser_interests()==null}">
-												<td><span></span></td>
-											</c:when>
-											<c:otherwise>
-												<td><span>${userBean.getUser_interests()}</span></td>
-											</c:otherwise>
-										</c:choose>	
-																			
+										<td><span>${userBean.getUser_phoneNum()}</span></td>													
 										<td><span>${userBean.getUser_joinDate()}</span></td>			
 										<td><span>${userBean.getUser_visitCount()}회</span></td>
-										<td><span><button type="button" onclick="getUserInfo(${userBean.getUser_idx()})">상세정보</button></span></td>	
+<%-- 									<td><span><button type="button" onclick="getUserInfo(${userBean.getUser_idx()})">상세정보</button></span></td> --%>	
 									</tr>
 								</c:forEach>			
 							</tbody>
@@ -753,7 +776,7 @@ span {
 	</div>
 
 
-	<!-- 상세정보 모달창 -->
+	<!--  상세정보 모달창 -->
 	<div class="modalBackground" id="userModalBackground">
 		<div class="modalContainer" id="">	
 			<div class="modalContainerHd">
@@ -782,8 +805,9 @@ span {
 				</div>
 			</div>
 		</div>
-	</div>
-
+	</div> -->
+	
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
 		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

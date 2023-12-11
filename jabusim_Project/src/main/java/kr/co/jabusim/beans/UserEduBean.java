@@ -12,7 +12,6 @@ public class UserEduBean {
 	private String userEdu_academy;
 	private String userEdu_major;
 	private String userEdu_inquiryDate;
-	private String userEdu_processDate;
 	private String userEdu_processStatus;
 	
 	
@@ -56,18 +55,12 @@ public class UserEduBean {
 	}
 	public String getUserEdu_inquiryDate() {	
 		        
-		return userEdu_inquiryDate;
+		return userEdu_inquiryDate.replace(" 00:00:00", "");
 	}
 	public void setUserEdu_inquiryDate(String userEdu_inquiryDate) {
 		this.userEdu_inquiryDate = userEdu_inquiryDate;
 	}
-	public String getUserEdu_processDate() {       
-		
-		return userEdu_processDate;
-	}
-	public void setUserEdu_processDate(String userEdu_processDate) {
-		this.userEdu_processDate = userEdu_processDate;
-	}
+	
 	public String getUserEdu_processStatus() {
 		return userEdu_processStatus;
 	}

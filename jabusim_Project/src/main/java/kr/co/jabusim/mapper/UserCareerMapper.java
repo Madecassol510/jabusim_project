@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.apache.ibatis.annotations.Update;
+
+
+import kr.co.jabusim.beans.CareerBean;
 
 import kr.co.jabusim.beans.UserCareerBean;
-import kr.co.jabusim.beans.UserEduBean;
+
 
 
 
@@ -24,13 +28,16 @@ public interface UserCareerMapper {
 	ArrayList<UserCareerBean> getUserCareerInfo(String user_idx);
 	
 	
+	//ajax 유저학력 검색
+	@Select("select * from userCareer_table where userCareer_idx = #{userCareer_idx}")
+	UserCareerBean  getUserCareer(String userCareer_idx);
+	
+	
 	//ajax 유저테이블 가져오기
 		ArrayList<UserCareerBean> userCareerTableSearch (
 				@Param("name") String name,
 	            @Param("inquriyStart") String inquriyStart,
-	            @Param("inquriyEnd") String inquriyEnd,
-	            @Param("processStart") String processStart,
-	            @Param("processEnd") String processEnd,    
+	            @Param("inquriyEnd") String inquriyEnd,   
 	            @Param("careerField") String careerField,
 	            @Param("careerType") List<String> careerType,        
 	            @Param("processStatus") List<String> processStatus
@@ -39,4 +46,25 @@ public interface UserCareerMapper {
 	//ajax 유저학력 삭제
 	@Delete("Delete from userCareer_table where userCareer_idx = #{userCareer_idx}")
 	void userCareerTableDelete (String userCareer_idx);
+	
+	
+	//UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
+	//ajax 유저학력 상태 변환
+	@Update("update userCareer_table set  userCareer_status = #{status} where userCareer_idx = #{userCareer_idx}")
+	void  updateUserCareerStatus(@Param("userCareer_idx") int userCareer_idx, @Param("status") String status);
+	
+	
+	//ajax 유저에게 학력 등록
+	@Insert("INSERT INTO career_table (career_idx, user_id, career_field, career_type, career_company) " +
+		   "VALUES (career_seq.nextval, #{user_id}, #{career_field}, #{career_type}, #{career_company})")
+	void insertUserCareer(CareerBean careerBean);
 }
+
+
+
+
+
+
+
+
+

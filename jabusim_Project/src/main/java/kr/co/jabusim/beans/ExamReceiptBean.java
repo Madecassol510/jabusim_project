@@ -58,19 +58,19 @@ public class ExamReceiptBean {
 		this.exam_type = exam_type;
 	}
 	public String getExamReceipt_date() {
-		return examReceipt_date;
+		return examReceipt_date.replace(" 00:00:00", "");
 	}
 	public void setExamReceipt_date(String examReceipt_date) {
 		this.examReceipt_date = examReceipt_date;
 	}
 	public String getExam_date() {
-		return exam_date;
+		return exam_date.replace(" 00:00:00", "");
 	}
 	public void setExam_date(String exam_date) {
 		this.exam_date = exam_date;
 	}
 	public String getExam_resultDate() {
-		return exam_resultDate;
+		return exam_resultDate.replace(" 00:00:00", "");
 	}
 	public void setExam_resultDate(String exam_resultDate) {
 		this.exam_resultDate = exam_resultDate;

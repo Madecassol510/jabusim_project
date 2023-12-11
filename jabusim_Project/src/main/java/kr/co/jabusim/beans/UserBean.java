@@ -128,7 +128,9 @@ public class UserBean {
 	}
 
 	public void setUser_joinDate(String user_joinDate) {
-		this.user_joinDate = user_joinDate;
+		
+		
+		this.user_joinDate = user_joinDate.replace(" 00:00:00", "");
 	}
 
 	public int getUser_visitCount() {
@@ -137,22 +139,6 @@ public class UserBean {
 
 	public void setUser_visitCount(int user_visitCount) {
 		this.user_visitCount = user_visitCount;
-	}
-
-	public String getUser_interests() {
-		return user_interests;
-	}
-
-	public void setUser_interests(String user_interests) {
-		this.user_interests = user_interests;
-	}
-
-	public String getUser_photo() {
-		return user_photo;
-	}
-
-	public void setUser_photo(String user_photo) {
-		this.user_photo = user_photo;
 	}
 
 	public boolean isUserIdExist() {

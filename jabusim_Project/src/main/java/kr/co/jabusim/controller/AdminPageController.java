@@ -160,9 +160,6 @@ public class AdminPageController {
 	}
 	
 	
-	
-	
-	
 	// 시험합격률
 	@GetMapping("/passingRate")
 	public String passingRate() {

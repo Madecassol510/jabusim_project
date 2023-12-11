@@ -383,14 +383,7 @@
 							<div class="act_info">
 								<div class="act_infotitle">관심분야</div>
 								<div>
-									<c:choose>
-										<c:when test="${myPageUserBean.getUser_interests()==null}">
-											없음
-										</c:when>
-										<c:otherwise>
-											${myPageUserBean.getUser_interests()}
-										</c:otherwise>
-									</c:choose>
+									
 								</div>
 							</div>
 							<div class="act_info">

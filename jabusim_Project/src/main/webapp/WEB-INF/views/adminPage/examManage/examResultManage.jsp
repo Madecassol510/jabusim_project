@@ -253,7 +253,7 @@ span {
 	
 	.footer .footerBox{
 		display: grid;
-        grid-template-columns: repeat(2, 180px); /* 2개의 동일한 폭의 칸으로 나눔 */
+        grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
         grid-template-rows: repeat(1, 90px);
         gap: 20px;
         margin-right: 100px;
@@ -367,7 +367,7 @@ span {
 	     });
 	}
 	
-	unction updateModel(examResultBeanList) {
+	function updateModel(examResultBeanList) {
 	    var dynamicHtml = "";
 	    var searchResultContainer = document.getElementById('searchResultContainer');
 
@@ -389,6 +389,43 @@ span {
 	    }
 
 	    searchResultContainer.innerHTML = dynamicHtml;
+	}
+	
+	
+	
+	function checkAll(clickedCheckbox) {
+		
+	    // 클릭한 체크박스의 상태 가져오기
+	    var isChecked = clickedCheckbox.checked;
+	    
+		if(isChecked){
+			checkedCount = 0;
+			
+			var checkboxes = document.querySelectorAll('.checkList');
+		    checkboxes.forEach(function(checkbox) {
+		    	checkedCount++;
+		    	checkbox.checked = isChecked;
+		    });
+			
+		}
+		else{
+			var checkboxes = document.querySelectorAll('.checkList');
+		    checkboxes.forEach(function(checkbox) {
+		    	checkbox.checked = isChecked;
+		    });
+			
+		    checkedCount = 0;
+		}
+		
+		
+		var footerHd = document.querySelector('.footerHd span');
+		footerHd.textContent = "총 " + checkedCount + "개 선택";
+		
+		if (checkedCount <= 0) {
+		     footer.style.display = 'none'; // 체크된 체크 박스가 없을 때 푸터를 숨김
+		} else {
+		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
+		}   
 	}
 </script>
 
@@ -506,7 +543,7 @@ span {
 						<table>
 							<thead>
 								<tr>
-									<th><input type="checkbox"></th>
+									<th><input type="checkbox" onclick="checkAll(this) "></th>
 									<th><span>no.</span></th>
 									<th><span>응시자</span></th>
 									<th><span>응시자ID</span></th>

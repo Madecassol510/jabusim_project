@@ -78,7 +78,7 @@ public class ExamBean {
 	}
 
 	public String getExam_receiptStartDate() {
-		return exam_receiptStartDate;
+		return exam_receiptStartDate.replace(" 00:00:00", "");
 	}
 
 	public void setExam_receiptStartDate(String exam_receiptStartDate) {
@@ -86,7 +86,7 @@ public class ExamBean {
 	}
 
 	public String getExam_receiptEndDate() {
-		return exam_receiptEndDate;
+		return exam_receiptEndDate.replace(" 00:00:00", "");
 	}
 
 	public void setExam_receiptEndDate(String exam_receiptEndDate) {
@@ -94,7 +94,7 @@ public class ExamBean {
 	}
 
 	public String getExam_date() {
-		return exam_date;
+		return exam_date.replace(" 00:00:00", "");
 	}
 
 	public void setExam_date(String exam_date) {
@@ -102,7 +102,7 @@ public class ExamBean {
 	}
 
 	public String getExam_resultDate() {
-		return exam_resultDate;
+		return exam_resultDate.replace(" 00:00:00", "");
 	}
 
 	public void setExam_resultDate(String exam_resultDate) {

@@ -256,7 +256,7 @@ span {
 	
 	.footer .footerBox{
 		display: grid;
-        grid-template-columns: repeat(2, 180px); /* 2개의 동일한 폭의 칸으로 나눔 */
+        grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
         grid-template-rows: repeat(1, 90px);
         gap: 20px;
         margin-right: 100px;
@@ -296,8 +296,7 @@ span {
 	var name;
 	var inquriyStart;
 	var inquriyEnd;
-	var processStart;
-	var processEnd;
+
 	var careerField;
 	var careerType = [];
 	var processStatus =[];
@@ -307,8 +306,7 @@ span {
 	     name = null;
 	     inquiryStart = null;  // 여기를 변경하려는 변수명으로 수정해야 합니다.
 	     inquiryEnd = null;
-	     processStart = null;
-	     processEnd = null;
+
 	     careerField = null;     
 	     careerType = [];
 	     processStatus = [];
@@ -316,8 +314,7 @@ span {
 	     name = document.getElementById("nameInput").value;
 		 inquriyStart = document.getElementById("inquriyStartInput").value;
 		 inquriyEnd = document.getElementById("inquriyEndInput").value;
-		 processStart = document.getElementById("processStartInput").value;
-		 processEnd = document.getElementById("processEndInput").value;
+
 
 	     // select 태그의 DOM 요소 가져오기
 	     var selectElement = document.getElementById("careerFieldInput");
@@ -332,20 +329,9 @@ span {
 	         careerType.push($(this).val());    
 	     });
 
-	     var inquiryStartDate = new Date(inquiryStart);  // 여기도 동일하게 수정
-	     var inquiryEndDate = new Date(inquiryEnd);
 
-	     var processStartDate = new Date(processStart);
-	     var processEndDate = new Date(processEnd);
-
-	     if(inquiryStartDate > inquiryEndDate){
-	         alert("문의기간을 제대로 기입해주세요");
-	     } else if(processStartDate > processEndDate){
-	         alert("처리기간을 제대로 기입해주세요");        
-	     } else{
-	         //ajax 검색
-	         tableSearch();
-	     }
+	     //ajax 검색
+	     tableSearch();
 	 }
 		
 	// ajax 검색
@@ -357,8 +343,6 @@ span {
 	        url: '/jabusim_Project/admin/userCareerTableSearch/?name=' + name + 
 	        		'&inquriyStart=' + inquriyStart + 
 	        		'&inquriyEnd=' + inquriyEnd + 
-	        		'&processStart=' + processStart +
-	        		'&processEnd=' + processEnd + 
 	        		'&careerField=' + careerField +
 	        		'&careerType=' + careerType +
 	        		'&processStatus=' + processStatus,
@@ -386,7 +370,6 @@ span {
 	            "<td><span>" + userCareerBean.userCareer_type + "</span></td>" +
 	            "<td><span>" + userCareerBean.userCareer_company + "</span></td>" +
 	            "<td><span>" + userCareerBean.userCareer_inquiryDate + "</span></td>" +
-	            "<td><span>" + (userCareerBean.userCareer_processDate ? userCareerBean.userCareer_processDate : "") + "</span></td>" +
 	            "<td><span>" + userCareerBean.userCareer_status + "</span></td></tr>";
 	    }
 
@@ -465,7 +448,7 @@ span {
 		if(checkedCount>0){
 			$.ajax({
 		        type : 'GET',
-		        url: '/jabusim_Project/admin/userTableDelete/?checkedList=' + checkedList,
+		        url: '/jabusim_Project/admin/userCareerTableDelete/?checkedList=' + checkedList,
 		        success : function(result) {
 		           console.log("성공");
 		           alert("삭제했습니다");
@@ -484,6 +467,68 @@ span {
 		} else {
 		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
 		}
+	}
+	
+	function updateList(status){
+		var checkboxes = document.querySelectorAll('.checkList');
+		
+		var checkedList = [];
+		
+		checkboxes.forEach(function(checkbox) {
+		    if (checkbox.checked) {
+		      checkedList.push(checkbox.value); // 체크된 체크박스의 값을 배열에 추가
+		    }
+		  });
+		
+		if(checkedCount>0){
+			$.ajax({
+		        type : 'GET',
+		        url: '/jabusim_Project/admin/userCareerTableUpdate/?checkedList=' + checkedList + 
+		        '&status=' + status,
+		        success : function(result) {
+		           console.log("성공");
+		           alert("수정했습니다");
+		           resetCheck();
+		           fieldSearch();
+		        }
+		     });		
+		}				
+	}
+	
+	
+	function checkAll(clickedCheckbox) {
+		
+	    // 클릭한 체크박스의 상태 가져오기
+	    var isChecked = clickedCheckbox.checked;
+	    
+		if(isChecked){
+			checkedCount = 0;
+			
+			var checkboxes = document.querySelectorAll('.checkList');
+		    checkboxes.forEach(function(checkbox) {
+		    	checkedCount++;
+		    	checkbox.checked = isChecked;
+		    });
+			
+		}
+		else{
+			var checkboxes = document.querySelectorAll('.checkList');
+		    checkboxes.forEach(function(checkbox) {
+		    	checkbox.checked = isChecked;
+		    });
+			
+		    checkedCount = 0;
+		}
+		
+		
+		var footerHd = document.querySelector('.footerHd span');
+		footerHd.textContent = "총 " + checkedCount + "개 선택";
+		
+		if (checkedCount <= 0) {
+		     footer.style.display = 'none'; // 체크된 체크 박스가 없을 때 푸터를 숨김
+		} else {
+		     footer.style.display = 'flex'; // 체크된 체크 박스가 있을 때 푸터를 표시
+		}   
 	}
 </script>
 
@@ -544,25 +589,15 @@ span {
 											<!-- max="2077-06-20" -->
 										</div>
 									</td>
-								</tr>
-								<tr>
-									<th class="searchHd">처리날짜</th>
-									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="date" id="processStartInput"/> ~ 
-											<input type="date" id="processEndInput"/>
-											<!-- max="2077-06-20" -->
-										</div>
-									</td>
-								</tr>
+								</tr>								
 								<tr>
 									<th class="searchHd">처리상태</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="checkbox" value="수락"  name="processStatusInput" /> 수락
+											<input type="checkbox" value="수락완료"  name="processStatusInput" /> 수락완료
 										</div>
 										<div class="searchReq">
-											<input type="checkbox" value="거절" name="processStatusInput" /> 거절
+											<input type="checkbox" value="거절완료" name="processStatusInput" /> 거절완료
 										</div>
 										<div class="searchReq">
 											<input type="checkbox" value="대기" name="processStatusInput" /> 대기
@@ -593,7 +628,7 @@ span {
 						<table>
 							<thead>
 								<tr>
-									<th><input type="checkbox"></th>
+									<th><input type="checkbox" onclick="checkAll(this)"></th>
 									<th><span>no.</span></th>
 									<th><span>이름</span></th>
 									<th><span>아이디</span></th>
@@ -601,7 +636,6 @@ span {
 									<th><span>경력구분</span></th>									
 									<th><span>업체명</span></th>
 									<th><span>문의날짜</span></th>
-									<th><span>처리날짜</span></th>
 									<th><span>처리상태</span></th>								
 								</tr>
 							</thead>
@@ -616,16 +650,7 @@ span {
 										<td><span>${userCareerBean.getUserCareer_type()}</span></td>
 										<td><span>${userCareerBean.getUserCareer_company()}</span></td>								
 										<td><span>${userCareerBean.getUserCareer_inquiryDate()}</span></td>	
-										
-										<c:choose>
-											<c:when test="${userCareerBean.getUserCareer_processDate()==null}">
-												<td><span></span></td>
-											</c:when>
-											<c:otherwise>
-												<td><span>${userCareerBean.getUserCareer_processDate()}</span></td>
-											</c:otherwise>
-										</c:choose>	
-										
+				
 										<td><span>${userCareerBean.getUserCareer_status()}</span></td>
 									</tr>
 								</c:forEach>
@@ -645,6 +670,8 @@ span {
 			</div>
 			<div class="footerButton">
 				<button type="button" onclick="deleteList()">삭제</button>
+				<button type="button" onclick="updateList('수락완료')">수락</button>
+				<button type="button" onclick="updateList('거절완료')">거절</button>
 			</div>
 		</div>
 	</div>

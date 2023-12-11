@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.beans.UserCareerBean;
 import kr.co.jabusim.beans.UserEduBean;
+import kr.co.jabusim.beans.CareerBean;
+import kr.co.jabusim.beans.EduBean;
 import kr.co.jabusim.beans.ExamBean;
 import kr.co.jabusim.beans.ExamPlaceBean;
 import kr.co.jabusim.beans.ExamReceiptBean;
@@ -116,21 +118,17 @@ public class AdminRestController {
 			@RequestParam("name") String name,
             @RequestParam("inquriyStart") String inquriyStart,
             @RequestParam("inquriyEnd") String inquriyEnd,
-            @RequestParam("processStart") String processStart,
-            @RequestParam("processEnd") String processEnd,
             @RequestParam("processStatus") List<String> processStatus,
 			@RequestParam("eudList") List<String> eudList){
 		
 		System.out.println(name);
 		System.out.println(inquriyStart);
 		System.out.println(inquriyEnd);
-		System.out.println(processStart);
-		System.out.println(processEnd);
 		System.out.println(processStatus);		
 		System.out.println("hello");
 		
 		ArrayList<UserEduBean> searchList 
-		= userEduMapper.userEduTableSearch(name, inquriyStart, inquriyEnd, processStart,processEnd, processStatus, eudList);
+		= userEduMapper.userEduTableSearch(name, inquriyStart, inquriyEnd, processStatus, eudList);
 
 		return ResponseEntity.ok(searchList);
 	}
@@ -145,16 +143,55 @@ public class AdminRestController {
 		
 		return ResponseEntity.noContent().build();
 	}
+		
+	//학력문의 업데이트
+	@GetMapping("/admin/userEduTableUpdate")
+	public ResponseEntity<Void> userEduTableUpdate(
+			@RequestParam("checkedList") List<String> checkedList,
+			@RequestParam("status") String status
+			) {
+		
+		System.out.println(checkedList);
+		System.out.println(status);
+		System.out.println("===============================");
+		for(int i=0; i<checkedList.size(); i++) {	
 			
+			UserEduBean userEduBean = userEduMapper.getUserEdu(checkedList.get(i));	
+			System.out.println(userEduBean.getUserEdu_processStatus());
+			
+			if(userEduBean.getUserEdu_processStatus().equals("대기")){
+				if(status.equals("수락완료")) {
+					String user_id = userEduBean.getUser_id();
+					String edu_type = userEduBean.getUserEdu_type();
+					String edu_academy = userEduBean.getUserEdu_academy();
+					String edu_major = userEduBean.getUserEdu_major();
+				
+					EduBean eduBean = new EduBean();
+					
+					eduBean.setUser_id(user_id);
+					eduBean.setEdu_type(edu_type);
+					eduBean.setEdu_academy(edu_academy);
+					eduBean.setEdu_major(edu_major);
+					
+					userEduMapper.insertUserEdu(eduBean);	
+					userEduMapper.updateUserEduStatus(userEduBean.getUserEdu_idx(), status);						
+				}
+				else if(status.equals("거절완료")) {
+					userEduMapper.updateUserEduStatus(userEduBean.getUserEdu_idx(), status);
+				}
+			}
+		}
+			
+		return ResponseEntity.noContent().build();
+	}
+		
 	//==========================================================================================================
 	//경력문의 검색
 	@GetMapping("/admin/userCareerTableSearch")
 	public ResponseEntity<List<UserCareerBean>> userCareerTableSearch( 
 			@RequestParam("name") String name,
             @RequestParam("inquriyStart") String inquriyStart,
-            @RequestParam("inquriyEnd") String inquriyEnd,
-            @RequestParam("processStart") String processStart,
-            @RequestParam("processEnd") String processEnd,           
+            @RequestParam("inquriyEnd") String inquriyEnd,          
             @RequestParam("careerField")  String careerField,      
             @RequestParam("careerType") List<String> careerType, 
             @RequestParam("processStatus") List<String> processStatus
@@ -164,15 +201,13 @@ public class AdminRestController {
 		System.out.println(name);
 		System.out.println(inquriyStart);
 		System.out.println(inquriyEnd);
-		System.out.println(processStart);
-		System.out.println(processEnd);
 		System.out.println(careerField);
 		System.out.println(careerType);
 		System.out.println(processStatus);
 		System.out.println("world");
 		
 	    ArrayList<UserCareerBean> searchList = userCareerMapper.userCareerTableSearch(
-	            name, inquriyStart, inquriyEnd, processStart, processEnd, careerField, careerType, processStatus);
+	            name, inquriyStart, inquriyEnd, careerField, careerType, processStatus);
 
 	  
 		
@@ -193,15 +228,45 @@ public class AdminRestController {
 	
 	
 	//경력문의 업데이트
-	@GetMapping("/admin/userCareerTableUpdate")
-	public ResponseEntity<Void> userCareerTableUpdate(@RequestParam("checkedList") List<String> checkedList) {
+		@GetMapping("/admin/userCareerTableUpdate")
+		public ResponseEntity<Void> userCareerTableUpdate(
+				@RequestParam("checkedList") List<String> checkedList,
+				@RequestParam("status") String status
+				) {
 			
-		for(int i=0; i<checkedList.size(); i++) {
-			//userCareerMapper.userCareerTableUpdate(checkedList.get(i));
+			System.out.println(checkedList);
+			System.out.println(status);
+			System.out.println("===============================");
+			for(int i=0; i<checkedList.size(); i++) {	
+				
+				UserCareerBean userCareerBean = userCareerMapper.getUserCareer(checkedList.get(i));	
+				System.out.println(userCareerBean.getUserCareer_status());
+				
+				if(userCareerBean.getUserCareer_status().equals("대기")){
+					if(status.equals("수락완료")) {
+						String user_id = userCareerBean.getUser_id();
+						String career_field = userCareerBean.getUserCareer_field();
+						String career_type = userCareerBean.getUserCareer_type();
+						String career_company = userCareerBean.getUserCareer_company();
+					
+						CareerBean careerBean = new CareerBean();
+						
+						careerBean.setUser_id(user_id);
+						careerBean.setCareer_field(career_field);
+						careerBean.setCareer_type(career_type);
+						careerBean.setCareer_company(career_company);
+						
+						userCareerMapper.insertUserCareer(careerBean);	
+						userCareerMapper.updateUserCareerStatus(userCareerBean.getUserCareer_idx(), status);						
+					}
+					else if(status.equals("거절완료")) {
+						userCareerMapper.updateUserCareerStatus(userCareerBean.getUserCareer_idx(), status);
+					}
+				}
+			}
+				
+			return ResponseEntity.noContent().build();
 		}
-			
-		return ResponseEntity.noContent().build();
-	}
 		
 			
 	//==========================================================================================================

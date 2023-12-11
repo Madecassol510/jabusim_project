@@ -24,8 +24,6 @@ public interface LicenseMapper {
 	
 	
 	
-	
-	
 	//모든 유저의 학력 리스트
 	@Select("select * from license_table")
 	ArrayList<LicenseBean> allLicenseInfo();

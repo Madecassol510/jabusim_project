@@ -11,7 +11,6 @@
         <result property="userEdu_academy" column="userEdu_academy"/>
         <result property="userEdu_major" column="userEdu_major"/>
         <result property="userEdu_inquiryDate" column="userEdu_inquiryDate"/>
-        <result property="userEdu_processDate" column="userEdu_processDate"/>
         <result property="userEdu_processStatus" column="userEdu_processStatus"/>
         <!-- 나머지 필드들에 대한 매핑 추가 -->
     </resultMap>
@@ -24,8 +23,6 @@
             <when test="(name != null and name != '') or 
                 (inquriyStart != null and inquriyStart != '') or 
                 (inquriyEnd != null and inquriyEnd != '') or
-                (processStart != null and processStart != '') or
-                (processEnd != null and processEnd != '') or
                 (processStatus != null and processStatus.size() > 0) or
                 (eudList != null and eudList.size() > 0)
              	">
@@ -41,14 +38,7 @@
                 <if test="inquriyEnd != null and inquriyEnd != ''">
                    <![CDATA[ AND userEdu_processDate <= TO_DATE(#{inquriyEnd}, 'YYYY-MM-DD') ]]>
                 </if>
-                
-                <if test="processStart != null and processStart != ''">
-                    AND userEdu_processDate >= TO_DATE(#{processStart}, 'YYYY-MM-DD')
-                </if>            
-                <if test="processEnd != null and processEnd != ''">
-                   <![CDATA[ AND userEdu_processDate <= TO_DATE(#{processEnd}, 'YYYY-MM-DD') ]]>
-                </if>
-                
+                   
                 <if test="processStatus.size() > 0">
                     AND (
                         <foreach item="item" collection="processStatus" separator=" OR ">
