@@ -1,5 +1,8 @@
 package kr.co.jabusim.controller;
 
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.jabusim.beans.ExamResultBean;
 import kr.co.jabusim.beans.UserBean;
+import kr.co.jabusim.mapper.ExamMapper;
+import kr.co.jabusim.mapper.ExamResultMapper;
 import kr.co.jabusim.service.UserService;
 import kr.co.jabusim.validator.UserValidator;
 
@@ -25,6 +31,10 @@ public class MyPageController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ExamResultMapper examResultMapper;
+	
 	
 	//마이페이지
 	@GetMapping("/main")
@@ -38,17 +48,20 @@ public class MyPageController {
 	}
 	
 
-	//자격증일정
-	@GetMapping("/licenseSchedule")
-	public String licenseSchedule() {
-		return "mypage/licenseSchedule";
-	}
 	
 	//--------------------------------myDetailManage------------------------------------
 	
 	//시험결과
 	@GetMapping("/myDetailManage/exam_result")
-	public String exam_result() {
+	public String exam_result(Model model) {
+		
+		UserBean myPageUserBean = userService.getUserAllInfo();
+		
+		ArrayList<ExamResultBean> userExamResultBeans =  examResultMapper.getUserExamResultList(myPageUserBean.getUser_id());
+
+		model.addAttribute("userExamResultBeans", userExamResultBeans);
+		
+		
 		return "mypage/myDetailManage/exam_result";
 	}
 	
@@ -142,12 +155,6 @@ public class MyPageController {
 	public String careerModify() {	
 		return "mypage/myInfoManage/careerModify";
 	}
-	
-	//자격증 보유 증명
-		@GetMapping("/myInfoManage/liceseAttestation")
-		public String liceseAttestation() {	
-			return "mypage/myInfoManage/liceseAttestation";
-		}
 	
 	//-----------------------------------------------------------------------------------
 	

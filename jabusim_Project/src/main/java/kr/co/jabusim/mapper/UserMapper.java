@@ -32,6 +32,7 @@ public interface UserMapper {
 			+ "where user_id= #{user_id} and user_pw=#{user_pw}")
 	UserBean getLoginUserInfo(UserBean tempLoginUserBean);
 	
+	
 	//로그인 할떄 방문 횟수 올리기
 	@Update("update user_table SET user_visitCount = user_visitCount + 1 WHERE user_idx = #{user_idx}")
 	void raiseVisitCount(int user_idx);
