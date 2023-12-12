@@ -17,19 +17,14 @@ import kr.co.jabusim.beans.UserLicenseBean;
 
 public interface LicenseMapper {
 
-	
-	
-	@Select("select DISTINCT licenseField From license ORDER BY licensefield")
-	List<String> getLicenseCode();
-	
 	@Select("select distinct license_mainCategory from license_table")
 	List<String> getLicenseType();
-	
 	
 	
 	//모든 유저의 학력 리스트
 	@Select("select * from license_table")
 	ArrayList<LicenseBean> allLicenseInfo();
+	
 	
 	
 	//ajax 유저테이블 가져오기

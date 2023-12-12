@@ -38,6 +38,7 @@
 		
 	});
 	
+	
 </script>
 
 
@@ -92,14 +93,20 @@
 		                       <td>${examBean.exam_date}</td>
 		                       <td>
 		                       	<form action="${root}receipt/receipt_select_subject" method="post">
-								    <!-- 폼 입력 필드들 -->
-								    <button type="submit">제출</button>
+									<!-- 숨겨진 입력 필드 추가 -->
+					               <input type="hidden" name="examName" value="${examBean.exam_name}" />
+					               <input type="hidden" name="examType" value="${examBean.exam_type}" />
+					               <input type="hidden" name="licenseType" value="${examBean.exam_licenseType}" />
+					               <input type="hidden" name="examResultDate" value="${examBean.exam_resultDate}" />
+					               <input type="hidden" name="examDate" value="${examBean.exam_date}" />
+					               <!-- 기타 필요한 폼 입력 필드들 -->
+					               <button type="submit" class="id_btn" data-licenseType="${examBean.exam_licenseType}">제출</button>
 								</form>
 		                       </td>
 		                   </tr>
 		               	</c:forEach>
-		                
 		            </tbody>
+		            
 		        </table>
 	        </article>
 		</section>
@@ -112,6 +119,18 @@
 <c:import url="/WEB-INF/views/include/buttom_info.jsp" />
 
 
-
 </body>
+<script>
+function saveLicenseType(licenseTypeValue) {
+    sessionStorage.setItem('licenseType', licenseTypeValue);
+}
+
+document.querySelectorAll('.id_btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        var licenseTypeValue = this.getAttribute('data-licenseType');
+        saveLicenseType(licenseTypeValue);
+    });
+});
+</script>
+
 </html>

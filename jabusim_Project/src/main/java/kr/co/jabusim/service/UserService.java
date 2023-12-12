@@ -64,6 +64,7 @@ public class UserService {
 		//가져온 값이 있다면 세션 영역으로 데이터 이동
 		if(tempLoginUserBean2 != null) {
 			loginUserBean.setUser_idx(tempLoginUserBean2.getUser_idx());
+			loginUserBean.setUser_id(tempLoginUserBean2.getUser_id());
 			loginUserBean.setUser_name(tempLoginUserBean2.getUser_name());
 			loginUserBean.setUserLogin(true);
 		}

@@ -29,13 +29,14 @@ function getLicenseType() {
             url: "/jabusim_Project/getLicenseType",
             method: 'GET',
             success: function(getLicenseType) {
+				console.log(getLicenseType);
                 resolve(getLicenseType);
             },
             error: function(xhr, status, error) {
                 reject(error);
             }
-        });
-    });
+        })
+    })
 }
 
 function getAllLicenseList() {

@@ -16,7 +16,7 @@ public interface ExamMapper {
 
 	@Select("SELECT *from exam_table\r\n"
 			+ "WHERE \r\n"
-			+ "    (SYSDATE+11 BETWEEN exam_receiptStartDate AND exam_receiptEndDate)")
+			+ "    (SYSDATE+7 BETWEEN exam_receiptStartDate AND exam_receiptEndDate)")
 	ArrayList<ExamBean> getRegisting();
 	
 	

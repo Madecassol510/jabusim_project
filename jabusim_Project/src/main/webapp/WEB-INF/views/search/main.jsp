@@ -17,10 +17,9 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="${root}css/search_main/search_main.css" />
 <!-- AJAX -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 	<%request.setCharacterEncoding("UTF-8");%>
 	
@@ -41,12 +40,16 @@
 		/*ajax 함수 요청*/
 	    try {
 	        var licenseType = await getLicenseType();
+	        console.log(licenseType);
 	        var allLicenseList = await getAllLicenseList();
+	        console.log(allLicenseList);
 	        const listBox1 = document.getElementById('list_box1');
 	        const listBox2 = document.getElementById('list_box2');
 	        const listBox3 = document.getElementById('list_box3');
+	        const listBox4 = document.getElementById('list_box4');
 	        console.log(allLicenseList.length);
 	        
+	        /*대분류버튼 생성*/
 	        licenseType.forEach(lt => {
 	        	var majorCodeDesc = lt;
 	        	const majorButton = document.createElement('button');
@@ -58,11 +61,12 @@
 	            majorItem.appendChild(majorButton);
 				
 	            handleItemSelect(majorButton, majorCodeDesc, majorCodeDesc, "majorCode");
+  
+	            /*대분류버튼 클릭시 해당 소분류 생성*/
 	            majorButton.addEventListener('click', function() {
 	            	//클릭시 배열방 담음
        				
                     listBox2.innerHTML = '';
-
                     const minorCodes = codeMapping[majorCodeDesc];
                     minorCodes.forEach(minorCode => {
                  	   
@@ -79,7 +83,7 @@
                 })//대분류 클릭이벤트
 	        });//대분류생성
 	        
-	        
+	        /*소분류 전체 생성*/
 	        licenseType.forEach(fmOne => {
 	        	const firstMinorCode = codeMapping[fmOne];
 	        	firstMinorCode.forEach(fmTwo => {
@@ -93,14 +97,39 @@
 					firstMinorItem.appendChild(firstMinorButton);
 					//클릭시 배열방 담음
 					handleItemSelect(firstMinorButton, fmTwo, fmTwo, "minorCode");
-	        		
-	        	});
-	        });
+	        	})
+	        })
+	        
+	        /*자격증 종류 버튼 생성*/
+	        const licenseKind = ['기능사', '기사', '기술사', '기능장'];
+	        licenseKind.forEach(kind => {
+   				const kindButton = document.createElement('button');
+   				let kindButtonDesc ='';
+   				kindButton.className = 'lt-button w-100 h-100';
+   				if(kind === '기능사') {
+   					kindButtonDesc = '기능사'
+					kindButton.textContent = '기능사';
+   				} else if(kind === '기사') {
+   					kindButtonDesc = '기사'
+					kindButton.textContent = '기사';
+   				} else if(kind === '기술사') {
+   					kindButtonDesc = '기술사'
+					kindButton.textContent = '기술사';
+   				} else if(kind === '기능장') {
+   					kindButtonDesc = '기능장'
+					kindButton.textContent = '기능장';
+   				}
+
+   				const kindItem = document.createElement('li');
+                listBox3.appendChild(kindItem);
+                kindItem.appendChild(kindButton);
+                //클릭시 배열방 담음
+                handleItemSelect(kindButton, kind, kindButtonDesc, "kind");
+   			})
 	        
 	        
-	        
+	        /*일정 버튼 생성*/
 			const scheduleArray = ['beRegisting', 'notRegisted', 'closeRegisted'];
-	    	
 	    	scheduleArray.forEach(sc => {
    				const scButton = document.createElement('button');
    				let scButtonDesc ='';
@@ -115,63 +144,67 @@
    					scButtonDesc = '접수마감'
    					scButton.textContent = '접수마감';
    				}
-
    				const scItem = document.createElement('li');
-                listBox3.appendChild(scItem);
+                listBox4.appendChild(scItem);
                 scItem.appendChild(scButton);
                 //클릭시 배열방 담음
                 handleItemSelect(scButton, sc, scButtonDesc, "schedule");
-   			});
+   			})
 	        		
-	        const list_area = document.getElementById('list_area');
-	        //전체 페이지 로드
+	        /*자격증 로드 함수 실행*/
 	        createLicenseList(allLicenseList);
-	        
+	    	const list_area = document.getElementById('list_area');
 	    } catch (error) {
 	        console.error('오류 발생:', error);
 	    }
 	    
-	    
-		    
 	}); //document ready
 	
+	/*페이지 로드시 자격증 버튼 생성*/
 	async function createLicenseList(licenseData) {
-	    list_area.innerHTML = '';
-	 
-	    licenseData.forEach(allLi => {
-	        const licenseID = allLi.licenseID;
-	        const licenseName = allLi.licenseName;
-	        const examName = allLi.examName;
-	        const registrationPeriod = allLi.registrationPeriod;
-	        const examDateStr = allLi.examDate;
-	        const examDateObj = new Date(examDateStr);
+    list_area.innerHTML = '';
 
-	        const licenseList = document.createElement('ul');
-	        licenseList.className = 'list-item';
-	        licenseList.id = 'list-item' + licenseID;
+    licenseData.forEach(allLi => {
+        const licenseID = allLi.license_idx;
+        const licenseName = allLi.license_name;
+        const examName = allLi.exam_name;
+        const registrationPeriod = allLi.registrationPeriod;
+        const examDateStr = allLi.examDate;
+        const examDateObj = new Date(examDateStr);
 
-	        const licenseNameLi = document.createElement('li');
-	        licenseNameLi.textContent = licenseName;
-	        licenseList.appendChild(licenseNameLi);
+        const licenseList = document.createElement('ul');
+        licenseList.className = 'list-item';
+        licenseList.id = 'list-item' + licenseID;
 
-	        const registrationPeriodLi = document.createElement('li');
-	        registrationPeriodLi.textContent = examName;
-	        licenseList.appendChild(registrationPeriodLi);
+        const licenseLink = document.createElement('a');
+        licenseLink.href = rootContextPath + "info/main?licenseID=" + licenseID;
 
-	        const periodLi = document.createElement('li');
-	        periodLi.textContent = registrationPeriod;
-	        licenseList.appendChild(periodLi);
+        // Append all list items to the anchor tag
+        const licenseNameLi = document.createElement('li');
+        licenseNameLi.textContent = licenseName;
+        licenseLink.appendChild(licenseNameLi);
 
-	        const examDateLi = document.createElement('li');
-	        examDateLi.textContent = examDateObj.toLocaleDateString(); // 날짜 형식을 보기 좋게 변환
-	        licenseList.appendChild(examDateLi);
+        const registrationPeriodLi = document.createElement('li');
+        registrationPeriodLi.textContent = examName;
+        licenseLink.appendChild(registrationPeriodLi);
 
-	        list_area.appendChild(licenseList);
-	    });
-	}
+        const periodLi = document.createElement('li');
+        periodLi.textContent = registrationPeriod;
+        licenseLink.appendChild(periodLi);
+
+        const examDateLi = document.createElement('li');
+        examDateLi.textContent = examDateObj.toLocaleDateString();
+        licenseLink.appendChild(examDateLi);
+
+        // Append the anchor tag to the list
+        licenseList.appendChild(licenseLink);
+
+        list_area.appendChild(licenseList);
+    });
+}
 	
 	
-	/*버튼 클릭시 none,flex 이벤트*/
+	/*버튼 클릭시 기능 추가*/
     document.addEventListener('DOMContentLoaded', function() {
 	    // 초기 상태에서는 아무것도 활성화되지 않았다고 가정합니다.
 	    let activeContent = null;
@@ -184,57 +217,17 @@
 	    const reset_btn = document.getElementById('reset_btn');
 	    const searchButton = document.getElementById('searchButton');
 
-	    /*리스트 항목 클릭시 드롭다운*/
-	    buttons.forEach(button => {
-	        button.addEventListener('click', function() {
-	        	const targetContent = this.getAttribute('data-target');
-
-	        	if (activeContent === targetContent) {
-	                // 활성화된 내용을 숨깁니다.
-	                contentsContainer.style.display = 'none';
-	                selectedShow.style.display = 'none';
-	                // 활성화된 내용을 리셋합니다.
-	                activeContent = null;
-	            } else {
-	                // 새로운 내용을 보여주기 위해 활성화된 내용을 업데이트합니다.
-	                activeContent = targetContent;
-	                contentsContainer.style.display = 'flex';
-	                selectedShow.style.display = 'flex';
-	                
-	            }//out if
-	        });
-	    });
 	    /* 리셋 기능 추가*/
 	    reset_btn.addEventListener('click', function() {
 	        popAllLicenseCodes();
 	    });
-	    
+	    /*여러 종류 조건 검색*/
 	    serch_condition.addEventListener('click', function() {
 	        selectAnyCategories();
 	    });
-	});
+	})
 	
-	function showMinorItem() {
-		licenseType.forEach(fmOne => {
-        	const firstMinorCode = codeMapping[fmOne];
-        	firstMinorCode.forEach(fmTwo => {
-        		
-				const firstMinorButton = document.createElement('button');
-				firstMinorButton.className = 'minor-button w-100 h-100';
-				firstMinorButton.textContent = fmTwo;
-				
-				const firstMinorItem = document.createElement('li');
-				listBox2.appendChild(firstMinorItem);
-				firstMinorItem.appendChild(firstMinorButton);
-				//클릭시 배열방 담음
-				handleItemSelect(firstMinorButton, fmTwo, fmTwo, "minorCode");
-        		
-        	})
-        })
-	};
-	
-	
-	
+	/*종류 버튼 클릭시 선택 박스에 담김*/
 	function handleItemSelect(button, code, codeDesc, type) {
 	    button.addEventListener('click', function() {
 	        // 여기에 클릭 이벤트에 대한 로직을 구현합니다.
@@ -242,7 +235,7 @@
 	    });
 	}
 	
-	
+	/*종류 버튼 클릭시 선택 박스에 담김2*/
 	function pushLicenseCode(type, code, codeDesc) {
 		let condition = { type: type, value: code };
 		if (!selectedCodes.some(c => c.type === type && c.value === code)) {
@@ -288,6 +281,9 @@
 		}
 		if (selectedCodes.some(item => item.type === 'minorCode')) {
 		    dataToSend.minorCode = selectedCodes.filter(item => item.type === 'minorCode').map(item => item.value);
+		}
+		if (selectedCodes.some(item => item.type === 'kind')) {
+		    dataToSend.kind = selectedCodes.filter(item => item.type === 'kind').map(item => item.value);
 		}
 		if (selectedCodes.some(item => item.type === 'schedule')) {
 		    dataToSend.schedule = selectedCodes.filter(item => item.type === 'schedule').map(item => item.value);
@@ -351,178 +347,8 @@
 </script>
 
 
-<style>
-ul, li {
-	list-style-type: none;
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-a, a:hover {
-	color: inherit;
-	text-decoration: none;
-}
-
-.pageContainer {
-	position: relative;
-	width: 1250px;
-	min-height: 700px;
-	margin: 0 auto;
-	padding-top: 80px;
-	border: 1px solid red;
-}
-
-.top_module {
-	min-height: 600px;
-	width: 100%;
-	border: 1px solid blue;
-	padding-top: 50px;
-	padding-bottom: 50px;
-	margin-bottom: 50px;
-}
-
-.top_module_inner {
-	width: 94%;
-	margin: 0 auto;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.list_serch {
-	width: 100%;
-	margin: 0 auto;
-	text-align: center;
-}
-
-.custom-btn button {
-	width: 390.41px; /* 버튼의 너비를 100%로 설정 */
-}
-
-.selected_show {
-	width: 100%;
-	margin: 0 auto;
-}
-
-.contents_container {
-	width: 100%; /* 전체 너비를 차지하도록 설정 */
-}
-
-.contents_container>ul {
-	width: 33.333%;
-}
-
-.list_box {
-	max-height: 200px;
-	overflow: auto;
-	overflow-x: hidden;
-}
-
-.list_box>li {
-	height: 40px;
-}
-
-.selected_show {
-	height: 80px;
-	max-height: 80px;
-	display: flex;
-}
-
-.seleted_box {
-	width: 780.82px;
-	padding: 10px 15px;
-	overflow: auto;
-	overflow-x: hidden;
-}
-
-.button_box {
-	padding: 20px 20px 20px 0;
-	display: flex;
-	grid-gap: 20px;
-	gap: 20px;
-	align-items: center;
-	margin-left: auto;
-}
-
-.major-button, .minor-button, .lt-button, .sc-button, .all-button {
-	background: none;
-	border: none;
-	cursor: pointer;
-	transition: background-color 0.3s;
-}
-
-.major-button:hover, .minor-button:hover, .lt-button:hover, .sc-button:hover, .all-button:hover {
-	background-color: #e0e0e0;
-}
-
-.selected-button {
-	background: none;
-	border: none;
-	cursor: pointer;
-}
-
-
-/* 바텀모듈 */
-.bottom_module {
-	min-height: 600px;
-	width: 100%;
-	border: 1px solid blue;
-	text-align: center;
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
-
-.bottom_module_inner {
-	width: 94%;
-	margin: 0 auto;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.list-item {
-	list-style-type: none; /* 기본 리스트 스타일 제거 */
-	padding-left: 0; /* 기본 패딩 제거 */
-	border: 1px solid #ddd;
-	margin-bottom: 10px;
-}
-
-.list-item>li {
-	margin-bottom: 5px;
-	padding: 5px;
-	display: table;
-}
-
-.d-day-class {
-	padding: 5px;
-	margin-right: 10px;
-}
-
-.certificate-name-class, .organizer-class, .registration-date-class,
-	.exam-date-class {
-	padding: 5px;
-	margin-right: 10px;
-}
-
-/* 각 클래스 별 배경색 */
-.certificate-name-class {
-	background-color: #d1ecf1;
-}
-
-.organizer-class {
-	background-color: #fff3cd;
-}
-
-.registration-date-class {
-	background-color: #cce5ff;
-}
-
-.exam-date-class {
-	background-color: #f5c6cb;
-}
-</style>
-
-
 </head>
+
 <body>
 
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
@@ -564,15 +390,18 @@ a, a:hover {
 									</ul>
 								</li>
 								<li class="flex-fill custom-btn">
-									<button class="btn btn-secondary">일정상태</button>
+									<button class="btn btn-secondary">종류</button>
 									<ul id="list_box3" class="list_box">
+										<!-- content2 내용 -->
+									</ul>
+								</li>
+								<li class="flex-fill custom-btn">
+									<button class="btn btn-secondary">시간</button>
+									<ul id="list_box4" class="list_box">
 										<!-- content3 내용 -->
 									</ul>
 								</li>
 							</ul>
-						</div>
-						<!-- #2 -->
-						<div class="contents_container">
 						</div>
 
 					</div>
@@ -621,49 +450,6 @@ a, a:hover {
 	</div>
 
 	<c:import url="/WEB-INF/views/include/buttom_info.jsp" />
-
-	<script>
-    	/* 탑 모듈 */
-    	/* const contents = {
-		    content1: ["항목 1-1", "항목 1-2", "항목 1-3"],
-		    content2: ["항목 2-1", "항목 2-2"],
-		    content3: ["항목 3-1"]
-		  }; 
-		  
-		  
-    	
-		let lastClicked = null;
-		  
-		function updatePreview(targetId) {
-			
-			if (targetId === 'content1') {
-			    $.ajax({
-			      url:  "/jabusim_Project/content1",
-			      method: 'GET',
-			      success: function(response) {
-			       console.log(response);
-			      },
-			      error: function(xhr, status, error) {
-			        // 오류 처리
-			      }
-			    });//ajax
-			  } else if (targetId === 'content2') {
-			    // content2에 대한 AJAX 요청
-			    // 유사한 AJAX 요청 구조...
-			  } else if (targetId === 'content3') {
-			    // content3에 대한 AJAX 요청
-			    // 유사한 AJAX 요청 구조...
-			  }//if문 끝
-			  
-		}//updatePreview
-		
-		 $('.list_serch_contents .btn').each(function() {
-			  $(this).on('click', function() {
-			    const targetContent = $(this).data('target');
-			    updatePreview(targetContent);
-			  });
-			}); */
-	</script>
 
 </body>
 

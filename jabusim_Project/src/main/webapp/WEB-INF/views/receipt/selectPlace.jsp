@@ -70,37 +70,15 @@
 			    <label for="regionSelect" class="form-label">지역선택</label>
 		        <select class="form-select" id="regionSelect">
 				    <option selected disabled value="">지역을 선택하세요</option>
-				    <option value="seoul">서울특별시</option>
-				    <option value="gyeonggi">경기도</option>
-				    <option value="gangwon">강원도</option>
-				    <option value="chungbuk">충청북도</option>
-				    <option value="chungnam">충청남도</option>
-				    <option value="jeonbuk">전라북도</option>
-				    <option value="jeonnam">전라남도</option>
-				    <option value="gyeongbuk">경상북도</option>
-				    <option value="gyeongnam">경상남도</option>
-				    <option value="jeju">제주특별자치도</option>
-				    <option value="daejeon">대전광역시</option>
-				    <option value="gwangju">광주광역시</option>
-				    <option value="busan">부산광역시</option>
-				    <option value="ulsan">울산광역시</option>
-				    <option value="incheon">인천광역시</option>
-				    <option value="daegu">대구광역시</option>
-				    <option value="sejong">세종특별자치시</option>
 				    <option value="all">전체</option>
+				    <c:forEach items="${getReceiptRegions}" var="receiptRegion">
+			            <option value="${receiptRegion}">${receiptRegion}</option>
+			        </c:forEach>
 			    </select>
 	    	</div>
 	    
 		    <div class="col-md-3">
-		        <label for="districtSelect" class="form-label">시 / 군 / 구</label>
-		        <select class="form-select" id="districtSelect" disabled>
-		            <option selected disabled value="">구를 선택하세요</option>
-		            <!-- 서울의 구 옵션들은 JavaScript에서 추가됩니다 -->
-		        </select>
-		    </div>
-		    
-		    <div class="col-md-3">
-		    	<button class="col-md-3" style='height:38px'>조회</button>
+		    	<button id="regionButton" class="col-md-3" style='height:38px'>조회</button>
 		    </div>
 		
 		</article>
@@ -114,21 +92,32 @@
 				<table class="table table-striped">
 				  <thead>
 				  	<tr>
+				  		<th>No</th>
 	                    <th>지역</th>
-	                    <th>시험일자</th>
+	                    <th>주소</th>
 	                    <th>시험장소</th>
-	                    <th>접수마감일자</th>
+	                    <th>수용가능인원</th>
 	                    <th>접수하기</th>
 	                </tr>
 				  </thead>
 				  <tbody>
-				  	<tr>
-	                   <td>서울특별시 노원구</td>
-	                   <td>2024.1.13(토)</td>
-	                   <td>노원고</td>
-	                   <td>2024.1.1.(일)</td>
-	                   <td><button>선택</button></td>
-	                 </tr>
+					<c:forEach items="${getExamPlace}" var="examPlaceBean" varStatus="data">
+						<tr>
+							<td>${data.count}</td>
+						    <td>${examPlaceBean.examPlace_region}</td>
+						    <td>${examPlaceBean.examPlace_address}</td>
+						    <td>${examPlaceBean.examPlace_name}</td>
+						    <td>/${examPlaceBean.examPlace_maximum}</td>
+						    <td>
+							<form action="${root}receipt/receipt_pro" method="post">
+								<!-- 숨겨진 입력 필드 추가 -->
+						      	<input type="hidden" name="examPlaceName" value="${examPlaceBean.examPlace_name}" />
+								<!-- 폼 입력 필드들 -->
+								<button type="submit">선택</button>
+							</form>
+							</td>
+						</tr>
+					</c:forEach>
 				  </tbody>
 				</table>
 			</div>
@@ -146,6 +135,6 @@
 </body>
 
 
-<script type="text/javascript" src="${root}js/receiptJS/selectPlace.js" ></script>
+<script type="text/javascript" src="${root}js/receiptJS/selectPlace.js?ver=2" ></script>
 
 </html>

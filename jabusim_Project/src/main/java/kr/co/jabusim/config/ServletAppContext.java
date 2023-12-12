@@ -33,6 +33,7 @@ import kr.co.jabusim.mapper.ExamPlaceMapper;
 import kr.co.jabusim.mapper.ExamReceiptMapper;
 import kr.co.jabusim.mapper.ExamResultMapper;
 import kr.co.jabusim.mapper.LicenseMapper;
+import kr.co.jabusim.mapper.ReceiptMapper;
 import kr.co.jabusim.mapper.SearchLicenseMapper;
 import kr.co.jabusim.mapper.UserCareerMapper;
 import kr.co.jabusim.mapper.UserEduMapper;
@@ -111,7 +112,7 @@ public class ServletAppContext implements WebMvcConfigurer {
 		InterceptorRegistration reg2 = registry.addInterceptor(checkLoginInterceptor);
 		
 		reg1.addPathPatterns("/**");
-		reg2.addPathPatterns("/user/modify", "/user/logout" /*, "/board/*" */);
+		reg2.addPathPatterns("/user/modify", "/user/logout", "/receipt/receipt_select_subject" /*, "/board/*" */);
 		reg2.excludePathPatterns("/board/main");
 	}
 
@@ -209,6 +210,12 @@ public class ServletAppContext implements WebMvcConfigurer {
 	@Bean
 	public MapperFactoryBean<ExamResultMapper> getExamrResultMapper(SqlSessionFactory factory) throws Exception {
 		MapperFactoryBean<ExamResultMapper> factoryBean = new MapperFactoryBean<ExamResultMapper>(ExamResultMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	@Bean
+	public MapperFactoryBean<ReceiptMapper> getReceiptMapper(SqlSessionFactory factory) throws Exception {
+		MapperFactoryBean<ReceiptMapper> factoryBean = new MapperFactoryBean<ReceiptMapper>(ReceiptMapper.class);
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}

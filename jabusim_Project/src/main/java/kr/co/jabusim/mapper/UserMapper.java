@@ -27,7 +27,7 @@ public interface UserMapper {
 	
 	
 	//로그인 정보 가져오기
-	@Select("select user_idx, user_name "
+	@Select("select user_idx, user_name, user_id "
 			+ "from user_table "
 			+ "where user_id= #{user_id} and user_pw=#{user_pw}")
 	UserBean getLoginUserInfo(UserBean tempLoginUserBean);

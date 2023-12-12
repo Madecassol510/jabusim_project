@@ -20,13 +20,7 @@ public class LicenseController {
 
    @Autowired
    private LicenseService licenseService;
-   
 
-   @GetMapping("/getLicenseCode")
-   public List getLicenseCode() {
-      System.out.println("getLicenseCode 성공");
-      return licenseMapper.getLicenseCode();
-   }
 
    @GetMapping("/getLicenseType")
    public List getLicenseType() {

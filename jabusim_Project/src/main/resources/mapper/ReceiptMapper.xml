@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.jabusim.mapper.ReceiptMapper">
+	
+	<resultMap id="licenseBean" type="kr.co.jabusim.beans.LicenseBean">
+	    <result property="license_idx" column="license_idx"/>
+	    <result property="license_name" column="license_name"/>
+	    <result property="license_type" column="license_type"/>
+	    <result property="license_mainCategory" column="license_mainCategory"/>
+	    <result property="license_subCategory" column="license_subCategory"/>
+	    <result property="license_info" column="license_info"/>
+	</resultMap>
+
+	<select id="optionLicenseName" parameterType="list" resultMap="licenseBean">
+	    SELECT * FROM license_table
+	    WHERE license_type = #{licenseType}
+	    <choose>
+	        <when test="major == '전체'">
+	            <if test="minor != null and minor != ''">
+	                AND license_subCategory = #{minor}
+	            </if>
+	        </when>
+	        <otherwise>
+	            <if test="major != null and major != ''">
+	                AND license_mainCategory = #{major}
+	            </if>
+	            <if test="minor != null and minor != ''">
+	                AND license_subCategory = #{minor}
+	            </if>
+	        </otherwise>
+	    </choose>
+	</select>
+	
+</mapper>
