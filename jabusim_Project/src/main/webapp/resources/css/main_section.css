@@ -1,0 +1,351 @@
+@charset "UTF-8";
+
+/* 페이지 공용 */
+body {
+	width: 100%;
+	min-height: 1200px;
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.main-wrapped {
+	margin: 0 auto;
+	margin-top: 50px;
+	width: 1200px;
+}
+
+.main-container {
+	width: 100%;
+	display: flex;
+}
+
+.main-left-section {
+	width: 740px;
+	height: auto;
+	display: flex;
+	justify-content: center;
+}
+
+/* 달력 */
+.main-calendar-section {
+	width: 700px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.year-and-month {
+	width: 700px;
+	margin: 0 auto;
+	display: grid;
+	justify-content: center;
+	margin-bottom: 10px;
+	background-color: #F0F2FF;
+}
+
+.calendar-title {
+	width: 300px;
+	height: 60px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.calendar-title>button {
+	width: 30px;
+	height: 30px;
+	background-color: #E2ECF7;
+	border-radius: 20px;
+	border: 3px solid #111111d6;
+	font-weight: 800;
+}
+
+.calendar-title>span {
+	font-size: 20pt;
+	font-weight: 600;
+}
+
+.day-of-the-week {
+	width: 700px;
+	display: flex;
+	border-top: 2px solid #555;
+	display: flex;
+}
+
+.day-of-the-week>span {
+	width: 100px;
+	text-align: left;
+	font-size: 10pt;
+	border: 0.5px solid #56565660;
+	padding: 3px 0;
+}
+
+.calendar {
+	height: 640px;
+}
+
+.calendar-body {
+	width: 700px;
+	height: 600px;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-template-rows: repeat(6, 1fr);
+	border-bottom: 2px solid #555;
+}
+
+.calendar .date {
+	padding: 2px 5px;
+	border: 1px solid #33333380;
+	text-align: left;
+	font-size: 10pt;
+}
+
+/* 오늘 날짜 스타일 지정 */
+.calendar .date.today {
+	font-weight: 800;
+	background-color: #FFE299;
+}
+
+/* 이전 달과 다음 달의 날짜 스타일 지정 */
+.calendar .date.other-month {
+	color: #555;
+	background-color: #EEEFF0;
+}
+
+/* 이번 달의 주말 스타일 지정 */
+.calendar .date.saturday {
+	color: blue;
+}
+
+.calendar .date.sunday {
+	font-weight: bold;
+	color: red;
+}
+
+.main-right-section {
+	width: 460px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+/* 캐러셀 영역 */
+.main-carousel-section {
+	width: 460px;
+	height: 460px;
+	position: relative;
+	top: -5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.main-carousel-wrapped {
+	width: 440px;
+	height: 440px;
+	overflow: hidden;
+	border-radius: 20px;
+}
+
+.main-carousel {
+	width: 440px;
+	height: 440px;
+	display: flex;
+}
+
+.image-section:last-child {
+	margin-right: 0;
+}
+
+.image-section img {
+	width: 440px;
+	height: 440px;
+	border-radius: 20px;
+}
+
+.carousel-btn-wrapped {
+	width: 420px;
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+}
+
+.carousel-btn {
+	width: 40px;
+	height: 40px;
+	border: none;
+	outline: none;
+	border-radius: 20px;
+	font-size: 20pt;
+	color: #FFF;
+	background-color: #22222280;
+	cursor: pointer;
+}
+
+.carousel-indicators {
+	position: relative;
+	top: 10px;
+	display: flex;
+	width: 700px;
+	justify-content: center;
+	z-index: 1;
+}
+
+.carousel-indicator {
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	margin: 0 5px;
+	background-color: #AAA;
+}
+
+.active-indicator {
+	background-color: #444;
+}
+
+/*공지사항*/
+.notice-section {
+	width: 460px;
+	height: 220px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	top: 15px;
+	border: 3px solid black;
+	border-radius: 5px;
+}
+
+.notice-title {
+	width: 440px;
+	margin: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid #333;
+}
+
+.notice-name {
+	text-align: left;
+	padding: 10px 0;
+	padding-left: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.notice-btn {
+	width: 80px;
+	height: 35px;
+	float: right;
+	margin-right: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #4A5EDC;
+	border-radius: 10px;
+}
+
+.notice-btn>a {
+	text-decoration: none;
+	font-weight: bold;
+	color: #fff;
+	vertical-align: middle;
+}
+
+.notice-list-section {
+	width: 440px;
+}
+
+.main-notice-list {
+	width: 440px;
+}
+
+.main-notice-item {
+	margin: 5px 0;
+	border-bottom: 1px solid #555;
+}
+
+.main-notice-item>a {
+	display: flex;
+	justify-content: space-around;
+	text-decoration: none;
+}
+
+/* bottom_module */
+.card-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.license-card {
+	width: 280px;
+	height: 150px;
+	border: 2px solid #222;
+	border-radius: 20px;
+	margin : 10px 5px;
+}
+
+.main-card-header {
+	padding: 5px 0;
+	text-align: center;
+	font-size: 20pt;
+	font-weight: bold;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom: 1px solid #000;
+	box-shadow: 0 3px 3px 0 #ccc;
+	background-color: #F0F2FF;
+}
+
+.main-card-body {
+	text-align: center;
+	padding: 5px;
+}
+
+.main-card-title {
+	margin: 0;
+	margin-bottom: 3px;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+.main-card-text {
+	margin: 0;
+	padding: 0;
+	font-size: 10pt;
+	font-weight: lighter;
+	text-align: justify;
+}
+
+.license-button {
+	display: flex;
+	justify-content: center;
+}
+
+.license-button>button {
+	width: 50px;
+	height: 30px;
+	margin: 0 10px;
+	background-color: #F0F2FF;
+	font-weight: bold;
+	border-radius: 3px;
+}
+
+.license-button>button:active {
+	background-color: #B2B7D5;
+}

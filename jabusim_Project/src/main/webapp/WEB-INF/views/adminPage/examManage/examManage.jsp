@@ -21,7 +21,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style>
-
+.navbar.navbar-expand-sm.navbar-dark.bg-dark {
+	position: fixed;
+	width: 100%;
+}
 /* ==========================페이지 공용================================== */
 body {
 	width: 100%;
@@ -42,7 +45,7 @@ li {
 	position: relative;
 	width: 1400px;
 	min-height: 951px;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 	float: left;
 	margin-left: 250px;
 	margin-top: 100px;
@@ -51,7 +54,7 @@ li {
 .module {
 	min-height: 600px;
 	width: 100%;
-	border: 1px solid blue;
+	/* border: 1px solid blue; */
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 50px;
@@ -61,7 +64,7 @@ li {
 	display: inline-block;
 	width: 100%;
 	margin: 0 auto;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 }
 
 /* =========================================================================== */
@@ -77,7 +80,7 @@ li {
 #dashBoardModule .dashBoard {
 	width: 95%;
 	height: 100%;
-	border: 1px solid black;;
+	/* border: 1px solid black;; */
 }
 
 /* #dashBoardModule .dashBoard {
@@ -540,7 +543,7 @@ span {
 
 </head>
 <body>
-
+	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<c:import url="/WEB-INF/views/include/admin_sideMenu.jsp" />
 
 	<div class="pageContainer">
@@ -613,8 +616,10 @@ span {
 								<tr>
 									<th class="searchHd">년도</th>
 									<td class="searchArticle">
-										<div class="searchReq">
-											<input type="text" id="examYearInput" min="1900" max="2100"/>
+										<div class="searchReq">	
+											<input type="text" id="examYearInput" min="1900" max="2100"
+												class="form-control" placeholder="search" 
+												aria-label="Username" aria-describedby="basic-addon1">
 										</div>						
 									</td>
 								</tr>
@@ -661,14 +666,16 @@ span {
 									<th class="searchHd">시험명</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" id="examNameInput"/>
+											<input type="text" class="form-control" id="examNameInput"
+												placeholder="search" aria-label="Username"
+												aria-describedby="basic-addon1">
 										</div>						
 									</td>
 								</tr>
 									
 							</table>
 							<div class="searchButton">
-								<button type="button" onclick="fieldSearch()">검색</button>
+								<button type="button" onclick="fieldSearch()" class="btn btn-primary">검색</button>
 							</div>			
 						</form>
 					</div>
@@ -723,7 +730,7 @@ span {
 				<span>총 ${checkedCount}개 선택</span>
 			</div>
 			<div class="footerButton">
-				<button type="button" onclick="deleteList()">삭제</button>
+				<button type="button" onclick="deleteList()" class="btn btn-danger">삭제</button>
 			</div>
 		</div>
 	</div>
