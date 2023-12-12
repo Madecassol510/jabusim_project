@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.co.jabusim.beans.CareerBean;
 import kr.co.jabusim.beans.ExamBean;
 import kr.co.jabusim.beans.ExamReceiptBean;
+import kr.co.jabusim.beans.ExamResultBean;
 import kr.co.jabusim.beans.UserCareerBean;
 import kr.co.jabusim.beans.UserEduBean;
 
@@ -53,7 +54,9 @@ public interface ExamReceiptMapper {
 	void  examReceiptTableUpdate(@Param("examReceipt_idx") int examReceipt_idx, @Param("status") String status);
 	
 	
-
+	//유저의 시험결과 가져오기(마이페이지)
+	@Select("select * from examReceipt_table where user_id = #{user_id}")
+	ArrayList<ExamReceiptBean> getUserExamReceiptList(String user_id);
 	
 }
 

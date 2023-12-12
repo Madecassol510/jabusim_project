@@ -25,9 +25,9 @@ public class InfoController {
 	private ExamMapper examMapper;
 	
 	@GetMapping("/main")
-	public String main(@RequestParam("licenseIdx") int licenseIdx, Model model) {
+	public String main(@RequestParam("licenseID") int licenseID, Model model) {
 		
-		LicenseBean infoLicenseBean = licenseMapper.getLicenseBean(licenseIdx);
+		LicenseBean infoLicenseBean = licenseMapper.getLicenseBean(licenseID);
 		
 		ArrayList<ExamBean> infoExamBeanList = examMapper.licenseExamInfo(infoLicenseBean.getLicense_type());
 		

@@ -50,9 +50,15 @@ public interface LicenseMapper {
 	void insertUserLicense(UserLicenseBean userLicenseBean);
 	
 	
+	//자격증 조회
 	@Select("select * from license_table where license_idx = #{license_idx}" )
 	LicenseBean getLicenseBean(int license_idx);
 	
+	
+	//소유 자격증 조회
+	@Select("select * from license_table a, userLicense_table b "
+			+ "where a.license_idx = b.license_idx")
+	ArrayList<LicenseBean> getUserOwnLicenseBeans(String user_id);	
 }
 
 

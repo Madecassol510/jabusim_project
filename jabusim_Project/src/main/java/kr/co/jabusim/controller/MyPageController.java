@@ -17,10 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.jabusim.beans.ExamReceiptBean;
 import kr.co.jabusim.beans.ExamResultBean;
+import kr.co.jabusim.beans.LicenseBean;
 import kr.co.jabusim.beans.UserBean;
+import kr.co.jabusim.beans.UserEduBean;
 import kr.co.jabusim.mapper.ExamMapper;
+import kr.co.jabusim.mapper.ExamReceiptMapper;
 import kr.co.jabusim.mapper.ExamResultMapper;
+import kr.co.jabusim.mapper.LicenseMapper;
 import kr.co.jabusim.service.UserService;
 import kr.co.jabusim.validator.UserValidator;
 
@@ -33,8 +38,13 @@ public class MyPageController {
 	private UserService userService;
 	
 	@Autowired
+	private LicenseMapper licenseMapper;
+	
+	@Autowired
 	private ExamResultMapper examResultMapper;
 	
+	@Autowired
+	private ExamReceiptMapper examReceiptMapper;
 	
 	//마이페이지
 	@GetMapping("/main")
@@ -42,7 +52,11 @@ public class MyPageController {
 		
 			
 		UserBean myPageUserBean = userService.getUserAllInfo();
+		
+		ArrayList<LicenseBean> userOwnLicenseBeans = licenseMapper.getUserOwnLicenseBeans(myPageUserBean.getUser_id());
+		
 		model.addAttribute("myPageUserBean", myPageUserBean);
+		model.addAttribute("userOwnLicenseBeans", userOwnLicenseBeans);
 		
 		return "mypage/main";
 	}
@@ -67,14 +81,26 @@ public class MyPageController {
 	
 	//자격증 접수 내역
 	@GetMapping("/myDetailManage/receiptDetail")
-	public String receiptDetail() {
-		return "mypage/myDetailManage/receiptDetail";
+	public String receiptDetail(Model model) {
+		UserBean myPageUserBean = userService.getUserAllInfo();
+		
+		ArrayList<ExamReceiptBean> userExamReceiptBeans = examReceiptMapper.getUserExamReceiptList(myPageUserBean.getUser_id());
+		
+		model.addAttribute("userExamReceiptBeans", userExamReceiptBeans);	
+		
+		return "mypage/myDetailManage/receiptDetail";	
 	}
 	
 	//문의 내역
 	@GetMapping("/myDetailManage/inquiryDetail")
-	public String inquiryDetail() {
-		return "mypage/myDetailManage/inquiryDetail";
+	public String inquiryDetail(Model model) {
+		
+		UserBean myPageUserBean = userService.getUserAllInfo();
+		
+//		ArrayList<UserEduBean> userEduBeans =
+//		Arrayu
+		
+		return "mypage/myDetailManage/inquiryDetail";		
 	}
 	
 
@@ -101,8 +127,7 @@ public class MyPageController {
 						  @RequestParam("myInfoManagePage") int myInfoManagePage,
 						  Model model) {
 		
-		
-		
+			
 		if(!userService.loginPwCheck(checkPwUserBean)) {
 			System.out.println("비밀번호 틀림");
 			model.addAttribute("myInfoManagePage",myInfoManagePage);

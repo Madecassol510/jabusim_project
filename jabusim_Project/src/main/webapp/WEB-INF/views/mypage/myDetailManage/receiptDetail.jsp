@@ -83,7 +83,7 @@
 	#exam_result_module .resultBox table{
 		margin:auto;
 		text-align:center; 
-		width:85%;
+		width:95%;
 	}
 
 	#exam_result_module .resultBox td, th{
@@ -137,49 +137,28 @@
 						<thead>
 							<tr>
 								<th><span>시험명</span></th>
-								<th><span>회차</span></th>
+								<th><span>응시종목</span></th>
 								<th><span>구분</span></th>
-								<th><span>시험날짜</span></th>
-								<th><span>수험번호</span></th>
-								<th><span>응시장소</span></th>
+								<th><span>시험일</span></th>
+								<th><span>결과발표일</span></th>
+								<th><span>시험장소</span></th>
+								<th><span></span></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><span>2023정보처리기사</span></td>
-								<td><span>3회</span></td>
-								<td><span>실기</span></td>
-								<td><span>2023-11-12</span></td>
-								<td><span>01060742</span></td>
-								<td><span>서울고등학교</span></td>
-								<td><span><button>취소</button></span></td>
-							</tr>
-							<tr>
-								<td><span>2023정보처리기사</span></td>
-								<td><span>3회</span></td>
-								<td><span>실기</span></td>
-								<td><span>2023-11-12</span></td>
-								<td><span>01060742</span></td>
-								<td><span>서울고등학교</span></td>
-								<td><span>취소처리중</span></td>
-							</tr>
-							<tr>
-								<td><span>2023정보처리기사</span></td>
-								<td><span>3회</span></td>
-								<td><span>실기</span></td>
-								<td><span>2023-11-12</span></td>
-								<td><span>01060742</span></td>
-								<td><span>서울고등학교</span></td>
-								<td><span>취소완료</span></td>
-							</tr>
+							<c:forEach items="${userExamReceiptBeans}" var="userExamReceiptBean" varStatus="loopStatus">
+								<tr>
+									<td><span>${userExamReceiptBean.exam_name}</span></td>
+									<td><span>${userExamReceiptBean.exam_subject}</span></td>
+									<td><span>${userExamReceiptBean.exam_type}</span></td>
+									<td><span>${userExamReceiptBean.exam_date}</span></td>
+									<td><span>${userExamReceiptBean.exam_resultDate}</span></td>
+									<td><span>${userExamReceiptBean.examPlace_name}</span></td>
+									<td><span>${userExamReceiptBean.examReceipt_status}</span></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
-				</div>
-				<div class="paginationBox">
-					<ul>
-						<li class="page-item"><a href="#" class="page-link">이전</a></li>
-						<li class="page-item"><a href="#" class="page-link">다음</a></li>					
-					</ul>
 				</div>
 				<div class="cautionBox"></div>
 			</div>

@@ -63,7 +63,6 @@ public interface ExamResultMapper {
 	
 	
 	//유저의 시험결과 가져오기(마이페이지)
-	
 	@Select("select * from examResult_table where user_id = #{user_id}")
 	ArrayList<ExamResultBean> getUserExamResultList(String user_id);
 	
