@@ -137,62 +137,25 @@
 						<thead>
 							<tr>
 								<th><span>시험명</span></th>
-								<th><span>회차</span></th>
+								<th><span>응시종목</span></th>
 								<th><span>구분</span></th>
-								<th><span>시험날짜</span></th>
-								<th><span>수험번호</span></th>
-								<th><span>시험결과</span></th>
+								<th><span>시험일</span></th>
+								<th><span>시합여부</span></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><span>2023정보처리기사</span></td>
-								<td><span>3회</span></td>
-								<td><span>실기</span></td>
-								<td><span>2023-11-12</span></td>
-								<td><span>01060742</span></td>
-								<td><span>불합격</span></td>
-							</tr>
-							<tr>
-								<td><span>2023정보처리기사</span></td>
-								<td><span>3회</span></td>
-								<td><span>필기</span></td>
-								<td><span>2023-10-12</span></td>
-								<td><span>01060742</span></td>
-								<td><span>합격</span></td>
-							</tr>
-							<tr>
-								<td><span>2023정보처리기사</span></td>
-								<td><span>3회</span></td>
-								<td><span>필기</span></td>
-								<td><span>2023-10-12</span></td>
-								<td><span>01060742</span></td>
-								<td><span>합격</span></td>
-							</tr>
-							<tr>
-								<td><span>2023정보처리기사</span></td>
-								<td><span>3회</span></td>
-								<td><span>필기</span></td>
-								<td><span>2023-10-12</span></td>
-								<td><span>01060742</span></td>
-								<td><span>합격</span></td>
-							</tr>
-							<tr>
-								<td><span>2023정보처리기사</span></td>
-								<td><span>3회</span></td>
-								<td><span>필기</span></td>
-								<td><span>2023-10-12</span></td>
-								<td><span>01060742</span></td>
-								<td><span>합격</span></td>
-							</tr>
-							<tr>
-								<td><span>2023정보처리기사</span></td>
-								<td><span>3회</span></td>
-								<td><span>필기</span></td>
-								<td><span>2023-10-12</span></td>
-								<td><span>01060742</span></td>
-								<td><span>합격</span></td>
-							</tr>
+							<c:forEach items="${userExamResultBeans}" var="userExamResultBean" varStatus="loopStatus">
+								<c:if test="${userExamResultBean.examResult_processStatus}='처리완료'">					
+									<tr>
+										<td><span>${userExamResultBean.exam_name}</span></td>
+										<td><span>${userExamResultBean.exam_subject}</span></td>
+										<td><span>${userExamResultBean.exam_type}</span></td>
+										<td><span>${userExamResultBean.exam_date}</span></td>
+										<td><span>${userExamResultBean.exam_resultDate}</span></td>
+										<td><span>${userExamResultBean.examResult_status}</span></td>
+									</tr>
+								</c:if>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

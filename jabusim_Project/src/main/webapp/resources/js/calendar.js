@@ -65,7 +65,7 @@ function makeCalendar() {
 		if (dayNum % 7 === 0) {
 			cell.classList.add("sunday");
 		}
-
+		
 		cell.textContent = date;
 		calendar.appendChild(cell);
 

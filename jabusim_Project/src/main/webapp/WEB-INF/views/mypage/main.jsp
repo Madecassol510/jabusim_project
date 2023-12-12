@@ -319,12 +319,6 @@
 								<div class="input_placeBottom"></div>
 							</div>
 						</div>
-						<div class="photo_box">
-							<div class="photo_input">
-								<img src="${root }image/icon-spring-framework.svg" class="photo" />
-								<button type="button">사진등록</button>
-							</div>
-						</div>
 						<div class="input_box">
 							<div class="input_name">
 								<span>아이디</span>

@@ -581,8 +581,8 @@ public class AdminRestController {
 			
 			if(!examResultBean.getExamResult_status().equals("미입력")) {
 				if(examResultBean.getExamResult_processStatus().equals("처리가능")){
-					if(examResultBean.getExamResult_status().equals("합격예정")) {
-					
+					if(examResultBean.getExamResult_status().equals("합격예정") && examResultBean.getExam_type().equals("실기")) {
+						
 						String user_id = examResultBean.getUser_id();
 						String license_name = examResultBean.getExam_subject();
 						

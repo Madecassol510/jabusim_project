@@ -58,7 +58,12 @@ public interface LicenseMapper {
 	//소유 자격증 조회
 	@Select("select * from license_table a, userLicense_table b "
 			+ "where a.license_idx = b.license_idx")
-	ArrayList<LicenseBean> getUserOwnLicenseBeans(String user_id);	
+	ArrayList<LicenseBean> getUserOwnLicenseBeans(String user_id);
+	
+	@Select("select * from (select * from license_table order by DBMS_RANDOM.VALUE) "
+			+ " WHERE ROWNUM <= 8")
+	ArrayList<LicenseBean> getRandomLicenseBeans();
+
 }
 
 

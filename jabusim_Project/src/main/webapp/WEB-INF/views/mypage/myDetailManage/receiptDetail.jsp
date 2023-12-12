@@ -147,15 +147,17 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${userExamReceiptBeans}" var="userExamReceiptBean" varStatus="loopStatus">
-								<tr>
-									<td><span>${userExamReceiptBean.exam_name}</span></td>
-									<td><span>${userExamReceiptBean.exam_subject}</span></td>
-									<td><span>${userExamReceiptBean.exam_type}</span></td>
-									<td><span>${userExamReceiptBean.exam_date}</span></td>
-									<td><span>${userExamReceiptBean.exam_resultDate}</span></td>
-									<td><span>${userExamReceiptBean.examPlace_name}</span></td>
-									<td><span>${userExamReceiptBean.examReceipt_status}</span></td>
-								</tr>
+								<c:if test="${userExamReceiptBean.examReceipt_status}!='삭제예정'">					
+									<tr>
+										<td><span>${userExamReceiptBean.exam_name}</span></td>
+										<td><span>${userExamReceiptBean.exam_subject}</span></td>
+										<td><span>${userExamReceiptBean.exam_type}</span></td>
+										<td><span>${userExamReceiptBean.exam_date}</span></td>
+										<td><span>${userExamReceiptBean.exam_resultDate}</span></td>
+										<td><span>${userExamReceiptBean.examPlace_name}</span></td>
+										<td><span>${userExamReceiptBean.examReceipt_status}</span></td>
+									</tr>
+								</c:if>
 							</c:forEach>
 						</tbody>
 					</table>
