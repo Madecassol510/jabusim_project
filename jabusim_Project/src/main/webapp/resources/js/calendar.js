@@ -82,13 +82,15 @@ function makeCalendar() {
 			cell.classList.add("sunday");
 		}
 		
-		cell.textContent = date;
+		
 		calendar.appendChild(cell);
 
 
 
 		innerDiv = document.createElement("div");
+		innerDiv.classList.add("examSchedule");
 		
+		innerDiv.innerHTML += date + "<br>";
 		
 		for(var i = 0; i < examSchedule.length; i++){
 			var exam = examSchedule[i];
@@ -103,8 +105,8 @@ function makeCalendar() {
 			
 			
 			if (currentDate >= receiptStartDate && currentDate <= receiptEndDate) {
-		        innerDiv.classList.add("examSchadule"); // 추가된 부분: 특정 클래스 추가
-		        innerDiv.innerHTML  += exam.exam_name + " [" +exam.exam_type +  "] (접수 중)<br>";
+		        innerDiv.classList.add("examSchedule"); // 추가된 부분: 특정 클래스 추가
+		        innerDiv.innerHTML  += " " + exam.exam_name + " [" +exam.exam_type +  "] (접수 중) <br>";
 		    }
 		    
 		   
@@ -112,22 +114,22 @@ function makeCalendar() {
 			    examDate.getMonth() === currentDate.getMonth() &&
 			    examDate.getFullYear() === currentDate.getFullYear()){
 				
-				innerDiv.classList.add("examSchadule"); // 추가된 부분: 특정 클래스 추가
-		        innerDiv.innerHTML  += exam.exam_name + " [" +exam.exam_type +  "] (시험일)<br>";			
+				innerDiv.classList.add("examSchedule"); // 추가된 부분: 특정 클래스 추가
+		        innerDiv.innerHTML  += " " + exam.exam_name + " [" +exam.exam_type +  "] (시험일) <br>";			
 			}
 		    
 		    if (examResultDate.getDate() === currentDate.getDate() &&
 			    examResultDate.getMonth() === currentDate.getMonth() &&
 			    examResultDate.getFullYear() === currentDate.getFullYear()){
 				
-				innerDiv.classList.add("examSchadule"); // 추가된 부분: 특정 클래스 추가
-		        innerDiv.innerHTML  += exam.exam_name + " [" +exam.exam_type +  "] (결과발표)<br>";			
+				innerDiv.classList.add("examSchedule"); // 추가된 부분: 특정 클래스 추가
+		        innerDiv.innerHTML  += " " + exam.exam_name + " [" +exam.exam_type +  "] (결과발표) <br>";			
 			}
 			
 		}
 		
 		cell.appendChild(innerDiv);
-
+		
 		dayNum++;
 	}
 

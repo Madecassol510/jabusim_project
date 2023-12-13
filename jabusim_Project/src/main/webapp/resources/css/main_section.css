@@ -105,29 +105,35 @@ li {
 	border-bottom: 2px solid #555;
 }
 
-.calendar .date {
-	padding: 2px 5px;
+.calendar .date {	
 	border: 1px solid #33333380;
 	text-align: left;
 	font-size: 10pt;
 	overflow: hidden;
-    transition: all 0.3s ease; /* 애니메이션을 부드럽게 만들기 위한 트랜지션 추가 */
+    background-color: white;
+    position: relative;
 }
 
-.calendar .date:hover {
-    z-index: 2;
-    transform: scale(1.5); /* 마우스를 올렸을 때 크기를 확대하는 효과 */
+.calendar .date .examSchedule{
+	padding: 2px 5px;
+	min-height: 100%;
+	min-width: 100%;	
 }
 
-.calendar .date .examSchadule {
-    transform-origin: top left;
-     transition: transform 0.3s ease;
+.calendar .date:hover{
+	overflow: visible;
 }
 
-.calendar .date:hover > .examSchadule {
-    transform: scale(1.5); /* 마우스를 올렸을 때 자식 요소를 1.5배로 확대 */
-    font-size: 10pt   
+.calendar .date:hover .examSchedule{
+	display:inline-block;
+	white-space:nowrap;
+	position: absolute;
+	z-index: 2;
+	background-color: white;
+	min-height: 100px;
+	border: 1px solid #33333380;
 }
+
 
 /* 오늘 날짜 스타일 지정 */
 .calendar .date.today {
