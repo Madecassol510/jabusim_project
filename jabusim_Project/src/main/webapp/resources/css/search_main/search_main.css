@@ -18,13 +18,13 @@ a, a:hover {
 	min-height: 700px;
 	margin: 0 auto;
 	padding-top: 80px;
-	border: 1px solid red;
+	/* border: 1px solid red; */
 }
 
 .top_module {
 	min-height: 600px;
 	width: 100%;
-	border: 1px solid blue;
+	/* border: 1px solid blue; */
 	padding-top: 50px;
 	padding-bottom: 50px;
 	margin-bottom: 50px;
@@ -48,7 +48,7 @@ a, a:hover {
 	text-align: center;
 }
 .list_serch_contents >ul > li {
-	width: 25%;
+	width: 33.333%;
 }
 
 .custom-btn button {
@@ -115,7 +115,7 @@ a, a:hover {
 .bottom_module {
 	min-height: 600px;
 	width: 100%;
-	border: 1px solid blue;
+	/* border: 1px solid blue; */
 	text-align: center;
 	padding-top: 50px;
 	padding-bottom: 50px;

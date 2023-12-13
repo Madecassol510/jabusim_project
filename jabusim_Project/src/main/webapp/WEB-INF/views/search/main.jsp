@@ -17,7 +17,7 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="${root}css/search_main/search_main.css" />
+<link rel="stylesheet" href="${root}css/search_main/search_main.css?ver=5" />
 <!-- AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -50,7 +50,7 @@
 	        console.log(allLicenseList.length);
 	        
 	        /*대분류버튼 생성*/
-	        licenseType.forEach(lt => {
+	        licenseType.forEach((lt, index) => {
 	        	var majorCodeDesc = lt;
 	        	const majorButton = document.createElement('button');
 	        	majorButton.className = 'major-button w-100 h-100';
@@ -68,17 +68,30 @@
        				
                     listBox2.innerHTML = '';
                     const minorCodes = codeMapping[majorCodeDesc];
-                    minorCodes.forEach(minorCode => {
+                    minorCodes.forEach(minorCodeDesc => {
                  	   
 						   const minorButton = document.createElement('button');
 		                   minorButton.className = 'minor-button w-100 h-100';
-		                   minorButton.textContent = minorCode;
+		                   minorButton.textContent = minorCodeDesc;
 		
 		                   const minorItem = document.createElement('li');
 		                   listBox2.appendChild(minorItem);
 		                   minorItem.appendChild(minorButton);
+		                   
+							// 클릭 이벤트 리스너 추가
+							minorButton.addEventListener('click', function() {
+							    if (isValueInCodeMapping(minorCodeDesc)) {
+							        console.log(minorCodeDesc + "은(는) " + lt +"에 포함되어 있습니다.");
+							        //lt->대분류, minorCodeDesc->소분류 이름, 
+							        pushMinorKey_value(lt, minorCodeDesc, minorCodeDesc);
+							    } else {
+							        console.log(minorCodeDesc + "은(는) " + lt +"에 포함되어 있지 않습니다.");
+							    }
+							})
+		                   
+		                   
 			               //클릭시 배열방 담음
-			               handleItemSelect(minorButton, minorCode, minorCode, "minorCode");
+			               //handleItemSelect(minorButton, minorCode, minorCode, "minorCode");
                     })
                 })//대분류 클릭이벤트
 	        });//대분류생성
@@ -86,7 +99,7 @@
 	        /*소분류 전체 생성*/
 	        licenseType.forEach(fmOne => {
 	        	const firstMinorCode = codeMapping[fmOne];
-	        	firstMinorCode.forEach(fmTwo => {
+	        	firstMinorCode.forEach((fmTwo, index) => {
 	        		
 					const firstMinorButton = document.createElement('button');
 					firstMinorButton.className = 'minor-button w-100 h-100';
@@ -95,8 +108,13 @@
 					const firstMinorItem = document.createElement('li');
 					listBox2.appendChild(firstMinorItem);
 					firstMinorItem.appendChild(firstMinorButton);
-					//클릭시 배열방 담음
-					handleItemSelect(firstMinorButton, fmTwo, fmTwo, "minorCode");
+					
+					// 클릭 이벤트 리스너 추가
+					firstMinorButton.addEventListener('click', function() {
+						
+						pushMinorCodeHasNone(fmTwo, fmTwo);
+						console.log(minorCodesNoneMajor);
+					});
 	        	})
 	        })
 	        
@@ -123,13 +141,15 @@
    				const kindItem = document.createElement('li');
                 listBox3.appendChild(kindItem);
                 kindItem.appendChild(kindButton);
-                //클릭시 배열방 담음
-                handleItemSelect(kindButton, kind, kindButtonDesc, "kind");
+                
+                kindButton.addEventListener('click', function() {
+                	SelectedKindValue(kind, kind);
+                })
    			})
 	        
 	        
 	        /*일정 버튼 생성*/
-			const scheduleArray = ['beRegisting', 'notRegisted', 'closeRegisted'];
+			/* const scheduleArray = ['beRegisting', 'notRegisted', 'closeRegisted'];
 	    	scheduleArray.forEach(sc => {
    				const scButton = document.createElement('button');
    				let scButtonDesc ='';
@@ -148,8 +168,8 @@
                 listBox4.appendChild(scItem);
                 scItem.appendChild(scButton);
                 //클릭시 배열방 담음
-                handleItemSelect(scButton, sc, scButtonDesc, "schedule");
-   			})
+                //handleItemSelect(scButton, sc, scButtonDesc, "schedule");
+   			}) */
 	        		
 	        /*자격증 로드 함수 실행*/
 	        createLicenseList(allLicenseList);
@@ -190,11 +210,11 @@
 
         const periodLi = document.createElement('li');
         periodLi.textContent = registrationPeriod;
-        licenseLink.appendChild(periodLi);
+        licenseLink.appendChild(periodLi); 
 
-        const examDateLi = document.createElement('li');
+        /* const examDateLi = document.createElement('li');
         examDateLi.textContent = examDateObj.toLocaleDateString();
-        licenseLink.appendChild(examDateLi);
+        licenseLink.appendChild(examDateLi); */
 
         // Append the anchor tag to the list
         licenseList.appendChild(licenseLink);
@@ -215,6 +235,7 @@
 	    const selectedShow = document.querySelector('.selected_show');
 	    const serch_condition= document.getElementById('required_btn');
 	    const reset_btn = document.getElementById('reset_btn');
+	    const searchInput = document.getElementById('searchInput');
 	    const searchButton = document.getElementById('searchButton');
 
 	    /* 리셋 기능 추가*/
@@ -225,99 +246,194 @@
 	    serch_condition.addEventListener('click', function() {
 	        selectAnyCategories();
 	    });
+	    /*자격증 이름 검색*/
+	    searchButton.addEventListener('click', function() {
+	    	searchLicenseName(searchInput);
+	    });
+	    
 	})
 	
-	/*종류 버튼 클릭시 선택 박스에 담김*/
+	
+	/*나중에 대분류일때만이랑 다른거 먼저 선택했을때도 나누어야됨*/
 	function handleItemSelect(button, code, codeDesc, type) {
 	    button.addEventListener('click', function() {
 	        // 여기에 클릭 이벤트에 대한 로직을 구현합니다.
-	        pushLicenseCode(type, code, codeDesc);
+	        pushMajorCodeKey(code, codeDesc);
 	    });
 	}
 	
-	/*종류 버튼 클릭시 선택 박스에 담김2*/
-	function pushLicenseCode(type, code, codeDesc) {
-		let condition = { type: type, value: code };
-		if (!selectedCodes.some(c => c.type === type && c.value === code)) {
-			selectedCodes.push(condition);
-		    //버튼생성
-			const seleted_box = document.getElementById('seleted_box');
-		    
-		    const selectedButton = document.createElement('button');
+    let minorCodesNoneMajor = [];
+	
+    function pushMinorCodeHasNone(code, minorValue) {
+        let existsInMajor = false;
+
+        Object.values(selectedMajorCategories).forEach(major => {
+            // major는 이제 List<String> 형태이므로, minorValue가 리스트에 포함되어 있는지 확인
+            if (major.includes(minorValue)) {
+                existsInMajor = true;
+            }
+        });
+
+        if (!existsInMajor && !minorCodesNoneMajor.includes(minorValue)) {
+            minorCodesNoneMajor.push(minorValue);
+            createButton(code, minorValue);
+        }
+    }
+
+	
+	let selectedMajorCategories = {};
+	function pushMajorCodeKey(code, majorCategory) {
+	    // 이미 선택된 대분류가 아니라면 추가
+		if (!selectedMajorCategories.hasOwnProperty(majorCategory)) {
+        selectedMajorCategories[majorCategory] = []; // 빈 객체 할당
+        createButton(code, majorCategory);
+    	}
+	    console.log(selectedMajorCategories);
+	    console.log(selectedKind);
+	}
+	
+	/*해당 소분류 대분류에 있는지 확인 함수*/
+	function isValueInCodeMapping(selectedValue) {
+	   let found = false;
+	   Object.values(codeMapping).forEach(values => {
+	       if (values.includes(selectedValue)) {
+	           found = true;
+	       }
+	   });
+	   return found;
+	}
+	
+	function pushMinorKey_value(majorKey, code, minorValue) {
+	    // 해당 majorKey에 대한 리스트가 존재하는지 확인하고, 없으면 초기화
+	    if (!selectedMajorCategories.hasOwnProperty(majorKey) || !Array.isArray(selectedMajorCategories[majorKey])) {
+	        selectedMajorCategories[majorKey] = [];
+	    }
+
+	    // minorValue가 해당 리스트에 없으면 추가
+	    if (!selectedMajorCategories[majorKey].includes(minorValue)) {
+	        selectedMajorCategories[majorKey].push(minorValue);
+	        createButton(code, minorValue);
+	    }
+
+	    // 동시에 minorCodesNoneMajor 배열에서 해당 minorValue 제거
+	    const index = minorCodesNoneMajor.indexOf(minorValue);
+	    if (index > -1) {
+	        minorCodesNoneMajor.splice(index, 1);
+	    }
+
+	    console.log(selectedMajorCategories);
+	    console.log(minorCodesNoneMajor);
+	}
+
+	
+	/*자격증 종류선택1*/
+	let selectedKind = null;
+	/*자격증 종류선택2*/
+	function SelectedKindValue(code, kindValue) {
+		// 이전에 선택된 종류가 있다면 해당 버튼 제거
+	    if (selectedKind !== null) {
+	        const existingButton = document.getElementById('selected-button-' + selectedKind);
+	        if (existingButton) {
+	            existingButton.remove();
+	        }
+	    }
+		
+	    selectedKind = kindValue;
+	    createButton(code, kindValue);
+	    console.log(selectedKind);
+	}
+
+	/*선택한 항목 버튼생성 함수*/
+	function createButton(code, codeDesc) {
+	    const selectedBox = document.getElementById('seleted_box');
+	    const existingButton = document.getElementById('selected-button-' + code);
+	
+	    if (!existingButton) {
+	        const selectedButton = document.createElement('button');
 	        selectedButton.className = 'selected-button';
 	        selectedButton.id = 'selected-button-' + code;
 	        selectedButton.textContent = codeDesc;
-	        selectedButton.onclick = function() { popLicenseCode(type, code); };
+	        selectedButton.onclick = function() { popLicenseCode(code, codeDesc); };
 	
-	        seleted_box.appendChild(selectedButton);
-	     // dataToSend 추가
-	        updateDataToSend(type, code);
-		}
-				
+	        selectedBox.appendChild(selectedButton);
+	    }
 	}
-	
-	/*선택 항목 배열*/
-	let selectedCodes = [];
-	let dataToSend = {};
-	
-	function popLicenseCode(type, code) {
-		const index = selectedCodes.findIndex(c => c.value === code);
-	    if (index > -1) {
-	    	const removedType = selectedCodes[index].type; // 제거된 항목의 타입
-	        selectedCodes.splice(index, 1); // 배열에서 제거
-	        const buttonId = 'selected-button-' + code;
-	        const buttonToRemove = document.getElementById(buttonId);
-	        if (buttonToRemove) {
-	            buttonToRemove.parentElement.removeChild(buttonToRemove); // 버튼 삭제
+
+	/*버튼 자신누르면 삭제, 배열에서도 삭제*/
+	function popLicenseCode(code, codeDesc) {
+	    // 버튼 삭제
+	    const buttonToRemove = document.getElementById('selected-button-' + code);
+	    if (buttonToRemove) {
+	        buttonToRemove.remove();
+	    }
+
+	    // majorCategories에서 값 제거
+	    if (selectedMajorCategories[code]) {
+	        const index = selectedMajorCategories[code].indexOf(codeDesc);
+	        if (index > -1) {
+	            selectedMajorCategories[code].splice(index, 1);
 	        }
-	        
-	        deleteDataToSend(type, code);
-	    }
-	}
-	
-	function updateDataToSend(type, code) {
-		if (selectedCodes.some(item => item.type === 'majorCode')) {
-		    dataToSend.majorCode = selectedCodes.filter(item => item.type === 'majorCode').map(item => item.value);
-		}
-		if (selectedCodes.some(item => item.type === 'minorCode')) {
-		    dataToSend.minorCode = selectedCodes.filter(item => item.type === 'minorCode').map(item => item.value);
-		}
-		if (selectedCodes.some(item => item.type === 'kind')) {
-		    dataToSend.kind = selectedCodes.filter(item => item.type === 'kind').map(item => item.value);
-		}
-		if (selectedCodes.some(item => item.type === 'schedule')) {
-		    dataToSend.schedule = selectedCodes.filter(item => item.type === 'schedule').map(item => item.value);
-		}
-		console.log("현재 배열 : ", dataToSend);
-	}
-	
-	function deleteDataToSend(type, code) {
-		// 특정 타입의 코드를 필터링하여 삭제
-	    dataToSend[type] = dataToSend[type].filter(c => c !== code);
-
-	    // 해당 타입의 코드가 더 이상 없으면 해당 키를 삭제
-	    if (dataToSend[type].length === 0) {
-	        delete dataToSend[type];
+	        if (selectedMajorCategories[code].length === 0) {
+	            delete selectedMajorCategories[code];
+	        }
 	    }
 
-	    console.log("삭제 후 배열: ", dataToSend);
+	    // minorCodes에서 값 제거
+	    const minorIndex = minorCodesNoneMajor.indexOf(codeDesc);
+	    if (minorIndex > -1) {
+	        minorCodesNoneMajor.splice(minorIndex, 1);
+	    }
+
+	    // kind에서 값 제거
+	    if (selectedKind === codeDesc) {
+	        selectedKind = null;
+	    }
+
+	    console.log(selectedMajorCategories);
+	    console.log(minorCodesNoneMajor);
+	    console.log(selectedKind);
 	}
-	
+
 	function popAllLicenseCodes() {
-	    selectedCodes = []; // selectedCodes 배열 비우기
-	    dataToSend = {};
-	    const seleted_box = document.getElementById('seleted_box');
-	    seleted_box.innerHTML = ''; // seleted_box 내 모든 버튼 제거
+	    // selectedMajorCategories 초기화
+	    for (let key in selectedMajorCategories) {
+	        if (selectedMajorCategories.hasOwnProperty(key)) {
+	            delete selectedMajorCategories[key];
+	        }
+	    }
+
+	    // minorCodesNoneMajor 배열 초기화
+	    minorCodesNoneMajor.length = 0;
+
+	    // selectedKind 초기화
+	    selectedKind = null;
+
+	    // seleted_box 내의 모든 버튼 삭제
+	    const selectedBox = document.getElementById('seleted_box');
+	    while (selectedBox.firstChild) {
+	        selectedBox.removeChild(selectedBox.firstChild);
+	    }
+
+	    console.log("모든 선택 항목이 초기화됨:");
+	    console.log(selectedMajorCategories);
+	    console.log(minorCodesNoneMajor);
+	    console.log(selectedKind);
 	}
+
 	
 	
+	/******ajax********/
 	/*카테고리 찾기*/
 	function selectAnyCategories() {
 		$.ajax({
 	        url: '/jabusim_Project/selectAnyCategories',
 	        type: 'POST',
 	        contentType: 'application/json', 
-	        data: JSON.stringify(dataToSend),
+	        data: JSON.stringify({
+	        	majorCategories: selectedMajorCategories,
+	            minorCodes: minorCodesNoneMajor,
+	            kind: selectedKind
+	        }),
 	        success: function(response) {
 	        	console.log(response);
 	            createLicenseList(response);
@@ -328,21 +444,24 @@
 	        }
 	    });
 	}
-	/*
-	$("#searchButton").click(function() {
-        var query = $("#searchInput").val(); // 검색어 가져오기
-        $.ajax({
-            url: '/jabusim_Project/searchLicenseName',
-            data: { query: query },
-            success: function(response) {
-            	createLicenseList(licenseList);
-            },
-            error: function(error) {
-                console.error("Error: ", error);
-            }
-        });//검색 ajax
-    }); //search 버튼 클릭시
-*/
+	/*검색*/
+	function searchLicenseName(searchInput) {
+		$.ajax({
+	        url: '/jabusim_Project/searchLicenseName',
+	        type: 'GET',
+	        dataType: 'json',
+	        data: {
+	            searchInput: searchInput.value,
+	        },
+	        success: function(response) {
+				console.log(response);
+	        	createLicenseList(response);
+	        },
+	        error: function(jqXHR, textStatus, errorThrown) {
+	            console.error("검색 요청 실패:", textStatus, errorThrown);
+	        }
+	    })
+	}
 	
 </script>
 
@@ -395,12 +514,12 @@
 										<!-- content2 내용 -->
 									</ul>
 								</li>
-								<li class="flex-fill custom-btn">
+								<!-- <li class="flex-fill custom-btn">
 									<button class="btn btn-secondary">시간</button>
 									<ul id="list_box4" class="list_box">
-										<!-- content3 내용 -->
+										content3 내용
 									</ul>
-								</li>
+								</li> -->
 							</ul>
 						</div>
 

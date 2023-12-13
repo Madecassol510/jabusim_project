@@ -8,13 +8,171 @@
 	    <result property="majorCode" column="majorCode"/>
 	    <result property="minorCode" column="minorCode"/>
 	    <result property="exam_name" column="exam_name"/>
+	    <result property="exam_licensetype" column="exam_licensetype"/>
 	    <result property="receiptStartDate" column="receiptStartDate"/>
 	    <result property="exam_receiptEndDate" column="exam_receiptEndDate"/>
 	    <result property="examDate" column="examDate"/>
 	</resultMap>
 
+	<select id="selectMajorCategories" parameterType="map" resultMap="searchLicenseBean">
+	    SELECT
+	        l.license_idx,
+	        l.license_name,
+	        l.license_maincategory AS majorCode,
+	        l.license_subcategory AS minorCode,
+	        e.exam_name,
+	        e.exam_licensetype,
+	        TO_CHAR(e.exam_receiptStartDate, 'YYYY-MM-DD') AS receiptStartDate,
+	        TO_CHAR(e.exam_receiptEndDate, 'YYYY-MM-DD') AS receiptEndDate,
+	        TO_CHAR(e.exam_date, 'YYYY-MM-DD') AS examDate
+	    FROM license_table l
+	    JOIN exam_table e ON l.license_type = e.exam_licensetype
+	    <where>
+	        e.exam_date > SYSDATE
+	        <if test="selectMajorCategories != null">
+	            AND 
+				<foreach item="majorCategory" index="index" collection="selectMajorCategories" open="(" separator="OR" close=")">
+				    l.license_maincategory = #{index}
+				    <if test="selectMajorCategories[index] != null and !selectMajorCategories[index].isEmpty()">
+				        AND l.license_subcategory IN
+				        <foreach item="minor" collection="selectMajorCategories[index]" open="(" separator="," close=")">
+				            #{minor}
+				        </foreach>
+				    </if>
+				</foreach>
+	        </if>
+	    </where>
+	    ORDER BY l.license_subcategory, e.exam_date
+	</select>
 
+	<select id="selectMinorCategories" parameterType="list" resultMap="searchLicenseBean">
+	    SELECT
+	        l.license_idx,
+	        l.license_name,
+	        l.license_maincategory AS majorCode,
+	        l.license_subcategory AS minorCode,
+	        e.exam_name,
+	        e.exam_licensetype,
+	        TO_CHAR(e.exam_receiptStartDate, 'YYYY-MM-DD') AS receiptStartDate,
+	        TO_CHAR(e.exam_receiptEndDate, 'YYYY-MM-DD') AS receiptEndDate,
+	        TO_CHAR(e.exam_date, 'YYYY-MM-DD') AS examDate
+	    FROM license_table l
+	    JOIN exam_table e ON l.license_type = e.exam_licensetype
+	    WHERE e.exam_date > SYSDATE
+	    AND l.license_subcategory IN
+	    <foreach item="minor" index="index" collection="selectMinorCategories" open="(" separator="," close=")">
+	        #{minor}
+	    </foreach>
+	    ORDER BY l.license_subcategory, e.exam_date
+	</select>
+
+	<select id="selectKindCategories" parameterType="string" resultMap="searchLicenseBean">
+	    SELECT
+	        l.license_idx,
+	        l.license_name,
+	        l.license_maincategory AS majorCode,
+	        l.license_subcategory AS minorCode,
+	        e.exam_name,
+	        e.exam_licensetype,
+	        TO_CHAR(e.exam_receiptStartDate, 'YYYY-MM-DD') AS receiptStartDate,
+	        TO_CHAR(e.exam_receiptEndDate, 'YYYY-MM-DD') AS receiptEndDate,
+	        TO_CHAR(e.exam_date, 'YYYY-MM-DD') AS examDate
+	    FROM license_table l
+	    JOIN exam_table e ON l.license_type = e.exam_licensetype
+	    WHERE e.exam_date > SYSDATE
+	    AND e.exam_licensetype = #{selectKindCategories}
+	    ORDER BY l.license_subcategory, e.exam_date
+	</select>
+
+	<select id="selectAnyCategories" parameterType="map" resultMap="searchLicenseBean">
+        SELECT
+            l.license_idx,
+            l.license_name,
+            l.license_maincategory AS majorCode,
+            l.license_subcategory AS minorCode,
+            e.exam_name,
+            e.exam_licensetype,
+            TO_CHAR(e.exam_receiptStartDate) AS receiptStartDate,
+            TO_CHAR(e.exam_receiptEndDate) AS exam_receiptEndDate,
+            TO_CHAR(e.exam_date) AS examDate
+        FROM license_table l
+        JOIN exam_table e ON l.license_type = e.exam_licensetype
+        WHERE 
+            e.exam_date > SYSDATE
+        <if test="majorCategories != null">
+            AND (
+            <foreach item="majorCategory" index="index" collection="majorCategories" open="(" separator="OR" close=")">
+			    l.license_maincategory = #{index}
+			    <if test="majorCategories[index] != null and !majorCategories[index].isEmpty()">
+			        AND l.license_subcategory IN
+			        <foreach item="minor" collection="majorCategories[index]" open="(" separator="," close=")">
+			            #{minor}
+			        </foreach>
+			    </if>
+			</foreach>
+            )
+        </if>
+        <if test="minorCodes != null and !minorCodes.isEmpty()">
+            OR (l.license_subcategory IN 
+            <foreach item="minorCode" collection="minorCodes" open="(" separator="," close=")">
+                #{minorCode}
+            </foreach>
+            )
+        </if>
+        <if test="kind != null and kind != ''">
+            AND e.exam_licensetype = #{kind}
+        </if>
+        ORDER BY l.license_subcategory, e.exam_date
+	</select>
+
+	<!-- 	
+	<select id="selectAnyCategories" parameterType="map" resultMap="searchLicenseBean">
+	    SELECT
+	        l.license_idx,
+	        l.license_name,
+	        l.license_maincategory AS majorCode,
+	        l.license_subcategory AS minorCode,
+	        e.exam_name,
+	        e.exam_licensetype,
+	        TO_CHAR(e.exam_receiptStartDate) AS receiptStartDate,
+	        TO_CHAR(e.exam_receiptEndDate) AS exam_receiptEndDate,
+	        TO_CHAR(e.exam_date) AS examDate
+	    FROM license_table l
+	    JOIN exam_table e ON l.license_type = e.exam_licensetype
+	    WHERE e.exam_date > SYSDATE
 	
+	    <if test="selectAnyParams != null">
+	        <foreach item="majorCategory" index="category" collection="selectAnyParams.entrySet()">
+	            <if test="majorCategory.value != null">
+	                OR (l.license_maincategory = #{category}
+	                    <if test="majorCategory.value.minorCode != null">
+	                        AND l.license_subcategory IN
+	                        <foreach item="minor" collection="majorCategory.value.minorCode" open="(" separator="," close=")">
+	                            #{minor}
+	                        </foreach>
+	                    </if>
+	                )
+	            </if>
+	        </foreach>
+	    </if>
+	
+	    <if test="minorCodes != null">
+	        OR l.license_subcategory IN
+	        <foreach item="minor" collection="minorCodes" open="(" separator="," close=")">
+	            #{minor}
+	        </foreach>
+	    </if>
+	
+	    <if test="kind != null">
+	        OR e.exam_licensetype = #{kind}
+	    </if>
+	
+	    ORDER BY l.license_subcategory, e.exam_date
+	</select>
+	-->
+
+
+	<!-- 	
 	<select id="selectMajorCode" parameterType="list" resultMap="searchLicenseBean">
 	    SELECT
 	        l.license_idx,
@@ -37,7 +195,7 @@
 	        </if>
 	    </where>
 	</select>
-
+	
 	<select id="selectMinorCode" parameterType="list" resultMap="searchLicenseBean">
 	    SELECT
 	        l.license_idx,
@@ -95,7 +253,6 @@
 	    </choose>
 	</select>
 	
-	<!-- 변수 여러개 -->
 	<select id="selectAnyCategories" parameterType="map" resultMap="searchLicenseBean">
 	    SELECT
 	        l.license_idx,
@@ -141,5 +298,5 @@
 	        </when>
 	    </choose>
 	</select>
-	
+	 -->
 </mapper>

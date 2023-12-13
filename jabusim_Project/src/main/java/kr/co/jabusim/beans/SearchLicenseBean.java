@@ -13,6 +13,7 @@ public class SearchLicenseBean {
     private String majorCode;
     private String minorCode;
     private String exam_name;
+    private String exam_licensetype;
     private String receiptStartDate;
     private String exam_receiptEndDate;
     private String examDate;

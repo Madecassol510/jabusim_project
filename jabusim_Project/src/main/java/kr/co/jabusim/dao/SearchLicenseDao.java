@@ -20,7 +20,7 @@ public class SearchLicenseDao {
 		return searchLicenseMapper.getAllLicenseList(); 
 	}
 
-	
+	/*
 	public List<SearchLicenseBean> selectMajorCode(List<String> majorCode) {
 		return searchLicenseMapper.selectMajorCode(majorCode);
 	}
@@ -30,19 +30,29 @@ public class SearchLicenseDao {
 	public List<SearchLicenseBean> selectSchedule(List<String> schedule) {
 		return searchLicenseMapper.selectSchedule(schedule); 
 	}
-	
+	*/
 
-	public List<SearchLicenseBean> selectAnyCategories(Map<String, List<String>> anyParms) {
-		return searchLicenseMapper.selectAnyCategories(anyParms);
+	public List<SearchLicenseBean> selectMajorCategories(Map<String, List<String>> majorCategories) {
+        return searchLicenseMapper.selectMajorCategories(majorCategories);
+    }
+	public List<SearchLicenseBean> selectMinorCategories(List<String> minorCategories) {
+		return searchLicenseMapper.selectMinorCategories(minorCategories);
 	}
-
+	public List<SearchLicenseBean> selectKindCategories(String kindCategories) {
+		return searchLicenseMapper.selectKindCategories(kindCategories);
+	}
+	public List<SearchLicenseBean> selectAnyCategories(Map<String, List<String>> majorCategories,
+			List<String> minorCodes, String kind) {
+		System.out.println(majorCategories + "" + minorCodes + ""+ kind);
+		return searchLicenseMapper.selectAnyCategories(majorCategories, minorCodes, kind);
+	}
+	
+	public List<SearchLicenseBean> getSearchLicenseName(String searchInput) {
+		return searchLicenseMapper.getSearchLicenseName(searchInput);
+	}
+	
 	/*
 	 * public String selectAnyCategories(Map<String, List<String>> params) { }
-	 */
-
-	/*
-	 * public List<SearchLicenseBean> searchLicenseName(String query) { return
-	 * searchLicenseMapper.searchLicenseName(query); }
 	 */
 
 }
