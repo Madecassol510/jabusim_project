@@ -60,6 +60,7 @@ public interface LicenseMapper {
 			+ "where a.license_idx = b.license_idx")
 	ArrayList<LicenseBean> getUserOwnLicenseBeans(String user_id);
 	
+	//메인페이지에서 랜덤한 자격증 8개 가져오기
 	@Select("select * from (select * from license_table order by DBMS_RANDOM.VALUE) "
 			+ " WHERE ROWNUM <= 8")
 	ArrayList<LicenseBean> getRandomLicenseBeans();

@@ -11,14 +11,32 @@
 
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"> -->
+	
+<script type="text/javascript">
+	var examBeansJson = ${examBeansJson};
+</script>
+	
 <script src="${root }js/calendar.js"></script>
-<!-- Carousel js -->
+	<!-- Carousel js -->
 
 <script src="${root }js/main_carousel.js"></script>
+
+<script>
+  function expandDate(date) {
+    date.style.height = date.scrollHeight + 'px';
+  }
+
+  function collapseDate(date) {
+    date.style.height = 'auto';
+  }
+</script>
+
 <link rel="stylesheet" href="${root }css/main_section.css" />
 </head>
-
 <body>
+	
+	
+
 
 	<!-- 상단 메뉴 바 -->
 	<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
@@ -201,10 +219,6 @@
 								card title and make up the bulk of the card's content.</p>
 					</div>
 				</div>
-			</div>
-			<div class="license-button">
-				<button type="button" class="license-prev-button">이전</button>
-				<button type="button" class="license-next-button">다음</button>
 			</div>
 		</div> <!-- down-side section start -->
 	</div>

@@ -12,12 +12,28 @@ var proDate;
 
 var cell;
 
+//--------------------------
+
+var examSchedule = examBeansJson;  //시험일정 json
+var innerDiv // 시험 일정을 넣을 div 공간
+
+var receiptStartDate // 시험 접수 시작 시간 
+var receiptEndDate // 시험 접수 마감 시간
+
+var examDate // 시험일
+var examResultDate // 시험 결과 발표일
+
+
+
+
 window.onload = function() {
 	nowDate = new Date();
+	console.log(examSchedule);
 	makeCalendar();
 }
 
 function makeCalendar() {
+	
 	var dayNum = 0;
 
 	nowDay = nowDate.getDate();
@@ -69,6 +85,49 @@ function makeCalendar() {
 		cell.textContent = date;
 		calendar.appendChild(cell);
 
+
+
+		innerDiv = document.createElement("div");
+		
+		
+		for(var i = 0; i < examSchedule.length; i++){
+			var exam = examSchedule[i];
+			
+			receiptStartDate = new Date(exam.exam_receiptStartDate);
+			receiptEndDate = new Date(exam.exam_receiptEndDate);
+			
+			examDate = new Date(exam.exam_receiptStartDate);
+			examResultDate = new Date(exam.exam_resultDate);
+			
+			var currentDate = new Date(nowYear, nowMonth, date);
+			
+			
+			if (currentDate >= receiptStartDate && currentDate <= receiptEndDate) {
+		        innerDiv.classList.add("examSchadule"); // 추가된 부분: 특정 클래스 추가
+		        innerDiv.innerHTML  += exam.exam_name + " [" +exam.exam_type +  "] (접수 중)<br>";
+		    }
+		    
+		   
+			if (examDate.getDate() === currentDate.getDate() &&
+			    examDate.getMonth() === currentDate.getMonth() &&
+			    examDate.getFullYear() === currentDate.getFullYear()){
+				
+				innerDiv.classList.add("examSchadule"); // 추가된 부분: 특정 클래스 추가
+		        innerDiv.innerHTML  += exam.exam_name + " [" +exam.exam_type +  "] (시험일)<br>";			
+			}
+		    
+		    if (examResultDate.getDate() === currentDate.getDate() &&
+			    examResultDate.getMonth() === currentDate.getMonth() &&
+			    examResultDate.getFullYear() === currentDate.getFullYear()){
+				
+				innerDiv.classList.add("examSchadule"); // 추가된 부분: 특정 클래스 추가
+		        innerDiv.innerHTML  += exam.exam_name + " [" +exam.exam_type +  "] (결과발표)<br>";			
+			}
+			
+		}
+		
+		cell.appendChild(innerDiv);
+
 		dayNum++;
 	}
 
@@ -79,6 +138,8 @@ function makeCalendar() {
 		cell.textContent = date;
 		calendar.appendChild(cell);
 	}
+	
+	
 }
 
 function preCalendar() {
