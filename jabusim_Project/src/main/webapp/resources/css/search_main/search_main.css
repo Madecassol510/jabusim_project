@@ -17,7 +17,7 @@ a, a:hover {
 	width: 1250px;
 	min-height: 700px;
 	margin: 0 auto;
-	padding-top: 80px;
+	padding-top: 60px;
 	/* border: 1px solid red; */
 }
 
@@ -27,7 +27,6 @@ a, a:hover {
 	/* border: 1px solid blue; */
 	padding-top: 50px;
 	padding-bottom: 50px;
-	margin-bottom: 50px;
 }
 
 .top_module_inner {
@@ -93,14 +92,14 @@ a, a:hover {
 	margin-left: auto;
 }
 
-.major-button, .minor-button, .lt-button, .sc-button, .all-button {
+.major-button, .minor-button, .lt-button, .sc-button, .all-button,.all-minor-button {
 	background: none;
 	border: none;
 	cursor: pointer;
 	transition: background-color 0.3s;
 }
 
-.major-button:hover, .minor-button:hover, .lt-button:hover, .sc-button:hover, .all-button:hover {
+.major-button:hover, .minor-button:hover, .lt-button:hover, .sc-button:hover, .all-button:hover, .all-minor-button:hover {
 	background-color: #e0e0e0;
 }
 

@@ -17,7 +17,7 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="${root}css/search_main/search_main.css?ver=5" />
+<link rel="stylesheet" href="${root}css/search_main/search_main.css?ver=7" />
 <!-- AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -67,6 +67,38 @@
 	            	//클릭시 배열방 담음
        				
                     listBox2.innerHTML = '';
+	            	
+                    /* 소분야 전체 보기 버튼 */
+                    const allMinorButton = document.createElement('button');
+                    allMinorButton.className = 'all-minor-button w-100 h-100';
+                    allMinorButton.textContent = '소분야 전체보기';
+                    const allMinorItem = document.createElement('li');
+                    listBox2.appendChild(allMinorItem);
+                    allMinorItem.appendChild(allMinorButton);
+                    
+                    allMinorButton.addEventListener('click', function() {
+                        listBox2.innerHTML = ''; // 기존 리스트 초기화
+
+                        licenseType.forEach(fmOne => {
+                            const firstMinorCode = codeMapping[fmOne];
+                            firstMinorCode.forEach(fmTwo => {
+                                const firstMinorButton = document.createElement('button');
+                                firstMinorButton.className = 'minor-button w-100 h-100';
+                                firstMinorButton.textContent = fmTwo;
+                                
+                                const firstMinorItem = document.createElement('li');
+                                listBox2.appendChild(firstMinorItem);
+                                firstMinorItem.appendChild(firstMinorButton);
+                                
+                                // 각 소분류 버튼에 대한 클릭 이벤트 리스너
+                                firstMinorButton.addEventListener('click', function() {
+                                    pushMinorCodeHasNone(fmTwo, fmTwo);
+                                    console.log(minorCodesNoneMajor);
+                                });
+                            });
+                        });
+                    });
+	            	
                     const minorCodes = codeMapping[majorCodeDesc];
                     minorCodes.forEach(minorCodeDesc => {
                  	   
@@ -88,10 +120,6 @@
 							        console.log(minorCodeDesc + "은(는) " + lt +"에 포함되어 있지 않습니다.");
 							    }
 							})
-		                   
-		                   
-			               //클릭시 배열방 담음
-			               //handleItemSelect(minorButton, minorCode, minorCode, "minorCode");
                     })
                 })//대분류 클릭이벤트
 	        });//대분류생성
