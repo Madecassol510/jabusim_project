@@ -310,9 +310,10 @@ li {
 
 /* bottom_module */
 .card-list {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+	display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 170px);
+    gap: 10px;
 }
 
 .license-card {

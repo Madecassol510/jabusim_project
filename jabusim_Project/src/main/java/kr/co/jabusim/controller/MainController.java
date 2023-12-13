@@ -26,8 +26,8 @@ public class MainController {
 	@Autowired
 	private ExamMapper examMapper;
 	
-	 @GetMapping("/main")
-	    public String main(Model model) {
+	@GetMapping("/main")
+	public String main(Model model) {
 	        ArrayList<LicenseBean> licenseBeans = licenseMapper.getRandomLicenseBeans();
 	        ArrayList<ExamBean> examBeans = examMapper.allExamInfo();
 	        

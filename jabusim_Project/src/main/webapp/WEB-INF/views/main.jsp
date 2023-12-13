@@ -147,78 +147,17 @@
 		<!-- down-side section start -->
 		<div class="down-side-section">
 			<div class="card-list">
-				<!-- <h3>오늘의 자격증</h3> -->
-				<div class="license-card">
-					<div class="main-card-header">Header</div>
-					<div class="main-card-body">
-						<p class="main-card-title">Dark card title</p>
-						<p class="main-card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
+
+				<c:forEach items="${licenseBeans}" var="licenseBean">
+					<div class="license-card">
+						<div class="main-card-header">${licenseBean.license_name}</div>
+						<div class="main-card-body">
+							<p class="main-card-title">${licenseBean.license_mainCategory}</p>
+							<p class="main-card-text">${licenseBean.license_info}</p>
+						</div>
 					</div>
-				</div>
-				
-				<div class="license-card">
-					<div class="main-card-header">Header</div>
-					<div class="main-card-body">
-						<p class="main-card-title">Dark card title</p>
-						<p class="main-card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
-					</div>
-				</div>
-				
-				<div class="license-card">
-					<div class="main-card-header">Header</div>
-					<div class="main-card-body">
-						<p class="main-card-title">Dark card title</p>
-						<p class="main-card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
-					</div>
-				</div>
-				
-				<div class="license-card">
-					<div class="main-card-header">Header</div>
-					<div class="main-card-body">
-						<p class="main-card-title">Dark card title</p>
-						<p class="main-card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
-					</div>
-				</div>
-				
-				<div class="license-card">
-					<div class="main-card-header">Header</div>
-					<div class="main-card-body">
-						<p class="main-card-title">Dark card title</p>
-						<p class="main-card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
-					</div>
-				</div>
-				
-				<div class="license-card">
-					<div class="main-card-header">Header</div>
-					<div class="main-card-body">
-						<p class="main-card-title">Dark card title</p>
-						<p class="main-card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
-					</div>
-				</div>
-				
-				<div class="license-card">
-					<div class="main-card-header">Header</div>
-					<div class="main-card-body">
-						<p class="main-card-title">Dark card title</p>
-						<p class="main-card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
-					</div>
-				</div>
-				
-				<div class="license-card">
-					<div class="main-card-header">Header</div>
-					<div class="main-card-body">
-						<p class="main-card-title">Dark card title</p>
-						<p class="main-card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
-					</div>
-				</div>
+				</c:forEach>
+
 			</div>
 		</div> <!-- down-side section start -->
 	</div>
