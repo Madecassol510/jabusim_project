@@ -93,7 +93,7 @@ li {
 /* =========================================================================== */
 
 #dashBoardModule .dashBoard .dashBoardHd {
-	border-bottom: 1px solid black;
+	border-bottom: 3px solid grey;
 }
 
 .dashBoard .dashBoardHd {
@@ -127,8 +127,9 @@ li {
 
 .dashBoard .dashBoardSearch{
 	text-align: left;
-	border: 1px solid black;
+	border: 1px solid #dfe1e5;
 	margin-bottom : 60px; 
+	box-shadow: 5px 5px 5px;
 	
 }
 
@@ -192,7 +193,8 @@ li {
 /* 테이블 리스트 */
 
 .dashBoard .dashBoardArticle {
-	border:1px solid black; 
+	border: 1px solid #dfe1e5; 
+	box-shadow: 5px 5px 5px;
 }
 
 .dashBoard .dashBoardArticle table {
@@ -205,11 +207,11 @@ li {
 }
 
 .dashBoard .dashBoardArticle table thead{
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table tbody{
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table th{
@@ -497,7 +499,7 @@ span {
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
 					<div class="dashBoardHd">
-						<h2>최근 가입자</h2>
+						<h2>자격증 관리</h2>
 					</div>
 					<div class="dashBoardSearch">
 						<form action="">
@@ -560,13 +562,13 @@ span {
 						<table>
 							<thead>
 								<tr>
-									<th><input type="checkbox" onclick="checkAll(this)"></th>
+									<th style="width: 2%"><input type="checkbox" onclick="checkAll(this)"></th>
 									<th><span>no.</span></th>
 									<th><span>자격증명</span></th>
 									<th><span>계열</span></th>
 									<th><span>대분야</span></th>
 									<th><span>세부분야</span></th>
-									<th><span>상세정보</span></th>
+									<th style="width: 50%"><span>상세정보</span></th>
 								</tr>
 							</thead>
 							<tbody id="searchResultContainer">

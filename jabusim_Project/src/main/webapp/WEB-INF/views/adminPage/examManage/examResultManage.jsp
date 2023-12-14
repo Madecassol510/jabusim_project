@@ -94,7 +94,7 @@ li {
 /* =========================================================================== */
 
 #dashBoardModule .dashBoard .dashBoardHd {
-	border-bottom: 1px solid black;
+	border-bottom: 3px solid grey;
 	text-align: left;
 	margin: 0;
 	padding: 15px;
@@ -125,9 +125,11 @@ li {
 
 .dashBoard .dashBoardSearch{
 	text-align: left;
-	border: 1px solid black;
+	border: 1px solid #dfe1e5;
 	margin-bottom : 60px;
 	border-top: none;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+	border-radius: 10px;
 }
 
 .dashBoard .dashBoardSearch form{
@@ -190,7 +192,12 @@ li {
 /* 테이블 리스트 */
 
 .dashBoard .dashBoardArticle {
-	border:1px solid black; 
+	border: 1px solid #dfe1e5; 
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+	border-radius: 10px;
+	max-height: 560px; /* 원하는 최대 높이 설정 */
+  	overflow-y: auto; /* 세로 스크롤 활성화 */
+  	margin-bottom: 80px;
 }
 
 .dashBoard .dashBoardArticle table {
@@ -203,11 +210,11 @@ li {
 }
 
 .dashBoard .dashBoardArticle table thead{
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table tbody{
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table th{
@@ -231,7 +238,7 @@ span {
 /* =========================================================================== */
 /* 부트스트랩 */
 .nav-tabs {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #dfe1e5;
 }
 
 .nav-tabs .nav-link.active {
@@ -564,7 +571,7 @@ span {
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
 					<div class="dashBoardHd">
-						<h2>최근 가입자</h2>
+						<h2>시험 결과 관리</h2>
 					</div>
 					<ul class="nav nav-tabs">
 						<li class="nav-item">					
@@ -577,7 +584,7 @@ span {
 							<a class="nav-link" href="${root}adminPage/examManage/examReceiptManage">시험접수</a>			
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">시험결과</a>			
+							<a class="nav-link active" aria-current="page" href="#" style="border: 1px solid #dfe1e5; border-bottom: 1px solid transparent">시험결과</a>			
 						</li>	
 					</ul>				
 					<div class="dashBoardSearch">

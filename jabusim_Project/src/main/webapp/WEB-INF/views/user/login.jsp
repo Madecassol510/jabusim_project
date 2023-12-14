@@ -40,12 +40,12 @@
 	    min-height: 700px;
 	    margin: 0 auto;
 	   	padding-top: 80px;
-	    border: 1px solid red;
+	    /* border: 1px solid red; */
 	}
 	.module{
 		min-height : 600px;
 		width:100%;
-		border: 1px solid blue;
+		/* border: 1px solid blue; */
 		text-align:center;
 		padding-top: 50px;
 		padding-bottom: 50px;
@@ -64,8 +64,9 @@
 	#login_module .article{
 		width : 65%;
 		/* height : 500px; */
-		border: 1px solid black;
+		border: 1px solid #dfe1e5;
 		padding: 30px 50px;
+		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 	}
 	
 	#login_module .login_hd{
@@ -118,14 +119,12 @@
 		height : 240px;
 		width : 280px;
 		float: right;
-		border: 1px solid red;
+		/* border: 1px solid red; */
 	}
 	
 	#login_module .login_footer{
 		margin-top: 15px;
 	}
-	
-	
 	
 </style>
 
@@ -161,16 +160,17 @@
 						<form:form action="${root}user/login_pro" method="post" modelAttribute="tempLoginUserBean">
 							<form:input path="user_id" placeholder="아이디 입력" /> <br /> 
 							<form:input path="user_pw" type="password" placeholder="비밀번호 입력" /> <br />
-							<form:button type="submit">로그인</form:button>
+							
+							<form:button class="btn btn-secondary" type="submit">로그인</form:button>
 						</form:form>
-						<div class="login_footer">
+						<!-- <div class="login_footer">
 								<a href="#">아이디찾기</a> &nbsp; | &nbsp;
 								<a href="#">비밀번호찾기</a> &nbsp; | &nbsp;
 								<a href="#">회원가입</a>
-						</div>
+						</div> -->
 					</div>
-					<div class="div">
-						임시
+					<div class="loginimg">
+						<img src="${root }image/caruosel1.jpg" style="height : 210px; width : 245px;"/>
 					</div>
 				</div>
 			</div>

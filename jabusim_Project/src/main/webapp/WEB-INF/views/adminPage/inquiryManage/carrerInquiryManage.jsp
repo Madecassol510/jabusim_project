@@ -93,7 +93,7 @@ li {
 /* =========================================================================== */
 
 #dashBoardModule .dashBoard .dashBoardHd {
-	border-bottom: 1px solid black;
+	border-bottom: 3px solid grey;
 	text-align: left;
 	margin: 0;
 	padding: 15px;
@@ -125,9 +125,10 @@ li {
 
 .dashBoard .dashBoardSearch{
 	text-align: left;
-	border: 1px solid black;
+	border: 1px solid #dfe1e5;
 	border-top: none;
 	margin-bottom : 60px; 
+	box-shadow: 5px 5px 5px;
 }
 
 .dashBoard .dashBoardSearch form{
@@ -167,7 +168,7 @@ li {
 
 
 .dashBoard .dashBoardSearch .searchTable .searchArticle .searchReq{
-	display: inline-block;
+	display: inline-block; 
 	margin-left: 15px;
 }
 
@@ -190,7 +191,8 @@ li {
 /* 테이블 리스트 */
 
 .dashBoard .dashBoardArticle {
-	border:1px solid black; 
+	border: 1px solid #dfe1e5; 
+	box-shadow: 5px 5px 5px; 
 }
 
 .dashBoard .dashBoardArticle table {
@@ -203,11 +205,11 @@ li {
 }
 
 .dashBoard .dashBoardArticle table thead{
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table tbody{
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table th{
@@ -234,7 +236,7 @@ span {
 /* ================================================ */
 /* 부트스트랩 */
 .nav-tabs {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #dfe1e5;
 }
 
 .nav-tabs .nav-link.active {
@@ -548,14 +550,14 @@ span {
 			<div class="module" id="dashBoardModule">
 				<div class="dashBoard">
 					<div class="dashBoardHd">
-						<h2>최근 가입자</h2>
+						<h2>경력 문의</h2>
 					</div>
 					<ul class="nav nav-tabs">
 						<li class="nav-item">
 							<a class="nav-link" href="${root}adminPage/inquiryManage/eduInquiryManage">학력문의</a>				
 						</li>
 						<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">경력문의</a>
+						<a class="nav-link active" aria-current="page" href="#" style="border: 1px solid #dfe1e5; border-bottom: 1px solid transparent">경력문의</a>
 						</li>
 					</ul>
 					<div class="dashBoardSearch">

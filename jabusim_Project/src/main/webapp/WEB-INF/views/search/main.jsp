@@ -17,10 +17,12 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="${root}css/search_main/search_main.css?ver=13" />
+<link rel="stylesheet"
+	href="${root}css/search_main/search_main.css?ver=13" />
 <link rel="stylesheet" href="${root}css/custom_scrollBar.css" />
 <!-- AJAX -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 	<%request.setCharacterEncoding("UTF-8");%>
 	
@@ -72,8 +74,8 @@
                     /* 소분야 전체 보기 버튼 */
                     const allMinorButton = document.createElement('button');
                     allMinorButton.className = 'all-minor-button w-100 h-100';
-
-	                 const img = document.createElement('img');
+                    
+                    const img = document.createElement('img');
 	                 img.src = rootContextPath + "image/tpdyd/box-arrow-in-left.svg";
 	                 allMinorButton.appendChild(img);
 	
@@ -83,8 +85,6 @@
 	                 const allMinorItem = document.createElement('li');
 	                 listBox2.appendChild(allMinorItem);
 	                 allMinorItem.appendChild(allMinorButton);
-                    
-                    
                     
                     allMinorButton.addEventListener('click', function() {
                         listBox2.innerHTML = ''; // 기존 리스트 초기화
@@ -216,7 +216,6 @@
 	        console.error('오류 발생:', error);
 	    }
 	    
-	    
 	}); //document ready
 	
 	/*페이지 로드시 자격증 버튼 생성*/
@@ -242,7 +241,7 @@
         licenseNameLi.className = 'license-name';
         licenseNameLi.textContent = licenseName;
         licenseLink.appendChild(licenseNameLi);
-
+		
         const licenseTypeLi = document.createElement('li');
         licenseTypeLi.className = 'license-type';
         licenseTypeLi.textContent = licenseType;
@@ -250,17 +249,17 @@
 
      	// Create a container for major and minor codes
         const codesContainer = document.createElement('div');
-
+     	
         const majorCodeLi = document.createElement('li');
         majorCodeLi.className = 'major-code';
         majorCodeLi.textContent = majorCode;
         codesContainer.appendChild(majorCodeLi);
-
+        
         const minorCodeLi = document.createElement('li');
         minorCodeLi.className = 'minor-code';
         minorCodeLi.textContent = minorCode;
         codesContainer.appendChild(minorCodeLi);
-
+        
         // Append the codes container to the anchor tag
         licenseLink.appendChild(codesContainer);
 
@@ -268,8 +267,8 @@
         licenseList.appendChild(licenseLink);
 
         list_area.appendChild(licenseList);
-	    });
-	}
+    });
+}
 	
 	
 	/*버튼 클릭시 기능 추가*/
@@ -555,7 +554,7 @@
 
 					<!--  선택박스 -->
 					<div class="list_serch">
-						
+
 						<div class="contents_name">
 							<ul class="d-flex flex-row contents_name_ul">
 								<li>대분야</li>
@@ -563,7 +562,7 @@
 								<li>종 류</li>
 							</ul>
 						</div>
-						
+
 						<!-- #1 -->
 						<div class="list_serch_contents">
 							<ul class="d-flex flex-row list_serch_ul">
@@ -596,7 +595,8 @@
 						<div id="button_box" class="button_box">
 							<div id="reset_box" class="reset_box">
 								<button id="reset_btn" class="reset_btn btn btn-primary">
-									선택항목 초기화&nbsp;<img src="${root }image/tpdyd/arrow-clockwise.svg" />
+									선택항목 초기화&nbsp;<img
+										src="${root }image/tpdyd/arrow-clockwise.svg" />
 								</button>
 							</div>
 							<div id="required_box" class="required_box">

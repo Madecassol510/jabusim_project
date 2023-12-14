@@ -42,12 +42,12 @@
 	    min-height: 700px;
 	    margin: 0 auto;
 	   	padding-top: 80px;
-	    border: 1px solid red;
+	    /* border: 1px solid red; */
 	}
 	.module{
 		min-height : 540px;
 		width:100%;
-		border: 1px solid blue;
+		/* border: 1px solid blue; */
 		text-align:center;
 		/* 
 		padding-top: 50px;
@@ -258,7 +258,7 @@
 	#myLicense_module .licenseBox{
 		min-height: 350px;
 		width: 100%;
-		border: 1px solid red;
+		/* border: 1px solid red; */
 		margin-bottom: 30px;
 	} 
 	
@@ -266,7 +266,7 @@
 	#myLicense_module .licenseBox .licenseHd{
 		min-height: 50px;
 		width: 100%;
-		border: 1px solid blue;
+		/* border: 1px solid blue; */
 		text-align: left;
 		padding-left: 37.5px;
 		padding-top: 20px;
@@ -275,7 +275,7 @@
 	#myLicense_module .licenseBox .licenseList{
 		min-height: 300px;
 		width: 100%;
-		border: 1px solid blue;
+		/* border: 1px solid blue; */
 		padding:30px;
 		display: inline-table;
 	} 

@@ -92,7 +92,7 @@ li {
 /* =========================================================================== */
 
 #dashBoardModule .dashBoard .dashBoardHd {
-	border-bottom: 1px solid black;
+	border-bottom: 3px solid grey;
 	text-align: left;
 	margin: 0;
 	padding: 15px;
@@ -123,9 +123,13 @@ li {
 
 .dashBoard .dashBoardSearch{
 	text-align: left;
-	border: 1px solid black;
+	border: 1px solid #dfe1e5;
 	margin-bottom : 60px; 
 	border-top: none;
+	/* box-shadow: 5px 5px 5px; */
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+	border-radius: 10px;
+	
 }
 
 .dashBoard .dashBoardSearch form{
@@ -188,7 +192,12 @@ li {
 /* 테이블 리스트 */
 
 .dashBoard .dashBoardArticle {
-	border:1px solid black; 
+	border: 1px solid #dfe1e5; 
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+	border-radius: 10px;
+	max-height: 560px;
+  	overflow-y: auto; 
+  	margin-bottom: 80px;
 }
 
 .dashBoard .dashBoardArticle table {
@@ -201,11 +210,11 @@ li {
 }
 
 .dashBoard .dashBoardArticle table thead{
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table tbody{
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table th{
@@ -232,7 +241,7 @@ span {
 /* ================================================ */
 /* 부트스트랩 */
 .nav-tabs {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #dfe1e5;
 }
 
 .nav-tabs .nav-link.active {
@@ -250,7 +259,7 @@ span {
         display: none;
 	    align-items: flex-end; /* 수직 방향으로 가운데 정렬 */
   		justify-content: flex-end;
-        background-color: #f1f1f1; /* 배경색 설정 */
+        background-color: white; /* 배경색 설정 */
         padding: 10px; /* 필요에 따라 여백 설정 */
         text-align: center; /* 텍스트 중앙 정렬 */
 	}
@@ -556,7 +565,7 @@ span {
 					</div>
 					<ul class="nav nav-tabs">
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="#">시험관리</a>
+							<a class="nav-link active" aria-current="page" href="#" style="border: 1px solid #dfe1e5; border-bottom: 1px solid transparent">시험관리</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="${root}adminPage/examManage/examPlaceManage">시험장소</a>				
@@ -734,7 +743,6 @@ span {
 			</div>
 		</div>
 	</div>
-	
 	
 	
 

@@ -44,12 +44,12 @@
 	    min-height: 700px;
 	    margin: 0 auto;
 	   	padding-top: 80px;
-	    border: 1px solid red;
+	    /* border: 1px solid red; */
 	}
 	.module{
 		min-height : 600px;
 		width:100%;
-		border: 1px solid blue;
+		/* border: 1px solid blue; */
 		text-align:center;
 		padding-top: 50px;
 		padding-bottom: 50px;
@@ -68,9 +68,10 @@
 	#join_module .article{
 		width : 60%;
 		min-height : 650px;
-		border: 1px solid black;
+		border: 1px solid #dfe1e5;
 		text-align:left;
 		padding: 30px 50px;
+		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 	}
 	
 	
@@ -247,7 +248,7 @@
 							<div class="input_place">
 								<div class="input_placeTop">
 									<form:input path="user_id" onkeypress="resetUserIdExist()"/>
-									<button type="button" onclick='checkUserIdExist()'>중복확인</button>
+									<button type="button" class="btn btn-secondary" onclick='checkUserIdExist()'>중복확인</button>
 								</div>
 								<div class="input_placeBottom">
 									<form:errors path="user_id" style="color:red"/>
@@ -302,7 +303,8 @@
 							<div class="input_place">
 								<div class="input_placeTop">
 									<form:input path="user_phoneNum" placeholder=" ex) 010-0000-0000" />
-									<button type="button" class="input_check">본인확인</button>
+									<button type="button" class="btn btn-secondary" class="input_check">본인확인</button>
+
 								</div>
 								<div class="input_placeBottom">
 									<form:errors path="user_phoneNum" style="color:red"/>
@@ -313,8 +315,10 @@
 						
 						<div class = "input_footer">
 							<div class="input_footerDiv">
-								<button type="button" onClick="location.href='${root}main'">취소</button>
-								<form:button type="submit" style="margin-left: 20px;">회원가입</form:button>
+								 <button type="button"class="btn btn-secondary"  onClick="location.href='${root}main'">취소</button>
+
+								 <form:button type="submit" class="btn btn-secondary" style="margin-left: 20px;">회원가입</form:button>
+
 							</div>
 						</div>
 					</form:form>									

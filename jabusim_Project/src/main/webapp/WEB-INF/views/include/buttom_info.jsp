@@ -19,8 +19,8 @@
 
 <div class="footer-container">
 	<div class="footer-content">
-		<p>http://www.softSoldesk.co.kr</p>
-		<p>게시판 예제</p>
-		<p>사업자번호 : 000-111-222</p>
+		<p>http://www.jabusim.co.kr</p>
+		<p>팀 마데카솔</p>
+		<p>tel : 010-6243-9942</p>
 	</div>
 </div>

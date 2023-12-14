@@ -11,6 +11,7 @@
 
 <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
 <script type="text/javascript">
 	var examBeansJson = ${examBeansJson};
@@ -29,6 +30,18 @@
   function collapseDate(date) {
     date.style.height = 'auto';
   }
+  
+  $(document).ready(function() {
+	    $('.license-card').hover(function() {
+	        // 마우스 오버 시
+	        var newContent = $(this).data('hover-text');
+	        $(this).find('.main-card-text').text(newContent);
+	    }, function() {
+	        // 마우스 아웃 시
+	        var originalContent = $(this).data('original-text');
+	        $(this).find('.main-card-text').text(originalContent);
+	    });
+	});
 </script>
 
 <link rel="stylesheet" href="${root }css/main_section.css" />
@@ -148,11 +161,12 @@
 		<div class="down-side-section">
 			<div class="card-list">
 				<c:forEach items="${licenseBeans}" var="licenseBean">
-					<div class="license-card" onclick="location.href='${root}info/main?licenseID=${licenseBean.license_idx}'">
+					<div class="license-card" onclick="location.href='${root}info/main?licenseID=${licenseBean.license_idx}'" style="transition: transform 0.3s ease-in-out;" data-original-text="마우스를 올리면 상세내용이 뜹니다."
+					data-hover-text= "${licenseBean.license_info}">
 						<div class="main-card-header">${licenseBean.license_name}</div>
 						<div class="main-card-body">
 							<p class="main-card-title">${licenseBean.license_mainCategory}</p>
-							<p class="main-card-text">${licenseBean.license_info}</p>
+							<p class="main-card-text">마우스를 올리면 상세내용이 뜹니다.</p>
 						</div>
 					</div>
 				</c:forEach>

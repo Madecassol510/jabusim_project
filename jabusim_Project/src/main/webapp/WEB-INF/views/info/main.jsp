@@ -1,207 +1,224 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var='root' value="${pageContext.request.contextPath }/"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var='root' value="${pageContext.request.contextPath }/" />
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>자격증 정보 페이지</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>자격증 정보 페이지</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <style>
-        .sidebar-styling {
-            width: 100px;
-            position: fixed;
-            top: 30%;
-            right: 150px;
-            height: 18%;
-            background-color: transparent;
-            border-left: 1px solid grey;
-        }
+<style>
+.sidebar-styling {
+	width: 100px;
+	position: fixed;
+	top: 30%;
+	right: 150px;
+	height: 18%;
+	background-color: transparent;
+	border-left: 1px solid grey;
+}
 
-        .sidebar-styling ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
+.sidebar-styling ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
 
-        .sidebar-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background-color: transparent;
-            color: grey;
-            text-align: left;
-            transition: color 0.3s, background-color 0.3s;
-            cursor: pointer;
-        }
+.sidebar-btn {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	border: none;
+	background-color: transparent;
+	color: grey;
+	text-align: left;
+	transition: color 0.3s, background-color 0.3s;
+	cursor: pointer;
+}
 
-        .sidebar-btn.active,
-        .sidebar-btn:hover {
-            color: black;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
+.sidebar-btn.active, .sidebar-btn:hover {
+	color: black;
+	background-color: rgba(255, 255, 255, 0.1);
+}
 
-        .navbar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            left: 0;
-            z-index: 1030;
-        }
+.navbar {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1030;
+}
 
-        .container-box {
-            position: relative;
-            width: 1250px;
-            min-height: 700px;
-            margin: 0 auto;
-            border: 1px solid black;
-            
-        }
+.container-box {
+	position: relative;
+	width: 1250px;
+	min-height: 700px;
+	margin: 0 auto;
+	border: 1px solid black;
+}
 
-        .card {
-        	width: 1000px;
-         	min-height: 230px;
-            margin-bottom: 1rem;
-            border-radius: 10px;
-        }
-        
-        .card-body{
-        	border-radius: 10px;
-        }
-        
-		#fbanner-section {
-        	height: 270px;
-        }
-       
-        #fbanner-section h1{
-        	font-weight: 700;
-        	color: #fff;
-        	padding-top:79px;
-        	font-size: 40px;
-        }
-        
-        
-        #건설{
-        	background-image: url('${root}image/licenseImage/건설.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #경영\.회계\.사무{
-        	background-image: url('${root}image/licenseImage/경영.회계.사무.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #교육\.자연\.과학\.사회과학{
-        	background-image: url('${root}image/licenseImage/교육.자연.과학.사회과학.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #기계{
-        	background-image: url('${root}image/licenseImage/기계.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #농림어업{
-        	background-image: url('${root}image/licenseImage/농림어업.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #문화\.예술\.디자인\.방송{
-        	background-image: url('${root}image/licenseImage/문화.예술.디자인.방송.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #보건\.의료{
-        	background-image: url('${root}image/licenseImage/보건.의료.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #사회복지\.종교{
-        	background-image: url('${root}image/licenseImage/사회복지.종교.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #식품\.가공{
-        	background-image: url('${root}image/licenseImage/식품.가공.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #안전관리{
-        	background-image: url('${root}image/licenseImage/안전관리.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #영업\.판매{
-        	background-image: url('${root}image/licenseImage/영업.판매.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #운전\.운송{
-        	background-image: url('${root}image/licenseImage/운전.운송.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #음식서비스{
-        	background-image: url('${root}image/licenseImage/음식서비스.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #인쇄\.목재\.가구\.공예{
-        	background-image: url('${root}image/licenseImage/인쇄.목재.가구.공예.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #재료{
-        	background-image: url('${root}image/licenseImage/재료.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #전기\.전자{
-        	background-image: url('${root}image/licenseImage/전기.전자.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        #정보통신{
-        	background-image: url('${root}image/licenseImage/정보통신.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }       
-        #화학{
-        	background-image: url('${root}image/licenseImage/화학.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }        
-        #환경\.에너지{
-        	background-image: url('${root}image/licenseImage/환경.에너지.jpg');
-        	background-size: 1000px 295px;
-   			background-position: center;
-        }
-        
-        /* =================================================================== */
-        
-        #섬유\.의복{
-        	background-color: gray;
-        }
-        #광업자원{
-        	background-color: gray;
-        }
-        #이용\.숙박\.여행\.오락\.스포츠{
-        	background-color: gray;
-        }
+.card {
+	width: 1000px;
+	min-height: 230px;
+	margin-bottom: 1rem;
+	border-radius: 10px;
+}
 
+.card-body {
+	border-radius: 10px;
+}
 
-   
-    </style>
+#fbanner-section {
+	height: 270px;
+}
+
+#fbanner-section h1 {
+	font-weight: 700;
+	color: #fff;
+	padding-top: 79px;
+	font-size: 40px;
+}
+
+#건설 {
+	background-image: url('${root}image/licenseImage/건설.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#경영\.회계\.사무 {
+	background-image: url('${root}image/licenseImage/경영.회계.사무.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#교육\.자연\.과학\.사회과학 {
+	background-image: url('${root}image/licenseImage/교육.자연.과학.사회과학.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#기계 {
+	background-image: url('${root}image/licenseImage/기계.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#농림어업 {
+	background-image: url('${root}image/licenseImage/농림어업.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#문화\.예술\.디자인\.방송 {
+	background-image: url('${root}image/licenseImage/문화.예술.디자인.방송.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#보건\.의료 {
+	background-image: url('${root}image/licenseImage/보건.의료.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#사회복지\.종교 {
+	background-image: url('${root}image/licenseImage/사회복지.종교.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#식품\.가공 {
+	background-image: url('${root}image/licenseImage/식품.가공.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#안전관리 {
+	background-image: url('${root}image/licenseImage/안전관리.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#영업\.판매 {
+	background-image: url('${root}image/licenseImage/영업.판매.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#운전\.운송 {
+	background-image: url('${root}image/licenseImage/운전.운송.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#음식서비스 {
+	background-image: url('${root}image/licenseImage/음식서비스.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#인쇄\.목재\.가구\.공예 {
+	background-image: url('${root}image/licenseImage/인쇄.목재.가구.공예.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#재료 {
+	background-image: url('${root}image/licenseImage/재료.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#전기\.전자 {
+	background-image: url('${root}image/licenseImage/전기.전자.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#정보통신 {
+	background-image: url('${root}image/licenseImage/정보통신.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#화학 {
+	background-image: url('${root}image/licenseImage/화학.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+#환경\.에너지 {
+	background-image: url('${root}image/licenseImage/환경.에너지.jpg');
+	background-size: 1000px 295px;
+	background-position: center;
+}
+
+/* =================================================================== */
+#섬유\.의복 {
+	background-color: gray;
+}
+
+#광업자원 {
+	background-color: gray;
+}
+
+#이용\.숙박\.여행\.오락\.스포츠 {
+	background-color: gray;
+}
+</style>
 
 <%
     // Java 코드로 현재 날짜와 시간을 구합니다.
     java.util.Date currentDate = new java.util.Date();
-%>    
-
+%>
 
 <script type="text/javascript">
 	var examPassingJson = ${examPassingJson != null ? examPassingJson : 'null'};
@@ -210,47 +227,50 @@
 </head>
 <body>
 
-    <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
+	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-    <!-- 사이드바 -->
-    <div class="sidebar-styling">
-        <ul>
-            <li><button class="sidebar-btn" data-bs-target="#banner-section">배너</button></li>
-            <li><button class="sidebar-btn" data-bs-target="#info-section">정보</button></li>
-            <li><button class="sidebar-btn" data-bs-target="#passrate-section">합격률</button></li>
-            <li><button class="sidebar-btn" data-bs-target="#companies-section">우대회사</button></li>
-        </ul>
-    </div>
+	<!-- 사이드바 -->
+	<div class="sidebar-styling">
+		<ul>
+			<li><button class="sidebar-btn" data-bs-target="#banner-section">배너</button></li>
+			<li><button class="sidebar-btn" data-bs-target="#info-section">정보</button></li>
+			<li><button class="sidebar-btn"
+					data-bs-target="#passrate-section">합격률</button></li>
+			<li><button class="sidebar-btn"
+					data-bs-target="#companies-section">우대회사</button></li>
+		</ul>
+	</div>
 
-    <div class="container-box mx-auto my-5">
-        <div id="fbanner-section" class="card mx-auto my-5">
-			<div class="card-body text-center" id="${infoLicenseBean.getLicense_mainCategory()}">
+	<div class="container-box mx-auto my-5">
+		<div id="fbanner-section" class="card mx-auto my-5">
+			<div class="card-body text-center"
+				id="${infoLicenseBean.getLicense_mainCategory()}">
 				<h1 class="card-title mt-3">${infoLicenseBean.getLicense_name()}</h1>
 			</div>
 		</div>
-        <div id="info-section" class="card mx-auto my-5">
-            <div class="card-body">
-                <h2 class="card-title">자격증 정보</h2>
-                <p class="card-text">${infoLicenseBean.getLicense_info()}</p>
-            </div>
-        </div>
+		<div id="info-section" class="card mx-auto my-5">
+			<div class="card-body">
+				<h2 class="card-title">자격증 정보</h2>
+				<p class="card-text">${infoLicenseBean.getLicense_info()}</p>
+			</div>
+		</div>
 
 		<div id="exam-section" class="card mx-auto my-5">
-            <div class="card-body">
-                <h2 class="card-title">시험 일정</h2>
-                <table>
-                	<thead>
-                		<tr>
-                			<th>시험명</th>
-                			<th>구분</th>
-                			<th>접수시간</th>
-                			<th>시험일</th>
-                			<th>결과발표일</th>
-                			<th></th>
-                		</tr>
-                	</thead>
-                	<tbody>
-                		<c:forEach items="${infoExamBeanList}" var="infoExamBean">
+			<div class="card-body">
+				<h2 class="card-title">시험 일정</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>시험명</th>
+							<th>구분</th>
+							<th>접수시간</th>
+							<th>시험일</th>
+							<th>결과발표일</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${infoExamBeanList}" var="infoExamBean">
 							<tr>
 								<td>${infoExamBean.exam_name}</td>
 								<td>${infoExamBean.exam_type}</td>
@@ -269,20 +289,19 @@
 							</tr>
 
 						</c:forEach>
-                	</tbody>
-                </table>
-            </div>
-        </div>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-        <div id="passrate-section" class="card mx-auto my-5">
-            <div class="card-body">
-                <h2 class="card-title">시험 합격률</h2>
-                <canvas id="passRateChart"></canvas>
-            </div>
-        </div>
-    </div>
-
-    <script>  
+		<div id="passrate-section" class="card mx-auto my-5">
+			<div class="card-body">
+				<h2 class="card-title">시험 합격률</h2>
+				<canvas id="passRateChart"></canvas>
+			</div>
+		</div>
+	</div>
+	<script>  
 	    if (examPassingJson != null) {
 	    	
 	    	var exam2018_1 = examPassingJson.etyprate;
@@ -338,7 +357,7 @@
 	    } else {
 	        console.log("infoExamPassingBean is null. Chart will not be rendered.");
 	    }
-        
+
         document.querySelectorAll('.sidebar-btn').forEach(item => {
             item.addEventListener('click', event => {
                 event.preventDefault();
@@ -363,8 +382,10 @@
         });
     </script>
 
-    <c:import url="/WEB-INF/views/include/buttom_info.jsp"/>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+	<c:import url="/WEB-INF/views/include/buttom_info.jsp" />
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

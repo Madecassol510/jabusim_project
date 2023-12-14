@@ -143,15 +143,16 @@
 
 
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
-	style="position: fixed; top: 0; left: 0; width: 10%; height: 100%; z-index: 1000; background-color: #a9a9a9 !important; font-family: 'Nanum Gothic', sans-serif; font-weight: bold;">
+	style="position: fixed; top: 0; left: 0; width: 10%; height: 100%; z-index: 1000; background-color: #87CEFA !important; font-family: 'Nanum Gothic', sans-serif; font-weight: bold;">
 
 	<a href="${root}main"
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" style= "top-margin: 100px">
-		<svg class="bi me-2" width="40" height="32">
-			<use xlink:href="#bootstrap"></use></svg> <span class="fs-4">자부심</span>
+		<svg width="40" height="32">
+    	<use xlink:href="${root}image/logo.svg"></use>
+		</svg> <span class="fs-4">자부심</span>
 	</a>
 	<hr>
-	<ul class="nav nav-pills flex-column mb-auto" style="padding-top: 30%">
+	<ul class="nav nav-pills flex-column mb-auto" style="padding-top: 30%; color: black;">
 		<li><a href="${root}adminPage/memberManage"
 			class="nav-link text-black"> <svg class="bi me-2" width="16"
 					height="16">

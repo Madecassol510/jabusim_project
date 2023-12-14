@@ -94,7 +94,7 @@ li {
 /* =========================================================================== */
 
 #dashBoardModule .dashBoard .dashBoardHd {
-	border-bottom: 1px solid black;
+	border-bottom: 3px solid grey;
 	text-align: left;
 	margin: 0;
 	padding: 15px;
@@ -128,8 +128,9 @@ li {
 
 .dashBoard .dashBoardSearch{
 	text-align: left;
-	border: 1px solid black;
+	border: 1px solid #dfe1e5;
 	margin-bottom : 60px; 
+	box-shadow: 5px 5px 5px;
 }
 
 .dashBoard .dashBoardSearch form{
@@ -192,7 +193,8 @@ li {
 /* 테이블 리스트 */
 
 .dashBoard .dashBoardArticle {
-	border:1px solid black; 
+	border: 1px solid #dfe1e5; 
+	box-shadow: 5px 5px 5px;
 }
 
 .dashBoard .dashBoardArticle table {
@@ -205,11 +207,11 @@ li {
 }
 
 .dashBoard .dashBoardArticle table thead{
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table tbody{
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #dfe1e5;
 }
 
 .dashBoard .dashBoardArticle table th{
@@ -671,10 +673,10 @@ span {
 										</div>						
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th class="searchHd">관심분야</th>
 									<td class="searchArticle">
-										<div class="searchReq">
+										<div class="form-select">class="searchReq"
 											<select id="interestsInput">
 												<option></option>
 												<option>건설기계운전</option>
@@ -713,7 +715,7 @@ span {
 											</select>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 								<tr>
 									<th class="searchHd">가입일</th>
 									<td class="searchArticle">
@@ -811,7 +813,7 @@ span {
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 	
 	
 	<script
