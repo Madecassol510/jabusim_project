@@ -65,9 +65,7 @@
 	
 	
 	#myInfo_module .article{
-		width : 94%;
-		border: 1px solid black;
-		
+		width : 94%;		
 	}
 	
 	#myInfo_module h3{
@@ -86,10 +84,13 @@
 	#myInfo_module .left_div{
 		width : 60%;
 		min-height : 460px;
-		border: 1px solid black;
 		text-align:left;
 		float:left;
 		padding: 30px 40px;
+		border: 1px solid #dfe1e5;
+		box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
+		border-radius: 10px;
+		
 	}
 	
 	
@@ -116,6 +117,7 @@
 		width: 62%;
 		min-height: 60px;
 		margin-bottom: 10px;
+		float:right;
 	}
 	
 	#myInfo_module .left_div .input_box .input_name{
@@ -155,7 +157,7 @@
 	#myInfo_module .left_div .photo_box{
 		height:300px;
 		width:35%;
-		float:right;
+		float:left;
 		padding-top: 14px;
 	}
 	
@@ -184,15 +186,17 @@
 	#myInfo_module .right_div{
 		width : 38%;
 		height : 460px;
-		border: 1px solid black;
 		float:right;
+		
+		border: 1px solid #dfe1e5;
+		box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
+		border-radius: 10px;
 	}
 	
 	#myInfo_module .act_div{
 		width : 100%;
 		display:inline-block;
-		height : 67%;
-		border: 1px solid black;
+		height : 100%;
 		text-align:left;
 		padding: 30px 40px;
 	}
@@ -200,13 +204,12 @@
 	#myInfo_module .act_div h5{
 		margin:0;
 		height:16%;
-		
 	}
 
 	#myInfo_module .act_div .act_infoBox{
 		display: grid;
-		grid-template-columns: repeat(2, 1fr); /* 2열 설정 */
-    	grid-template-rows: repeat(2, 1fr);
+		grid-template-columns: repeat(1, 1fr); /* 2열 설정 */
+    	grid-template-rows: repeat(4, 1fr);
     	gap: 10px; 
     	width:100%;
     	height:84%;
@@ -252,7 +255,10 @@
 		width : 94%;
 		min-height : 460px;
 		display: inline-block;
-		border: 1px solid black;
+		
+		border: 1px solid #dfe1e5;
+		box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
+		border-radius: 10px;
 	}
 	
 	#myLicense_module .licenseBox{
@@ -361,11 +367,9 @@
 						<form action="#" class="act_infoBox">
 							<%-- <form:label path=""></form:label> 사용--%>
 							<div class="act_info">
-								<div class="act_infotitle">가입일</div>
+								<h6 style="font-weight: 10;">가입일</h6>
 								<div>
-									${myPageUserBean.getUser_joinDate()}
-									<br />
-									가입했습니다.
+									${myPageUserBean.getUser_joinDate()}에 가입했습니다.
 								</div>
 							</div>
 							<div class="act_info">
@@ -384,17 +388,9 @@
 								<div class="act_infotitle">자격증</div>
 								<div>
 									보유 자격증 0개 <br />
-									관심 자격증 0개
 								</div>
 							</div>
 						</form>
-					</div>
-					<div class="right_footer">
-						<h5>자격증 정보</h5>
-						<div>
-							소유하신 보유 자격증 0개 <br />
-							소유하신 관심 자격증 0개
-						</div>
 					</div>
 				</div>
 			</div>
