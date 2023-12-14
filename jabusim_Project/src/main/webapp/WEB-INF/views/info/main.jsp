@@ -58,8 +58,7 @@
             width: 1250px;
             min-height: 700px;
             margin: 0 auto;
-            padding-top: 80px;
-            border: 1px solid red;
+            border: 1px solid black;
             
         }
 
@@ -193,12 +192,16 @@
         #이용\.숙박\.여행\.오락\.스포츠{
         	background-color: gray;
         }
-        
-        
-        
-        
-        
+
+
+   
     </style>
+
+<%
+    // Java 코드로 현재 날짜와 시간을 구합니다.
+    java.util.Date currentDate = new java.util.Date();
+%>    
+
 </head>
 <body>
 
@@ -223,15 +226,46 @@
         <div id="info-section" class="card mx-auto my-5">
             <div class="card-body">
                 <h2 class="card-title">자격증 정보</h2>
-                <!-- <p class="card-text">자격증 데이터</p> -->
                 <p class="card-text">${infoLicenseBean.getLicense_info()}</p>
             </div>
         </div>
 
 		<div id="exam-section" class="card mx-auto my-5">
             <div class="card-body">
-                <h2 class="card-title">시험 합격률</h2>
-                <canvas id="passRateChart"></canvas>
+                <h2 class="card-title">시험 일정</h2>
+                <table>
+                	<thead>
+                		<tr>
+                			<th>시험명</th>
+                			<th>구분</th>
+                			<th>접수시간</th>
+                			<th>시험일</th>
+                			<th>결과발표일</th>
+                			<th></th>
+                		</tr>
+                	</thead>
+                	<tbody>
+                		<c:forEach items="${infoExamBeanList}" var="infoExamBean">
+							<tr>
+								<td>${infoExamBean.exam_name}</td>
+								<td>${infoExamBean.exam_type}</td>
+								<td>${infoExamBean.exam_receiptStartDate}~
+									${infoExamBean.exam_receiptEndDate}</td>
+								<td>${infoExamBean.exam_date}</td>
+								<td>${infoExamBean.exam_resultDate}</td>
+								<td>${infoExamBean.exam_status}</td>
+								<%-- <c:choose>
+                				<c:when test="${currentDate.after(startDate) && currentDate.before(endDate)}">
+                					<td>접수 중</td>
+                				</c:when>
+                			</c:choose>
+  --%>
+
+							</tr>
+
+						</c:forEach>
+                	</tbody>
+                </table>
             </div>
         </div>
 
@@ -250,13 +284,13 @@
             data: {
                 labels: ['2018년', '2019년', '2020년', '2021년', '2022년'],
                 datasets: [{
-                    label: '1차',
+                    label: '필기',
                     data: [10, 30, 50, 70, 90],
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
                 }, {
-                    label: '2차',
+                    label: '실기',
                     data: [20, 40, 60, 80, 100],
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
