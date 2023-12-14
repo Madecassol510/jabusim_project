@@ -35,62 +35,96 @@ a, a:hover {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-
+.top_module_inner>h1 {
+	padding-bottom: 5px;
+}
 .search_container {
 	width: 1120px;
 }
 
+.text_search {
+	padding-bottom: 30px;
+}
 
 .list_serch {
 	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
+.list_serch_contents {
+	border: 1px solid #0d6efd;
+	border-top: 0;
+	border-radius: 5px;
+}
 .list_serch_contents >ul > li {
 	width: 33.333%;
 }
 
-.custom-btn button {
+contents_name {
 	width: 100%;
+}
+
+.contents_name_ul>li {
+	width: 33.333%;
+}
+
+.contents_name_ul>li {
+    width: 33.333%;
+    background-color: #0d6efd;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.list_serch_ul> {
+  border: none; /* 기본 버튼의 테두리 제거 */
+}
+
+.content1, .content2 {
+	border-right: 1px solid #0d6efd;
 }
 
 .selected_show {
 	width: 100%;
 	margin: 0 auto;
-}
-
-
-.list_box {
-	max-height: 200px;
-	overflow: auto;
-	overflow-x: hidden;
-}
-
-.list_box>li {
-	height: 40px;
-}
-
-.selected_show {
-	height: 80px;
-	max-height: 80px;
+	height: 100px;
+	max-height: 100px;
 	display: flex;
 }
 
 .seleted_box {
-	width: 780.82px;
+	width: 67%;
 	padding: 10px 15px;
 	overflow: auto;
 	overflow-x: hidden;
+	@extend .pretty-scrollbar;
 }
 
 .button_box {
+	width : 33%;
 	padding: 20px 20px 20px 0;
 	display: flex;
+	justify-content: flex-end;
 	grid-gap: 20px;
 	gap: 20px;
 	align-items: center;
 	margin-left: auto;
 }
+
+.required_btn, .reset_btn {
+    display: flex;           /* Enable Flexbox */
+    justify-content: center; /* Center items horizontally */
+    align-items: center;     /* Center items vertically */
+}
+
+.required_btn img, .reset_btn img {
+    vertical-align: -1px; /* Adjust the value as needed */
+}
+
+
 
 .major-button, .minor-button, .lt-button, .sc-button, .all-button,.all-minor-button {
 	background: none;
@@ -107,17 +141,37 @@ a, a:hover {
 	background: none;
 	border: none;
 	cursor: pointer;
+	margin: 0 15px 5px 0;
 }
 
+.list_box {
+	max-height: 200px;
+	overflow: auto;
+	overflow-x: hidden;
+	@extend .pretty-scrollbar;
+}
+
+.flex-row > li:last-child > .list_box {
+  overflow: hidden;
+}
+
+
+.list_box>li {
+	height: 50px;
+}
+
+.lt-button {
+	padding: 0 0 0 0;
+}
 
 /* 바텀모듈 */
 .bottom_module {
 	min-height: 600px;
 	width: 100%;
-	/* border: 1px solid blue; */
 	text-align: center;
 	padding-top: 50px;
 	padding-bottom: 50px;
+	border-top: 1px solid black;
 }
 
 .bottom_module_inner {
@@ -132,38 +186,35 @@ a, a:hover {
 	padding-left: 0; /* 기본 패딩 제거 */
 	border: 1px solid #ddd;
 	margin-bottom: 10px;
+	/* text-align: left; */
 }
 
-.list-item>li {
+.list-item a > li {
 	margin-bottom: 5px;
 	padding: 5px;
-	display: table;
+	display: inline-block;
+	/* display: table; */
 }
 
-.d-day-class {
+.license-name {
+    font-weight: bold; /* 이름을 부각 */
+    color: #0000FF; /* 파란색 계열의 색상 */
+    font-size: 1.2em; /* 크기를 적당히 크게 */
+}
+
+.license-type {
+    color: #87CEEB; /* 하늘색 계열의 색상 */
+    font-size: 0.9em; /* 크기를 약간 작게 */
+}
+
+.major-code {
+	margin-bottom: 5px;
 	padding: 5px;
-	margin-right: 10px;
+	display: inline-block;
 }
 
-.certificate-name-class, .organizer-class, .registration-date-class,
-	.exam-date-class {
+.minor-code {
+	margin-bottom: 5px;
 	padding: 5px;
-	margin-right: 10px;
-}
-
-/* 각 클래스 별 배경색 */
-.certificate-name-class {
-	background-color: #d1ecf1;
-}
-
-.organizer-class {
-	background-color: #fff3cd;
-}
-
-.registration-date-class {
-	background-color: #cce5ff;
-}
-
-.exam-date-class {
-	background-color: #f5c6cb;
+	display: inline-block;
 }

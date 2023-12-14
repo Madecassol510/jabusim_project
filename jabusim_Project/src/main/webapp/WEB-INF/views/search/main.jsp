@@ -17,7 +17,8 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="${root}css/search_main/search_main.css?ver=7" />
+<link rel="stylesheet" href="${root}css/search_main/search_main.css?ver=13" />
+<link rel="stylesheet" href="${root}css/custom_scrollBar.css" />
 <!-- AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -71,10 +72,19 @@
                     /* 소분야 전체 보기 버튼 */
                     const allMinorButton = document.createElement('button');
                     allMinorButton.className = 'all-minor-button w-100 h-100';
-                    allMinorButton.textContent = '소분야 전체보기';
-                    const allMinorItem = document.createElement('li');
-                    listBox2.appendChild(allMinorItem);
-                    allMinorItem.appendChild(allMinorButton);
+
+	                 const img = document.createElement('img');
+	                 img.src = rootContextPath + "image/tpdyd/box-arrow-in-left.svg";
+	                 allMinorButton.appendChild(img);
+	
+	                 const buttonText = document.createTextNode(' 소분야 전체보기');
+	                 allMinorButton.appendChild(buttonText);
+	
+	                 const allMinorItem = document.createElement('li');
+	                 listBox2.appendChild(allMinorItem);
+	                 allMinorItem.appendChild(allMinorButton);
+                    
+                    
                     
                     allMinorButton.addEventListener('click', function() {
                         listBox2.innerHTML = ''; // 기존 리스트 초기화
@@ -206,6 +216,7 @@
 	        console.error('오류 발생:', error);
 	    }
 	    
+	    
 	}); //document ready
 	
 	/*페이지 로드시 자격증 버튼 생성*/
@@ -215,10 +226,9 @@
     licenseData.forEach(allLi => {
         const licenseID = allLi.license_idx;
         const licenseName = allLi.license_name;
-        const examName = allLi.exam_name;
-        const registrationPeriod = allLi.registrationPeriod;
-        const examDateStr = allLi.examDate;
-        const examDateObj = new Date(examDateStr);
+        const licenseType = allLi.license_type;
+        const majorCode = allLi.majorCode;
+        const minorCode = allLi.minorCode;
 
         const licenseList = document.createElement('ul');
         licenseList.className = 'list-item';
@@ -229,27 +239,37 @@
 
         // Append all list items to the anchor tag
         const licenseNameLi = document.createElement('li');
+        licenseNameLi.className = 'license-name';
         licenseNameLi.textContent = licenseName;
         licenseLink.appendChild(licenseNameLi);
 
-        const registrationPeriodLi = document.createElement('li');
-        registrationPeriodLi.textContent = examName;
-        licenseLink.appendChild(registrationPeriodLi);
+        const licenseTypeLi = document.createElement('li');
+        licenseTypeLi.className = 'license-type';
+        licenseTypeLi.textContent = licenseType;
+        licenseLink.appendChild(licenseTypeLi);
 
-        const periodLi = document.createElement('li');
-        periodLi.textContent = registrationPeriod;
-        licenseLink.appendChild(periodLi); 
+     	// Create a container for major and minor codes
+        const codesContainer = document.createElement('div');
 
-        /* const examDateLi = document.createElement('li');
-        examDateLi.textContent = examDateObj.toLocaleDateString();
-        licenseLink.appendChild(examDateLi); */
+        const majorCodeLi = document.createElement('li');
+        majorCodeLi.className = 'major-code';
+        majorCodeLi.textContent = majorCode;
+        codesContainer.appendChild(majorCodeLi);
+
+        const minorCodeLi = document.createElement('li');
+        minorCodeLi.className = 'minor-code';
+        minorCodeLi.textContent = minorCode;
+        codesContainer.appendChild(minorCodeLi);
+
+        // Append the codes container to the anchor tag
+        licenseLink.appendChild(codesContainer);
 
         // Append the anchor tag to the list
         licenseList.appendChild(licenseLink);
 
         list_area.appendChild(licenseList);
-    });
-}
+	    });
+	}
 	
 	
 	/*버튼 클릭시 기능 추가*/
@@ -272,10 +292,19 @@
 	    });
 	    /*여러 종류 조건 검색*/
 	    serch_condition.addEventListener('click', function() {
+	    	searchInput.value = '';
 	        selectAnyCategories();
 	    });
+	    /*input enter 기능 추가*/
+	    searchInput.addEventListener('keypress', function(event) {
+	        if (event.key === 'Enter') {
+	            searchButton.click(); // Triggers the search button's click event
+	        }
+	    });
+	    
 	    /*자격증 이름 검색*/
 	    searchButton.addEventListener('click', function() {
+	    	popAllLicenseCodes();
 	    	searchLicenseName(searchInput);
 	    });
 	    
@@ -381,6 +410,11 @@
 	        selectedButton.className = 'selected-button';
 	        selectedButton.id = 'selected-button-' + code;
 	        selectedButton.textContent = codeDesc;
+	        
+	        const img = document.createElement('img');
+	        img.src = rootContextPath + "image/tpdyd/x.svg";
+	        selectedButton.appendChild(img);
+	        
 	        selectedButton.onclick = function() { popLicenseCode(code, codeDesc); };
 	
 	        selectedBox.appendChild(selectedButton);
@@ -521,33 +555,33 @@
 
 					<!--  선택박스 -->
 					<div class="list_serch">
+						
+						<div class="contents_name">
+							<ul class="d-flex flex-row contents_name_ul">
+								<li>대분야</li>
+								<li>소분야</li>
+								<li>종 류</li>
+							</ul>
+						</div>
+						
 						<!-- #1 -->
 						<div class="list_serch_contents">
-							<ul class="d-flex flex-row">
-								<li class="flex-fill custom-btn">
-									<button class="btn btn-secondary">대분야</button>
-									<ul id="list_box1" class="list_box">
+							<ul class="d-flex flex-row list_serch_ul">
+								<li class="flex-fill content1">
+									<ul id="list_box1" class="list_box pretty-scrollbar">
 										<!-- content1 내용 -->
 									</ul>
 								</li>
-								<li class="flex-fill custom-btn">
-									<button class="btn btn-secondary">소분야</button>
-									<ul id="list_box2" class="list_box">
+								<li class="flex-fill content2">
+									<ul id="list_box2" class="list_box pretty-scrollbar">
 										<!-- content2 내용 -->
 									</ul>
 								</li>
-								<li class="flex-fill custom-btn">
-									<button class="btn btn-secondary">종류</button>
+								<li class="flex-fill content3">
 									<ul id="list_box3" class="list_box">
-										<!-- content2 내용 -->
+										<!-- content3 내용 -->
 									</ul>
 								</li>
-								<!-- <li class="flex-fill custom-btn">
-									<button class="btn btn-secondary">시간</button>
-									<ul id="list_box4" class="list_box">
-										content3 내용
-									</ul>
-								</li> -->
 							</ul>
 						</div>
 
@@ -557,14 +591,18 @@
 
 					<!-- 선택 보여주는 박스 -->
 					<div id="selected_show" class="selected_show">
-						<div id="seleted_box" class="seleted_box"></div>
+						<div id="seleted_box" class="seleted_box pretty-scrollbar"></div>
 
 						<div id="button_box" class="button_box">
 							<div id="reset_box" class="reset_box">
-								<button id="reset_btn" class="reset_btn">img 초기화</button>
+								<button id="reset_btn" class="reset_btn btn btn-primary">
+									선택항목 초기화&nbsp;<img src="${root }image/tpdyd/arrow-clockwise.svg" />
+								</button>
 							</div>
 							<div id="required_box" class="required_box">
-								<button id="required_btn" class="required_btn">선택 항목 검색</button>
+								<button id="required_btn" class="required_btn btn btn-primary">
+									선택항목 검색&nbsp;<img src="${root }image/tpdyd/search.svg" />
+								</button>
 							</div>
 						</div>
 					</div>
@@ -584,7 +622,6 @@
 			<div id="bottom_module_inner" class="bottom_module_inner">
 				<div id="list_area" class="list_area">
 					<!-- 리스트 항목들이 여기에 추가됩니다 -->
-					<p>${sessionScope.getLicenseCodeMeanings.size()}</p>
 				</div>
 
 				<nav aria-label="페이지 네비게이션">
