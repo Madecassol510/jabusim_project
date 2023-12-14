@@ -202,6 +202,11 @@
     java.util.Date currentDate = new java.util.Date();
 %>    
 
+
+<script type="text/javascript">
+	var examPassingJson = ${examPassingJson != null ? examPassingJson : 'null'};
+</script>
+
 </head>
 <body>
 
@@ -277,44 +282,63 @@
         </div>
     </div>
 
-    <script>
-        const ctx = document.getElementById('passRateChart').getContext('2d');
-        const passRateChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['2018년', '2019년', '2020년', '2021년', '2022년'],
-                datasets: [{
-                    label: '필기',
-                    data: [10, 30, 50, 70, 90],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }, {
-                    label: '실기',
-                    data: [20, 40, 60, 80, 100],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    x: {
-                        barPercentage: 0.4,
-                        categoryPercentage: 0.8
-                    },
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    }
-                }
-            }
-        });
-
+    <script>  
+	    if (examPassingJson != null) {
+	    	
+	    	var exam2018_1 = examPassingJson.etyprate;
+	    	var exam2019_1 = examPassingJson.ntyprate;
+	    	var exam2020_1 = examPassingJson.twyprate;
+	    	var exam2021_1 = examPassingJson.toyprate;
+	    	var exam2022_1 = examPassingJson.ttyprate;
+	    	
+	    	var exam2018_2 = examPassingJson.etysrate;
+	    	var exam2019_2 = examPassingJson.ntysrate;
+	    	var exam2020_2 = examPassingJson.twysrate;
+	    	var exam2021_2 = examPassingJson.toysrate;
+	    	var exam2022_2 = examPassingJson.ttysrate;
+	    	
+  	
+	        const ctx = document.getElementById('passRateChart').getContext('2d');
+	        const passRateChart = new Chart(ctx, {
+	            type: 'bar',
+	            data: {
+	                labels: ['2018년', '2019년', '2020년', '2021년', '2022년'],
+	                datasets: [{
+	                    label: '필기',
+	                    data: [exam2018_1, exam2019_1, exam2020_1, exam2021_1, exam2022_1],
+	                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+	                    borderColor: 'rgba(54, 162, 235, 1)',
+	                    borderWidth: 1
+	                }, {
+	                    label: '실기',
+	                    data: [exam2018_2, exam2019_2, exam2020_2, exam2021_2, exam2022_2],
+	                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+	                    borderColor: 'rgba(255, 99, 132, 1)',
+	                    borderWidth: 1
+	                }]
+	            },
+	            options: {
+	                scales: {
+	                    x: {
+	                        barPercentage: 0.4,
+	                        categoryPercentage: 0.8
+	                    },
+	                    y: {
+	                        beginAtZero: true,
+	                        max: 100 
+	                    }
+	                },
+	                plugins: {
+	                    legend: {
+	                        position: 'top',
+	                    }
+	                }
+	            }
+	        });
+	    } else {
+	        console.log("infoExamPassingBean is null. Chart will not be rendered.");
+	    }
+        
         document.querySelectorAll('.sidebar-btn').forEach(item => {
             item.addEventListener('click', event => {
                 event.preventDefault();

@@ -15,11 +15,7 @@
 		<!-- top menu section start -->
 		<div class="top-menu-section">
 			<ul class="top-menu-content">
-				<li class="top-menu-item"><a href="${root }info/main" class="top-menu-link"> 자격증 정보 </a></li>
-				<span> | </span>
 				<li class="top-menu-item"><a href="${root }search/main" class="top-menu-link"> 자격증 검색 </a></li>
-				<span> | </span>
-				<li class="top-menu-item"><a href="${root }schedule/main" class="top-menu-link"> 자격증 달력 </a></li>
 				<span> | </span>
 				<li class="top-menu-item"><a href="${root }receipt/main" class="top-menu-link"> 자격증 접수 </a></li>
 				<span> | </span>

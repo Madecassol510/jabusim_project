@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jabusim.beans.ExamBean;
+import kr.co.jabusim.beans.ExamPassingBean;
 import kr.co.jabusim.beans.UserCareerBean;
 import kr.co.jabusim.beans.UserEduBean;
 
@@ -47,6 +48,12 @@ public interface ExamMapper {
 	
 	@Select("select * from exam_table where exam_licenseType = #{exam_licenseType}")
 	ArrayList<ExamBean> licenseExamInfo(String exam_licenseType);
+	
+	
+	
+	//시험 합격률 
+	@Select("select * from exam_Passrates_table where jmfldnm = #{jmfldnm} ")
+	ExamPassingBean getLicenseExamPassingInfo(String jmfldnm);
 }
 
 
