@@ -60,13 +60,144 @@
             margin: 0 auto;
             padding-top: 80px;
             border: 1px solid red;
+            
         }
 
         .card {
         	width: 1000px;
-        	min-height: 700px;
+         	min-height: 230px;
             margin-bottom: 1rem;
+            border-radius: 10px;
         }
+        
+        .card-body{
+        	border-radius: 10px;
+        }
+        
+		#fbanner-section {
+        	height: 270px;
+        }
+       
+        #fbanner-section h1{
+        	font-weight: 700;
+        	color: #fff;
+        	padding-top:79px;
+        	font-size: 40px;
+        }
+        
+        
+        #건설{
+        	background-image: url('${root}image/licenseImage/건설.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #경영\.회계\.사무{
+        	background-image: url('${root}image/licenseImage/경영.회계.사무.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #교육\.자연\.과학\.사회과학{
+        	background-image: url('${root}image/licenseImage/교육.자연.과학.사회과학.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #기계{
+        	background-image: url('${root}image/licenseImage/기계.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #농림어업{
+        	background-image: url('${root}image/licenseImage/농림어업.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #문화\.예술\.디자인\.방송{
+        	background-image: url('${root}image/licenseImage/문화.예술.디자인.방송.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #보건\.의료{
+        	background-image: url('${root}image/licenseImage/보건.의료.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #사회복지\.종교{
+        	background-image: url('${root}image/licenseImage/사회복지.종교.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #식품\.가공{
+        	background-image: url('${root}image/licenseImage/식품.가공.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #안전관리{
+        	background-image: url('${root}image/licenseImage/안전관리.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #영업\.판매{
+        	background-image: url('${root}image/licenseImage/영업.판매.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #운전\.운송{
+        	background-image: url('${root}image/licenseImage/운전.운송.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #음식서비스{
+        	background-image: url('${root}image/licenseImage/음식서비스.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #인쇄\.목재\.가구\.공예{
+        	background-image: url('${root}image/licenseImage/인쇄.목재.가구.공예.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #재료{
+        	background-image: url('${root}image/licenseImage/재료.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #전기\.전자{
+        	background-image: url('${root}image/licenseImage/전기.전자.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        #정보통신{
+        	background-image: url('${root}image/licenseImage/정보통신.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }       
+        #화학{
+        	background-image: url('${root}image/licenseImage/화학.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }        
+        #환경\.에너지{
+        	background-image: url('${root}image/licenseImage/환경.에너지.jpg');
+        	background-size: 1000px 295px;
+   			background-position: center;
+        }
+        
+        /* =================================================================== */
+        
+        #섬유\.의복{
+        	background-color: gray;
+        }
+        #광업자원{
+        	background-color: gray;
+        }
+        #이용\.숙박\.여행\.오락\.스포츠{
+        	background-color: gray;
+        }
+        
+        
+        
+        
+        
     </style>
 </head>
 <body>
@@ -84,20 +215,23 @@
     </div>
 
     <div class="container-box mx-auto my-5">
-        <div id="banner-section" class="card mx-auto my-5">
-            <div class="card-body text-center">
-                <img src="자격증_이미지_URL" alt="자격증 이미지" class="img-fluid">
-                <!-- <h1 class="card-title mt-3">자격증명</h1> -->
-                <h1 class="card-title mt-3">${infoLicenseBean.getLicense_name()}</h1>
-                <a href="시험접수_링크" class="btn btn-primary mt-2">시험 접수</a>
-            </div>
-        </div>
-
+        <div id="fbanner-section" class="card mx-auto my-5">
+			<div class="card-body text-center" id="${infoLicenseBean.getLicense_mainCategory()}">
+				<h1 class="card-title mt-3">${infoLicenseBean.getLicense_name()}</h1>
+			</div>
+		</div>
         <div id="info-section" class="card mx-auto my-5">
             <div class="card-body">
                 <h2 class="card-title">자격증 정보</h2>
                 <!-- <p class="card-text">자격증 데이터</p> -->
                 <p class="card-text">${infoLicenseBean.getLicense_info()}</p>
+            </div>
+        </div>
+
+		<div id="exam-section" class="card mx-auto my-5">
+            <div class="card-body">
+                <h2 class="card-title">시험 합격률</h2>
+                <canvas id="passRateChart"></canvas>
             </div>
         </div>
 

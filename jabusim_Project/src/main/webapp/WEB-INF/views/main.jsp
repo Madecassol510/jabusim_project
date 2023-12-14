@@ -147,9 +147,8 @@
 		<!-- down-side section start -->
 		<div class="down-side-section">
 			<div class="card-list">
-
 				<c:forEach items="${licenseBeans}" var="licenseBean">
-					<div class="license-card">
+					<div class="license-card" onclick="location.href='${root}info/main?licenseID=${licenseBean.license_idx}'">
 						<div class="main-card-header">${licenseBean.license_name}</div>
 						<div class="main-card-body">
 							<p class="main-card-title">${licenseBean.license_mainCategory}</p>
