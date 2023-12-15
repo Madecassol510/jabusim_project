@@ -1,13 +1,5 @@
 @charset "EUC-KR";
 
-.top_module {
-	width: 100%;
-	border: 1px solid blue;
-	padding-top: 50px;
-	padding-bottom: 50px;
-	margin-bottom: 50px;
-}
-
 .text_search {
 	margin-bottom: 20px;	
 }
@@ -20,6 +12,14 @@
 	/* justify-content: space-between; */
 	align-items: flex-end;
 }
+/*
+.top_module {
+	width: 100%;
+	border: 1px solid blue;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	margin-bottom: 50px;
+}
 
 .top_module_inner {
 	width: 94%;
@@ -28,4 +28,4 @@
 	padding-bottom: 10px;
 	border-top: 1px solid black;
 }
-
+*/

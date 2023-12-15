@@ -17,12 +17,10 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="${root}css/search_main/search_main.css?ver=13" />
+<link rel="stylesheet" href="${root}css/search_main/search_main.css?ver=15" />
 <link rel="stylesheet" href="${root}css/custom_scrollBar.css" />
 <!-- AJAX -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 	<%request.setCharacterEncoding("UTF-8");%>
 	
@@ -74,8 +72,8 @@
                     /* 소분야 전체 보기 버튼 */
                     const allMinorButton = document.createElement('button');
                     allMinorButton.className = 'all-minor-button w-100 h-100';
-                    
-                    const img = document.createElement('img');
+
+	                 const img = document.createElement('img');
 	                 img.src = rootContextPath + "image/tpdyd/box-arrow-in-left.svg";
 	                 allMinorButton.appendChild(img);
 	
@@ -85,6 +83,8 @@
 	                 const allMinorItem = document.createElement('li');
 	                 listBox2.appendChild(allMinorItem);
 	                 allMinorItem.appendChild(allMinorButton);
+                    
+                    
                     
                     allMinorButton.addEventListener('click', function() {
                         listBox2.innerHTML = ''; // 기존 리스트 초기화
@@ -184,30 +184,6 @@
                 	SelectedKindValue(kind, kind);
                 })
    			})
-	        
-	        
-	        /*일정 버튼 생성*/
-			/* const scheduleArray = ['beRegisting', 'notRegisted', 'closeRegisted'];
-	    	scheduleArray.forEach(sc => {
-   				const scButton = document.createElement('button');
-   				let scButtonDesc ='';
-   				scButton.className = 'lt-button w-100 h-100';
-   				if(sc === 'beRegisting') {
-   					scButtonDesc = '접수중'
-   					scButton.textContent = '접수중';
-   				} else if(sc === 'notRegisted') {
-   					scButtonDesc = '접수예정'
-   					scButton.textContent = '접수예정';
-   				} else if(sc === 'closeRegisted') {
-   					scButtonDesc = '접수마감'
-   					scButton.textContent = '접수마감';
-   				}
-   				const scItem = document.createElement('li');
-                listBox4.appendChild(scItem);
-                scItem.appendChild(scButton);
-                //클릭시 배열방 담음
-                //handleItemSelect(scButton, sc, scButtonDesc, "schedule");
-   			}) */
 	        		
 	        /*자격증 로드 함수 실행*/
 	        createLicenseList(allLicenseList);
@@ -216,59 +192,67 @@
 	        console.error('오류 발생:', error);
 	    }
 	    
+	    
 	}); //document ready
 	
 	/*페이지 로드시 자격증 버튼 생성*/
 	async function createLicenseList(licenseData) {
-    list_area.innerHTML = '';
+    	list_area.innerHTML = '';
 
-    licenseData.forEach(allLi => {
-        const licenseID = allLi.license_idx;
-        const licenseName = allLi.license_name;
-        const licenseType = allLi.license_type;
-        const majorCode = allLi.majorCode;
-        const minorCode = allLi.minorCode;
+	    licenseData.forEach(allLi => {
+	        const licenseID = allLi.license_idx;
+	        const licenseName = allLi.license_name;
+	        const licenseType = allLi.license_type;
+	        const majorCode = allLi.majorCode;
+	        const minorCode = allLi.minorCode;
+	        const codesContainer1 = document.createElement('div');
+	        codesContainer1.className = 'container-margin';
+	        const codesContainer2 = document.createElement('div');
+	        codesContainer2.className = 'container-margin';
 
-        const licenseList = document.createElement('ul');
-        licenseList.className = 'list-item';
-        licenseList.id = 'list-item' + licenseID;
+	
+	        const licenseList = document.createElement('ul');
+	        licenseList.className = 'list-item';
+	        licenseList.id = 'list-item' + licenseID;
+	
+	        const licenseLink = document.createElement('a');
+	        licenseLink.href = rootContextPath + "info/main?licenseID=" + licenseID;
+	
+	        // Append license name and type to codesContainer1
+	        const licenseNameLi = document.createElement('li');
+	        licenseNameLi.className = 'license-name';
+	        licenseNameLi.textContent = licenseName;
+	        codesContainer1.appendChild(licenseNameLi);
+	
+	        const licenseTypeLi = document.createElement('li');
+	        licenseTypeLi.className = 'license-type';
+	        licenseTypeLi.textContent = licenseType;
+	        codesContainer1.appendChild(licenseTypeLi);
+	
+	        // Append major and minor codes to codesContainer2
+	        const majorCodeLi = document.createElement('li');
+	        majorCodeLi.className = 'major-code';
+	        majorCodeLi.textContent = majorCode;
+	        codesContainer2.appendChild(majorCodeLi);
+	
+	        const minorCodeLi = document.createElement('li');
+	        minorCodeLi.className = 'minor-code';
+	        minorCodeLi.textContent = minorCode;
+	        codesContainer2.appendChild(minorCodeLi);
+	
+	        // Append the containers to the anchor tag
+	        licenseLink.appendChild(codesContainer1);
+	        licenseLink.appendChild(codesContainer2);
+	
+	        // Append the anchor tag to the list
+	        licenseList.appendChild(licenseLink);
+	
+	        list_area.appendChild(licenseList);
+	    });
+	    
+	    const itemCount = countItems(licenseData);
 
-        const licenseLink = document.createElement('a');
-        licenseLink.href = rootContextPath + "info/main?licenseID=" + licenseID;
-
-        // Append all list items to the anchor tag
-        const licenseNameLi = document.createElement('li');
-        licenseNameLi.className = 'license-name';
-        licenseNameLi.textContent = licenseName;
-        licenseLink.appendChild(licenseNameLi);
-		
-        const licenseTypeLi = document.createElement('li');
-        licenseTypeLi.className = 'license-type';
-        licenseTypeLi.textContent = licenseType;
-        licenseLink.appendChild(licenseTypeLi);
-
-     	// Create a container for major and minor codes
-        const codesContainer = document.createElement('div');
-     	
-        const majorCodeLi = document.createElement('li');
-        majorCodeLi.className = 'major-code';
-        majorCodeLi.textContent = majorCode;
-        codesContainer.appendChild(majorCodeLi);
-        
-        const minorCodeLi = document.createElement('li');
-        minorCodeLi.className = 'minor-code';
-        minorCodeLi.textContent = minorCode;
-        codesContainer.appendChild(minorCodeLi);
-        
-        // Append the codes container to the anchor tag
-        licenseLink.appendChild(codesContainer);
-
-        // Append the anchor tag to the list
-        licenseList.appendChild(licenseLink);
-
-        list_area.appendChild(licenseList);
-    });
-}
+	}
 	
 	
 	/*버튼 클릭시 기능 추가*/
@@ -284,6 +268,7 @@
 	    const reset_btn = document.getElementById('reset_btn');
 	    const searchInput = document.getElementById('searchInput');
 	    const searchButton = document.getElementById('searchButton');
+	    const bottomModule = document.getElementById('bottom_module_inner');
 
 	    /* 리셋 기능 추가*/
 	    reset_btn.addEventListener('click', function() {
@@ -293,6 +278,7 @@
 	    serch_condition.addEventListener('click', function() {
 	    	searchInput.value = '';
 	        selectAnyCategories();
+	        bottomModule.scrollIntoView({ behavior: 'smooth' });
 	    });
 	    /*input enter 기능 추가*/
 	    searchInput.addEventListener('keypress', function(event) {
@@ -305,6 +291,7 @@
 	    searchButton.addEventListener('click', function() {
 	    	popAllLicenseCodes();
 	    	searchLicenseName(searchInput);
+	    	bottomModule.scrollIntoView({ behavior: 'smooth' });
 	    });
 	    
 	})
@@ -524,6 +511,13 @@
 	    })
 	}
 	
+	/*가져온개 몇개인가*/
+	function countItems(count) {
+		var searchResultCountElement = document.getElementById('searchResultCount');
+	    searchResultCountElement.textContent = count.length + '건입니다';
+	}
+
+	
 </script>
 
 
@@ -554,7 +548,7 @@
 
 					<!--  선택박스 -->
 					<div class="list_serch">
-
+						
 						<div class="contents_name">
 							<ul class="d-flex flex-row contents_name_ul">
 								<li>대분야</li>
@@ -562,7 +556,7 @@
 								<li>종 류</li>
 							</ul>
 						</div>
-
+						
 						<!-- #1 -->
 						<div class="list_serch_contents">
 							<ul class="d-flex flex-row list_serch_ul">
@@ -595,8 +589,7 @@
 						<div id="button_box" class="button_box">
 							<div id="reset_box" class="reset_box">
 								<button id="reset_btn" class="reset_btn btn btn-primary">
-									선택항목 초기화&nbsp;<img
-										src="${root }image/tpdyd/arrow-clockwise.svg" />
+									선택항목 초기화&nbsp;<img src="${root }image/tpdyd/arrow-clockwise.svg" />
 								</button>
 							</div>
 							<div id="required_box" class="required_box">
@@ -620,6 +613,12 @@
 		<!-- bottom module -->
 		<div id="bottom_module" class="bottom_module">
 			<div id="bottom_module_inner" class="bottom_module_inner">
+				
+				<div id="howResultSearhed" class="howResultSearhed">
+				    <div>검색결과 : </div>
+				    <div id="searchResultCount"></div>
+				</div>
+					
 				<div id="list_area" class="list_area">
 					<!-- 리스트 항목들이 여기에 추가됩니다 -->
 				</div>

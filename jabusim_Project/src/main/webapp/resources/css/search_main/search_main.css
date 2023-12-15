@@ -18,14 +18,12 @@ a, a:hover {
 	min-height: 700px;
 	margin: 0 auto;
 	padding-top: 60px;
-	/* border: 1px solid red; */
 }
 
 .top_module {
-	min-height: 600px;
+	min-height: 530px;
 	width: 100%;
-	/* border: 1px solid blue; */
-	padding-top: 50px;
+	padding-top: 10px;
 	padding-bottom: 50px;
 }
 
@@ -113,13 +111,13 @@ contents_name {
 	align-items: center;
 	margin-left: auto;
 }
-
+/*
 .required_btn, .reset_btn {
-    display: flex;           /* Enable Flexbox */
-    justify-content: center; /* Center items horizontally */
-    align-items: center;     /* Center items vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;   
 }
-
+*/
 .required_btn img, .reset_btn img {
     vertical-align: -1px; /* Adjust the value as needed */
 }
@@ -169,9 +167,9 @@ contents_name {
 	min-height: 600px;
 	width: 100%;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 30px;
 	padding-bottom: 50px;
-	border-top: 1px solid black;
+	border-top: 1.5px solid black;
 }
 
 .bottom_module_inner {
@@ -181,40 +179,92 @@ contents_name {
 	padding-bottom: 10px;
 }
 
-.list-item {
-	list-style-type: none; /* 기본 리스트 스타일 제거 */
-	padding-left: 0; /* 기본 패딩 제거 */
-	border: 1px solid #ddd;
-	margin-bottom: 10px;
-	/* text-align: left; */
+.howResultSearhed {
+	display: flex;
+	justify-content: flex-start;
+	/* grid-gap: 10px; */
+	gap: 10px;
+	align-items: center;
+	margin-left: auto;
+	padding-bottom: 10px;
 }
 
-.list-item a > li {
+.howResultSearhed > div {
+    font-size: 1.5rem; /* 폰트 크기 */
+}
+
+.howResultSearhed > div#searchResultCount {
+    font-size: 1.3rem; /* 결과 개수 폰트 크기 */
+    /* font-style: italic; */
+    color: #0d6efd; /* 결과 개수 색상 */
+}
+
+.list_area {
+	width: 100%;
+	margin: 0 auto;
+	display: flex; /* Set display to flex */
+    justify-content: center; /* Center items horizontally */
+    flex-wrap: wrap; /* Optional: if you want items to wrap to the next line if they don't fit */
+}
+
+.list-item {
+    list-style-type: none; /* 기본 리스트 스타일 제거 */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0; /* 기본 패딩 제거 */
+    border: 1px solid #0d6efd;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 120px;
+}
+
+.list-item > a {
+    /* Any specific styles for anchor tags */
+    text-align: left;
+}
+
+.container-margin {
+    margin-left: 20px;
+}
+
+
+.list-item a div > li {
 	margin-bottom: 5px;
+	margin-right: 10px;
 	padding: 5px;
 	display: inline-block;
-	/* display: table; */
 }
 
 .license-name {
-    font-weight: bold; /* 이름을 부각 */
-    color: #0000FF; /* 파란색 계열의 색상 */
-    font-size: 1.2em; /* 크기를 적당히 크게 */
+	font-weight: 500;
+    font-size: 1.7em; /* 크기를 적당히 크게 */
 }
 
 .license-type {
-    color: #87CEEB; /* 하늘색 계열의 색상 */
-    font-size: 0.9em; /* 크기를 약간 작게 */
+    color: #3849e8;
+    font-size: 0.9em;
+    border: 1px solid #3849e8; /* Pure blue border */
+    border-radius: 5px;
+    /* background-color: #3849e8; */ /* Navy blue background */
+    padding: 5px;
+    margin-top: -5px;
+    margin: 2px;
 }
 
 .major-code {
-	margin-bottom: 5px;
-	padding: 5px;
-	display: inline-block;
+	color: #008080;
+    border: 1px solid #008080; /* Pure blue border */
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
 }
 
 .minor-code {
-	margin-bottom: 5px;
-	padding: 5px;
-	display: inline-block;
+	color: #800080;
+    border: 1px solid #800080; /* Pure blue border */
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
 }

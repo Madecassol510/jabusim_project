@@ -14,27 +14,58 @@ a {
 
 .pageContainer {
 	position: relative;
-	width: 1250px;
+	width: 1200px;
 	margin: 0 auto;
-	padding-top: 80px;
+	padding-top: 60px;
+}
+
+.top_module {
+	width: 100%;
+	padding-bottom: 50px;
+}
+
+.top_module_inner {
+	width: 94%;
+	margin: 0 auto;
+	padding-bottom: 10px;
+}
+
+
+/*테이블 스타일*/
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px;
+}
+
+.table th {
+    background-color: #0d6efd;
+    color: white;
 }
 
 
 
-
-
+/*진행단계표시*/
 .step-indicator {
     display: flex;
+    width: 990px; /* 너비를 900px로 설정 */
+    margin: 20px auto; /* 상하 마진 20px, 좌우 마진 자동으로 설정하여 중앙 정렬 */
     padding-left: 0;
-    margin: 20px 0;
     overflow: hidden;
     list-style: none;
 }
 
 .step {
     position: relative;
-    flex: 1;
+    width: 330px; /* 너비를 300px로 설정 */
     text-align: center;
+    font-size: 1.1em; /* 여기서도 폰트 크기를 증가시킬 수 있습니다. */
 }
 
 .step::before {
@@ -62,11 +93,14 @@ a {
 }
 
 .badge {
-    padding: 10px 15px;
+    padding: 15px 20px; /* 패딩 증가 */
+    font-size: 1.2em; /* 폰트 크기 증가 */
     line-height: 1;
     z-index: 2;
     position: relative;
+    width:200px;
 }
+
 .badge:first-child {
     z-index: 3;
 }

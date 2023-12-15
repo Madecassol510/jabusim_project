@@ -13,8 +13,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <!-- 외부 css파일 -->
-<link rel="stylesheet" href="${root}css/testTpdyd.css" />
-<link rel="stylesheet" href="${root}css/receiptCSS/main.css" />
+<link rel="stylesheet" href="${root}css/testTpdyd.css?ver=2" />
+<link rel="stylesheet" href="${root}css/receiptCSS/main.css?ver=2" />
 <!-- 외부 js파일 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -49,25 +49,27 @@
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>
 
 	<div class="pageContainer">
-		
-		<ul class="list-group list-group-horizontal step-indicator">
-		    <li class="list-group-item text-center step">
-		        <span class="badge bg-primary">1. 시험선택</span>
-		    </li>
-		    <li class="list-group-item text-center step">
-		        <span class="badge bg-secondary">2. 종목선택</span>
-		    </li>
-		    <li class="list-group-item text-center step">
-		        <span class="badge bg-secondary">3. 시험장소 선택</span>
-		    </li>
-		</ul>
-		
-		
 		<section id="top_module" class="top_module">
-			
 			<article id="top_module_inner" class="top_module_inner">
-				<h3>시험 선택</h3>
-		        <table class="table table-striped">
+				<ul class="list-group list-group-horizontal step-indicator">
+				    <li class="list-group-item text-center step">
+				        <span class="badge bg-primary">1. 시험 선택</span>
+				    </li>
+				    <li class="list-group-item text-center step">
+				        <span class="badge bg-secondary">2. 종목 선택</span>
+				    </li>
+				    <li class="list-group-item text-center step">
+				        <span class="badge bg-secondary">3. 시험장소 선택</span>
+				    </li>
+				</ul>
+			</article>
+		</section>
+		
+		
+		<section id="bottom_module" class="bottom_module">
+			<article id="bottom_module_inner" class="bottom_module_inner">
+				<h1>시험 선택</h1>
+		        <table class="table">
 		            <thead>
 		                <tr>
 		                    <th>시험명</th>
@@ -110,7 +112,6 @@
 		        </table>
 	        </article>
 		</section>
-		
 		
 
 	</div> <!-- 큰틀 -->
