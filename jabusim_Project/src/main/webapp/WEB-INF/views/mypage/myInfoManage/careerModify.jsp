@@ -42,12 +42,10 @@
 	    min-height: 700px;
 	    margin: 0 auto;
 	   	padding-top: 80px;
-	    border: 1px solid red;
 	}
 	.module{
 		min-height : 600px;
 		width:100%;
-		border: 1px solid blue;
 		text-align:center;
 		padding-top: 50px;
 		padding-bottom: 50px;
@@ -61,7 +59,6 @@
 	
 	#modify_module .article{
 		width : 85%;
-		border: 1px solid black;
 		text-align: left;
 	}
 	
@@ -115,9 +112,11 @@
 	
 	#modify_module .articleBox .present_div, .modify_div {
 		width : 500px;
-		border: 1px solid red;
 		padding-bottom : 20px;
 		min-height: 310px;
+		border: 1px solid #dfe1e5;
+		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+		border-radius: 10px;
 	}
 		
 	#modify_module .articleBox .present_div {		

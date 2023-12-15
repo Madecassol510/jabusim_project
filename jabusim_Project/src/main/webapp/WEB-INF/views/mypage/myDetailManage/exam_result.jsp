@@ -42,12 +42,11 @@
 	    width: 1250px;
 	    margin: 0 auto;
 	   	padding-top: 80px;
-	    border: 1px solid red;
+
 	}
 	.module{
 		min-height : 600px;
 		width:100%;
-		border: 1px solid blue;
 		text-align:center;
 		padding-top: 50px;
 		padding-bottom: 50px;
@@ -70,13 +69,15 @@
 	#exam_result_module .article{
 		width : 94%;
 		display: inline-block;
-		border: 1px solid black;
 	}
 	
 	#exam_result_module .resultBox{
 		width: 100%;
-		border: 1px solid red;
+		border: 1px solid #dfe1e5;
+		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+		border-radius: 10px;
 		padding:30px;
+		min-height: 300px;
 	}
 	
 	
@@ -140,7 +141,7 @@
 								<th><span>응시종목</span></th>
 								<th><span>구분</span></th>
 								<th><span>시험일</span></th>
-								<th><span>시합여부</span></th>
+								<th><span>합격여부</span></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -158,12 +159,6 @@
 							</c:forEach>
 						</tbody>
 					</table>
-				</div>
-				<div class="paginationBox">
-					<ul>
-						<li class="page-item"><a href="#" class="page-link">이전</a></li>
-						<li class="page-item"><a href="#" class="page-link">다음</a></li>					
-					</ul>
 				</div>
 				<div class="cautionBox"></div>
 			</div>

@@ -62,7 +62,9 @@
 	width: 1250px;
 	min-height: 700px;
 	margin: 0 auto;
-	border: 1px solid black;
+	border: 1px solid #dfe1e5;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+	border-radius: 10px;
 }
 
 .card {
@@ -254,7 +256,14 @@
 				<p class="card-text">${infoLicenseBean.getLicense_info()}</p>
 			</div>
 		</div>
-
+			
+		<div id="passrate-section" class="card mx-auto my-5">
+			<div class="card-body">
+				<h2 class="card-title">시험 합격률</h2>
+				<canvas id="passRateChart"></canvas>
+			</div>
+		</div>	
+		
 		<div id="exam-section" class="card mx-auto my-5">
 			<div class="card-body">
 				<h2 class="card-title">시험 일정</h2>
@@ -294,12 +303,7 @@
 			</div>
 		</div>
 
-		<div id="passrate-section" class="card mx-auto my-5">
-			<div class="card-body">
-				<h2 class="card-title">시험 합격률</h2>
-				<canvas id="passRateChart"></canvas>
-			</div>
-		</div>
+		
 	</div>
 	<script>  
 	    if (examPassingJson != null) {

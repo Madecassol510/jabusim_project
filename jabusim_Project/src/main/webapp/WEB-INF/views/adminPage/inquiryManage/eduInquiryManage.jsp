@@ -125,10 +125,13 @@ li {
 
 .dashBoard .dashBoardSearch{
 	text-align: left;
-	border: 1px solid #dfe1e5;
+	
 	margin-bottom : 60px; 
 	border-top: none;
-	box-shadow: 5px 5px 5px;
+	/* box-shadow: 5px 5px 5px; */
+	border: 1px solid #dfe1e5;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+	border-radius: 10px;
 }
 
 .dashBoard .dashBoardSearch form{
@@ -192,7 +195,11 @@ li {
 
 .dashBoard .dashBoardArticle {
 	border: 1px solid #dfe1e5; 
-	box-shadow: 5px 5px 5px;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+	border-radius: 10px;
+	max-height: 560px;
+  	overflow-y: auto; 
+  	margin-bottom: 80px;
 }
 
 .dashBoard .dashBoardArticle table {

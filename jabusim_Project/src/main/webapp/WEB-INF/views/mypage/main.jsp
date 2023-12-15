@@ -216,7 +216,8 @@
 	}
 	
 	#myInfo_module .act_div .act_info{
-		border: 1px solid black;
+		border: 1px solid #dfe1e5;
+		border-radius: 10px;
 	}
 	
 
