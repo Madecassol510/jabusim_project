@@ -127,7 +127,6 @@ li {
 	text-align: left;
 	
 	margin-bottom : 60px; 
-	border-top: none;
 	/* box-shadow: 5px 5px 5px; */
 	border: 1px solid #dfe1e5;
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
@@ -243,7 +242,7 @@ span {
 /* ================================================ */
 /* 부트스트랩 */
 .nav-tabs {
-    border-bottom: 1px solid #dfe1e5;
+   border:none;
 }
 
 .nav-tabs .nav-link.active {

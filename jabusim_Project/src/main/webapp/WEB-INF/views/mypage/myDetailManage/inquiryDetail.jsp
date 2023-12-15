@@ -72,7 +72,7 @@
 	
 	#exam_result_module .resultBox{
 		width: 100%;
-		border: 1px solid #dfe1e5;
+		border: 1px solid blue;
 		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 		border-radius: 10px;
 		padding:30px;

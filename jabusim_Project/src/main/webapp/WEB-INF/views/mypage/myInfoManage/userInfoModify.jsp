@@ -66,7 +66,6 @@
 		min-height : 500px;
 		border: 1px solid #dfe1e5;
 		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-		border-radius: 10px;
 		text-align:left;
 		padding: 30px 50px;
 	}

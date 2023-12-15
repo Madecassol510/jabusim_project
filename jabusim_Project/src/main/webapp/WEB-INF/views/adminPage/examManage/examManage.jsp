@@ -130,6 +130,7 @@ li {
 	border: 1px solid #dfe1e5;
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 	border-radius: 10px;
+	border-top-left-radius : 0px;
 }
 
 .dashBoard .dashBoardSearch form{
@@ -194,7 +195,7 @@ li {
 .dashBoard .dashBoardArticle {
 	border: 1px solid #dfe1e5; 
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-	border-radius: 10px;
+	border-radius: 10px;	
 	max-height: 560px;
   	overflow-y: auto; 
   	margin-bottom: 80px;
@@ -241,7 +242,8 @@ span {
 /* ================================================ */
 /* 부트스트랩 */
 .nav-tabs {
-    border-bottom: 1px solid #dfe1e5;
+   /*  border-bottom: 1px solid #dfe1e5; */
+    border: none;
 }
 
 .nav-tabs .nav-link.active {

@@ -62,7 +62,7 @@
 	width: 1250px;
 	min-height: 700px;
 	margin: 0 auto;
-	border: 1px solid #dfe1e5;
+	border: 1px solid blue;
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 	border-radius: 10px;
 }

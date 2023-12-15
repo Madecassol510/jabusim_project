@@ -136,6 +136,8 @@ public class ExamBean {
                 exam_status = "시험예정";
             } else if (currentDate.compareTo(examDate) == 0) {
                 exam_status = "시험일";
+            } else if (currentDate.compareTo(examDate) > 0) {
+                exam_status = "시험마감";
             } else {
                 exam_status = "일반";
             }

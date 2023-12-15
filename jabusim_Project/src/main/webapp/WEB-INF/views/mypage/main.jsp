@@ -87,7 +87,7 @@
 		text-align:left;
 		float:left;
 		padding: 30px 40px;
-		border: 1px solid #dfe1e5;
+		border: 1px solid blue;
 		box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
 		border-radius: 10px;
 		
@@ -108,13 +108,13 @@
 	#myInfo_module .left_div .join_input{
 		display: inline-block;
 		width: 100%;
-		
+		margin-top: 23px;
 	}
 	
 	
 	#myInfo_module .left_div .input_box{
 		display: inline-block;	
-		width: 62%;
+		width: 58%;
 		min-height: 60px;
 		margin-bottom: 10px;
 		float:right;
@@ -156,30 +156,32 @@
 	
 	#myInfo_module .left_div .photo_box{
 		height:300px;
-		width:35%;
+		width:30%;
 		float:left;
-		padding-top: 14px;
+		padding-top: 47px;
+		margin-left: 15px;
+		text-align: center;
 	}
 	
 	#myInfo_module .left_div .photo_box .photo_input{
-		height:100%;
-		width:75%;
-		float: right;
-		margin-right: 25px;
+		height:180px;
+		width:100%;
+		margin-bottom: 10px;
 	}
 	
 	#myInfo_module .photo_box .photo{
 		width:100%;
-		height: 180px;
-		border: 1px solid black;
+		height:100%;
+		border: 1px solid gray;
 		display: block;
+		border-radius: 100px;
 	}
 	
-	#myInfo_module .photo_box button{
-		width:100%;
-		height: 40px;
-		margin-top: 10px; 
+	#myInfo_module .photo_box .userName{
+		font-size: 26px;
+    	font-weight: 700;
 	}
+	
 	
 	
 	/*mypage_module 활동 정보*/
@@ -188,7 +190,7 @@
 		height : 460px;
 		float:right;
 		
-		border: 1px solid #dfe1e5;
+		border: 1px solid blue;
 		box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
 		border-radius: 10px;
 	}
@@ -221,27 +223,6 @@
 	}
 	
 
-	
-	/*mypage_module 자격증 정보*/
-	
-	#myInfo_module .right_footer{
-		width:100%;
-		border: 1px solid black;
-		height : 33%;
-		padding: 30px 40px;
-		text-align: left;
-	}	
-	
-	#myInfo_module .right_footer h5{
-		margin:0;
-		height:30%;
-	}
-	
-	#myInfo_module .right_footer div{
-		width:100%;
-		height:70%;
-	}
-	
 		/* =========================================================================== */
 
 	/*myLicense_module*/
@@ -257,7 +238,7 @@
 		min-height : 460px;
 		display: inline-block;
 		
-		border: 1px solid #dfe1e5;
+		border: 1px solid blue;
 		box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
 		border-radius: 10px;
 	}
@@ -314,18 +295,26 @@
 				<h3>나의 정보</h3>
 				<div class="left_div">
 					<h5>계정 정보</h5>
-					<form:form  class="join_input" modelAttribute="myPageUserBean">
-						<div class="input_box">
+					<form:form class="join_input" modelAttribute="myPageUserBean">
+						<div class="photo_box">
+							<div class="photo_input">
+								<img src="${root}image/default.png" class="photo" />								
+							</div>
+							<div class="userName">
+								${myPageUserBean.user_name}
+							</div>
+						</div>
+						<%-- <div class="input_box">
 							<div class="input_name">
 								<span>이름</span>
-							</div>						
+							</div>
 							<div class="input_place">
 								<div class="input_placeTop">
 									<form:input path="user_name" readonly="true" />
 								</div>
 								<div class="input_placeBottom"></div>
 							</div>
-						</div>
+						</div> --%>
 						<div class="input_box">
 							<div class="input_name">
 								<span>아이디</span>
@@ -345,6 +334,17 @@
 							<div class="input_place">
 								<div class="input_placeTop">
 									<form:input path="user_birthdate" readonly="true" />
+								</div>
+								<div class="input_placeBottom"></div>
+							</div>
+						</div>
+						<div class="input_box">
+							<div class="input_name">
+								<span>휴대전화</span>
+							</div>
+							<div class="input_place">
+								<div class="input_placeTop">
+									<form:input path="user_phoneNum" readonly="true" />
 								</div>
 								<div class="input_placeBottom"></div>
 							</div>

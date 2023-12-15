@@ -58,10 +58,6 @@
 						href="${root}mypage/myInfoManage/checkPw?myInfoManagePage=2"
 						class="link-body-emphasis d-inline-flex text-decoration-none rounded">학력/경력
 							수정</a></li>
-					<li><a
-						href="${root}mypage/myInfoManage/checkPw?myInfoManagePage=3"
-						class="link-body-emphasis d-inline-flex text-decoration-none rounded">자격증
-							보유 신청</a></li>
 				</ul>
 			</div>
 		</li>
