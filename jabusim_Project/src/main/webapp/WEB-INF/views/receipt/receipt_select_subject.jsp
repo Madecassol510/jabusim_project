@@ -18,8 +18,8 @@
 	crossorigin="anonymous">
 
 <!-- 외부 css파일 -->
-<link rel="stylesheet" href="${root}css/testTpdyd.css?ver=2" />
-<link rel="stylesheet" href="${root}css/receiptCSS/main.css?ver=2" />
+<link rel="stylesheet" href="${root}css/testTpdyd.css?ver=4" />
+<link rel="stylesheet" href="${root}css/receiptCSS/main.css?ver=4" />
 <!-- 외부 js파일 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="${root}js/codeMapping.js"></script>
@@ -84,8 +84,7 @@
 
 		<section id="bottom_module" class="bottom_module">
 			<article id="bottom_module_inner" class="bottom_module_inner">
-			
-				<article id="test_module_inner" class="test_module_inner row">
+				<article id="search_module" class="search_module row">
 					
 					<h3>자격증 검색</h3>
 					
@@ -127,7 +126,7 @@
 					class="top_module_inner d-flex flex-column">
 	
 	
-					<h3>${sessionScope.examName } ${sessionScope.examType } 응시종목 선택 ${sessionScope.userName } ${sessionScope.userId }</h3>
+					<h3>${sessionScope.examName } ${sessionScope.examType } 응시종목 선택</h3>
 	
 					<table class="table">
 						<thead>

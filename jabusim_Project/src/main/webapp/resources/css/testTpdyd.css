@@ -30,6 +30,18 @@ a {
 	padding-bottom: 10px;
 }
 
+#search_module {
+	margin-bottom: 20px;
+}
+
+#search_module h3 {
+    text-align: left;
+}
+
+.text_search {
+	padding-bottom: 10px;
+}
+
 
 /*테이블 스타일*/
 .table {

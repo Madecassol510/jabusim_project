@@ -1,9 +1,5 @@
 @charset "EUC-KR";
 
-.text_search {
-	margin-bottom: 20px;	
-}
-
 .test_module_inner {
 	width: 94%;
 	margin: 0 auto;
@@ -12,6 +8,32 @@
 	/* justify-content: space-between; */
 	align-items: flex-end;
 }
+
+.bottom_module {
+	min-height: 600px;
+	width: 100%;
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 50px;
+	border-top: 1.5px solid black;
+}
+
+.bottom_module_inner {
+	width: 94%;
+	margin: 0 auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.bottom_module_inner h1 {
+	padding-bottom: 5px;
+	text-align: left;
+}
+
+.text_search {
+	margin-bottom: 20px;	
+}
+
 /*
 .top_module {
 	width: 100%;
