@@ -75,6 +75,7 @@ public class MyPageController {
 
 		model.addAttribute("userExamResultBeans", userExamResultBeans);
 		
+		System.out.println(userExamResultBeans);
 		
 		return "mypage/myDetailManage/exam_result";
 	}
@@ -87,6 +88,8 @@ public class MyPageController {
 		ArrayList<ExamReceiptBean> userExamReceiptBeans = examReceiptMapper.getUserExamReceiptList(myPageUserBean.getUser_id());
 		
 		model.addAttribute("userExamReceiptBeans", userExamReceiptBeans);	
+		
+		System.out.println(userExamReceiptBeans);
 		
 		return "mypage/myDetailManage/receiptDetail";	
 	}

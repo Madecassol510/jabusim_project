@@ -238,8 +238,6 @@
 			<li><button class="sidebar-btn" data-bs-target="#info-section">정보</button></li>
 			<li><button class="sidebar-btn"
 					data-bs-target="#passrate-section">합격률</button></li>
-			<li><button class="sidebar-btn"
-					data-bs-target="#companies-section">우대회사</button></li>
 		</ul>
 	</div>
 
@@ -260,7 +258,14 @@
 		<div id="passrate-section" class="card mx-auto my-5">
 			<div class="card-body">
 				<h2 class="card-title">시험 합격률</h2>
-				<canvas id="passRateChart"></canvas>
+				<c:choose>
+					<c:when test="${empty examPassingJson}">
+						<div>헤헤 없당</div>
+					</c:when>
+					<c:otherwise>
+						<canvas id="passRateChart"></canvas>
+					</c:otherwise>
+				</c:choose>				
 			</div>
 		</div>	
 		
@@ -280,23 +285,17 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${infoExamBeanList}" var="infoExamBean">
-							<tr>
-								<td>${infoExamBean.exam_name}</td>
-								<td>${infoExamBean.exam_type}</td>
-								<td>${infoExamBean.exam_receiptStartDate}~
-									${infoExamBean.exam_receiptEndDate}</td>
-								<td>${infoExamBean.exam_date}</td>
-								<td>${infoExamBean.exam_resultDate}</td>
-								<td>${infoExamBean.exam_status}</td>
-								<%-- <c:choose>
-                				<c:when test="${currentDate.after(startDate) && currentDate.before(endDate)}">
-                					<td>접수 중</td>
-                				</c:when>
-                			</c:choose>
-  --%>
-
-							</tr>
-
+							<c:if test="${infoExamBean.exam_status!='시험마감'}">		
+								<tr>
+									<td>${infoExamBean.exam_name}</td>
+									<td>${infoExamBean.exam_type}</td>
+									<td>${infoExamBean.exam_receiptStartDate}~
+										${infoExamBean.exam_receiptEndDate}</td>
+									<td>${infoExamBean.exam_date}</td>
+									<td>${infoExamBean.exam_resultDate}</td>
+									<td>${infoExamBean.exam_status}</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>

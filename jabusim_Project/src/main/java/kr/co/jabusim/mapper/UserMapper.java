@@ -57,7 +57,6 @@ public interface UserMapper {
 	
 	//ajax 유저테이블 가져오기
 	ArrayList<UserBean> userTableSearch (@Param("name") String name, 
-			@Param("interests") String interests,
 			@Param("joinStart") String joinStart,
 			@Param("joinEnd") String joinEnd);
 	

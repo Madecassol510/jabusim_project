@@ -9,22 +9,18 @@
         <result property="user_phoneNum" column="user_phoneNum"/>
         <result property="user_joinDate" column="user_joinDate"/>
         <result property="user_visitCount" column="user_visitCount"/>
-        <result property="user_interests" column="user_interests"/>
         <!-- 나머지 필드들에 대한 매핑 추가 -->
     </resultMap>
 	<select id="userTableSearch" resultMap="userBeanResultMap">
 		SELECT * FROM user_table
 		<where>
 			<choose>
-				<when test="(name != null and name != '') or (interests != null and interests != '') or 
+				<when test="(name != null and name != '')  or 
 		        	(joinStart != null and joinStart != '') or (joinEnd != null and joinEnd != '')">
 		
 					<!-- 각 파라미터에 대한 조건을 추가 -->
 					<if test="name != null and name != ''">
 						AND user_name = #{name}
-					</if>
-					<if test="interests != null and interests != ''">
-						AND user_interests = #{interests}
 					</if>
 					
 					<if test="joinStart != null and joinStart != ''">

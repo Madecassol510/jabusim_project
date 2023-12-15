@@ -146,7 +146,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${userExamResultBeans}" var="userExamResultBean" varStatus="loopStatus">
-								<c:if test="${userExamResultBean.examResult_processStatus}='처리완료'">					
+								<c:if test="${userExamResultBean.examResult_processStatus=''}">					
 									<tr>
 										<td><span>${userExamResultBean.exam_name}</span></td>
 										<td><span>${userExamResultBean.exam_subject}</span></td>

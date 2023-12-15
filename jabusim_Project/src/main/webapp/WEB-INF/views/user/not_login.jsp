@@ -5,6 +5,9 @@
 
 
 <script type="text/javascript">
-	alert('로그인 해주세요')
-	location.href='${root}user/login'
+	var rootContextPath = "<c:out value='${root}'/>";
+	var loginUrl = rootContextPath + "user/login";
+	
+	alert('로그인 해주세요');
+	location.href = loginUrl;
 </script>

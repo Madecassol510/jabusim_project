@@ -90,12 +90,11 @@ public class AdminRestController {
 	@GetMapping("/admin/userTableSearch")
 	public ResponseEntity<List<UserBean>> userTableSearch(
 			@RequestParam("name") String name,
-            @RequestParam("interests") String interests,
             @RequestParam("joinStart") String joinStart,
 			@RequestParam("joinEnd") String joinEnd
 			){
 		
-		ArrayList<UserBean> searchList = userMapper.userTableSearch(name, interests, joinStart, joinEnd);
+		ArrayList<UserBean> searchList = userMapper.userTableSearch(name, joinStart, joinEnd);
 
 		
 		return ResponseEntity.ok(searchList);

@@ -146,7 +146,7 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${userExamReceiptBeans}" var="userExamReceiptBean" varStatus="loopStatus">
-								<c:if test="${userExamReceiptBean.examReceipt_status}!='삭제예정'">					
+								<c:if test="${userExamReceiptBean.examReceipt_status!='삭제예정'}">					
 									<tr>
 										<td><span>${userExamReceiptBean.exam_name}</span></td>
 										<td><span>${userExamReceiptBean.exam_subject}</span></td>

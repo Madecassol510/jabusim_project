@@ -41,12 +41,6 @@ public class UserBean {
 	
 	private int user_visitCount;
 	
-	private String user_interests;
-	
-	private String user_photo;
-	
-	
-	
 	
 	
 	

@@ -397,7 +397,6 @@ span {
 	
 	//검색 필드
 	var name = null;
-	var interests = null;
 	var joinStart = null;
 	var joinEnd = null; 
 	
@@ -406,7 +405,6 @@ span {
 	function fieldSearch(){
 		
 		name = null;
-		interests = null;
 		joinStart = null;
 		joinEnd = null;
 		
@@ -414,7 +412,6 @@ span {
 		/* var myform = document.form */
 		
 		name = document.getElementById("nameInput").value;
-		interests = document.getElementById("interestsInput").value;
 		joinStart = document.getElementById("joinStartInput").value;
 		joinEnd = document.getElementById("joinEndInput").value;
 		
@@ -434,7 +431,7 @@ span {
 	function tableSearch(){
 		$.ajax({
 	        type : 'GET',
-	        url: '/jabusim_Project/admin/userTableSearch/?name=' + name + '&interests=' + interests + '&joinStart=' + joinStart + '&joinEnd=' + joinEnd,
+	        url: '/jabusim_Project/admin/userTableSearch/?name=' + name  + '&joinStart=' + joinStart + '&joinEnd=' + joinEnd,
 	        success : function(userBeanList) {
 	           updateModel(userBeanList);
 	           console.log("왜 안돼?");
