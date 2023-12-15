@@ -68,7 +68,29 @@ public class ExamResultBean {
 		this.exam_resultDate = exam_resultDate;
 	}
 	public String getExamResult_status() {
-				
+		
+		Date currentDate = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        
+      
+
+        try {
+            Date examDate = formatter.parse(exam_date);
+
+            
+            
+            if(currentDate.compareTo(examDate) < 0) {
+            	examResult_status = "입력불가";
+            	return examResult_status;
+            }
+                    
+        } catch (Exception e) {
+            // Handle the exception or log it if the date parsing fails
+            e.printStackTrace();
+            examResult_status = "날짜 형식 오류";
+        }
+        
+  	       
 		if(examResult_processStatus.equals("처리가능") || examResult_processStatus.equals("미처리")) {
 			if(examResult_status.equals("합격")) {
 				examResult_status = "합격예정";

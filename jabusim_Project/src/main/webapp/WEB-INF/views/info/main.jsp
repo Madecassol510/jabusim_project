@@ -215,6 +215,28 @@
 #이용\.숙박\.여행\.오락\.스포츠 {
 	background-color: gray;
 }
+
+.licenseContext{
+	margin-top:10px;
+	padding: 0 20px;
+}
+
+#examSchedule{
+	width: 100%;
+	text-align: center;
+}
+
+.imgDiv{
+	text-align: center;
+}
+
+.card-title{
+	font-family: Arial;
+	font-size: 23px;
+	font-weight: 600;
+	margin-bottom: 17px;
+}
+
 </style>
 
 <%
@@ -251,58 +273,82 @@
 		<div id="info-section" class="card mx-auto my-5">
 			<div class="card-body">
 				<h2 class="card-title">자격증 정보</h2>
-				<p class="card-text">${infoLicenseBean.getLicense_info()}</p>
+				<div class="licenseContext">
+					<c:choose>
+						<c:when	test="${infoLicenseBean.getLicense_info()=='자격증에 대한 정보가 현재 없습니다.'}">
+							<div class="imgDiv">
+								<img src="${root}image/dataNothing.png" />
+							</div>							
+						</c:when>
+						<c:otherwise>
+							<p class="card-text">${infoLicenseBean.getLicense_info()}</p>
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
 		</div>
 			
 		<div id="passrate-section" class="card mx-auto my-5">
 			<div class="card-body">
 				<h2 class="card-title">시험 합격률</h2>
-				<c:choose>
-					<c:when test="${empty examPassingJson}">
-						<div>헤헤 없당</div>
-					</c:when>
-					<c:otherwise>
-						<canvas id="passRateChart"></canvas>
-					</c:otherwise>
-				</c:choose>				
+				<div class="licenseContext">
+					<c:choose>
+						<c:when test="${empty examPassingJson}">
+							<div class="imgDiv">
+								<img src="${root}image/dataNothing.png" />
+							</div>	
+						</c:when>
+						<c:otherwise>
+							<canvas id="passRateChart"></canvas>
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
 		</div>	
 		
 		<div id="exam-section" class="card mx-auto my-5">
 			<div class="card-body">
 				<h2 class="card-title">시험 일정</h2>
-				<table>
-					<thead>
-						<tr>
-							<th>시험명</th>
-							<th>구분</th>
-							<th>접수시간</th>
-							<th>시험일</th>
-							<th>결과발표일</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${infoExamBeanList}" var="infoExamBean">
-							<c:if test="${infoExamBean.exam_status!='시험마감'}">		
-								<tr>
-									<td>${infoExamBean.exam_name}</td>
-									<td>${infoExamBean.exam_type}</td>
-									<td>${infoExamBean.exam_receiptStartDate}~
-										${infoExamBean.exam_receiptEndDate}</td>
-									<td>${infoExamBean.exam_date}</td>
-									<td>${infoExamBean.exam_resultDate}</td>
-									<td>${infoExamBean.exam_status}</td>
-								</tr>
-							</c:if>
-						</c:forEach>
-					</tbody>
-				</table>
+				<div class="licenseContext">
+					<table id="examSchedule">
+						<thead>
+							<tr>
+								<th>시험명</th>
+								<th>구분</th>
+								<th>접수시간</th>
+								<th>시험일</th>
+								<th>결과발표일</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:choose>
+								<c:when test="${empty infoExamBeanList}">
+									<div>헤헤 없당</div>
+								</c:when>
+								<c:otherwise>
+
+									<c:forEach items="${infoExamBeanList}" var="infoExamBean">
+										<c:if test="${infoExamBean.exam_status!='시험마감'}">
+											<tr>
+												<td>${infoExamBean.exam_name}</td>
+												<td>${infoExamBean.exam_type}</td>
+												<td>${infoExamBean.exam_receiptStartDate}~
+													${infoExamBean.exam_receiptEndDate}</td>
+												<td>${infoExamBean.exam_date}</td>
+												<td>${infoExamBean.exam_resultDate}</td>
+												<td>${infoExamBean.exam_status}</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+
+								</c:otherwise>
+							</c:choose>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
-
-		
 	</div>
 	<script>  
 	    if (examPassingJson != null) {

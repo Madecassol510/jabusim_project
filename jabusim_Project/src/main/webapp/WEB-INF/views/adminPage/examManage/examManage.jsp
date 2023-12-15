@@ -480,6 +480,14 @@ span {
 
 	
 	function deleteList(){
+		
+		var deleteConfirmed = confirm("해당 시험을 삭제하시겠습니까?");
+		
+		if(!deleteConfirmed){
+			return;	
+		}
+		
+		
 		var checkboxes = document.querySelectorAll('.checkList');
 		
 		var checkedList = [];
@@ -496,7 +504,7 @@ span {
 		        url: '/jabusim_Project/admin/examTableDelete/?checkedList=' + checkedList,
 		        success : function(result) {
 		           console.log("성공");
-		           alert("삭제했습니다");
+		           alert("해당 시험을 성공적으로 삭제했습니다");
 		           resetCheck();
 		           fieldSearch();
 		        }
@@ -671,6 +679,9 @@ span {
 										<div class="searchReq">
 											<input type="checkbox" value="시험일" name="examStatusInput" /> 시험일
 										</div>
+										<div class="searchReq">
+											<input type="checkbox" value="시험마감" name="examStatusInput" /> 시험마감
+										</div>
 									</td>
 								</tr>
 								<tr>
@@ -726,7 +737,7 @@ span {
 										<td><span>${examBean.getExam_resultDate()}</span></td>					
 										<td><span>${examBean.getExam_status()}</span></td>		
 									</tr>
-								</c:forEach>												
+								</c:forEach>																		
 							</tbody>
 						</table>
 					</div>

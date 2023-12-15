@@ -105,6 +105,9 @@
 		margin-top : 20px;
 		margin-bottom: 20px;
 		padding-left: 37px;
+		font-family: Arial;
+    	font-size: 22px;
+    	font-weight: 600;
 	}
 	
 	

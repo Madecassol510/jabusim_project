@@ -38,7 +38,15 @@ public class ExamResultService {
 		= examResultMapper.examResultTableSearch(name, examName, examSubject, examStart, examEnd, resultStart, resultEnd, examType, resultStatus);
 		ArrayList<ExamResultBean> examResultBeanList = new ArrayList<ExamResultBean>();
 		
-
+//		for(int i=0; i<tempExamResultBeanList.size(); i++) {
+//			if(processStatus.size()>0 && resultStatus.size()>0) {
+//				examResultBeanList.add(tempExamResultBeanList.get(i));
+//			}
+//			
+//		}
+		
+		
+		
 		
 		for(int i=0; i<tempExamResultBeanList.size(); i++) {		
 			if(processStatus.size()>0) {

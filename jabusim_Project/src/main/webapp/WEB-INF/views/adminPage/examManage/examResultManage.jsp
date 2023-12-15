@@ -224,6 +224,9 @@ li {
 	padding: 0 15px;
 }
 
+#resultNothing {
+    display: none;
+}
 /* ================================================ */
 
 #edu_list, #career_list{
@@ -413,10 +416,7 @@ span {
 		  
 		  // 체크된 체크박스 수를 세기 위한 변수 초기화
 		  checkedCount = 0;
-		  
-		  
-		  
-		  
+		  	  
 		  // 각 체크박스에 대해 반복하여 체크 상태를 확인하고 카운터를 업데이트합니다.
 		  checkboxes.forEach(function(checkbox) {
 		    if (checkbox.checked) {
@@ -453,7 +453,7 @@ span {
 		        url: '/jabusim_Project/admin/examResultTableDelete/?checkedList=' + checkedList,
 		        success : function(result) {
 		           console.log("성공");
-		           alert("삭제했습니다");
+		           alert("해당 시험결과를 성공적으로 삭제했습니다");
 		           resetCheck();
 		           fieldSearch();
 		        }
@@ -462,6 +462,24 @@ span {
 	}
 	
 	function updateList(status){
+		
+		if(status==='합격'){
+			var updateConfirmed = confirm("해당 시험를 합격하시겠습니까?\n(처리완료 중인 시험은 변경 불가능)");
+			
+			if(!updateConfirmed){
+				alert("합격처리가 취소되었습니다.");
+				return;	
+			}		
+		}
+		else if(status==='불합격'){
+			var updateConfirmed = confirm("해당 시험를 불합격하시겠습니까?\n(처리완료 중인 시험은 변경 불가능) ");
+			
+			if(!updateConfirmed){
+				alert("불합격 처리가 취소되었습니다.");
+				return;	
+			}		
+		}
+		
 		var checkboxes = document.querySelectorAll('.checkList');
 		
 		var checkedList = [];
@@ -488,6 +506,18 @@ span {
 	}
 	
 	function processList(status){
+		
+		if(status==='처리완료'){
+			var updateConfirmed = confirm("해당 시험를 처리완료하시겠습니까?\n(미처리된 시험은 처리완료 불가능)");
+			
+			if(!updateConfirmed){
+				alert("처리완료가 취소되었습니다.");
+				return;	
+			}		
+		}
+		
+		
+		
 		var checkboxes = document.querySelectorAll('.checkList');
 		
 		var checkedList = [];
@@ -622,6 +652,9 @@ span {
 									<th class="searchHd">합격여부</th>
 									<td class="searchArticle">
 										<div class="searchReq">
+											<input type="checkbox" value="입력불가" name="resultStatusInput" /> 입력불가
+										</div>							
+										<div class="searchReq">
 											<input type="checkbox" value="미입력" name="resultStatusInput" /> 미입력
 										</div>
 										<div class="searchReq">
@@ -716,7 +749,7 @@ span {
 										<td><span>${examResultBean.examResult_status}</span></td>		
 										<td><span>${examResultBean.examResult_processStatus}</span></td>		
 									</tr>
-								</c:forEach>				
+								</c:forEach>			
 							</tbody>
 						</table>
 					</div>

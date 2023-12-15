@@ -59,6 +59,12 @@
 		display : inline-block;
 	}
 	
+	h5{
+		font-family: Arial;
+		font-size: 23px;
+		font-weight: 600;
+	}
+	
 	/* =========================================================================== */
 
 	
@@ -90,7 +96,7 @@
 		border: 1px solid blue;
 		box-shadow:0 .5rem 1rem rgba(0,0,0,.15)!important;
 		border-radius: 10px;
-		
+		position: relative;
 	}
 	
 	
@@ -108,7 +114,7 @@
 	#myInfo_module .left_div .join_input{
 		display: inline-block;
 		width: 100%;
-		margin-top: 23px;
+		margin-top: 41px;
 	}
 	
 	
@@ -158,7 +164,7 @@
 		height:300px;
 		width:30%;
 		float:left;
-		padding-top: 47px;
+		padding-top: 30px;
 		margin-left: 15px;
 		text-align: center;
 	}
@@ -183,6 +189,15 @@
 	}
 	
 	
+	.borderBox{
+		position: absolute;
+		border: 1px solid #dfe1e5;
+		border-radius: 10px;
+		width: 400px;
+		height: 300px;
+		top: 96px;
+		right: 25px
+	}
 	
 	/*mypage_module 활동 정보*/
 	#myInfo_module .right_div{
@@ -361,7 +376,13 @@
 							</div>
 						</div>
 					</form:form>
+					
+					<div class="borderBox">
+					
+					</div>
 				</div>
+				
+				
 				<div class="right_div">
 					<div class="act_div">
 						<h5>활동 정보</h5>

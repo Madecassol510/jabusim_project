@@ -433,6 +433,13 @@ span {
 	}
 	
 	function deleteList(){
+		
+		var deleteConfirmed = confirm("해당 시험접수를 삭제하시겠습니까?");
+		
+		if(!deleteConfirmed){
+			return;	
+		}
+		
 		var checkboxes = document.querySelectorAll('.checkList');
 		
 		var checkedList = [];
@@ -449,7 +456,7 @@ span {
 		        url: '/jabusim_Project/admin/examReceiptTableDelete/?checkedList=' + checkedList,
 		        success : function(result) {
 		           console.log("성공");
-		           alert("삭제했습니다");
+		           alert("해당 접수를 성공적으로 삭제했습니다");
 		           resetCheck();
 		           fieldSearch();
 		        }
@@ -459,6 +466,25 @@ span {
 	
 
 	function updateList(status){
+		
+		if(status==='접수완료'){
+			var updateConfirmed = confirm("해당 접수를 수락하시겠습니까?\n(처리대기 중인 문의만 수락 가능)");
+			
+			if(!updateConfirmed){
+				alert("접수 수락이 취소되었습니다.");
+				return;	
+			}		
+		}
+		else if(status==='접수거부'){
+			var updateConfirmed = confirm("해당 접수를 거부하시겠습니까?\n(처리대기 중인 문의만 거절 가능) ");
+			
+			if(!updateConfirmed){
+				alert("접수 거부가 취소되었습니다.");
+				return;	
+			}		
+		}
+		
+		
 		var checkboxes = document.querySelectorAll('.checkList');
 		
 		var checkedList = [];

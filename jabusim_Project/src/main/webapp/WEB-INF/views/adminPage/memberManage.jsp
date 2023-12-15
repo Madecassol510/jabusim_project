@@ -401,6 +401,9 @@ span {
 	var joinEnd = null; 
 	
 	
+	
+	
+	
 	//검색 필드에 값넣기
 	function fieldSearch(){
 		
@@ -524,6 +527,13 @@ span {
 
 	
 	function deleteList(){
+		var deleteConfirmed = confirm("해당 유저를 삭제하시겠습니까?");
+		
+		if(!deleteConfirmed){
+			return;	
+		}
+		
+		
 		var checkboxes = document.querySelectorAll('.checkList');
 		
 		var checkedList = [];
@@ -540,7 +550,7 @@ span {
 		        url: '/jabusim_Project/admin/userTableDelete/?checkedList=' + checkedList,
 		        success : function(result) {
 		           console.log("성공");
-		           alert("삭제했습니다");
+		           alert("해당 유저를 성공적으로 삭제했습니다");
 		           resetCheck();
 		           fieldSearch();
 		        }

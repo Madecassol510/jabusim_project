@@ -396,9 +396,7 @@ span {
 		  // 체크된 체크박스 수를 세기 위한 변수 초기화
 		  checkedCount = 0;
 		  
-		  
-		  
-		  
+	  
 		  // 각 체크박스에 대해 반복하여 체크 상태를 확인하고 카운터를 업데이트합니다.
 		  checkboxes.forEach(function(checkbox) {
 		    if (checkbox.checked) {
@@ -447,6 +445,14 @@ span {
 
 	
 	function deleteList(){
+		
+		var deleteConfirmed = confirm("해당 문의를 삭제하시겠습니까?");
+		
+		if(!deleteConfirmed){
+			return;	
+		}
+		
+		
 		var checkboxes = document.querySelectorAll('.checkList');
 		
 		var checkedList = [];
@@ -463,7 +469,7 @@ span {
 		        url: '/jabusim_Project/admin/userCareerTableDelete/?checkedList=' + checkedList,
 		        success : function(result) {
 		           console.log("성공");
-		           alert("삭제했습니다");
+		           alert("해당 문의를 성공적으로 삭제했습니다");
 		           resetCheck();
 		           fieldSearch();
 		        }
@@ -482,6 +488,26 @@ span {
 	}
 	
 	function updateList(status){
+		
+		
+		if(status==='수락완료'){
+			var updateConfirmed = confirm("해당 문의를 수락하시겠습니까?\n(대기 중인 문의만 수락 가능)");
+			
+			if(!updateConfirmed){
+				alert("문의 수락이 취소되었습니다.");
+				return;	
+			}		
+		}
+		else if(status==='거절완료'){
+			var updateConfirmed = confirm("해당 문의를 거절하시겠습니까?\n(대기 중인 문의만 거절 가능) ");
+			
+			if(!updateConfirmed){
+				alert("문의 거절이 취소되었습니다.");
+				return;	
+			}		
+		}
+			
+		
 		var checkboxes = document.querySelectorAll('.checkList');
 		
 		var checkedList = [];
@@ -499,7 +525,7 @@ span {
 		        '&status=' + status,
 		        success : function(result) {
 		           console.log("성공");
-		           alert("수정했습니다");
+		           alert("해당 문의를 성공적으로 삭제했습니다");
 		           resetCheck();
 		           fieldSearch();
 		        }
