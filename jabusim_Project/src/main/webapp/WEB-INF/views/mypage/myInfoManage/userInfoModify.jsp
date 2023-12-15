@@ -42,12 +42,10 @@
 	    min-height: 700px;
 	    margin: 0 auto;
 	   	padding-top: 80px;
-	    border: 1px solid red;
 	}
 	.module{
 		min-height : 600px;
 		width:100%;
-		border: 1px solid blue;
 		text-align:center;
 		padding-top: 50px;
 		padding-bottom: 50px;
@@ -66,7 +64,9 @@
 	#modify_module .article{
 		width : 60%;
 		min-height : 500px;
-		border: 1px solid black;
+		border: 1px solid #dfe1e5;
+		box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+		border-radius: 10px;
 		text-align:left;
 		padding: 30px 50px;
 	}
@@ -209,7 +209,7 @@
 		<div class="module" id="modify_module">
 			<div class="article">
 				<div class="join_hd">
-					<h3>정보수정</h3>
+					<h3>비밀번호 변경</h3>
 				</div>
 				<form:form action="${root}mypage/myInfoManage/userInfoModify_pro" method="post" class="modify_input" modelAttribute="modifyUserBean">
 					<form:hidden path="user_phoneNum"/>
@@ -224,12 +224,6 @@
 							<div class="input_placeBottom">
 								<form:errors path="user_name" style="color:red" />
 							</div>
-						</div>
-					</div>
-					<div class="photo_box">
-						<div class="photo_input">
-							<img src="${root }image/icon-spring-framework.svg" class="photo" />
-							<button type="button">사진등록</button>
 						</div>
 					</div>
 					<div class="input_box">

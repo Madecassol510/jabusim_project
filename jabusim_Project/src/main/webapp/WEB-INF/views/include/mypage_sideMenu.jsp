@@ -51,8 +51,9 @@
 				<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 					<li><a
 						href="${root}mypage/myInfoManage/checkPw?myInfoManagePage=1"
-						class="link-body-emphasis d-inline-flex text-decoration-none rounded">개인
-							정보 수정</a></li>
+						class="link-body-emphasis d-inline-flex text-decoration-none rounded">
+							비밀번호 변경
+							</a></li>
 					<li><a
 						href="${root}mypage/myInfoManage/checkPw?myInfoManagePage=2"
 						class="link-body-emphasis d-inline-flex text-decoration-none rounded">학력/경력
