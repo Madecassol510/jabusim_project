@@ -40,7 +40,6 @@
 		    	</when>
 			</choose>
 		</where>
+		ORDER BY examPlace_idx
     </select>
-    
-    
 </mapper>

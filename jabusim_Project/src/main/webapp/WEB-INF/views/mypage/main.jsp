@@ -191,7 +191,7 @@
 	
 	.borderBox{
 		position: absolute;
-		border: 1px solid #dfe1e5;
+		border: 1px solid #A4A4A4;
 		border-radius: 10px;
 		width: 400px;
 		height: 300px;
@@ -233,8 +233,9 @@
 	}
 	
 	#myInfo_module .act_div .act_info{
-		border: 1px solid #dfe1e5;
+		border: 1px solid #A4A4A4;
 		border-radius: 10px;
+		padding: 10px;
 	}
 	
 
@@ -250,7 +251,6 @@
 	
 	#myLicense_module .article{
 		width : 94%;
-		min-height : 460px;
 		display: inline-block;
 		
 		border: 1px solid blue;
@@ -280,8 +280,17 @@
 		width: 100%;
 		/* border: 1px solid blue; */
 		padding:30px;
-		display: inline-table;
 	} 
+	
+	#myLicense_module .licenseBox .own_licenseListBox{
+		/* width: 1112px; */
+		width:100%;
+  		min-height: 273px;
+   		border: 1px solid #A4A4A4;
+		border-radius: 10px;
+		display: inline-block;
+		padding: 12px;
+	}
 	
 	#myLicense_module .licenseBox .licenseCardList{
 		height: 150px;
@@ -295,6 +304,7 @@
 		height: 95%;
 		margin: auto;
 	}
+	
 	
 </style>
 
@@ -366,11 +376,11 @@
 						</div>
 						<div class="input_box">
 							<div class="input_name">
-								<span>휴대전화</span>
+								<span>가입일</span>
 							</div>
 							<div class="input_place">
 								<div class="input_placeTop">
-									<form:input path="user_phoneNum" readonly="true" />
+									<form:input path="user_joinDate" readonly="true" />
 								</div>
 								<div class="input_placeBottom"></div>
 							</div>
@@ -389,27 +399,27 @@
 						<form action="#" class="act_infoBox">
 							<%-- <form:label path=""></form:label> 사용--%>
 							<div class="act_info">
-								<h6 style="font-weight: 10;">가입일</h6>
-								<div>
-									${myPageUserBean.getUser_joinDate()}에 가입했습니다.
-								</div>
-							</div>
-							<div class="act_info">
 								<div class="act_infotitle">방문횟수</div>
 								<div>
 									${myPageUserBean.getUser_visitCount()}회
 								</div>
 							</div>
 							<div class="act_info">
-								<div class="act_infotitle">관심분야</div>
+								<div class="act_infotitle">문의횟수</div>
 								<div>
-									
+									${inquiryCount}회
+								</div>
+							</div>
+							<div class="act_info">
+								<div class="act_infotitle">최근시험</div>
+								<div>
+									${examResultBean.getExam_name()}
 								</div>
 							</div>
 							<div class="act_info">
 								<div class="act_infotitle">자격증</div>
 								<div>
-									보유 자격증 0개 <br />
+									보유 자격증 ${licenseCount}개
 								</div>
 							</div>
 						</form>
@@ -422,124 +432,32 @@
 				<div class="licenseBox" id="own_licenseBox">
 					<div class="licenseHd">
 						<h5>보유자격증</h5>
-						<span>고객님의 관심 자격증은 0개입니다</span>
+						<span>${myPageUserBean.getUser_name()}님의 관심 자격증은 ${licenseCount}개입니다</span>
 					</div>
 					<div class="licenseList" id="own_licenseList">
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
+						<div class="own_licenseListBox">
+							<div class="licenseCardList">
+								<div class="card text-bg-light">
+									<div class="card-header">Header</div>
+									<div></div>
 								</div>
 							</div>
-						</div>			
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
+							<div class="licenseCardList">
+								<div class="card text-bg-light">
+									<div class="card-header">Header</div>
+									<div></div>
 								</div>
 							</div>
+							
+							
 						</div>
+					
 						
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>
-						
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>	
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>
+						<c:forEach items="${userOwnLicenseBeans}" var="userOwnLicenseBean">
+							
+						</c:forEach> 	
 					</div>
 				</div>
-				<!-- <div class="licenseBox" id="interest_licenseBox">
-					<div class="licenseHd">
-						<h5>관심 자격증</h5>
-						<span>고객님의 관심 자격증은 0개입니다</span>
-					</div>
-					<div class="licenseList" id="interest_licenseList">
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>
-								
-								</div>
-							</div>
-						</div>
-						<div class="licenseCardList">
-							<div class="card text-bg-light">
-								<div class="card-header">Header</div>
-								<div>							
-								</div>
-							</div>
-						</div>								
-					</div>
-				</div> -->
 			</div>
 		</div>	
 	</div>

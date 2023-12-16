@@ -21,16 +21,16 @@ import kr.co.jabusim.beans.UserEduBean;
 public interface UserCareerMapper {
 	
 	//모든 유저의 경력 리스트
-	@Select("select * from userCareer_table")
+	@Select("select * from userCareer_table ORDER BY userCareer_idx DESC")
 	ArrayList<UserCareerBean> allUserCareerInfo();
 	
 	//로그인한 유저의 경력 리스트
-	@Select("select * from userCareer_table where user_id = #{user_id}")
+	@Select("select * from userCareer_table where user_id = #{user_id} ORDER BY userCareer_idx DESC")
 	ArrayList<UserCareerBean> getUserCareerInfo(String user_id);
 		
 	
 	//ajax 유저학력 조회
-	@Select("select * from userCareer_table where userCareer_idx = #{userCareer_idx}")
+	@Select("select * from userCareer_table where userCareer_idx = #{userCareer_idx} ")
 	UserCareerBean  getUserCareer(String userCareer_idx);
 	
 	

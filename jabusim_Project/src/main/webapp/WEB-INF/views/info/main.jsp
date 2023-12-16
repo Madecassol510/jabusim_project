@@ -72,10 +72,12 @@
 	min-height: 230px;
 	margin-bottom: 1rem;
 	border-radius: 10px;
+	border:1px solid #A4A4A4;
 }
 
 .card-body {
 	border-radius: 10px;
+	
 }
 
 #fbanner-section {

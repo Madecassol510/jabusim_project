@@ -155,8 +155,7 @@
 									<tr></tr>
 								</c:when>
 								<c:otherwise>
-									<c:forEach items="${userEduBeans}" var="userEduBean"
-										varStatus="loopStatus">
+									<c:forEach items="${userEduBeans}" var="userEduBean" varStatus="loopStatus">
 										<tr>
 											<td><span>${userEduBean.userEdu_type}</span></td>
 											<td><span>${userEduBean.userEdu_academy}</span></td>

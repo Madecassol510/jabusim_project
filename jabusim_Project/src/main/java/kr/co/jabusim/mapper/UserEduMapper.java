@@ -12,19 +12,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.jabusim.beans.EduBean;
 import kr.co.jabusim.beans.UserBean;
+import kr.co.jabusim.beans.UserCareerBean;
 import kr.co.jabusim.beans.UserEduBean;
 
 public interface UserEduMapper {
 	
 	
 	//모든 유저의 학력 리스트
-	@Select("select * from userEdu_table")
+	@Select("select * from userEdu_table ORDER BY userEdu_idx DESC")
 	ArrayList<UserEduBean> allUserEduInfo();
 	
 	//로그인한 유저의 학력 리스트
-	@Select("select * from userEdu_table where user_id = #{user_id}")
+	@Select("SELECT * FROM userEdu_table WHERE user_id = #{user_id} ORDER BY userEdu_idx DESC")
 	ArrayList<UserEduBean> getUserEduInfo(String user_id);
 
+	
 	//ajax 유저테이블 가져오기
 	ArrayList<UserEduBean> userEduTableSearch (
 			@Param("name") String name,

@@ -43,7 +43,7 @@ public interface UserMapper {
 	//로그인한 유저의 정보 가져오기
 	@Select("select * "
 			+ "from user_table "
-			+ "where user_idx= #{user_idx}")
+			+ "where user_idx= #{user_idx} ORDER BY user_idx DESC")
 	UserBean getUserAllInfo(int user_idx);
 
 	
@@ -54,7 +54,7 @@ public interface UserMapper {
 
 	
 	//모든 유저의 정보 가져오기
-	@Select("select * from user_table")
+	@Select("select * from user_table where user_role='회원' ORDER BY user_idx desc")
 	ArrayList<UserBean> getAllUserInfo();
 	
 	//ajax 유저테이블 가져오기

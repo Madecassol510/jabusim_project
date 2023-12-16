@@ -72,8 +72,30 @@ public class MyPageController {
 		
 		ArrayList<LicenseBean> userOwnLicenseBeans = licenseMapper.getUserOwnLicenseBeans(myPageUserBean.getUser_id());
 		
+		
+		//나의 정보
 		model.addAttribute("myPageUserBean", myPageUserBean);
+		
+		
+		//활동정보
+		// 방문수
+		
+		// 문의 개수
+		int inquiryCount =
+		userEduMapper.getUserEduInfo(myPageUserBean.getUser_id()).size() + userCareerMapper.getUserCareerInfo(myPageUserBean.getUser_id()).size();
+	
+		System.out.println(inquiryCount);
+				
+		// 최근 시험		
+		ExamResultBean examResultBean = examResultMapper.getUserLastExam(myPageUserBean.getUser_id());
+		
+		// 자격증 개수
+		int licenseCount = userOwnLicenseBeans.size();
+		
+		model.addAttribute("inquiryCount", inquiryCount);
+		model.addAttribute("licenseCount", licenseCount);
 		model.addAttribute("userOwnLicenseBeans", userOwnLicenseBeans);
+		model.addAttribute("examResultBean", examResultBean);
 		
 		return "mypage/main";
 	}
@@ -118,9 +140,9 @@ public class MyPageController {
 		UserBean myPageUserBean = userService.getUserAllInfo();
 		
 		
-		ArrayList<UserEduBean> UserEduBeans = userEduMapper.getUserEduInfo(myPageUserBean.getUser_id());
+		ArrayList<UserEduBean> userEduBeans = userEduMapper.getUserEduInfo(myPageUserBean.getUser_id());
 		
-		model.addAttribute("UserEduBeans", UserEduBeans);
+		model.addAttribute("userEduBeans", userEduBeans);
 		
 		return "mypage/myDetailManage/eduInquiryDetail";		
 	}
@@ -145,10 +167,12 @@ public class MyPageController {
 	@GetMapping("/myInfoManage/checkPw")
 	public String checkPw(@ModelAttribute("checkPwUserBean") UserBean checkPwUserBean,
 						  @RequestParam("myInfoManagePage") int myInfoManagePage,
+						  @RequestParam(value="fail", defaultValue = "false") boolean fail,
 						  Model model) {
 		
+		model.addAttribute("fail", fail);
+		
 		model.addAttribute("myInfoManagePage",myInfoManagePage);
-	
 		userService.checkUserIdInfo(checkPwUserBean);
 
 		
@@ -165,6 +189,15 @@ public class MyPageController {
 		if(!userService.loginPwCheck(checkPwUserBean)) {
 			System.out.println("비밀번호 틀림");
 			model.addAttribute("myInfoManagePage",myInfoManagePage);
+			
+			boolean fail = true;
+			model.addAttribute("fail", fail);
+			
+			checkPwUserBean = new UserBean();
+			userService.checkUserIdInfo(checkPwUserBean);
+			
+			model.addAttribute("checkPwUserBean", checkPwUserBean);
+			
 			return "mypage/myInfoManage/checkPw";
 		}
 		

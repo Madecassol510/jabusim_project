@@ -20,7 +20,7 @@ import kr.co.jabusim.beans.UserEduBean;
 public interface ExamResultMapper {
 
 	// 모든 시험 테이블 가져오기
-	@Select("select * from examResult_table")
+	@Select("select * from examResult_table ORDER BY examResult_idx DESC")
 	ArrayList<ExamResultBean> allExamReceiptInfo();
 
 	ArrayList<ExamResultBean> examResultTableSearch(
@@ -62,10 +62,28 @@ public interface ExamResultMapper {
 	
 	
 	//유저의 시험결과 가져오기(마이페이지)
-	@Select("select * from examResult_table where user_id = #{user_id}")
+	@Select("select * from examResult_table where user_id = #{user_id} ORDER BY examResult_idx DESC")
 	ArrayList<ExamResultBean> getUserExamResultList(String user_id);
 	
+	
+	
+	//유저의 가장 최근인 시험일
+	@Select("SELECT * FROM (SELECT * FROM examResult_table WHERE user_id = '${user_id}' ORDER BY exam_date DESC) "
+			+ "WHERE ROWNUM <= 1")
+	ExamResultBean getUserLastExam(String user_id);
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

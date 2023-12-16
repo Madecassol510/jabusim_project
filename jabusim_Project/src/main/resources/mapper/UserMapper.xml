@@ -14,6 +14,7 @@
 	<select id="userTableSearch" resultMap="userBeanResultMap">
 		SELECT * FROM user_table
 		<where>
+			user_role = '회원'	
 			<choose>
 				<when test="(name != null and name != '')  or 
 		        	(joinStart != null and joinStart != '') or (joinEnd != null and joinEnd != '')">
@@ -31,6 +32,7 @@
 					</if>	
 		    	</when>
 			</choose>
+			ORDER BY user_idx DESC
 		</where>
     </select>
     

@@ -81,10 +81,13 @@
                             exam_round = #{item}
                         </foreach>
                     )
-                </if>             
+                </if> 
+                
+                ORDER BY exam_idx DESC;            
             </when>
         </choose>
     </where>
+	
 </select>
 
     

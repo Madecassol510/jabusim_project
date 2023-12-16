@@ -22,7 +22,7 @@ public interface ExamReceiptMapper {
 
 	
 	//모든 시험 테이블 가져오기		
-	@Select("select * from examReceipt_table")
+	@Select("select * from examReceipt_table ORDER BY examReceipt_idx DESC")
 	ArrayList<ExamReceiptBean> allExamReceiptInfo();
 	
 	
@@ -55,7 +55,7 @@ public interface ExamReceiptMapper {
 	
 	
 	//유저의 시험결과 가져오기(마이페이지)
-	@Select("select * from examReceipt_table where user_id = #{user_id}")
+	@Select("select * from examReceipt_table where user_id = #{user_id} ORDER BY examReceipt_idx DESC")
 	ArrayList<ExamReceiptBean> getUserExamReceiptList(String user_id);
 	
 }

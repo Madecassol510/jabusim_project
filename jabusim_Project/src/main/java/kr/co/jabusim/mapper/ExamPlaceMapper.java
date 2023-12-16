@@ -16,7 +16,7 @@ public interface ExamPlaceMapper {
 	
 	
 	//모든 시험장소 select
-	@Select("select * from examPlace_table")
+	@Select("select * from examPlace_table ORDER BY examPlace_idx")
 	ArrayList<ExamPlaceBean> allExamPlaceInfo();
 	
 	//ajax 시험장소테이블 가져오기

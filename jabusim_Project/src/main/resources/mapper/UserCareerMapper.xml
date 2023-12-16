@@ -64,6 +64,7 @@
 					</if>				
 		    	</when>
 			</choose>
+			ORDER BY userCareer_idx DESC
 		</where>
     </select>
     

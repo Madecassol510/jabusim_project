@@ -22,7 +22,7 @@ public interface LicenseMapper {
 	
 	
 	//모든 유저의 학력 리스트
-	@Select("select * from license_table")
+	@Select("select * from license_table ORDER BY license_idx DESC")
 	ArrayList<LicenseBean> allLicenseInfo();
 	
 	

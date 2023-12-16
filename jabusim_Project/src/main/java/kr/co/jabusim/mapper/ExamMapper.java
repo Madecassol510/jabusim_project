@@ -22,7 +22,7 @@ public interface ExamMapper {
 	
 	
 	//모든 시험 테이블 가져오기		
-	@Select("select * from exam_table")
+	@Select("select * from exam_table ORDER BY exam_idx")
 	ArrayList<ExamBean> allExamInfo();
 	
 	
@@ -54,6 +54,9 @@ public interface ExamMapper {
 	//시험 합격률 
 	@Select("select * from exam_Passrates_table where jmfldnm = #{jmfldnm} ")
 	ExamPassingBean getLicenseExamPassingInfo(String jmfldnm);
+	
+	
+	
 }
 
 

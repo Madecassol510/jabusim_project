@@ -74,9 +74,22 @@
 		border-bottom: 1px solid black;
 	}
 	
+	#login_module .hd{
+		padding: 10px;
+		margin-bottom: 10px;
+	}
+	
+	#login_module .login_hd_fail .hd{
+		border-radius: 10px;
+		background: #FFC6C6; 
+	}
+	
+	#login_module .login_hd_fail span{
+		color: red;
+	}
+	
 	#login_module .login_hd span{
 		display: inline-block;
-		margin-bottom: 5px;
 	}
 	
 	#login_module .login_hd_fail{
@@ -86,7 +99,6 @@
 	
 	#login_module .login_hd_fail span{
 		display: inline-block;
-		margin-bottom: 5px;
 	}
 	
 	#login_module .login_input{
@@ -136,7 +148,6 @@
 
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
-
 	<div class="pageContainer">
 		<div class="module" id="login_module">
 			<div class="article">
@@ -144,14 +155,18 @@
 					<c:choose>
 						<c:when test="${fail==true}">
 							<div class="login_hd_fail">
-								<h3>로그인 실패</h3>
-								<span>아이디와 비밀번호를 확인해주세요</span>
+								<div class="hd">
+									<h3>로그인 실패</h3>
+									<span>아이디와 비밀번호를 확인해주세요</span>
+								</div>
 							</div>	
 						</c:when>
 						<c:otherwise>
-							<div class="login_hd">		
-								<h3>로그인</h3>
-								<span>로그인이 필요한 서비스입니다</span>
+							<div class="login_hd">
+								<div class="hd">		
+									<h3>로그인</h3>
+									<span>로그인이 필요한 서비스입니다</span>
+								</div>
 							</div>
 						</c:otherwise>					
 					</c:choose>					
@@ -170,7 +185,10 @@
 						</div> -->
 					</div>
 					<div class="loginimg">
-						<img src="${root }image/caruosel1.jpg" style="height : 210px; width : 245px;"/>
+						<img src="${root }image/caruosel1.jpg" style="  height: 234px;
+								    width: 267px;
+								    margin-left: 40px;
+								    margin-top: 15px;"/>
 					</div>
 				</div>
 			</div>

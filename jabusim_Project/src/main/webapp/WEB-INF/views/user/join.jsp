@@ -95,7 +95,7 @@
 		display: inline-block;	
 		width: 100%;
 		min-height: 60px;
-		padding-left : 40px;
+		padding-left : 100px;
 	}
 	
 	#join_module .input_box div{
@@ -303,8 +303,6 @@
 							<div class="input_place">
 								<div class="input_placeTop">
 									<form:input path="user_phoneNum" placeholder=" ex) 010-0000-0000" />
-									<button type="button" class="btn btn-secondary" class="input_check">본인확인</button>
-
 								</div>
 								<div class="input_placeBottom">
 									<form:errors path="user_phoneNum" style="color:red"/>
