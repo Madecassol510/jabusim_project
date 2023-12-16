@@ -147,24 +147,36 @@
 						<tbody>
 							<c:choose>
 								<c:when test="${empty userExamResultBeans}">
-									
+									<tr>
+										<td colspan="6" height="200px" id="resultNothing" >
+											시험 결과가 없습니다
+										</td>
+									</tr>
+									<tr></tr>
+									<tr></tr>
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${userExamResultBeans}"
 										var="userExamResultBean" varStatus="loopStatus">
-										<c:if test="${userExamResultBean.examResult_status='입력불가'}">
-										</c:if>
-										
-										<c:if test="${userExamResultBean.examResult_processStatus=''}">
-											<tr>
-												<td><span>${userExamResultBean.exam_name}</span></td>
-												<td><span>${userExamResultBean.exam_subject}</span></td>
-												<td><span>${userExamResultBean.exam_type}</span></td>
-												<td><span>${userExamResultBean.exam_date}</span></td>
-												<td><span>${userExamResultBean.exam_resultDate}</span></td>
-												<td><span>${userExamResultBean.examResult_status}</span></td>
-											</tr>
-										</c:if>
+										<tr>
+											<td><span>${userExamResultBean.exam_name}</span></td>
+											<td><span>${userExamResultBean.exam_subject}</span></td>
+											<td><span>${userExamResultBean.exam_type}</span></td>
+											<td><span>${userExamResultBean.exam_date}</span></td>
+
+	
+											<c:choose>
+												<c:when test="${userExamResultBean.examResult_processStatus='미처리'}">
+													<td><span>발표예정</span></td>
+												</c:when>
+												<c:when test="${userExamResultBean.examResult_processStatus='처리가능'}">
+													<td><span>처리중</span></td>
+												</c:when>
+												<c:otherwise>
+													<td><span>${userExamResultBean.examResult_status}</span></td>
+												</c:otherwise>
+											</c:choose>										
+										</tr>
 									</c:forEach>
 								</c:otherwise>
 							</c:choose>

@@ -33,8 +33,7 @@ public interface ExamResultMapper {
 			@Param("resultStart") String resultStart, 
 			@Param("resultEnd") String resultEnd,
 
-			@Param("examType") List<String> examType,
-			@Param("resultStatus") List<String> resultStatus
+			@Param("examType") List<String> examType
 			);
 	
 	//ajax 시험결과 삭제(관리자페이지)

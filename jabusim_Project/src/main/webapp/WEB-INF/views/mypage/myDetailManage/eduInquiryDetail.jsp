@@ -28,7 +28,10 @@
 		width:100%;
 	}
 	
-	ul{ list-style:none;  padding : 5px;}
+	ul{
+		list-style:none;
+		padding : 5px;
+	}
 	
 	li{
 	
@@ -39,7 +42,6 @@
 	    width: 1250px;
 	    margin: 0 auto;
 	   	padding-top: 80px;
-
 	}
 	.module{
 		min-height : 600px;
@@ -66,7 +68,6 @@
 	#exam_result_module .article{
 		width : 94%;
 		display: inline-block;
-
 	}
 	
 	#exam_result_module .resultBox{
@@ -82,7 +83,7 @@
 	#exam_result_module .resultBox table{
 		margin:auto;
 		text-align:center; 
-		width:95%;
+		width:85%;
 	}
 
 	#exam_result_module .resultBox td, th{
@@ -129,44 +130,43 @@
 		<div class="module" id="exam_result_module">
 			<div class="article">
 				<div class="hd">
-					<h3>시험 접수</h3>
+					<h3>문의 결과</h3>
 				</div>
 				<div class="resultBox">
 					<table>
 						<thead>
 							<tr>
-								<th><span>시험명</span></th>
-								<th><span>응시종목</span></th>
-								<th><span>구분</span></th>
-								<th><span>시험일</span></th>
-								<th><span>결과발표일</span></th>
-								<th><span>시험장소</span></th>
-								<th><span>접수상태</span></th>
+								<th><span>문의종류</span></th>
+								<th><span>문의내용</span></th>
+								<th><span>문의날짜</span></th>
+								<th><span>처리날짜</span></th>
+								<th><span>상태</span></th>
+								<th><span></span></th>
 							</tr>
 						</thead>
-						<tbody>				
-							<c:forEach items="${userExamReceiptBeans}" var="userExamReceiptBean" varStatus="loopStatus">											
+						<tbody>
+							<c:choose>
+								<c:when test="${empty userEduBeans}">
 									<tr>
-										<td><span>${userExamReceiptBean.exam_name}</span></td>
-										<td><span>${userExamReceiptBean.exam_subject}</span></td>
-										<td><span>${userExamReceiptBean.exam_type}</span></td>
-										<td><span>${userExamReceiptBean.exam_date}</span></td>
-										<td><span>${userExamReceiptBean.exam_resultDate}</span></td>
-										<td><span>${userExamReceiptBean.examPlace_name}</span></td>
-										
-										<c:choose>
-											<c:when test="${userExamReceiptBean.examReceipt_status=='처리대기'}">
-												<td><span>처리 중</span></td>
-											</c:when>
-											 <c:when test="${userExamReceiptBean.getExamReceipt_status() == '삭제예정'}">
-												<td><span>시험마감</span></td>
-											</c:when>
-											<c:otherwise>
-												<td><span>${userExamReceiptBean.examReceipt_status}</span></td>
-											</c:otherwise>
-										</c:choose>					
+										<td colspan="6" height="200px" id="resultNothing">문의한 내역이
+											없습니다</td>
 									</tr>
-							</c:forEach>
+									<tr></tr>
+									<tr></tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${userEduBeans}" var="userEduBean"
+										varStatus="loopStatus">
+										<tr>
+											<td><span>${userEduBean.userEdu_type}</span></td>
+											<td><span>${userEduBean.userEdu_academy}</span></td>
+											<td><span>${userEduBean.userEdu_major}</span></td>
+											<td><span>${userEduBean.getUserEdu_inquiryDate()}</span></td>
+											<td><span>${userEduBean.userEdu_processStatus}</span></td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>

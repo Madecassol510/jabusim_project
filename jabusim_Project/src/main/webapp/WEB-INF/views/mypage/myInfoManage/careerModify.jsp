@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var='root' value="${pageContext.request.contextPath }/" />
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,10 +176,9 @@
 	}
 	
 	#modify_module .articleBox .inputDetail input{
-		width:180px;
+		width:260px;
 		height: 30px;
 		float: left;
-		background: gray;
 	}
 	
 	#modify_module .articleBox .inputDetail button{
@@ -289,51 +288,155 @@
 
 <script type="text/javascript">
 
-	function openModal(modalId) {
-	    var modals = document.getElementsByClassName("modalBackground");
+	var careerNum=0;
+	var eduNum=0;
 	
-	    // HTMLCollection을 배열로 변환
-	    var modalArray = Array.from(modals);
-	
-	    
-	    
-	    modalArray.forEach(function (modal) {
-	    	console.log(modalId);
-	    	console.log(modal.id);
-	    	
-	        if (modalId == modal.id) {
-	            modal.style.display = 'flex';
-	        } else {
-	            modal.style.display = "none";
-	            
-	        }
-	    });
-	}
-		
-	function closeModal(){
-		var	modals = document.getElementsByClassName("modalBackground");
-		
-		// HTMLCollection을 배열로 변환
-		var modalArray = Array.from(modals);
-		
-		modalArray.forEach(function(modal){		
-			modal.style.display = 'none';	
-		});
-	}
+	var careerMax = ${fn:length(userCareerBeans)};
+	var careerMin = 0;
 
-	function selectResult(result){	
-		var resultVal = result.textContent || result.innerText;
+	var eduMax = ${fn:length(userEduBeans)};
+	var eduMin = 0;
+	
+
+	
+	
+	window.onload = function() {
+		careerNum=0;
+		 eduNum=0;
 		
-		if(result.id == 'selectSchool'){
-			var inputSchool = document.getElementById("inputSchool")
-			inputSchool.value = resultVal;
+		document.getElementById("edu_preButton").disabled = true;
+		document.getElementById("career_preButton").disabled = true;
+		
+		if(careerNum >= careerMax-1){
+			document.getElementById("career_nextButton").disabled = true;
 		}
-		else if(result.id == 'selectMajor'){
-			var inputMajor = document.getElementById("inputMajor")
-			inputMajor.value = resultVal;
-		}		
-		closeModal();
+		
+		if(eduNum >= eduMax-1){
+			document.getElementById("edu_nextButton").disabled = true;
+		}
+    };
+	
+	
+	function clickPre(field){
+		
+		if(field=="학력"){
+			
+			eduNum--;
+			
+			if(eduNum==eduMin){
+				
+				document.getElementById("edu_preButton").disabled = true;
+			}
+			else{
+				document.getElementById("edu_preButton").disabled = false;
+			}
+			
+			if(eduNum>=eduMax-1){
+				document.getElementById("edu_nextButton").disabled = true;
+			}
+			else{
+				document.getElementById("edu_nextButton").disabled = false;
+			}
+			
+		}
+		else if(field=="경력"){
+			
+			careerNum--;
+			
+			if(careerNum==careerMin){
+				document.getElementById("career_preButton").disabled = true;
+			}
+			else{
+				document.getElementById("career_preButton").disabled = false;
+			}
+			
+			if(careerNum>=careerMax-1){
+				document.getElementById("career_nextButton").disabled = true;
+			}
+			else{
+				document.getElementById("career_nextButton").disabled = false;
+			}
+					
+	        document.getElementById("careerType").innerHTML =  "${userCareerBeans[careerNum].career_type}";
+	        document.getElementById("careerField").innerHTML =  "${userCareerBeans[careerNum].career_field}";
+	        document.getElementById("careerCompany").innerHTML = "${userCareerBeans[careerNum].career_company}";
+		}			
 	}
+	
+	function clickNext(field){
+				
+		if(field=="학력"){
+			
+			eduNum ++;
+			
+			if(eduNum==eduMin){
+				
+				document.getElementById("edu_preButton").disabled = true;
+			}
+			else{
+				document.getElementById("edu_preButton").disabled = false;
+			}
+			
+			if(eduNum>=eduMax-1){
+				document.getElementById("edu_nextButton").disabled = true;
+			}
+			else{
+				document.getElementById("edu_nextButton").disabled = false;
+			}	
+			
+		}
+		else if(field=="경력"){
+			
+			careerNum ++;
+			
+			
+			if(careerNum==careerMin){
+				document.getElementById("career_preButton").disabled = true;
+			}
+			else{
+				document.getElementById("career_preButton").disabled = false;
+			}
+			
+			if(careerNum>=careerMax-1){
+				document.getElementById("career_nextButton").disabled = true;
+			}
+			else{
+				document.getElementById("career_nextButton").disabled = false;
+			}
+			
+			document.getElementById("careerType").innerHTML =  "${userCareerBeans[careerNum].career_type}";
+	        document.getElementById("careerField").innerHTML =  "${userCareerBeans[careerNum].career_field}";
+	        document.getElementById("careerCompany").innerHTML = "${userCareerBeans[careerNum].career_company}";
+			
+		}			
+	}
+	
+	
+	
+	//============================================
+	function typeChange() {
+		var selectedValue = document.getElementById("selectEdu").value;
+		
+		if(selectedValue=="고등학교 졸업 이하" || selectedValue=="고졸 검정고시" || selectedValue=="평생교육진흥원 인정학점(81학점 이상)" ||
+				selectedValue=="평생교육진흥원 인정학점(106학점 이상)"){
+			
+			var eduInputs = document.querySelectorAll('.eduInput');
+
+			 // 모든 eduInput 클래스를 가진 input 요소를 반복하면서 입력 불가능하게 만듦
+			 eduInputs.forEach(function(input) {
+			        input.readonly = true; // 입력 불가능하게 설정
+			 });
+		}
+		else{
+			var eduInputs = document.querySelectorAll('.eduInput');
+
+			 // 모든 eduInput 클래스를 가진 input 요소를 반복하면서 입력 불가능하게 만듦
+			 eduInputs.forEach(function(input) {
+			        input.readonly = false;
+			});
+		}
+	}
+	
 	
 </script>
 
@@ -352,34 +455,49 @@
 						<h5>현재 학력</h5>
 						<div>
 							<table>
-								<tr>
-									<th>학력구분</th>
-									<td>평생교육진흥원 인정학점(106학점 이상)</td>
-								</tr>
-								<tr>
-									<th>학력(기관)명</th>
-									<td>서울대학교</td>					
-								</tr>
-								<tr>
-									<th>학과/전공</th>
-									<td>컴퓨터공학</td>
-								</tr>
+								<c:choose>
+									<c:when test="${empty userEduBeans}">
+										<tr>
+											<td style="border:none;"></td>								
+										</tr>
+										<tr>
+											<td style="width:100%; border:none;">현재 학력이 없습니다.</td>
+										</tr>
+										<tr>
+											<td style="border:none;"></td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<th>학력구분</th>
+											<td id="eduType">${userEduBeans[eduNum].edu_type}</td>
+										</tr>
+										<tr>
+											<th>학력(기관)명</th>
+											<td id="edu_academy">${userEduBeans[eduNum].edu_academy}</td>
+										</tr>
+										<tr>
+											<th>학과/전공</th>
+											<td id="edu_major">${userEduBeans[eduNum].edu_major}</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
 							</table>					
 						</div>
 						<div class="button_div">
-							<button class = "preButton" id="edu_preButton"> &lt;</button>
-							<button class = "nextButton" id="edu_nextButton"> &gt;</button>
+							<button class = "preButton" id="edu_preButton" onclick="clickPre('학력')"> &lt;</button>
+							<button class = "nextButton" id="edu_nextButton" onclick="CareerClickNext('학력')"> &gt;</button>
 						</div>				
 					</div>
 					<div class="modify_div">
 						<h5>학력 추가</h5>
 						<div>
-							<form method="post" onsubmit="educationAdd()">
+							<form method="post" action="${root}mypage/myInfoManage/eduInquiry_pro">
 								<table>
 									<tr>
 										<th>학력구분</th>
-										<td><select name="eduDivision" id="selectEdu">
-												<option>선택해주세요</option>
+										<td><select name="edu_type" id="selectEdu" onchange="typeChange()">
+												<option value="">선택해주세요</option>
 												<option>고등학교 졸업 이하</option>
 												<option>고졸 검정고시</option>
 												<option>평생교육진흥원 인정학점(81학점 이상)</option>
@@ -394,8 +512,7 @@
 										<th>학교(기관)명</th>
 										<td>
 											<div class="inputDetail">
-												<input type="text" name="schoolName" id="inputSchool" disabled/>
-												<button type="button" onclick="openModal('schoolModalBackground')">학교선택</button>
+												<input name="edu_academy" class="eduInput"/>
 											</div>
 										</td>
 									</tr>
@@ -403,16 +520,15 @@
 										<th>학과/전공</th>
 										<td>
 											<div class="inputDetail">
-												<input type="text" name="majorName" id="inputMajor" disabled />
-												<button type="button" onclick="openModal('majorModalBackground')">전공선택</button>
+												<input  name="edu_major" class="eduInput"  />										
 											</div>
 										</td>
 									</tr>
 								</table>
 								<div class="button_div">
-									<button type="submit" id="applyButton">신청</button>
+									<button type="submit">신청</button>
 								</div>
-							</form>					
+							</form>				
 						</div>
 						
 					</div>
@@ -425,59 +541,73 @@
 						<h5>현재 경력</h5>
 						<div>
 							<table>
-								<tr>
-									<th>경력구분</th>
-									<td>평생교육진흥원 인정학점(106학점 이상)</td>
-								</tr>
-								<tr>
-									<th>직무분야</th>
-									<td>사무관리</td>
-								</tr>
-								<tr>
-									<th>업체명</th>
-									<td>솔데스크</td>
-								</tr>
+								<c:choose>
+									<c:when test="${empty userCareerBeans}">
+										<tr>
+											<td style="border:none;"></td>								
+										</tr>
+										<tr>
+											<td style="width:100%; border:none;">현재 경력이 없습니다.</td>
+										</tr>
+										<tr>
+											<td style="border:none;"></td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<th>경력구분</th>
+											<td id="careerType">${userCareerBeans[0].career_type}</td>
+										</tr>
+										<tr>
+											<th>직무분야</th>
+											<td id="careerField">${userCareerBeans[0].career_field}</td>
+										</tr>
+										<tr>
+											<th>업체명</th>
+											<td id="careerCompany">${userCareerBeans[0].career_company}</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
+								
 							</table>
 						</div>
 						<div class="button_div">
-							<button class = "preButton" id="career_preButton">&lt;</button>
-							<button class = "nextButton" id="career_nextButton">&gt;</button>
+							<button class = "preButton" id="career_preButton" onclick="clickPre('경력')">&lt;</button>
+							<button class = "nextButton" id="career_nextButton" onclick="clickNext('경력')">&gt;</button>
 						</div>
 					</div>
 					<div class="modify_div">
 						<h5>경력 추가</h5>
 						<div>
-							<form method="post" onsubmit="careerAdd()">
+							<form method="post" action="${root}mypage/myInfoManage/careerInquiry_pro" >
 								<table>
 									<tr>
 										<th>경력구분</th>
-										<td><select name="careerDivision" id="selectCareer">
-												<option>선택해주세요</option>
-												<option>2년 이상</option>
-												<option>2년 이상</option>
-												<option>2년 이상</option>
-												<option>2년 이상</option>
+										<td><select name="career_type" id="selectCareer">
+												<option value="">선택해주세요</option>
+												<option value="2년이상">2년 이상</option>
+												<option value="4년이상">4년 이상</option>
 										</select></td>
 									</tr>
 									<tr>
 										<th>직무분야</th>
-										<td><select name="jobField" id="selectJob">
-												<option>선택해주세요</option>
+										<td><select name="career_field" id="selectJob">
+												<option value="">선택해주세요</option>
 												<option>사무관리</option>
-												<option>사무관리</option>
-												<option>사무관리</option>
-												<option>사무관리</option>
+												<option></option>
+												<option></option>
+												<option></option>
 										</select></td>
 									</tr>
 									<tr>
 										<th>업체명</th>
 										<td>
-											<input type="text" name="companyName" id="inputCompany" />
+											<input name="career_company" id="inputCompany" />
 										</td>
 									</tr>
 								</table>
 								<div class="button_div">
-									<button type="submit" id="applyButton">신청</button>
+									<button type="submit" >신청</button>
 								</div>
 							</form>
 						</div>		
@@ -487,72 +617,7 @@
 		</div>
 	</div>
 
-	<!-- 모달창 -->
 	
-	<!-- 학교선택 모달창 -->
-	<div class="modalBackground" id="schoolModalBackground">
-		<div class="modalContainer" id="">
-			<div class="modalContainerHd">
-				<h3>학교(기관)검색</h3>
-				<button type="button" onclick="closeModal()">닫기</button>
-			</div>
-			<div class="modalContent">
-				<div class="searchHd">
-					<form action="" onsubmit="">
-						<span>학교(기관)명</span>
-						<input type="text"/>
-						<button type="submit">검색</button>
-					</form>
-				</div>
-				<div class="searchResult">
-					<ul class="resultResult">
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectSchool">서울대학교</span></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- 학교선택 모달창 -->
-	<div class="modalBackground" id="majorModalBackground">
-		<div class="modalContainer" id="">	
-			<div class="modalContainerHd">
-				<h3>학과/전공 검색</h3>
-				<button type="button" onclick="closeModal()">닫기</button>
-			</div>
-			<div class="modalContent">
-				<div class="searchHd">
-					<form action="" onsubmit="">
-						<span>학과/전공명</span>
-						<input type="text"/>
-						<button type="submit">검색</button>
-					</form>
-				</div>
-				<div class="searchResult">
-					<ul class="resultResult">
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
 	<c:import url="/WEB-INF/views/include/buttom_info.jsp" />
 </body>
 </html>

@@ -441,10 +441,8 @@ public class AdminRestController {
 				ExamReceiptBean examReceiptBean = examReceiptMapper.getExamReceipt(checkedList.get(i));			
 				System.out.println(examReceiptBean.getExamReceipt_status());
 				
-				if(examReceiptBean.getExamReceipt_status().equals("삭제예정")) {	
-					examReceiptMapper.examReceiptTableDelete(checkedList.get(i));					
-				}
-				
+				examReceiptMapper.examReceiptTableDelete(checkedList.get(i));					
+							
 			}
 					
 			return ResponseEntity.noContent().build();
@@ -559,9 +557,11 @@ public class AdminRestController {
 			System.out.println(examResultBean.getExamResult_status());
 			System.out.println(examResultBean.getExamResult_processStatus());
 			
-			if(!examResultBean.getExamResult_processStatus().equals("처리완료") && !(status.equals("처리완료"))) {			
-				examResultMapper.examResultTableUpdate(examResultBean.getExamResult_idx(), status);
-			}
+			if(!examResultBean.getExamResult_status().equals("입력불가")) {
+				if(!examResultBean.getExamResult_processStatus().equals("처리완료") && !(status.equals("처리완료"))) {			
+					examResultMapper.examResultTableUpdate(examResultBean.getExamResult_idx(), status);
+				}
+			}		
 		}	
 		return ResponseEntity.noContent().build();
 	}

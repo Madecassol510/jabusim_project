@@ -29,7 +29,6 @@
                 (resultStart != null and resultStart != '') or
                 (resultEnd != null and resultEnd != '') or
                 (examType.size() > 0)
-                (resultStatus.size() > 0)
                 ">
                 
                 <!-- 각 파라미터에 대한 조건을 추가 -->
@@ -65,14 +64,6 @@
 				    AND (
 				        <foreach item="item" collection="examType" separator=" OR ">
 				            exam_type = #{item}
-				        </foreach>
-				    )
-				</if>
-				
-                <if test="resultStatus.size() > 0">
-				    AND (
-				        <foreach item="item" collection="resultStatus" separator=" OR ">
-				            examResult_status = #{item}
 				        </foreach>
 				    )
 				</if>

@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.jabusim.beans.CareerBean;
+import kr.co.jabusim.beans.EduBean;
 import kr.co.jabusim.beans.SearchLicenseBean;
 import kr.co.jabusim.beans.UserBean;
 
@@ -65,6 +67,20 @@ public interface UserMapper {
 	//ajax 유저삭제
 	@Delete("Delete from user_table where user_idx = #{user_idx}")
 	void userTableDelete (String user_idx);
+	
+	
+	
+	
+	//============================================================================
+	// 마이페이지 보유 경력, 학력 
+	
+	@Select("select * from edu_table where user_id=#{user_id}")
+	ArrayList<EduBean> getEduBeans(String user_id);
+	
+	@Select("select * from Career_table where user_id=#{user_id}")
+	ArrayList<CareerBean> getCareerBeans(String user_id);
+	
+	
 	
 	
 	

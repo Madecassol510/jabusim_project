@@ -22,8 +22,8 @@ public interface UserEduMapper {
 	ArrayList<UserEduBean> allUserEduInfo();
 	
 	//로그인한 유저의 학력 리스트
-	@Select("select * from userEdu_table where user_idx = #{user_idx}")
-	ArrayList<UserEduBean> getUserEduInfo(String user_idx);
+	@Select("select * from userEdu_table where user_id = #{user_id}")
+	ArrayList<UserEduBean> getUserEduInfo(String user_id);
 
 	//ajax 유저테이블 가져오기
 	ArrayList<UserEduBean> userEduTableSearch (
@@ -57,7 +57,20 @@ public interface UserEduMapper {
 	void insertUserEdu( EduBean eduBean);
 
 	
+	
+	//========================================================
+	//학력 신청
+	
+	@Insert("INSERT INTO userEdu_table (userEdu_idx, user_name, user_id, userEdu_type, userEdu_academy, userEdu_major, userEdu_inquiryDate, userEdu_processStatus) " +
+	        "VALUES (userEdu_seq.nextval, #{user_name}, #{user_id}, #{userEdu_type}, #{userEdu_academy}, "
+	        + "#{userEdu_major}, TO_DATE(#{userEdu_inquiryDate}, 'YYYY-MM-DD'), #{userEdu_processStatus})")
+	void insertUserEduInquiry(UserEduBean userEduBean);
 }
+
+
+
+
+
 
 
 

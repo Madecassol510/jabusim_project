@@ -136,39 +136,35 @@
 					<table>
 						<thead>
 							<tr>
-								<th><span>문의종류</span></th>
-								<th><span>문의내용</span></th>
+								<th><span>경력분야</span></th>
+								<th><span>경력구분</span></th>
 								<th><span>문의날짜</span></th>
-								<th><span>처리날짜</span></th>
-								<th><span>상태</span></th>
-								<th><span></span></th>
+								<th><span>처리상태</span></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><span>학력/경력 수정</span></td>
-								<td><span><button>상세내용</button></span></td>
-								<td><span>2023-11-29</span></td>
-								<td><span>2023-12-10</span></td>
-								<td><span>처리완료</span></td>
-								<td><span><button>상세결과</button></span></td>
-							</tr>
-							<tr>
-								<td><span>자격증보유 신청</span></td>
-								<td><span><button>상세내용</button></span></td>
-								<td><span>2023-11-29</span></td>
-								<td><span>2023-12-10</span></td>
-								<td><span>처리불가</span></td>
-								<td><span><button>상세결과</button></span></td>
-							</tr>
-							<tr>
-								<td><span>학력/경력 수정</span></td>
-								<td><span><button>상세내용</button></span></td>
-								<td><span>2023-11-29</span></td>
-								<td><span>2023-12-10</span></td>
-								<td><span>처리중</span></td>
-								<td><span></span></td>
-							</tr>					
+							<c:choose>
+								<c:when test="${empty userCareerBeans}">
+									<tr>
+										<td colspan="6" height="200px" id="resultNothing">문의한 내역이
+											없습니다</td>
+									</tr>
+									<tr></tr>
+									<tr></tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${userCareerBeans}" var="userCareerBean"
+										varStatus="loopStatus">
+										<tr>
+											<td><span>${userCareerBean.userCareer_field}</span></td>
+											<td><span>${userCareerBean.userCareer_type}</span></td>
+											<td><span>${userCareerBean.userCareer_company}</span></td>
+											<td><span>${userCareerBean.getUserCareer_inquiryDate()}</span></td>
+											<td><span>${userCareerBean.userCareer_status}</span></td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
 				</div>

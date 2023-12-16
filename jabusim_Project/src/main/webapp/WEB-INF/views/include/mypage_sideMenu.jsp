@@ -36,9 +36,12 @@
 					<li><a href="${root}mypage/myDetailManage/receiptDetail"
 						class="link-body-emphasis d-inline-flex text-decoration-none rounded">자격증
 							접수 내역</a></li>
-					<li><a href="${root}mypage/myDetailManage/inquiryDetail"
-						class="link-body-emphasis d-inline-flex text-decoration-none rounded">문의
-							결과 내역</a></li>
+					<li><a href="${root}mypage/myDetailManage/eduInquiryDetail"
+						class="link-body-emphasis d-inline-flex text-decoration-none rounded">학력
+							문의 내역</a></li>
+					<li><a href="${root}mypage/myDetailManage/careerInquiryDetail"
+						class="link-body-emphasis d-inline-flex text-decoration-none rounded">경력
+							문의 내역</a></li>
 				</ul>
 			</div>
 		</li>

@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Update;
 import kr.co.jabusim.beans.CareerBean;
 
 import kr.co.jabusim.beans.UserCareerBean;
+import kr.co.jabusim.beans.UserEduBean;
 
 
 
@@ -24,9 +25,9 @@ public interface UserCareerMapper {
 	ArrayList<UserCareerBean> allUserCareerInfo();
 	
 	//로그인한 유저의 경력 리스트
-	@Select("select * from userCareer_table where user_idx = #{user_idx}")
-	ArrayList<UserCareerBean> getUserCareerInfo(String user_idx);
-	
+	@Select("select * from userCareer_table where user_id = #{user_id}")
+	ArrayList<UserCareerBean> getUserCareerInfo(String user_id);
+		
 	
 	//ajax 유저학력 조회
 	@Select("select * from userCareer_table where userCareer_idx = #{userCareer_idx}")
@@ -58,6 +59,12 @@ public interface UserCareerMapper {
 	@Insert("INSERT INTO career_table (career_idx, user_id, career_field, career_type, career_company) " +
 		   "VALUES (career_seq.nextval, #{user_id}, #{career_field}, #{career_type}, #{career_company})")
 	void insertUserCareer(CareerBean careerBean);
+	
+	
+	@Insert("INSERT INTO userCareer_table (userCareer_idx, user_name, user_id, userCareer_field, userCareer_type, userCareer_company, userCareer_inquiryDate, userCareer_status) " +
+	        "VALUES (userCareer_seq.nextval, #{user_name}, #{user_id}, #{userCareer_field}, #{userCareer_type}, "
+	        + "#{userCareer_company}, TO_DATE(#{userCareer_inquiryDate}, 'YYYY-MM-DD'), #{userCareer_status})")
+	void insertUserCareerInquiry(UserCareerBean userCareerBean);
 }
 
 
