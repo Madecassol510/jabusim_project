@@ -17,15 +17,17 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style>
 .navbar.navbar-expand-sm.navbar-dark.bg-dark {
-    position: fixed;
-    width: 100%;
-   
+	position: fixed;
+	width: 100%;
 }
 /* ==========================페이지 공용================================== */
 body {
@@ -70,8 +72,6 @@ li {
 }
 
 /* =========================================================================== */
-
-
 #dashBoardModule {
 	display: flex;
 	align-items: center;
@@ -92,7 +92,6 @@ li {
 } */
 
 /* =========================================================================== */
-
 #dashBoardModule .dashBoard .dashBoardHd {
 	border-bottom: 3px solid grey;
 	text-align: left;
@@ -101,91 +100,79 @@ li {
 	margin-bottom: 20px;
 }
 
-
-
-.dashBoard .dashBoardHd h2{
+.dashBoard .dashBoardHd h2 {
 	display: inline-block;
 	margin: 0;
 	margin-top: 3px;
 }
 
-
-.dashBoard .dashBoardHd button{
+.dashBoard .dashBoardHd button {
 	float: right;
 }
 
-.dashBoard .dashBoardArticle{
-	width:100%;
+.dashBoard .dashBoardArticle {
+	width: 100%;
 	min-height: 600px;
-	overflow:auto;
+	overflow: auto;
 }
-
-
 
 /* =========================================================================== */
 /* 검색조건 */
-
-
-.dashBoard .dashBoardSearch{
+.dashBoard .dashBoardSearch {
 	text-align: left;
-	margin-bottom : 60px; 
+	margin-bottom: 60px;
 	box-shadow: 5px 5px 5px;
 	border: 1px solid #dfe1e5;
-	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
 	border-radius: 10px;
 }
 
-.dashBoard .dashBoardSearch form{
+.dashBoard .dashBoardSearch form {
 	display: inline-block;
 	width: 100%;
-	position:relative;
+	position: relative;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
-.dashBoard .dashBoardSearch .searchTable{
+.dashBoard .dashBoardSearch .searchTable {
 	width: 80%;
 	float: left;
 }
 
-.dashBoard .dashBoardSearch .searchTable th{
+.dashBoard .dashBoardSearch .searchTable th {
 	padding-bottom: 10px;
 	padding-top: 10px;
 }
 
-.dashBoard .dashBoardSearch .searchTable td{
+.dashBoard .dashBoardSearch .searchTable td {
 	padding-bottom: 10px;
 	padding-top: 10px;
 }
 
-.dashBoard .dashBoardSearch .searchHd{
+.dashBoard .dashBoardSearch .searchHd {
 	width: 10%;
 	height: 100%;
 	text-align: center;
 }
 
-
-.dashBoard .dashBoardSearch  .searchTable .searchArticle{
-	width:80%;
+.dashBoard .dashBoardSearch  .searchTable .searchArticle {
+	width: 80%;
 }
 
-
-
-.dashBoard .dashBoardSearch .searchTable .searchArticle .searchReq{
+.dashBoard .dashBoardSearch .searchTable .searchArticle .searchReq {
 	display: inline-block;
 	margin-left: 15px;
 }
 
-
-.dashBoard .dashBoardSearch .searchButton{
-	position:absolute;
+.dashBoard .dashBoardSearch .searchButton {
+	position: absolute;
 	width: 10%;
-	right:0;
-	bottom:20px;
-}	
+	right: 0;
+	bottom: 20px;
+}
 
-
-.dashBoard .dashBoardSearch .searchButton button{
+.dashBoard .dashBoardSearch .searchButton button {
 	width: 100px;
 	height: 60px;
 }
@@ -193,201 +180,196 @@ li {
 /* =================================================== */
 
 /* 테이블 리스트 */
-
 .dashBoard .dashBoardArticle {
-	border: 1px solid #dfe1e5; 
-	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+	border: 1px solid #dfe1e5;
+	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
 	border-radius: 10px;
 	max-height: 560px;
-  	overflow-y: auto; 
-  	margin-bottom: 80px;
+	overflow-y: auto;
+	margin-bottom: 80px;
 }
 
 .dashBoard .dashBoardArticle table {
-	width:100%;
+	width: 100%;
 }
 
-.dashBoard .dashBoardArticle table tr{
-	width:100%;
+.dashBoard .dashBoardArticle table tr {
+	width: 100%;
 	height: 50px;
 }
 
-.dashBoard .dashBoardArticle table thead{
+.dashBoard .dashBoardArticle table thead {
 	border-bottom: 2px solid #dfe1e5;
 }
 
-.dashBoard .dashBoardArticle table tbody{
+.dashBoard .dashBoardArticle table tbody {
 	border-bottom: 1px solid #dfe1e5;
 }
 
-.dashBoard .dashBoardArticle table th{
+.dashBoard .dashBoardArticle table th {
 	padding: 0 15px;
 }
 
-.dashBoard .dashBoardArticle table td{
+.dashBoard .dashBoardArticle table td {
 	padding: 0 15px;
 }
 
-
-
+.dashBoard .dashBoardSearch .searchButton button.btn-primary {
+	background-color: #7285A5;
+	border: none; /* 테두리 제거 */
+}
 
 /* ================================================ */
-
-#inter_list{
-	width:150px;
+#inter_list {
+	width: 150px;
 }
 
-#edu_list, #career_list{
-	width:150px;
-} 
+#edu_list, #career_list {
+	width: 150px;
+}
 
 span {
 	text-align: left;
 }
 
+/* =========================================================================== */
+/* 버튼 창 */
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 120px;
+	display: none;
+	align-items: flex-end; /* 수직 방향으로 가운데 정렬 */
+	justify-content: flex-end;
+	background-color: #DCDCDC; /* 배경색 설정 */
+	padding: 10px; /* 필요에 따라 여백 설정 */
+	text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.footer .footerBox {
+	display: grid;
+	grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
+	grid-template-rows: repeat(1, 90px);
+	gap: 20px;
+	margin-right: 100px;
+}
+
+.footer .footerHd {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer span {
+	font-size: 30px;
+}
+
+.footer .footerButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer button {
+	width: 150px;
+	height: 70px;
+}
+
+.footer .footerButton button.btn-danger {
+	background-color: #7285A5; /* 파란색 배경 */
+	border: none; /* 테두리 제거 */
+	font-size: 20px;
+}
+/* =========================================================================== */
+
+/* 모달창 */
+.modalBackground {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 0, 0, 0.5);
+	display: none;
+}
+
+.modalContainer {
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	background: white;
+}
+
+.modalContainer .modalContainerHd {
+	padding: 10px;
+	width: 100%;
+	height: 12%;
+	border-bottom: 1px solid black;
+}
+
+.modalContainer .modalContainerHd h3 {
+	height: 100%;
+	margin: auto 0px;
+	display: inline-block;
+	float: left;
+	padding-top: 5px;
+}
+
+.modalContainer .modalContainerHd button {
+	float: right;
+	height: 40px;
+	width: 40px;
+	padding: 0;
+}
+
+.modalContainer .modalContent {
+	width: 100%;
+	height: 88%;
+	padding: 5%;
+}
+
+.modalContainer .searchHd {
+	width: 100%;
+	height: 17%;
+	margin-bottom: 3%;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modalContainer .searchResult {
+	width: 100%;
+	height: 80%;
+	border: 1px solid black;
+	overflow: auto;
+}
+
+.modalContainer .searchResult ul {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	padding: 0px 0px 0px 15px;
+	margin: 0;
+}
+
+.modalContainer .searchResult li {
+	height: 12.5%;
+	width: 100%;
+	padding: 10px;
+}
+
+.modalContainer .searchResult li span {
+	cursor: pointer;
+}
 
 /* =========================================================================== */
-	/* 버튼 창 */
-	.footer{
-		position: fixed;
-        bottom: 0;
-       	left: 0;
-        width: 100%;
-        height:120px;
-        display: none;
-	    align-items: flex-end; /* 수직 방향으로 가운데 정렬 */
-  		justify-content: flex-end;
-        background-color: #f1f1f1; /* 배경색 설정 */
-        padding: 10px; /* 필요에 따라 여백 설정 */
-        text-align: center; /* 텍스트 중앙 정렬 */
-	}
-	
-	
-	.footer .footerBox{
-		display: grid;
-        grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
-        grid-template-rows: repeat(1, 90px);
-        gap: 20px;
-        margin-right: 100px;
-	}
-	
-	
-	.footer .footerHd{
-		display: flex;
-		align-items: center;
-	    justify-content: center;
-	}
-	
-	.footer span{
-		font-size: 30px;
-	}
-	
-	
-	.footer .footerButton{
-		display: flex;
-		align-items: center;
-	    justify-content: center;
-	}
-	
-	
-	.footer button{
-		width : 150px;
-		height: 70px;
-	}
-	
-/* =========================================================================== */
-	
-	/* 모달창 */
-	.modalBackground {
-		width:100%;
-		height: 100%;
-		position: fixed;
-		top:0;
-		left:0;
-		justify-content: center;
-  		align-items: center;
-		background: rgba(0,0,0,0.5);
-		display: none;
-	}
-	
-	.modalContainer{
-		width:500px;
-		height:500px;
-		position: absolute;
-		background: white;
-		
-	}
-	
-	.modalContainer .modalContainerHd{
-		padding:10px;
-		width:100%;
-		height:12%;
-		border-bottom: 1px solid black;
-	}
-	
-	.modalContainer .modalContainerHd h3{
-		height:100%;
-		margin: auto 0px;
-		display:inline-block;
-		float: left;
-		padding-top: 5px;
-	}
-	
-	.modalContainer .modalContainerHd button{
-		float: right;
-		height : 40px;
-		width : 40px;
-		padding : 0;
-	}
-	
-	.modalContainer .modalContent{
-		width : 100%;
-		height: 88%;
-		padding : 5%;
-	}
-	
-	.modalContainer .searchHd{
-		width : 100%;
-		height: 17%;
-		margin-bottom: 3%;
-		border: 1px solid black;
-		display: flex;
-        justify-content: center;
-        align-items: center;
-	}
-	
-	
-	.modalContainer .searchResult{
-		width : 100%;
-		height: 80%;
-		border: 1px solid black;
-		overflow: auto;
-	}
-	
-	.modalContainer .searchResult ul{
-		width : 100%;
-		height : 100%;
-		display: inline-block;
-		padding : 0px 0px 0px 15px;
-		margin: 0;
-	}
 
-	.modalContainer .searchResult li{
-		height : 12.5%;
-		width: 100%;
-		padding: 10px;
-	}
-	
-	.modalContainer .searchResult li span{
-		cursor: pointer;
-	}
-
-/* =========================================================================== */
-	
-	/* 부트스트랩 */
-
-	
-
+/* 부트스트랩 */
 </style>
 
 <script type="text/javascript">
@@ -662,7 +644,7 @@ span {
 
 </head>
 <body>
-	<c:import url="/WEB-INF/views/include/top_menu.jsp"/>
+	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<c:import url="/WEB-INF/views/include/admin_sideMenu.jsp" />
 
 	<div class="pageContainer">
@@ -672,7 +654,7 @@ span {
 					<div class="dashBoardHd">
 						<h2>회원 관리</h2>
 					</div>
-					
+
 					<div class="dashBoardSearch">
 						<form id="myForm">
 							<table class="searchTable">
@@ -680,10 +662,10 @@ span {
 									<th class="searchHd">이름검색</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="text" id="nameInput" 
-												class="form-control" placeholder="search" 
-												aria-label="Username" aria-describedby="basic-addon1">
-										</div>						
+											<input type="text" id="nameInput" class="form-control"
+												placeholder="search" aria-label="Username"
+												aria-describedby="basic-addon1">
+										</div>
 									</td>
 								</tr>
 								<!-- <tr>
@@ -733,18 +715,20 @@ span {
 									<th class="searchHd">가입일</th>
 									<td class="searchArticle">
 										<div class="searchReq">
-											<input type="date" id="joinStartInput"   MAX= 29991231/> ~
-											<input type="date" id="joinEndInput"  MAX= 29991231  /> <!-- max="2077-06-20" -->
-										</div>					
+											<input type="date" id="joinStartInput" MAX=29991231 /> ~ <input
+												type="date" id="joinEndInput" MAX=29991231 />
+											<!-- max="2077-06-20" -->
+										</div>
 									</td>
 								</tr>
 							</table>
 							<div class="searchButton">
-								<button type="button" onclick="fieldSearch()" class="btn btn-primary">검색</button>
-							</div>			
+								<button type="button" onclick="fieldSearch()"
+									class="btn btn-primary">검색</button>
+							</div>
 						</form>
 					</div>
-					
+
 					<div class="dashBoardArticle">
 						<table>
 							<thead>
@@ -762,20 +746,22 @@ span {
 								</tr>
 							</thead>
 							<tbody id="searchResultContainer">
-								<c:forEach items="${allUserBeans}" var="userBean" varStatus="loopStatus">
+								<c:forEach items="${allUserBeans}" var="userBean"
+									varStatus="loopStatus">
 									<tr>
-										<th><input type="checkbox" class="checkList"  onclick="updateCounter()" value="${userBean.getUser_idx()}"></th>
+										<th><input type="checkbox" class="checkList"
+											onclick="updateCounter()" value="${userBean.getUser_idx()}"></th>
 										<td><span>${loopStatus.index+1}</span></td>
 										<td><span>${userBean.getUser_role()}</span></td>
 										<td><span>${userBean.getUser_name()}</span></td>
 										<td><span>${userBean.getUser_id()}</span></td>
 										<td><span>${userBean.getUser_birthdate()}</span></td>
-										<td><span>${userBean.getUser_phoneNum()}</span></td>													
-										<td><span>${userBean.getUser_joinDate()}</span></td>			
+										<td><span>${userBean.getUser_phoneNum()}</span></td>
+										<td><span>${userBean.getUser_joinDate()}</span></td>
 										<td><span>${userBean.getUser_visitCount()}회</span></td>
-<%-- 									<td><span><button type="button" onclick="getUserInfo(${userBean.getUser_idx()})">상세정보</button></span></td> --%>	
+										<%-- 									<td><span><button type="button" onclick="getUserInfo(${userBean.getUser_idx()})">상세정보</button></span></td> --%>
 									</tr>
-								</c:forEach>			
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -783,8 +769,8 @@ span {
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<div class="footer" id="footer">
 		<div class="footerBox">
 			<div class="footerHd">
@@ -799,7 +785,7 @@ span {
 
 	<!--  상세정보 모달창 -->
 	<div class="modalBackground" id="userModalBackground">
-		<div class="modalContainer" id="">	
+		<div class="modalContainer" id="">
 			<div class="modalContainerHd">
 				<h3>학과/전공 검색</h3>
 				<button type="button" onclick="closeModal()">닫기</button>
@@ -807,8 +793,7 @@ span {
 			<div class="modalContent">
 				<div class="searchHd">
 					<form action="" onsubmit="">
-						<span>학과/전공명</span>
-						<input type="text"/>
+						<span>학과/전공명</span> <input type="text" />
 						<button type="submit">검색</button>
 					</form>
 				</div>
@@ -826,9 +811,9 @@ span {
 				</div>
 			</div>
 		</div>
-	</div> 
-	
-	
+	</div>
+
+
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
 		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

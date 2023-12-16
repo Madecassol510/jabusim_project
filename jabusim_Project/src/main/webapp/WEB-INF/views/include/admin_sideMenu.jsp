@@ -54,6 +54,11 @@
 		font-size: 3.5rem;
 	}
 }
+
+ .nav-link.text-black {
+    color: white; /* 텍스트 색상을 흰색으로 지정합니다. */
+     font-size: 22px;
+  }
 </style>
 
 
@@ -143,7 +148,7 @@
 
 
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
-	style="position: fixed; top: 0; left: 0; width: 10%; height: 100%; z-index: 1000; background-color: #87CEFA !important; font-family: 'Nanum Gothic', sans-serif; font-weight: bold;">
+	style="position: fixed; top: 0; left: 0; width: 10%; height: 100%; z-index: 1000; background-color: #6D9BC3 !important; font-family: 'Nanum Gothic', sans-serif; font-weight: bold;">
 
 	<a href="${root}main"
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" style= "top-margin: 100px">

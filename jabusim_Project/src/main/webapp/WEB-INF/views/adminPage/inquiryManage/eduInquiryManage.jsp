@@ -228,6 +228,9 @@ li {
 }
 
 
+.dashBoard .dashBoardSearch .searchButton button.btn-primary {
+  background-color: #7285A5; 
+}
 
 
 /* ================================================ */
@@ -252,55 +255,69 @@ span {
 }
 /* =========================================================================== */
 	/* 버튼 창 */
-	.footer{
-		position: fixed;
-        bottom: 0;
-       	left: 0;
-        width: 100%;
-        height:120px;
-        display: none;
-	    align-items: flex-end; /* 수직 방향으로 가운데 정렬 */
-  		justify-content: flex-end;
-        background-color: #f1f1f1; /* 배경색 설정 */
-        padding: 10px; /* 필요에 따라 여백 설정 */
-        text-align: center; /* 텍스트 중앙 정렬 */
-	}
+	.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 120px;
+	display: none;
+	align-items: flex-end; /* 수직 방향으로 가운데 정렬 */
+	justify-content: flex-end;
+	background-color: #DCDCDC; /* 배경색 설정 */
+	padding: 10px; /* 필요에 따라 여백 설정 */
+	text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.footer .footerBox {
+	display: grid;
+	grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
+	grid-template-rows: repeat(1, 90px);
+	gap: 20px;
+	margin-right: 100px;
+}
+
+.footer .footerHd {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.footer span {
+	font-size: 30px;
+}
+
+.footer .footerButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	
 	
-	.footer .footerBox{
-		display: grid;
-        grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
-        grid-template-rows: repeat(1, 90px);
-        gap: 5px;
-        margin-right: 100px;
-	}
-	
-	
-	.footer .footerHd{
-		display: flex;
-		align-items: center;
-	    justify-content: center;
-	}
-	
-	.footer span{
-		font-size: 30px;
-	}
-	
-	
-	.footer .footerButton{
-		display: flex;
-		align-items: center;
-	    justify-content: center;
-	}
-	
-	
-	.footer button{
-		width : 150px;
-		height: 70px;
-	}
+}
+
+.footer button {
+	width: 150px;
+	height: 70px;
+}
+
+.footer .footerButton button.btn-danger {
+	background-color: #7285A5; /* 파란색 배경 */
+	writing-mode: horizontal-tb;
+	border: none; /* 테두리 제거 */
+	font-size: 20px;
+	width: 250px; /* 버튼의 너비를 넓혀보세요 */
+    height: 70px;
+    margin: 0 10px; /* 버튼 사이의 여백을 늘리세요 */
+}
 	
 
-
+.footer .footerButton button {
+    writing-mode: horizontal-tb; /* 텍스트를 가로 방향으로 고정합니다 */
+    width: 180px; /* 버튼의 너비를 조정하세요 */
+    height: 70px;
+    margin: 0 10px; /* 버튼 사이의 여백을 설정하세요 */
+    white-space: nowrap; /* 텍스트가 넘칠 때 줄 바꿈을 방지합니다 */
+}
 
 </style>
 
