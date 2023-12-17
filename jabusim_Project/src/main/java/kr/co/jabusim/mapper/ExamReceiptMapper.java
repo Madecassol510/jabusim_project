@@ -54,10 +54,14 @@ public interface ExamReceiptMapper {
 	void  examReceiptTableUpdate(@Param("examReceipt_idx") int examReceipt_idx, @Param("status") String status);
 	
 	
-	//유저의 시험결과 가져오기(마이페이지)
+	//유저의 시험접수 가져오기(마이페이지)
 	@Select("select * from examReceipt_table where user_id = #{user_id} ORDER BY examReceipt_idx DESC")
 	ArrayList<ExamReceiptBean> getUserExamReceiptList(String user_id);
 	
+	
+	//유저의 접수 삭제
+	@Delete("delete from examReceipt_table where user_id = #{user_id}")
+	void deleteUserReceipt(String user_id);
 }
 
 

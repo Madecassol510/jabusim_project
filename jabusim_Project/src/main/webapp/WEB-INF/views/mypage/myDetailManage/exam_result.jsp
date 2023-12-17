@@ -166,10 +166,10 @@
 
 	
 											<c:choose>
-												<c:when test="${userExamResultBean.examResult_processStatus='미처리'}">
+												<c:when test="${userExamResultBean.examResult_processStatus=='미처리'}">
 													<td><span>발표예정</span></td>
 												</c:when>
-												<c:when test="${userExamResultBean.examResult_processStatus='처리가능'}">
+												<c:when test="${userExamResultBean.examResult_processStatus=='처리가능'}">
 													<td><span>처리중</span></td>
 												</c:when>
 												<c:otherwise>

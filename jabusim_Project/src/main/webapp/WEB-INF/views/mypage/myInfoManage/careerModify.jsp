@@ -526,7 +526,7 @@
 									</tr>
 								</table>
 								<div class="button_div">
-									<button type="submit">신청</button>
+									<button type="submit" class="nextButton">신청</button>
 								</div>
 							</form>				
 						</div>
@@ -652,7 +652,7 @@
 									</tr>
 								</table>
 								<div class="button_div">
-									<button type="submit" >신청</button>
+									<button type="submit" class="nextButton">신청</button>
 								</div>
 							</form>
 						</div>		

@@ -57,7 +57,7 @@ public interface LicenseMapper {
 	
 	//소유 자격증 조회
 	@Select("select * from license_table a, userLicense_table b "
-			+ "where a.license_idx = b.license_idx")
+			+ "where a.license_idx = b.license_idx and b.user_id = #{user_id}")
 	ArrayList<LicenseBean> getUserOwnLicenseBeans(String user_id);
 	
 	//메인페이지에서 랜덤한 자격증 8개 가져오기
@@ -65,6 +65,11 @@ public interface LicenseMapper {
 			+ " WHERE ROWNUM <= 8")
 	ArrayList<LicenseBean> getRandomLicenseBeans();
 
+	
+	//유저의 소유 자격증 삭제
+	@Delete("delete from userLicense_table where user_id = #{user_id}")
+	void deleteUserLicense(String user_id);
+	
 }
 
 

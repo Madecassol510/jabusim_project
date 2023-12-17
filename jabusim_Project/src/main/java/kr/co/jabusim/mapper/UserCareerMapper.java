@@ -65,6 +65,21 @@ public interface UserCareerMapper {
 	        "VALUES (userCareer_seq.nextval, #{user_name}, #{user_id}, #{userCareer_field}, #{userCareer_type}, "
 	        + "#{userCareer_company}, TO_DATE(#{userCareer_inquiryDate}, 'YYYY-MM-DD'), #{userCareer_status})")
 	void insertUserCareerInquiry(UserCareerBean userCareerBean);
+	
+	
+	
+	//==============================================
+	
+	
+	// 유저의 경력문의 삭제
+	@Delete("delete from userCareer_table where user_id = #{user_id}")
+	void deleteUserCareerInquiry(String user_id);
+		
+	// 유저의 경력 삭제
+	@Delete("delete from career_table where user_id = #{user_id}")
+	void deleteUserCareer(String user_id);
+	
+	
 }
 
 

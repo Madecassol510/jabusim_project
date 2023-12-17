@@ -73,6 +73,10 @@ public interface ExamResultMapper {
 	ExamResultBean getUserLastExam(String user_id);
 	
 	
+	
+	//유저의 접수 삭제
+	@Delete("delete from examResult_table where user_id = #{user_id}")
+	void deleteUserResult(String user_id);	
 }
 
 

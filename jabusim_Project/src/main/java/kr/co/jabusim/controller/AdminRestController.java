@@ -105,10 +105,25 @@ public class AdminRestController {
 	public ResponseEntity<Void> userTableDelete(
 			@RequestParam("checkedList") List<String> checkedList         
 			){
-	
 		
 		for(int i=0; i<checkedList.size(); i++) {
+			int user_idx = Integer.parseInt(checkedList.get(i));
+			UserBean userBean = userMapper.getUserAllInfo(user_idx);
+			
+			System.out.println(userBean.getUser_id());
+				
+			userEduMapper.deleteUserEduInquiry(userBean.getUser_id());
+			userEduMapper.deleteUserEdu(userBean.getUser_id());
+			userCareerMapper.deleteUserCareerInquiry(userBean.getUser_id());
+			userCareerMapper.deleteUserCareer(userBean.getUser_id());
+			
+			licenseMapper.deleteUserLicense(userBean.getUser_id());
+			
+			examReceiptMapper.deleteUserReceipt(userBean.getUser_id());
+			examResultMapper.deleteUserResult(userBean.getUser_id());
+			
 			userMapper.userTableDelete(checkedList.get(i));
+			
 		}
 		
 

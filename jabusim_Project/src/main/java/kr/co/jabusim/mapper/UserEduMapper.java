@@ -67,6 +67,17 @@ public interface UserEduMapper {
 	        "VALUES (userEdu_seq.nextval, #{user_name}, #{user_id}, #{userEdu_type}, #{userEdu_academy}, "
 	        + "#{userEdu_major}, TO_DATE(#{userEdu_inquiryDate}, 'YYYY-MM-DD'), #{userEdu_processStatus})")
 	void insertUserEduInquiry(UserEduBean userEduBean);
+	
+	
+	
+	
+	// 유저의 학력문의 삭제
+	@Delete("delete from userEdu_table where user_id = #{user_id}")
+	void deleteUserEduInquiry(String user_id);
+	
+	// 유저의 학력 삭제
+	@Delete("delete from edu_table where user_id = #{user_id}")
+	void deleteUserEdu(String user_id);
 }
 
 

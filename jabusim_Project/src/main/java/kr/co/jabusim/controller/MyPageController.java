@@ -88,6 +88,7 @@ public class MyPageController {
 				
 		// 최근 시험		
 		ExamResultBean examResultBean = examResultMapper.getUserLastExam(myPageUserBean.getUser_id());
+		String lastExam = examResultBean.getExam_name();
 		
 		// 자격증 개수
 		int licenseCount = userOwnLicenseBeans.size();
@@ -95,7 +96,7 @@ public class MyPageController {
 		model.addAttribute("inquiryCount", inquiryCount);
 		model.addAttribute("licenseCount", licenseCount);
 		model.addAttribute("userOwnLicenseBeans", userOwnLicenseBeans);
-		model.addAttribute("examResultBean", examResultBean);
+		model.addAttribute("lastExam", lastExam);
 		
 		return "mypage/main";
 	}

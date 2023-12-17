@@ -413,7 +413,7 @@
 							<div class="act_info">
 								<div class="act_infotitle">최근시험</div>
 								<div>
-									${examResultBean.getExam_name()}
+									${lastExam}
 								</div>
 							</div>
 							<div class="act_info">
