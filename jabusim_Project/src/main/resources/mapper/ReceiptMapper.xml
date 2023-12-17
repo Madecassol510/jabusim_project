@@ -11,7 +11,7 @@
 	    <result property="license_info" column="license_info"/>
 	</resultMap>
 
-	<select id="optionLicenseName" parameterType="list" resultMap="licenseBean">
+	<select id="getOptionsResults" parameterType="list" resultMap="licenseBean">
 	    SELECT * FROM license_table
 	    WHERE license_type = #{licenseType}
 	    <choose>
@@ -30,5 +30,18 @@
 	        </otherwise>
 	    </choose>
 	</select>
+	
+	<select id="getContentCnt_option" resultType="int">
+	    SELECT COUNT(*) FROM license_table
+	    WHERE license_type = #{licenseType}
+	    <if test="major != null and major != '전체'">
+	        AND license_mainCategory = #{major}
+	    </if>
+	    <if test="minor != null and minor != ''">
+	        AND license_subCategory = #{minor}
+	    </if>
+	</select>
+
+	
 	
 </mapper>

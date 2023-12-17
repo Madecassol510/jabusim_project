@@ -86,41 +86,187 @@ public class ReceiptController {
 		return "receipt/receipt_select_subject";
 		
 	}
-	/*
-	@GetMapping("/receipt_select_subject")
-	public String receiptSelectSubjectForPaging(@RequestParam String licenseType,
-	                                            @RequestParam(value = "page", defaultValue = "1") int page,
-	                                            Model model) {
+	
+	@GetMapping("/receipt_searchInput")
+	@ResponseBody
+	public ResponseEntity<?> searchLicenseName(@RequestParam(value = "searchInput") String searchInput,
+	                                           @RequestParam(value = "licenseType", required = false) String licenseType,
+	                                           @RequestParam(value = "page", defaultValue = "1") int page) {
+	    // 페이지에 맞는 검색 결과 조회
+	    List<LicenseBean> searchResults = receiptService.searchLicenseName(searchInput, licenseType, page);
+
+	    // 해당 검색 결과에 대한 페이지 정보 조회
+	    PageBean pageBean = receiptService.getContentCnt_search(searchInput, licenseType, page);
+
+	    // JSON 형식의 응답 생성
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("pageBean", pageBean);
+	    response.put("data", searchResults);
+
+	    return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/receipt_searchOption")
+    @ResponseBody
+    public ResponseEntity<?> optionLicenseName(@RequestParam(value = "major") String major, 
+    											@RequestParam(value = "licenseType", required = false) String licenseType, 
+									            @RequestParam(value = "minor", required = false) String minor, 
+									            @RequestParam(value = "page", defaultValue = "1") int page) { 
+	    // 해당 옵션 조회
+	    List<LicenseBean> optionsResults = receiptService.getOptionsResults(major, minor, licenseType, page);
+
+	    // 해당 검색 결과에 대한 페이지 정보 조회
+	    PageBean pageBean = receiptService.getContentCnt_option(major, minor, licenseType, page);
+
+	    // JSON 형식의 응답 생성
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("pageBean", pageBean);
+	    response.put("data", optionsResults);
+
+	    return ResponseEntity.ok(response);
 		
-		List<String> getMajorCodes = receiptService.getMajorCodes(licenseType);
-		model.addAttribute("getMajorCodes", getMajorCodes);
 		
+		//return receiptService.optionLicenseName(major, minor, licenseType);
+		
+	}
+	
+	@GetMapping("/ajax_paging")
+	public ResponseEntity<?> getPageContent(@RequestParam(value="page", defaultValue = "1")int page,
+											@RequestParam(value = "licenseType",required = false) String licenseType) {
+	    // 페이지 정보를 조회하기 위해 서비스 레이어 호출
+	    PageBean pageBean = receiptService.getContentCnt(licenseType, page);
+
 	    // 해당 licenseType과 page에 맞는 데이터 검색
 	    List<LicenseBean> getSelectedLicenseType = receiptService.selectedLicenseType(licenseType, page);
-	    model.addAttribute("getSelectedLicenseType", getSelectedLicenseType);
 
-	    // 페이징 정보를 위한 PageBean 객체 조회
-	    PageBean pageBean = receiptService.getContentCnt(licenseType, page);
-	    model.addAttribute("pageBean", pageBean);
+	    // JSON 형식의 응답 생성
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("pageBean", pageBean);
+	    response.put("data", getSelectedLicenseType);
+	    System.out.println("ajax_paging");
 
-	    return "receipt/receipt_select_subject";
+	    return ResponseEntity.ok(response);
 	}
-	*/
+
+	@GetMapping("/ajax_paging_name")
+	public ResponseEntity<?> getPageContent(@RequestParam(value="page", defaultValue = "1")int page,
+											@RequestParam(value = "licenseType",required = false) String licenseType,
+											@RequestParam(value = "searchInput",required = false) String searchInput) {
+		// 페이지 정보를 조회하기 위해 서비스 레이어 호출
+		PageBean pageBean = receiptService.getContentCnt_search(licenseType, searchInput, page);
+		
+		// 해당 licenseType과 page에 맞는 데이터 검색
+		List<LicenseBean> getSelectedLicenseName = receiptService.searchLicenseName(searchInput, licenseType, page);
+		
+		// JSON 형식의 응답 생성
+		Map<String, Object> response = new HashMap<>();
+		response.put("pageBean", pageBean);
+		response.put("data", getSelectedLicenseName);
+		System.out.println("ajax_paging_name");
+		
+		return ResponseEntity.ok(response);
+	}
+
+	@GetMapping("/ajax_paging_option")
+	public ResponseEntity<?> getPageContent(@RequestParam(value="page", defaultValue = "1")int page,
+											@RequestParam(value = "licenseType",required = false) String licenseType,
+											@RequestParam(value = "searchInput",required = false) String searchInput,
+											@RequestParam(value = "major",required = false) String major,
+											@RequestParam(value = "minor",required = false) String minor) {
+		// 페이지 정보를 조회하기 위해 서비스 레이어 호출
+		PageBean pageBean = receiptService.getContentCnt_option(major, minor, licenseType, page);
+		
+		// 해당 licenseType과 page에 맞는 데이터 검색
+		List<LicenseBean> getSelectedLicenseName = receiptService.getOptionsResults(major, minor, licenseType, page);
+		
+		// JSON 형식의 응답 생성
+		Map<String, Object> response = new HashMap<>();
+		response.put("pageBean", pageBean);
+		response.put("data", getSelectedLicenseName);
+		System.out.println("ajax_paging_option");
+		
+		return ResponseEntity.ok(response);
+	}
+
+	
+	/************3번째 페이지*************/
 	@PostMapping("/selectPlace")
-	public String selectPlace(@RequestParam String licenseName, HttpServletRequest request , Model model) {
+	public String selectPlace(@RequestParam String licenseName, 
+							@RequestParam(value="page", defaultValue = "1")int page,
+							HttpServletRequest request , Model model) {
 		//자격증이름 세션저장
 		HttpSession session = request.getSession();
 		session.setAttribute("licenseName", licenseName);
 		
+		//시험장소 db에서 가져오기
 		List<String> getReceiptRegions = receiptMapper.getReceiptRegions();
 		model.addAttribute("getReceiptRegions", getReceiptRegions);
 		
-		List<ExamPlaceBean> result = examPlaceMapper.allExamPlaceInfo();
-		model.addAttribute("getExamPlace", result);
+		//페이징
+		List<ExamPlaceBean> getExamPlace = receiptService.getExamPlace(page);
+		model.addAttribute("getExamPlace", getExamPlace);
+		
+		PageBean pageBean = receiptService.getContentCnt_examPlace(page);
+		model.addAttribute("pageBean", pageBean);
 		
 		return "receipt/selectPlace";
 	}
 	
+	
+	@GetMapping("/ajax_paging_place")
+	public ResponseEntity<?> getPageContent(@RequestParam(value="page", defaultValue = "1")int page) {
+	    // 페이지 정보를 조회하기 위해 서비스 레이어 호출
+	    PageBean pageBean = receiptService.getContentCnt_examPlace(page);
+
+	    // 해당 licenseType과 page에 맞는 데이터 검색
+	    List<ExamPlaceBean> getExamPlace = receiptService.getExamPlace(page);
+
+	    // JSON 형식의 응답 생성
+	    Map<String, Object> response = new HashMap<>();
+	    response.put("pageBean", pageBean);
+	    response.put("data", getExamPlace);
+
+	    return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/ajax_paging_region")
+	public ResponseEntity<?> getPageContent_region(@RequestParam(value = "page", defaultValue = "1") int page,
+											@RequestParam(value = "region",required = false) String region) {
+		// 페이지 정보를 조회하기 위해 서비스 레이어 호출
+		PageBean pageBean = receiptService.getContentCnt_region(region, page);
+		
+		// 해당 licenseType과 page에 맞는 데이터 검색
+		List<ExamPlaceBean> getExamPlace = receiptService.getExamPlace_region(region, page);
+		
+		// JSON 형식의 응답 생성
+		Map<String, Object> response = new HashMap<>();
+		response.put("pageBean", pageBean);
+		response.put("data", getExamPlace);
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/receipt_selectRegion")
+	@ResponseBody
+	public ResponseEntity<?> getSelectedRegion(@RequestParam("region") String region,
+												@RequestParam(value = "page", defaultValue = "1") int page) {
+		
+		// 페이지 정보를 조회하기 위해 서비스 레이어 호출
+		PageBean pageBean = receiptService.getContentCnt_region(region, page);
+		
+		// 해당 licenseType과 page에 맞는 데이터 검색
+		List<ExamPlaceBean> getSelectedRegion = receiptService.getExamPlace_region(region, page);
+		
+		// JSON 형식의 응답 생성
+		Map<String, Object> response = new HashMap<>();
+		response.put("pageBean", pageBean);
+		response.put("data", getSelectedRegion);
+		
+		return ResponseEntity.ok(response);
+	}
+
+	
+	/*insert*/
 	@PostMapping("/receipt_pro")
 	public String receipt_pro(@RequestParam String examPlaceName, HttpServletRequest request, Model model) {
 	    HttpSession session = request.getSession();
@@ -138,63 +284,9 @@ public class ReceiptController {
 	    
 	    return "receipt/receipt_success";
 	}
-
-	@GetMapping("/receipt_searchInput")
-	@ResponseBody
-	public ResponseEntity<?> searchLicenseName(@RequestParam(value = "searchInput") String searchInput,
-	                                           @RequestParam(value = "licenseType", required = false) String licenseType,
-	                                           @RequestParam(value = "page", defaultValue = "1") int page) {
-	    // 페이지에 맞는 검색 결과 조회
-	    List<LicenseBean> searchResults = receiptService.searchLicenseName(searchInput, licenseType);
-
-	    // 해당 검색 결과에 대한 페이지 정보 조회
-	    PageBean pageBean = receiptService.getContentCnt_search(searchInput, licenseType, page);
-
-	    // JSON 형식의 응답 생성
-	    Map<String, Object> response = new HashMap<>();
-	    response.put("pageBean", pageBean);
-	    response.put("data", searchResults);
-
-	    return ResponseEntity.ok(response);
-	}
 	
-	@GetMapping("/receipt_searchOption")
-    @ResponseBody
-    public List<LicenseBean> optionLicenseName(@RequestParam(value = "major") String major, 
-    											@RequestParam(value = "licenseType", required = false) String licenseType, 
-									            @RequestParam(value = "minor", required = false) String minor, 
-									            HttpServletRequest request) { 
-		return receiptService.optionLicenseName(major, minor, licenseType);
-	}
 	
-	@GetMapping("/receipt_selectRegion")
-    @ResponseBody // JSON 또는 다른 객체를 HTTP 응답의 본문으로 반환
-    public List<ExamPlaceBean> selectRegion(@RequestParam("region") String region) {
-        // 여기에서 region 파라미터를 사용하여 필요한 로직을 구현합니다.
-        // 예를 들어, region에 따라 데이터베이스에서 데이터를 조회하거나, 비즈니스 로직을 실행할 수 있습니다.
-
-        List<ExamPlaceBean> data = receiptMapper.selectRegion(region);
-
-        return data; // 조회된 데이터를 JSON 형식으로 반환
-    }
-	
-	@GetMapping("/ajax_paging")
-	public ResponseEntity<?> getPageContent(@RequestParam(value = "page") int page,
-											@RequestParam(value = "licenseType",required = false) String licenseType) {
-	    // 페이지 정보를 조회하기 위해 서비스 레이어 호출
-	    PageBean pageBean = receiptService.getContentCnt(licenseType, page);
-
-	    // 해당 licenseType과 page에 맞는 데이터 검색
-	    List<LicenseBean> getSelectedLicenseType = receiptService.selectedLicenseType(licenseType, page);
-
-	    // JSON 형식의 응답 생성
-	    Map<String, Object> response = new HashMap<>();
-	    response.put("pageBean", pageBean);
-	    response.put("data", getSelectedLicenseType);
-
-	    return ResponseEntity.ok(response);
-	}
-
+	/*컨트롤러 메서드*/
 	private Date parseDate(String dateString) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    try {
@@ -205,4 +297,5 @@ public class ReceiptController {
 	        return null;
 	    }
 	}
+	
 }

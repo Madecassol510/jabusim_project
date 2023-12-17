@@ -18,8 +18,8 @@
 	crossorigin="anonymous">
 
 <!-- 외부 css파일 -->
-<link rel="stylesheet" href="${root}css/testTpdyd.css?ver=4" />
-<link rel="stylesheet" href="${root}css/receiptCSS/main.css?ver=4" />
+<link rel="stylesheet" href="${root}css/testTpdyd.css?ver=5" />
+<link rel="stylesheet" href="${root}css/receiptCSS/receipt_select_subject.css" />
 <!-- 외부 js파일 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="${root}js/codeMapping.js"></script>
@@ -39,20 +39,46 @@
                 alert("jqXHR status code:"+jqXHR.status+" message:"+jqXHR.responseText);
             }
 		});//ajax setup
-		/*
-		$('.page-link').on('click', function(e) {
-	        e.preventDefault(); // 기본 이벤트 방지
-	        var pageNumber = $(this).data('page');
-	        loadPage(pageNumber);
-	    });
-		*/
 		
-		$('#pagingSection .page-link').on('click', function(e) {
-	        e.preventDefault(); // 기본 링크 동작 중단
+		
+		var lastSearchType = 'default'; // 기본값 설정
 
-	        var pageNumber = $(this).data('page'); // 페이지 번호를 가져옴
-	        loadPage(pageNumber); // AJAX 함수 호출
-	    });
+		function getCurrentSearchType() {
+		    return lastSearchType; // 마지막으로 수행된 검색 유형 반환
+		}
+		
+		var currentSearchInput = ''; // 현재 검색어 저장 변수
+		var currentMajorOption = ''; // 현재 선택된 대분류 옵션 저장 변수
+		var currentMinorOption = ''; // 현재 선택된 소분류 옵션 저장 변수
+
+		// 이름 검색 버튼 클릭 이벤트
+		$('#searchButton').on('click', function() {
+		    lastSearchType = 'nameSearch';
+		    currentSearchInput = $('#searchButton').val(); // 검색어 업데이트
+		    // 이름 검색 관련 로직...
+		});
+
+		// 옵션 검색 버튼 클릭 이벤트
+		$('#optionSearchButton').on('click', function() {
+		    lastSearchType = 'optionSearch';
+		    currentMajorOption = $('#majorOption').val(); // 대분류 옵션 업데이트
+		    currentMinorOption = $('#minorOption').val(); // 소분류 옵션 업데이트
+		    // 옵션 검색 관련 로직...
+		});
+		$('#pagingSection .page-link').on('click', function(e) {
+		    e.preventDefault();
+		    var pageNumber = $(this).data('page');
+
+		    var searchType = getCurrentSearchType();
+
+		    if (searchType === 'nameSearch') {
+		    	loadPage_name(pageNumber, currentSearchInput);
+		    } else if (searchType === 'optionSearch') {
+		    	loadPage_option(pageNumber, currentMajorOption, currentMinorOption);
+		    } else {
+		        loadPage(pageNumber);
+		    }
+		});
 	});
 	
 </script>
@@ -72,8 +98,8 @@
 				    <li class="list-group-item text-center step">
 				        <span class="badge bg-primary">1. 시험 선택</span>
 				    </li>
-				    <li class="list-group-item text-center step">
-				        <span class="badge bg-secondary">2. 종목 선택</span>
+				    <li class="list-group-item text-center step active">
+				        <span class="badge bg-primary">2. 종목 선택</span>
 				    </li>
 				    <li class="list-group-item text-center step">
 				        <span class="badge bg-secondary">3. 시험장소 선택</span>
@@ -84,10 +110,10 @@
 
 		<section id="bottom_module" class="bottom_module">
 			<article id="bottom_module_inner" class="bottom_module_inner">
+				<!-- 검색모듈 -->
 				<article id="search_module" class="search_module row">
 					
 					<h3>자격증 검색</h3>
-					
 					<div class="text_search d-flex">
 						<div class="search_box col-4">
 							<input type="text" id="searchInput" class="form-control"
@@ -97,151 +123,102 @@
 					</div>
 					
 					<h3>분야 선택</h3>
+					<div class="categories_search">
 					
-					<div class="col-md-3">
-						<label for="majorSelect" class="form-label">대분야 선택</label> 
-						<select class="form-select" id="majorSelect">
-							<option selected disabled value="">대분야를 선택하세요</option>
-								<option value="전체">-전체보기-</option>
-								<c:forEach items="${getMajorCodes}" var="majorCode">
-						            <option value="${majorCode}">${majorCode}</option>
-						        </c:forEach>
-						</select>
+						<div class="col-md-3 categories_search1">
+							<select class="form-select" id="majorSelect">
+								<option selected disabled value="">대분야를 선택하세요</option>
+									<option value="전체">-전체보기-</option>
+									<c:forEach items="${getMajorCodes}" var="majorCode">
+							            <option value="${majorCode}">${majorCode}</option>
+							        </c:forEach>
+							</select>
+						</div>
+						
+						<div class="categories_search2">
+							<select class="form-select" id="minorSelect" disabled>
+								<option selected disabled value="">소분야를 선택하세요</option>
+							</select>
+						</div>
+		
+						<button id="optionButton" class="btn btn-primary col-1 ms-2">조회</button>
 					</div>
 	
-					<div class="col-md-3">
-						<label for="minorSelect" class="form-label">소분야 선택</label> 
-						<select class="form-select" id="minorSelect" disabled>
-							<option selected disabled value="">소분야를 선택하세요</option>
-						</select>
-					</div>
-	
-					<div class="col-md-3">
-						<button id="optionButton" class="col-md-3" style='height: 38px'>조회</button>
-					</div>
 				</article>
-	
-	
-				<article id="top_module_inner"
-					class="top_module_inner d-flex flex-column">
-	
-	
-					<h3>${sessionScope.examName } ${sessionScope.examType } 응시종목 선택</h3>
-	
-					<table class="table">
-						<thead>
-							<tr>
-								<th>NO</th>
-								<th>응시종목</th>
-								<th>대분야</th>
-								<th>세부분야</th>
-								<th>접수</th>
-							</tr>
-						</thead>
-	
-						<tbody>
-							<c:forEach items="${getSelectedLicenseType}" var="licenseBean" varStatus="data">
+				
+				<!-- 리스트시작 -->
+				<article id="list_module" class="list_module">
+					<div style="min-height: 660px">
+						<h3>${sessionScope.examName } ${sessionScope.examType } 응시종목 선택</h3>
+		
+						<table class="table">
+							<thead>
 								<tr>
-									<td>${data.count +(pageBean.currentPage-1)*10}</td>
-			                       <td>${licenseBean.license_name}</td>
-			                       <td>${licenseBean.license_mainCategory}</td>
-			                       <td>${licenseBean.license_subCategory}</td>
-									<td>
-										<form action="${root}receipt/selectPlace" method="post">
-											<!-- 숨겨진 입력 필드 추가 -->
-							               	<input type="hidden" name="licenseName" value="${licenseBean.license_name}" />
-											<!-- 폼 입력 필드들 -->
-											<button type="submit">선택</button>
-										</form>
-									</td>
+									<th style="width: 10%">NO</th>
+									<th style="width: 40%">응시종목</th>
+									<th style="width: 20%">대분야</th>
+									<th style="width: 20%">세부분야</th>
+									<th style="width: 10%">접수</th>
 								</tr>
-							</c:forEach>
-	
-						</tbody>
-					</table>
+							</thead>
+		
+							<tbody>
+								<c:forEach items="${getSelectedLicenseType}" var="licenseBean" varStatus="data">
+									<tr>
+										<td>${data.count +(pageBean.currentPage-1)*10}</td>
+				                       <td>${licenseBean.license_name}</td>
+				                       <td>${licenseBean.license_mainCategory}</td>
+				                       <td>${licenseBean.license_subCategory}</td>
+										<td>
+											<form action="${root}receipt/selectPlace" method="post">
+												<!-- 숨겨진 입력 필드 추가 -->
+								               	<input type="hidden" name="licenseName" value="${licenseBean.license_name}" />
+												<!-- 폼 입력 필드들 -->
+												<button type="submit">선택</button>
+											</form>
+										</td>
+									</tr>
+								</c:forEach>
+		
+							</tbody>
+						</table>
+					</div>
 					
-				<div id="pagingSection" class="d-none d-md-block">
-					<ul class="pagination justify-content-center">
-						<%-- <c:choose>
-							<c:when test="${pageBean.prevPage <= 0 }">
-								<li class="page-item disabled">
-									<a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
-									<a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<li class="page-item">
-									<a href="${root}receipt/receipt_select_subject?licenseType=${sessionScope.licenseType}&page=${pageBean.prevPage}" class="page-link" data-page="${pageBean.prevPage}">이전</a>
-									<a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
-								</li>
-							</c:otherwise>
-						</c:choose> --%>
-						
-						<c:choose>
-						    <c:when test="${pageBean.prevPage <= 0 }">
-						        <li class="page-item disabled">
-						            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
-						        </li>
-						    </c:when>
-						    <c:otherwise>
-						        <li class="page-item">
-						            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
-						        </li>
-						    </c:otherwise>
-						</c:choose>
-						<%-- 
-						<c:forEach var='idx' begin="${pageBean.min }" end="${pageBean.max }">
-							<!-- 현재페이지에 대한 부트스트랩 클래스 적용 -->
+					<div id="pagingSection" class="d-none d-md-block">
+						<ul class="pagination justify-content-center">
 							<c:choose>
-							<c:when test="${idx==pageBean.currentPage }">
-								<li class="page-item active">
-									<a href="#" class="page-link">${idx }</a>
-									<a href="#" class="page-link" data-page="${idx}">${idx}</a>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<li class="page-item">
-									<a href="${root }receipt/receipt_select_subject?licenseType=${sessionScope.licenseType}&page=${idx}" class="page-link" data-page="${idx}">${idx }</a>
-									<a href="#" class="page-link" data-page="${idx}">${idx}</a>
-								</li>
-							</c:otherwise>
+							    <c:when test="${pageBean.prevPage <= 0 }">
+							        <li class="page-item disabled">
+							            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
+							        </li>
+							    </c:when>
+							    <c:otherwise>
+							        <li class="page-item">
+							            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
+							        </li>
+							    </c:otherwise>
 							</c:choose>
-						</c:forEach> --%>
-						<c:forEach var='idx' begin="${pageBean.min }" end="${pageBean.max }">
-						    <li class="page-item">
-						        <a href="#" class="page-link" data-page="${idx}">${idx}</a>
-						    </li>
-						</c:forEach>
-						
-						<!-- MAX값이 전체페이지보다 크거나 같으면 비활성화 disabled(부트스트랩)-->
-		               <%-- <c:choose>
-			               <c:when test="${pageBean.max >= pageBean.pageCnt }">
-				               <li class="page-item disabled">
-				                  <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
-				                  <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
-				               </li>
-			               </c:when>
-			               <c:otherwise>
-				               <li class="page-item">
-				               		<a href="${root}receipt/receipt_select_subject?licenseType=${sessionScope.licenseType}&page=${pageBean.nextPage}" class="page-link" data-page="${pageBean.nextPage}">다음</a>
-				               		<a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
-				               </li>
-			               </c:otherwise>
-		               </c:choose> --%>
-						<c:choose>
-						    <c:when test="${pageBean.max >= pageBean.pageCnt }">
-						        <li class="page-item disabled">
-						            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
-						        </li>
-						    </c:when>
-						    <c:otherwise>
-						        <li class="page-item">
-						            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
-						        </li>
-						    </c:otherwise>
-						</c:choose>
-					</ul>
-				</div>
+							
+							<c:forEach var='idx' begin="${pageBean.min }" end="${pageBean.max }">
+							    <li class="page-item">
+							        <a href="#" class="page-link" data-page="${idx}">${idx}</a>
+							    </li>
+							</c:forEach>
+							
+							<c:choose>
+							    <c:when test="${pageBean.max >= pageBean.pageCnt }">
+							        <li class="page-item disabled">
+							            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
+							        </li>
+							    </c:when>
+							    <c:otherwise>
+							        <li class="page-item">
+							            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
+							        </li>
+							    </c:otherwise>
+							</c:choose>
+						</ul>
+					</div>
 				
 				</article>
 				

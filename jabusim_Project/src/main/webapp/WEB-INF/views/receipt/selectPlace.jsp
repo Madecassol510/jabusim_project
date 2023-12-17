@@ -13,8 +13,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <!-- 외부 css파일 -->
-<link rel="stylesheet" href="${root}css/testTpdyd.css?ver=2" />
-<link rel="stylesheet" href="${root}css/receiptCSS/main.css?ver=2" />
+<link rel="stylesheet" href="${root}css/testTpdyd.css?ver=5" />
+<link rel="stylesheet" href="${root}css/receiptCSS/selectPlace.css" />
 <!-- 외부 js파일 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -35,6 +35,31 @@
             }
 		});//ajax setup
 		
+		var lastSearchType = 'default'; // 기본값 설정
+
+		function getCurrentSearchType() {
+		    return lastSearchType; // 마지막으로 수행된 검색 유형 반환
+		}
+		
+		var currentRegionOption = ''; // 현재 검색어 저장 변수
+		
+		$('#regionButton').on('click', function() {
+		    lastSearchType = 'region';
+		    currentRegionOption = $('#regionButton').val(); // 검색어 업데이트
+		});
+		
+		$('#pagingSection .page-link').on('click', function(e) {
+			e.preventDefault();
+		    var pageNumber = $(this).data('page');
+		    console.log(pageNumber);
+		    var searchType = getCurrentSearchType();
+
+		    if (searchType === 'region') {
+		    	loadPage_region(pageNumber, currentRegionOption);
+		    } else {
+		        loadPage(pageNumber);
+		    }
+		});
 		
 	});
 	
@@ -88,16 +113,17 @@
 	<!-- 아래 -->	
 	<section id="bottom_module" class="bottom_module">
 		<article id="bottom_module_inner" class="bottom_module_inner">
+		
 			<div>
 				<table class="table">
 				  <thead>
 				  	<tr>
-				  		<th>No</th>
-	                    <th>지역</th>
-	                    <th>주소</th>
-	                    <th>시험장소</th>
-	                    <th>수용가능인원</th>
-	                    <th>접수하기</th>
+				  		<th style="width: 5%">No</th>
+	                    <th style="width: 7.5%">지역</th>
+	                    <th style="width: 50%">주소</th>
+	                    <th style="width: 15%">시험장소</th>
+	                    <th style="width: 15%">수용가능인원</th>
+	                    <th style="width: 7.5%">접수하기</th>
 	                </tr>
 				  </thead>
 				  <tbody>
@@ -121,6 +147,43 @@
 				  </tbody>
 				</table>
 			</div>
+			
+			<div id="pagingSection" class="d-none d-md-block">
+				<ul class="pagination justify-content-center">
+					<c:choose>
+					    <c:when test="${pageBean.prevPage <= 0 }">
+					        <li class="page-item disabled">
+					            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
+					        </li>
+					    </c:when>
+					    <c:otherwise>
+					        <li class="page-item">
+					            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
+					        </li>
+					    </c:otherwise>
+					</c:choose>
+					
+					<c:forEach var='idx' begin="${pageBean.min }" end="${pageBean.max }">
+					    <li class="page-item">
+					        <a href="#" class="page-link" data-page="${idx}">${idx}</a>
+					    </li>
+					</c:forEach>
+					
+					<c:choose>
+					    <c:when test="${pageBean.max >= pageBean.pageCnt }">
+					        <li class="page-item disabled">
+					            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
+					        </li>
+					    </c:when>
+					    <c:otherwise>
+					        <li class="page-item">
+					            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
+					        </li>
+					    </c:otherwise>
+					</c:choose>
+				</ul>
+			</div>
+			
 		</article>
 	</section>
 	
@@ -135,6 +198,6 @@
 </body>
 
 
-<script type="text/javascript" src="${root}js/receiptJS/selectPlace.js?ver=2" ></script>
+<script type="text/javascript" src="${root}js/receiptJS/selectPlace.js" ></script>
 
 </html>
