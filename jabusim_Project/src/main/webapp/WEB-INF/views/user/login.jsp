@@ -143,7 +143,7 @@
 
 <!-- Bootstrap CDN -->
 </head>
-<body>
+<body style="min-height: 0px;">
 
 
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />

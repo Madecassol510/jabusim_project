@@ -57,7 +57,7 @@
 
  .nav-link.text-black {
     color: white; /* 텍스트 색상을 흰색으로 지정합니다. */
-     font-size: 22px;
+     font-size: 20px;
   }
 </style>
 

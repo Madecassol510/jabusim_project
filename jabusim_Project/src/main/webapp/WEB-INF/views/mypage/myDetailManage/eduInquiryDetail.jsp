@@ -26,6 +26,7 @@
 
 	body{
 		width:100%;
+		min-height: 0px;
 	}
 	
 	ul{
@@ -121,7 +122,7 @@
 </style>
 
 </head>
-<body>
+<body style="min-height: 0px;">
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 	<c:import url="/WEB-INF/views/include/mypage_sideMenu.jsp" />
 

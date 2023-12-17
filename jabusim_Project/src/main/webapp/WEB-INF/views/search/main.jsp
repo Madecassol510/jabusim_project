@@ -21,6 +21,27 @@
 <link rel="stylesheet" href="${root}css/custom_scrollBar.css" />
 <!-- AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<style>
+
+	.btn-primary {
+		background-color: #5A7BFF;
+	} 
+
+	.top_module_inner>h1{
+		font-size: 30px;
+   		font-weight: 700;
+	}
+
+	.contents_name_ul>li {
+    	border-radius: 0px;
+	}
+	.list_serch_contents{
+		border-radius: 0px;
+	}
+</style>
+
 <script type="text/javascript">
 	<%request.setCharacterEncoding("UTF-8");%>
 	

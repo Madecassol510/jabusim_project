@@ -50,8 +50,7 @@ li {
 	width: 1400px;
 	min-height: 951px;
 	/* border: 1px solid red; */
-	float: left;
-	margin-left: 250px;
+	margin:0 auto;
 	margin-top: 100px;
 }
 

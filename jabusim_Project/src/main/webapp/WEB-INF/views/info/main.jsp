@@ -240,6 +240,15 @@
 	margin-bottom: 17px;
 }
 
+th{
+	background-color: rgb(241,238,245);
+}
+
+th, td {
+	border: 1px solid #dadada!important;
+	padding: 5px;
+}
+
 </style>
 
 <%
@@ -330,13 +339,12 @@
 									<div>헤헤 없당</div>
 								</c:when>
 								<c:otherwise>
-
 									<c:forEach items="${infoExamBeanList}" var="infoExamBean">
 										<c:if test="${infoExamBean.exam_status!='시험마감'}">
 											<tr>
 												<td>${infoExamBean.exam_name}</td>
 												<td>${infoExamBean.exam_type}</td>
-												<td>${infoExamBean.exam_receiptStartDate}~
+												<td>${infoExamBean.exam_receiptStartDate} ~
 													${infoExamBean.exam_receiptEndDate}</td>
 												<td>${infoExamBean.exam_date}</td>
 												<td>${infoExamBean.exam_resultDate}</td>
@@ -344,7 +352,6 @@
 											</tr>
 										</c:if>
 									</c:forEach>
-
 								</c:otherwise>
 							</c:choose>
 						</tbody>
