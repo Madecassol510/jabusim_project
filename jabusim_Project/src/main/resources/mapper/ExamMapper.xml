@@ -85,7 +85,7 @@
             </when>
         </choose>
     </where>
-	 ORDER BY exam_idx DESC
+	 ORDER BY exam_idx
 </select>
 
     

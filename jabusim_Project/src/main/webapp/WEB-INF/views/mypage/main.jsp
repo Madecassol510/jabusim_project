@@ -238,7 +238,16 @@
 		padding: 10px;
 	}
 	
-
+	#myInfo_module .act_div .act_infotitle{
+		font-size: 16px;
+   		font-weight: 600;
+	}
+	
+	#myInfo_module .act_div .act_infoContent{
+		padding-left: 5px;
+    	padding-top: 3px
+	}
+	
 		/* =========================================================================== */
 
 	/*myLicense_module*/
@@ -400,25 +409,25 @@
 							<%-- <form:label path=""></form:label> 사용--%>
 							<div class="act_info">
 								<div class="act_infotitle">방문횟수</div>
-								<div>
+								<div class="act_infoContent">
 									${myPageUserBean.getUser_visitCount()}회
 								</div>
 							</div>
 							<div class="act_info">
 								<div class="act_infotitle">문의횟수</div>
-								<div>
+								<div class="act_infoContent">
 									${inquiryCount}회
 								</div>
 							</div>
 							<div class="act_info">
 								<div class="act_infotitle">최근시험</div>
-								<div>
+								<div class="act_infoContent">
 									${lastExam}
 								</div>
 							</div>
 							<div class="act_info">
 								<div class="act_infotitle">자격증</div>
-								<div>
+								<div class="act_infoContent">
 									보유 자격증 ${licenseCount}개
 								</div>
 							</div>

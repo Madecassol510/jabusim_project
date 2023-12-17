@@ -138,6 +138,7 @@
 							<tr>
 								<th><span>경력분야</span></th>
 								<th><span>경력구분</span></th>
+								<th><span>업체명</span></th>
 								<th><span>문의날짜</span></th>
 								<th><span>처리상태</span></th>
 							</tr>

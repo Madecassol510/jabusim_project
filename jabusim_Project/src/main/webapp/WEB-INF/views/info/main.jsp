@@ -221,6 +221,7 @@
 .licenseContext{
 	margin-top:10px;
 	padding: 0 20px;
+	font-family: monospace;
 }
 
 #examSchedule{

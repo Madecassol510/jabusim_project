@@ -19,7 +19,7 @@ public class ExamBean {
 	private String exam_name;
 	private String exam_type; // 필기, 실기
 	private String exam_licenseType; // 기사, 기능사. 기술사
-	private int exam_year;
+	private String exam_year;
 	private int exam_round;
 	private String exam_receiptStartDate;
 	private String exam_receiptEndDate;
@@ -61,11 +61,11 @@ public class ExamBean {
 		this.exam_licenseType = exam_licenseType;
 	}
 
-	public int getExam_year() {
+	public String getExam_year() {
 		return exam_year;
 	}
 
-	public void setExam_year(int exam_year) {
+	public void setExam_year(String exam_year) {
 		this.exam_year = exam_year;
 	}
 

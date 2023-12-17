@@ -765,7 +765,7 @@ span {
 								</tr>
 							</thead>
 							<tbody id="searchResultContainer">
-								<c:forEach items="${allExamResultBeans}" var="examResultBean">
+								<c:forEach items="${allExamResultBeans}" var="examResultBean" varStatus="loopStatus">
 									<tr>
 										<th><input type="checkbox" class="checkList" onclick="updateCounter()" value="${examResultBean.examResult_idx}"/></th>
 										<td><span>${loopStatus.index+1}</span></td>

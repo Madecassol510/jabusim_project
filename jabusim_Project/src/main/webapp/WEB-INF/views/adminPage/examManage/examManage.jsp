@@ -639,9 +639,9 @@ span {
 									<th class="searchHd">년도</th>
 									<td class="searchArticle">
 										<div class="searchReq">	
-											<input type="text" id="examYearInput" min="1900" max="2100"
+											<input type="text" id="examYearInput"
 												class="form-control" placeholder="search" 
-												aria-label="Username" aria-describedby="basic-addon1">
+												aria-label="Username" aria-describedby="basic-addon1"/>
 										</div>						
 									</td>
 								</tr>

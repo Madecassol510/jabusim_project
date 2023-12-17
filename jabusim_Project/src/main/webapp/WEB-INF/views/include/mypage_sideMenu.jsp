@@ -15,6 +15,9 @@
 <style>
 .sideMenubar {
 	position: fixed;
+	z-index: 3;
+	top:100;
+	left:50;
 }
 </style>
 
