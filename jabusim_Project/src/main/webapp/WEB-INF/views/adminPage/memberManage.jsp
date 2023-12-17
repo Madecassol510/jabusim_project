@@ -235,16 +235,17 @@ span {
 /* 버튼 창 */
 .footer {
 	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 120px;
-	display: none;
-	align-items: flex-end; /* 수직 방향으로 가운데 정렬 */
-	justify-content: flex-end;
-	background-color: #DCDCDC; /* 배경색 설정 */
-	padding: 10px; /* 필요에 따라 여백 설정 */
-	text-align: center; /* 텍스트 중앙 정렬 */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    display: none;
+    align-items: flex-end;
+    justify-content: flex-end;
+    background-color: #F0F2FF;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #DAE1FF;
 }
 
 .footer .footerBox {
@@ -262,7 +263,9 @@ span {
 }
 
 .footer span {
-	font-size: 30px;
+	font-size: 31px;
+    font-weight: 700;
+    font-family: 'Nanum Gothic';
 }
 
 .footer .footerButton {
