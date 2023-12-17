@@ -759,7 +759,7 @@ span {
 									<th><span>구분</span></th>
 									<th><span>시험일</span></th>
 									<th><span>결과발표일</span></th>
-									<th><span>결과상태</span></th>
+									<th><span>합격여부</span></th>
 									<th><span>처리상태</span></th>
 									<th><span></span></th>
 								</tr>

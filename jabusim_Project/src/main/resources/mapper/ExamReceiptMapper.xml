@@ -73,7 +73,7 @@
             </when>
         </choose>
     </where>
-    ORDER BY examResult_idx DESC
+    ORDER BY examReceipt_idx DESC
 </select>
 
     

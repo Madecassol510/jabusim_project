@@ -27,9 +27,20 @@
 		<ul class="top-login-section">
 			<c:choose>
 				<c:when test="${loginUserBean.isUserLogin() == true }">
-					<li class="login-item"><a href="${root }user/logout" class="login-item-link">로그아웃</a></li>
-					<li class="login-item"><a href="${root }mypage/main" class="login-item-link">마이페이지</a></li>
-					<li class="login-item"><a href="${root }adminPage/memberManage" class="login-item-link">관리자페이지</a></li>		
+					<c:choose>
+						<c:when test="${loginUserBean.getUser_role() == '회원' }">
+							<li class="login-item"><a href="${root }user/logout"
+								class="login-item-link">로그아웃</a></li>
+							<li class="login-item"><a href="${root }mypage/main"
+								class="login-item-link">마이페이지</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="login-item"><a href="${root }user/logout"
+								class="login-item-link">로그아웃</a></li>
+							<li class="login-item"><a
+								href="${root }adminPage/memberManage" class="login-item-link">관리자페이지</a></li>
+						</c:otherwise>
+					</c:choose>
 				</c:when>
 				<c:otherwise>
 					<li class="login-item"><a href="${root }user/login" class="login-item-link">로그인</a></li>
