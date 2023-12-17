@@ -55,9 +55,9 @@
                     )
                 </if>            
             </when>
-        </choose>
-        ORDER BY userEdu_idx DESC
+        </choose>     
     </where>
+    ORDER BY userEdu_idx DESC
 </select>
     
     

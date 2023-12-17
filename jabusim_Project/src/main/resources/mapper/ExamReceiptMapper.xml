@@ -72,8 +72,8 @@
 				</if>
             </when>
         </choose>
-        ORDER BY examResult_idx DESC
     </where>
+    ORDER BY examResult_idx DESC
 </select>
 
     

@@ -32,9 +32,8 @@
 					</if>	
 		    	</when>
 			</choose>
-			ORDER BY user_joinDate DESC
+			
 		</where>
+		ORDER BY user_joinDate DESC
     </select>
-    
-   	  
 </mapper>
