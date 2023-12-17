@@ -593,10 +593,55 @@
 										<th>직무분야</th>
 										<td><select name="career_field" id="selectJob">
 												<option value="">선택해주세요</option>
-												<option>사무관리</option>
-												<option></option>
-												<option></option>
-												<option></option>
+												<option value="금속.재료">금속.재료</option>
+												<option value="판금.제관.새시">판금.제관.새시</option>
+												<option value="단조.주조">단조.주조</option>
+												<option value="용접">용접</option>
+												<option value="도장.도금">도장.도금</option>
+												<option value="경영">경영</option>
+												<option value="생산관리">생산관리</option>
+												<option value="조리">조리</option>
+												<option value="화공">화공</option>
+												<option value="위험물">위험물</option>
+												<option value="보건.의료">보건.의료</option>
+												<option value="영업.판매">영업.판매</option>
+												<option value="섬유">섬유</option>
+												<option value="의복">의복</option>
+												<option value="사회복지.종교">사회복지.종교</option>
+												<option value="안전관리">안전관리</option>
+												<option value="비파괴검사">비파괴검사</option>
+												<option value="환경">환경</option>
+												<option value="에너지.기상">에너지.기상</option>
+												<option value="농업">농업</option>
+												<option value="축산">축산</option>
+												<option value="임업">임업</option>
+												<option value="어업">어업</option>
+												<option value="운전.운송">운전.운송</option>
+												<option value="기계제작">기계제작</option>
+												<option value="기계장비설비.설치">기계장비설비.설치</option>
+												<option value="철도">철도</option>
+												<option value="조선">조선</option>
+												<option value="항공">항공</option>
+												<option value="자동차">자동차</option>
+												<option value="금형.공작기계">금형.공작기계</option>
+												<option value="인쇄.사진">인쇄.사진</option>
+												<option value="목재.가구.공예">목재.가구.공예</option>
+												<option value="채광">채광</option>
+												<option value="정보기술">정보기술</option>
+												<option value="디자인">디자인</option>
+												<option value="전기">전기</option>
+												<option value="전자">전자</option>
+												<option value="건축">건축</option>
+												<option value="토목">토목</option>
+												<option value="조경">조경</option>
+												<option value="도시.교통">도시.교통</option>
+												<option value="건설배관">건설배관</option>
+												<option value="건설기계운전">건설기계운전</option>
+												<option value="이용.미용">이용.미용</option>
+												<option value="숙박.여행.오락.스포츠">숙박.여행.오락.스포츠</option>
+												<option value="식품">식품</option>
+												<option value="제과.제빵">제과.제빵</option>
+												<option value="교육.자연.과학.사회과학">교육.자연.과학.사회과학</option>
 										</select></td>
 									</tr>
 									<tr>
