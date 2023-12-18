@@ -116,39 +116,39 @@
 				<div class="notice-section">
 					<div class="notice-title">
 						<span class="notice-name">공지사항</span> 
-						<span class="notice-btn"><a href="#">더보기 +</a></span>
+						<span class="notice-btn"><a href="${root }board/main">더보기 +</a></span>
 					</div>
 					
 					<div class="notice-list-section">
 						<ul class="main-notice-list">
 							<li class="main-notice-item">
-								<a href="#">
-									<span>2023-04-26</span>
-									<span>'자넷', '대한민국 브랜드파워 1위' IT 에…</span>
+								<a href='${root }board/read'>
+									<span>2023.12.15</span>
+									<span>2023년 기술사 제131회 면접시험 최종합격자...</span>
 								</a>
 							</li>
 							<li class="main-notice-item">
-								<a href="#">
-									<span>2023-04-26</span>
-									<span>'자넷', '대한민국 브랜드파워 1위' IT 에…</span>
+								<a href='${root }board/read'>
+									<span>2023.12.14</span>
+									<span>전기기능장 수험자 지참준비물 및 유의사항 확...</span>
 								</a>
 							</li>
 							<li class="main-notice-item">
-								<a href="#">
-									<span>2023-04-26</span>
-									<span>'자넷', '대한민국 브랜드파워 1위' IT 에…</span>
+								<a href='${root }board/read'>
+									<span>2023.12.12</span>
+									<span>2024년도 조리기능사 실기시험 안내(첨부자료...</span>
 								</a>
 							</li>
 							<li class="main-notice-item">
-								<a href="#">
-									<span>2023-04-26</span>
-									<span>'자넷', '대한민국 브랜드파워 1위' IT 에…</span>
+								<a href='${root }board/read'>
+									<span>2023.12.12</span>
+									<span>2023년도 정기 기능사 제3회 필기시험 최종결...</span>
 								</a>
 							</li>
 							<li class="main-notice-item">
-								<a href="#">
-									<span>2023-04-26</span>
-									<span>'자넷', '대한민국 브랜드파워 1위' IT 에…</span>
+								<a href='${root }board/read'>
+									<span>2023.12.12</span>
+									<span>KS 기계제도 규격(Data Book) 안내(첨부자료 ...</span>
 								</a>
 							</li>
 						</ul>

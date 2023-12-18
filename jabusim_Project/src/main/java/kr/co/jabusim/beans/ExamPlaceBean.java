@@ -50,6 +50,12 @@ public class ExamPlaceBean {
 	public void setExamPlace_maximum(int examPlace_maximum) {
 		this.examPlace_maximum = examPlace_maximum;
 	}
+	public int getCurrentRegistrations() {
+		return currentRegistrations;
+	}
+	public void setCurrentRegistrations(int currentRegistrations) {
+		this.currentRegistrations = currentRegistrations;
+	}
 	
 	
 	

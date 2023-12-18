@@ -279,10 +279,12 @@ th, td {
 	<!-- 사이드바 -->
 	<div class="sidebar-styling">
 		<ul>
-			<li><button class="sidebar-btn" data-bs-target="#banner-section">배너</button></li>
+			<li><button class="sidebar-btn" data-bs-target="#fbanner-section">배너</button></li>
 			<li><button class="sidebar-btn" data-bs-target="#info-section">정보</button></li>
 			<li><button class="sidebar-btn"
 					data-bs-target="#passrate-section">합격률</button></li>
+			<li><button class="sidebar-btn" data-bs-target="#exam-section">정보</button></li>
+					
 		</ul>
 	</div>
 
