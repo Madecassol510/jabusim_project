@@ -14,7 +14,7 @@
 
 <!-- 외부 css파일 -->
 <link rel="stylesheet" href="${root}css/testTpdyd.css?ver=5" />
-<link rel="stylesheet" href="${root}css/receiptCSS/selectPlace.css" />
+<link rel="stylesheet" href="${root}css/receiptCSS/selectPlace.css?ver=2" />
 <!-- 외부 js파일 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -74,119 +74,149 @@
 
 	<div class="pageContainer">
 
-	<ul class="list-group list-group-horizontal step-indicator">
-	    <li class="list-group-item text-center step">
-	        <span class="badge bg-primary">1. 시험선택</span>
-	    </li>
-	    <li class="list-group-item text-center step active">
-	        <span class="badge bg-primary">2. 종목선택</span>
-	    </li>
-	    <li class="list-group-item text-center step active">
-	        <span class="badge bg-primary">3. 시험장소 선택</span>
-	    </li>
-	</ul>
-		
+		<section id="top_module" class="top_module">
+			<article id="top_module_inner" class="top_module_inner">
 	
-	<!-- 위 -->
-	<section id="top_module" class="top_module">
-		<article id="top_module_inner" class="top_module_inner row">
-		
-			<div class="col-md-3">
-			    <label for="regionSelect" class="form-label">지역선택</label>
-		        <select class="form-select" id="regionSelect">
-				    <option selected disabled value="">지역을 선택하세요</option>
-				    <option value="all">전체</option>
-				    <c:forEach items="${getReceiptRegions}" var="receiptRegion">
-			            <option value="${receiptRegion}">${receiptRegion}</option>
-			        </c:forEach>
-			    </select>
-	    	</div>
-	    
-		    <div class="col-md-3">
-		    	<button id="regionButton" class="col-md-3" style='height:38px'>조회</button>
-		    </div>
-		
-		</article>
-	</section>
-	
-	
-	<!-- 아래 -->	
-	<section id="bottom_module" class="bottom_module">
-		<article id="bottom_module_inner" class="bottom_module_inner">
-		
-			<div>
-				<table class="table">
-				  <thead>
-				  	<tr>
-				  		<th style="width: 5%">No</th>
-	                    <th style="width: 7.5%">지역</th>
-	                    <th style="width: 50%">주소</th>
-	                    <th style="width: 15%">시험장소</th>
-	                    <th style="width: 15%">수용가능인원</th>
-	                    <th style="width: 7.5%">접수하기</th>
-	                </tr>
-				  </thead>
-				  <tbody>
-					<c:forEach items="${getExamPlace}" var="examPlaceBean" varStatus="data">
-						<tr>
-							<td>${data.count}</td>
-						    <td>${examPlaceBean.examPlace_region}</td>
-						    <td>${examPlaceBean.examPlace_address}</td>
-						    <td>${examPlaceBean.examPlace_name}</td>
-						    <td>/${examPlaceBean.examPlace_maximum}</td>
-						    <td>
-							<form action="${root}receipt/receipt_pro" method="post">
-								<!-- 숨겨진 입력 필드 추가 -->
-						      	<input type="hidden" name="examPlaceName" value="${examPlaceBean.examPlace_name}" />
-								<!-- 폼 입력 필드들 -->
-								<button type="submit">선택</button>
-							</form>
-							</td>
-						</tr>
-					</c:forEach>
-				  </tbody>
-				</table>
-			</div>
-			
-			<div id="pagingSection" class="d-none d-md-block">
-				<ul class="pagination justify-content-center">
-					<c:choose>
-					    <c:when test="${pageBean.prevPage <= 0 }">
-					        <li class="page-item disabled">
-					            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
-					        </li>
-					    </c:when>
-					    <c:otherwise>
-					        <li class="page-item">
-					            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
-					        </li>
-					    </c:otherwise>
-					</c:choose>
-					
-					<c:forEach var='idx' begin="${pageBean.min }" end="${pageBean.max }">
-					    <li class="page-item">
-					        <a href="#" class="page-link" data-page="${idx}">${idx}</a>
-					    </li>
-					</c:forEach>
-					
-					<c:choose>
-					    <c:when test="${pageBean.max >= pageBean.pageCnt }">
-					        <li class="page-item disabled">
-					            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
-					        </li>
-					    </c:when>
-					    <c:otherwise>
-					        <li class="page-item">
-					            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
-					        </li>
-					    </c:otherwise>
-					</c:choose>
+				<ul class="list-group list-group-horizontal step-indicator">
+				    <li class="list-group-item text-center step">
+				        <span class="badge bg-primary">1. 시험선택</span>
+				    </li>
+				    <li class="list-group-item text-center step active">
+				        <span class="badge bg-primary">2. 종목선택</span>
+				    </li>
+				    <li class="list-group-item text-center step active">
+				        <span class="badge bg-primary">3. 시험장소 선택</span>
+				    </li>
 				</ul>
-			</div>
-			
-		</article>
-	</section>
+				
+			</article>
+		</section>
+		
 	
+		<!-- 위 -->
+		<section id="bottom_module" class="bottom_module">
+			<article id="bottom_module_inner" class="bottom_module_inner">
+				<!-- 검색모듈 -->
+				<article id="search_module" class="search_module row">
+			
+					<div class="col-md-3">
+					    <h3>지역 선택</h3>
+					    <div class="categories_search">
+						    <div class="categories_search2">
+						        <select class="form-select" id="regionSelect">
+								    <option selected disabled value="">지역을 선택하세요</option>
+								    <option value="all">-전체-</option>
+								    <c:forEach items="${getReceiptRegions}" var="receiptRegion">
+							            <option value="${receiptRegion}">${receiptRegion}</option>
+							        </c:forEach>
+							    </select>
+						    </div>
+						    <div class="col-md-3">
+						    	<button id="regionButton" class="btn btn-primary">조회</button>
+						    </div>
+					    </div>
+			    	</div>
+			    
+				    
+			    </article>
+			    
+			    <!-- table -->
+   				<div style="min-height: 660px">
+   					<h3>${sessionScope.examName } ${sessionScope.examType } 장소선택</h3>
+					
+					<table class="table">
+					  <thead>
+					  	<tr>
+					  		<th style="width: 4%">No</th>
+		                    <th style="width: 6%">지역</th>
+		                    <th style="width: 50%">주소</th>
+		                    <th style="width: 20%">시험장소</th>
+		                    <th style="width: 11.5%">수용가능인원</th>
+		                    <th style="width: 8.5%">접수하기</th>
+		                </tr>
+					  </thead>
+					  <tbody>
+						<c:forEach items="${getExamPlace}" var="examPlaceBean" varStatus="data">
+						    <c:choose>
+						        <c:when test="${examPlaceBean.currentRegistrations >= examPlaceBean.examPlace_maximum}">
+						            <!-- 조건을 만족하는 경우에 적용할 스타일 (예: 음영) -->
+						            <tr style="background-color: #f0f0f0;">
+						                <td>${data.count}</td>
+						                <td>${examPlaceBean.examPlace_region}</td>
+						                <td>${examPlaceBean.examPlace_address}</td>
+						                <td>${examPlaceBean.examPlace_name}</td>
+						                <td>${examPlaceBean.currentRegistrations}/${examPlaceBean.examPlace_maximum}</td>
+						                <td>
+						                    <form action="${root}receipt/receipt_pro" method="post">
+						                        <input type="hidden" name="examPlaceName" value="${examPlaceBean.examPlace_name}" />
+						                        <button type="submit" disabled="disabled">선택</button>
+						                    </form>
+						                </td>
+						            </tr>
+						        </c:when>
+						        <c:otherwise>
+						            <!-- 조건을 만족하지 않는 경우 -->
+						            <tr>
+						                <td>${data.count}</td>
+						                <td>${examPlaceBean.examPlace_region}</td>
+						                <td>${examPlaceBean.examPlace_address}</td>
+						                <td>${examPlaceBean.examPlace_name}</td>
+						                <td>${examPlaceBean.currentRegistrations}/${examPlaceBean.examPlace_maximum}</td>
+						                <td>
+						                    <form action="${root}receipt/receipt_pro" method="post">
+						                        <input type="hidden" name="examPlaceName" value="${examPlaceBean.examPlace_name}" />
+						                        <button type="submit" class="id_btn">선택</button>
+						                    </form>
+						                </td>
+						            </tr>
+						        </c:otherwise>
+						    </c:choose>
+						</c:forEach>
+					  </tbody>
+					</table>
+				</div>
+				
+				<div id="pagingSection" class="d-none d-md-block">
+					<ul class="pagination justify-content-center">
+						<c:choose>
+						    <c:when test="${pageBean.prevPage <= 0 }">
+						        <li class="page-item disabled">
+						            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
+						        </li>
+						    </c:when>
+						    <c:otherwise>
+						        <li class="page-item">
+						            <a href="#" class="page-link" data-page="${pageBean.prevPage}">이전</a>
+						        </li>
+						    </c:otherwise>
+						</c:choose>
+						
+						<c:forEach var='idx' begin="${pageBean.min }" end="${pageBean.max }">
+						    <li class="page-item">
+						        <a href="#" class="page-link" data-page="${idx}">${idx}</a>
+						    </li>
+						</c:forEach>
+						
+						<c:choose>
+						    <c:when test="${pageBean.max >= pageBean.pageCnt }">
+						        <li class="page-item disabled">
+						            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
+						        </li>
+						    </c:when>
+						    <c:otherwise>
+						        <li class="page-item">
+						            <a href="#" class="page-link" data-page="${pageBean.nextPage}">다음</a>
+						        </li>
+						    </c:otherwise>
+						</c:choose>
+					</ul>
+				</div>
+			    
+			    
+			    
+
+			</article><!-- 바텀모듈 -->
+		</section>
 		
 	</div> <!-- 큰틀 -->
 
@@ -198,6 +228,6 @@
 </body>
 
 
-<script type="text/javascript" src="${root}js/receiptJS/selectPlace.js" ></script>
+<script type="text/javascript" src="${root}js/receiptJS/selectPlace.js?ver=6" ></script>
 
 </html>

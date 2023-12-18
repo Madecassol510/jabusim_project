@@ -70,6 +70,7 @@
 		    var pageNumber = $(this).data('page');
 
 		    var searchType = getCurrentSearchType();
+		    console.log(getCurrentSearchType());
 
 		    if (searchType === 'nameSearch') {
 		    	loadPage_name(pageNumber, currentSearchInput);
@@ -78,8 +79,31 @@
 		    } else {
 		        loadPage(pageNumber);
 		    }
-		});
+		})
 	});
+	
+	 document.addEventListener('DOMContentLoaded', function() {
+		 
+		 const searchInput = document.getElementById('searchInput');
+		 const searchButton = document.getElementById('searchButton');
+		 const optionButton = document.getElementById('optionButton');
+		 const bottomModule = document.getElementById('bottom_module_inner');
+		 
+		 /*input enter 기능 추가*/
+	    searchInput.addEventListener('keypress', function(event) {
+	        if (event.key === 'Enter') {
+	            searchButton.click(); // Triggers the search button's click event
+	        }
+	    })
+		 
+	    searchButton.addEventListener('click', function() {
+	    	bottomModule.scrollIntoView({ behavior: 'smooth' });
+	    })
+
+	    optionButton.addEventListener('click', function() {
+	    	bottomModule.scrollIntoView({ behavior: 'smooth' });
+	    })
+	 })
 	
 </script>
 
@@ -174,7 +198,7 @@
 												<!-- 숨겨진 입력 필드 추가 -->
 								               	<input type="hidden" name="licenseName" value="${licenseBean.license_name}" />
 												<!-- 폼 입력 필드들 -->
-												<button type="submit">선택</button>
+												<button type="submit" class="id_btn">선택</button>
 											</form>
 										</td>
 									</tr>
@@ -234,6 +258,6 @@
 
 
 </body>
-<script type="text/javascript" src="${root}js/receiptJS/receipt_select_subject.js?ver=1"></script>
+<script type="text/javascript" src="${root}js/receiptJS/receipt_select_subject.js?ver=6"></script>
 
 </html>

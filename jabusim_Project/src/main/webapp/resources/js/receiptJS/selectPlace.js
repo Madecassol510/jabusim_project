@@ -93,7 +93,7 @@ function loadPage_region(pageNumber, region) {
         }
     });
 }
-
+/*
 function updateTableContent(data, currentPage) {
     console.log(data);
     var tableHtml = '';
@@ -106,7 +106,9 @@ function updateTableContent(data, currentPage) {
         tableHtml += '<td>' + row.examPlace_region + '</td>';
         tableHtml += '<td>' + row.examPlace_address + '</td>';
         tableHtml += '<td>' + row.examPlace_name + '</td>';
-        tableHtml += '<td>/'+ row.examPlace_maximum + '</td>';
+        tableHtml += '<td>' + row.currentRegistrations;
+        tableHtml += '/';
+        tableHtml += row.examPlace_maximum + '</td>';
         tableHtml += '<td>';
         tableHtml += '<form action="' + rootContextPath + 'receipt/receipt_pro" method="post">';
         tableHtml += '<input type="hidden" name="examPlaceName" value="' + row.examPlace_name + '" />';
@@ -117,6 +119,41 @@ function updateTableContent(data, currentPage) {
     }
     $('#bottom_module_inner tbody').html(tableHtml);
 }
+*/
+
+function updateTableContent(data, currentPage) {
+    console.log(data);
+    var tableHtml = '';
+    for (var i = 0; i < data.length; i++) {
+        var row = data[i];
+        var no = i + 1 + (currentPage - 1) * 10;
+        
+        var rowStyle = '';
+        var buttonDisabled = '';
+        
+        // 현재 등록 인원 수가 최대 인원 수 이상인 경우
+        if (row.currentRegistrations >= row.examPlace_maximum) {
+            rowStyle = ' style="background-color: #f0f0f0;"'; // 음영 스타일 적용
+            buttonDisabled = ' disabled="disabled"'; // 버튼 비활성화
+        }
+
+        tableHtml += '<tr' + rowStyle + '>';
+        tableHtml += '<td>' + no + '</td>';
+        tableHtml += '<td>' + row.examPlace_region + '</td>';
+        tableHtml += '<td>' + row.examPlace_address + '</td>';
+        tableHtml += '<td>' + row.examPlace_name + '</td>';
+        tableHtml += '<td>' + row.currentRegistrations + '/' + row.examPlace_maximum + '</td>';
+        tableHtml += '<td>';
+        tableHtml += '<form action="' + rootContextPath + 'receipt/receipt_pro" method="post">';
+        tableHtml += '<input type="hidden" name="examPlaceName" value="' + row.examPlace_name + '" />';
+        tableHtml += '<button type="submit" class="id_btn"' + buttonDisabled + '>선택</button>';
+        tableHtml += '</form>';
+        tableHtml += '</td>';
+        tableHtml += '</tr>';
+    }
+    $('#bottom_module_inner tbody').html(tableHtml);
+}
+
 
 
 function updatePaginationLinks(pageBean) {

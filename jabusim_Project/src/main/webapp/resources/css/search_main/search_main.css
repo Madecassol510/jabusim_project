@@ -36,7 +36,9 @@ a, a:hover {
 .top_module_inner>h1 {
 	padding-bottom: 5px;
 }
-
+.search_container {
+	width: 1120px;
+}
 
 .text_search {
 	padding-bottom: 30px;
@@ -50,6 +52,7 @@ a, a:hover {
 .list_serch_contents {
 	border: 1px solid #0d6efd;
 	border-top: 0;
+	border-radius: 5px;
 }
 .list_serch_contents >ul > li {
 	width: 33.333%;
@@ -63,16 +66,15 @@ contents_name {
 	width: 33.333%;
 }
 
-
 .contents_name_ul>li {
     width: 33.333%;
-    background-color: #6495ED;
+    background-color: #0d6efd;
     color: white;
     padding: 10px;
     text-align: center;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    border-radius: 0px;
 }
 
 .list_serch_ul> {
@@ -116,6 +118,7 @@ contents_name {
     align-items: center;   
 }
 */
+
 .required_btn img, .reset_btn img {
     vertical-align: -1px; /* Adjust the value as needed */
 }

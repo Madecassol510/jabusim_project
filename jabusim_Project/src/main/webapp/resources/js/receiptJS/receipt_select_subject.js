@@ -37,14 +37,14 @@ document.getElementById('searchButton').addEventListener('click', function() {
         type: 'GET',
         dataType: 'json',
         data: {
-            searchInput: searchInput,
+            searchName: searchInput,
             licenseType: licenseType,
         },
         success: function(response) {
 			console.log(response);
 			console.log(searchInput);
             // 검색 결과 테이블 업데이트
-            updateTableContent(response.data, response.pageBean);
+            updateTableContent(response.data, response.pageBean.currentPage);
 
             // 페이지네이션 링크 업데이트
  			loadPageWithNameSearch(response.pageBean, searchInput);
@@ -72,7 +72,7 @@ document.getElementById('optionButton').addEventListener('click', function() {
         dataType: 'json', // 서버로부터 받을 데이터 타입
         success: function(response) {
             // 검색 결과 테이블 업데이트
-            updateTableContent(response.data, response.pageBean);
+            updateTableContent(response.data, response.pageBean.currentPage);
 
             // 페이지네이션 링크 업데이트
             loadPageWithOptionSearch(response.pageBean, majorSelectValue, minorSelectValue);
@@ -116,18 +116,16 @@ function loadPage_name(pageNumber, searchName) {
         url: '/jabusim_Project/receipt/ajax_paging_name',
         type: 'GET',
         data: {
-            'page': pageNumber,
-            'licenseType' : licenseType,
-            'searchInput' : searchName
+            page: pageNumber,
+            licenseType : licenseType,
+            searchInput : searchName
         },
         success: function(response) {
-			console.log(response);
             // 페이지의 특정 부분 업데이트
 	        updateTableContent(response.data, pageNumber);
 	
 	        // 페이지네이션 링크 업데이트
 	        loadPageWithNameSearch(response.pageBean, searchName);
-	        console.log(searchInput);
         },
         error: function(error) {
             console.error('Error:', error);
@@ -161,13 +159,11 @@ function loadPage_option(pageNumber, major, minor) {
 }
 
 function updateTableContent(data, currentPage) {
-	console.log(currentPage);
-	console.log(data);
+	console.log('클릭이벤트'+currentPage);
     var tableHtml = '';
     for (var i = 0; i < data.length; i++) {
         var row = data[i];
         var no = i + 1 + (currentPage - 1) * 10;
-		console.log(currentPage);
         tableHtml += '<tr">';
         tableHtml += '<td>' + no + '</td>';
         tableHtml += '<td>' + row.license_name + '</td>';
@@ -176,7 +172,7 @@ function updateTableContent(data, currentPage) {
         tableHtml += '<td>';
         tableHtml += '<form action="' + rootContextPath + 'receipt/selectPlace" method="post">';
         tableHtml += '<input type="hidden" name="licenseName" value="' + row.license_name + '" />';
-        tableHtml += '<button type="submit">선택</button>';
+        tableHtml += '<button type="submit" class="id_btn">선택</button>';
         tableHtml += '</form>';
         tableHtml += '</td>';
         tableHtml += '</tr>';
@@ -185,6 +181,7 @@ function updateTableContent(data, currentPage) {
 }
 
 function updatePaginationLinks(pageBean) {
+	console.log(pageBean);
     var currentPage = pageBean.currentPage;
     var maxPage = pageBean.pageCnt;
     var itemsPerPage = 10; // 한 페이지에 표시할 항목 수
@@ -227,6 +224,7 @@ function updatePaginationLinks(pageBean) {
 }
 
 function loadPageWithNameSearch(pageBean, searchInput) {
+	console.log(searchInput + '페이징 검색이벤트');
     var currentPage = pageBean.currentPage;
     var maxPage = pageBean.pageCnt;
     var itemsPerPage = 10; // 한 페이지에 표시할 항목 수
@@ -259,16 +257,25 @@ function loadPageWithNameSearch(pageBean, searchInput) {
     paginationHtml += '<li class="page-item ' + (currentPage >= maxPage ? 'disabled' : '') + '">';
     paginationHtml += '<a href="#" class="page-link" data-page="' + (currentPage < maxPage ? nextPage : '#') + '">다음</a></li>';
 
-    // HTML 업데이트 후 이벤트 핸들러 재설정
-    $('#pagingSection ul.pagination').html(paginationHtml);
-    $('#pagingSection .page-link').on('click', function(e) {
-        e.preventDefault();
-        var pageNumber = $(this).data('page');
-        loadPage_name(pageNumber, searchInput);
-    });
+	// HTML 업데이트 후 이벤트 핸들러 재설정
+	var paginationContainer = document.querySelector('#pagingSection ul.pagination');
+	if (paginationContainer) {
+	    paginationContainer.innerHTML = paginationHtml;
+	
+	    var pageLinks = paginationContainer.querySelectorAll('.page-link');
+	    pageLinks.forEach(function(link) {
+	        link.addEventListener('click', function(e) {
+	            e.preventDefault();
+	            var pageNumber = this.getAttribute('data-page');
+	            console.log(pageNumber);
+	            loadPage_name(pageNumber, searchInput);
+	        });
+	    });
+	}
 }
 
 function loadPageWithOptionSearch(pageBean, majorOption, minorOption) {
+	console.log(pageBean);
     var currentPage = pageBean.currentPage;
     var maxPage = pageBean.pageCnt;
     var itemsPerPage = 10; // 한 페이지에 표시할 항목 수
@@ -301,11 +308,23 @@ function loadPageWithOptionSearch(pageBean, majorOption, minorOption) {
     paginationHtml += '<li class="page-item ' + (currentPage >= maxPage ? 'disabled' : '') + '">';
     paginationHtml += '<a href="#" class="page-link" data-page="' + (currentPage < maxPage ? nextPage : '#') + '">다음</a></li>';
 
-    // HTML 업데이트 후 이벤트 핸들러 재설정
-    $('#pagingSection ul.pagination').html(paginationHtml);
-    $('#pagingSection .page-link').on('click', function(e) {
-        e.preventDefault();
-        var pageNumber = $(this).data('page');
-        loadPage_option(pageNumber, majorOption, minorOption);
-    });
+    // HTML 업데이트
+    var paginationSection = document.getElementById('pagingSection');
+    if (paginationSection) {
+        var ulPagination = paginationSection.querySelector('ul.pagination');
+        if (ulPagination) {
+            ulPagination.innerHTML = paginationHtml;
+        }
+
+        // 이벤트 핸들러 재설정
+        var pageLinks = ulPagination.getElementsByClassName('page-link');
+        Array.from(pageLinks).forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                var pageNumber = this.getAttribute('data-page');
+                console.log(pageNumber);
+                loadPage_option(pageNumber, majorOption, minorOption);
+            });
+        });
+    }
 }

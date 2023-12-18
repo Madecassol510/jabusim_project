@@ -3,7 +3,6 @@ package kr.co.jabusim.mapper;
 import java.util.List;
 import java.util.Date;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -49,6 +48,8 @@ public interface ReceiptMapper {
 	@Select("select count(*) from examPlace_table WHERE examplace_region=#{selectRegion}")
 	int getContentCnt_region(@Param("selectRegion") String region);
 	
+	@Select("select count(*) from examreceipt_table where examplace_name=#{placeName}")
+	int getCountExamPlace(@Param("placeName") String placeName);
 	
 	
 	/*******insert*******/
@@ -63,13 +64,4 @@ public interface ReceiptMapper {
 	                   @Param("examDate") Date examDate, @Param("examResultDate") Date examResultDate,
 	                   @Param("examPlaceName") String examPlaceName);
 	
-	
-	
-	
-	
 }
-
-
-
-
-

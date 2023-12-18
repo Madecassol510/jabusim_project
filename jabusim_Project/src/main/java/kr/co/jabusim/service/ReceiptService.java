@@ -16,6 +16,7 @@ import kr.co.jabusim.beans.LicenseBean;
 import kr.co.jabusim.beans.PageBean;
 import kr.co.jabusim.beans.UserBean;
 import kr.co.jabusim.dao.ReceiptDao;
+import kr.co.jabusim.mapper.ReceiptMapper;
 
 @Service
 @PropertySource("/WEB-INF/properties/option.properties")
@@ -29,6 +30,8 @@ public class ReceiptService {
 
 	@Autowired
 	ReceiptDao receiptDao;
+	@Autowired
+	ReceiptMapper receiptMapper; 
 	
 	
 	public List<String> getMajorCodes(String licenseType) {
@@ -98,8 +101,16 @@ public class ReceiptService {
 		int start=(page-1)*page_listcnt;
 		RowBounds rowBounds = new RowBounds(start, page_listcnt);
 		
-		return receiptDao.getExamPlace(rowBounds);
+	    List<ExamPlaceBean> examPlaceList = receiptDao.getExamPlace(rowBounds);
+	    
+	    for (ExamPlaceBean examPlace : examPlaceList) {
+	        int currentRegistrations = this.getCountExamPlace(examPlace.getExamPlace_name());
+	        examPlace.setCurrentRegistrations(currentRegistrations);
+	    }
+		
+		return examPlaceList;
 	}
+	
 	/*장소접수-페이징 COUNT*/
 	public PageBean getContentCnt_examPlace(int currentPage) {
 		
@@ -116,7 +127,19 @@ public class ReceiptService {
 		int start=(page-1)*page_listcnt;
 		RowBounds rowBounds = new RowBounds(start, page_listcnt);
 		
-		return receiptDao.getExamPlace_region(region, rowBounds);
+		//return receiptDao.getExamPlace_region(region, rowBounds);
+		
+		List<ExamPlaceBean> examPlaceList = receiptDao.getExamPlace_region(region, rowBounds);
+	    
+	    for (ExamPlaceBean examPlace : examPlaceList) {
+	        int currentRegistrations = this.getCountExamPlace(examPlace.getExamPlace_name());
+	        examPlace.setCurrentRegistrations(currentRegistrations);
+	    }
+		
+		return examPlaceList;
+		
+		
+		
 	}
 	/*장소접수-페이징 COUNT*/
 	public PageBean getContentCnt_region(String region,int currentPage) {
@@ -129,6 +152,12 @@ public class ReceiptService {
 	}
 	
 	
+	/*장소 접수인원 메서드*/
+	public int getCountExamPlace(String placeName) {
+		int countPlace = receiptMapper.getCountExamPlace(placeName);
+		
+		return countPlace;
+	}
 	
 	/*insert 메서드*/
 	public void insertReceipt(String userName, String userId, String examName, String examType, String licenseName, Date formattedDate, Date examDate, Date examResultDate, String examPlaceName) {

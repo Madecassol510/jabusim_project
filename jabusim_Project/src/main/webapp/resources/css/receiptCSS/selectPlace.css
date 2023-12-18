@@ -1,20 +1,11 @@
-/* 탑 */
-/*
-.top_module_inner {
-	width: 94%;
-	margin: 0 auto;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	align-items: flex-end;
-}
-*/
-
 /* 바텀 */
 .bottom_module {
+	min-height: 600px;
 	width: 100%;
 	text-align: center;
-	padding-top: 50px;
+	padding-top: 30px;
 	padding-bottom: 50px;
+	border-top: 1.5px solid black;
 }
 
 .bottom_module_inner {
@@ -22,4 +13,28 @@
 	margin: 0 auto;
 	padding-top: 10px;
 	padding-bottom: 10px;
+}
+
+.bottom_module_inner h1 {
+	padding-bottom: 5px;
+	text-align: left;
+}
+
+#search_module {
+	margin-bottom: 40px;
+}
+
+.categories_search {
+	display: flex;
+	justify-content: flex-start;
+	margin-bottom: 5px;
+}
+
+.categories_search2 {
+	width: 260px;
+	margin-right: 5px;
+}
+
+#bottom_module h3 {
+    text-align: left;
 }

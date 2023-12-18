@@ -16,15 +16,6 @@
 <link rel="stylesheet" href="${root}css/testTpdyd.css?ver=5" />
 <link rel="stylesheet" href="${root}css/receiptCSS/main.css?ver=3" />
 <!-- 외부 js파일 -->
-
-	<style>
-		.bottom_module_inner h1{
-			font-size: 30px;
-    		font-weight: 700;	
-		}
-	</style>
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -47,11 +38,12 @@
 		
 	});
 	
+	
 </script>
 
 
 </head>
-<body style="min-height: 0px;">
+<body>
 
 
 <c:import url="/WEB-INF/views/include/top_menu.jsp"/>

@@ -89,7 +89,7 @@ public class ReceiptController {
 	
 	@GetMapping("/receipt_searchInput")
 	@ResponseBody
-	public ResponseEntity<?> searchLicenseName(@RequestParam(value = "searchInput") String searchInput,
+	public ResponseEntity<?> searchLicenseName(@RequestParam(value = "searchName") String searchInput,
 	                                           @RequestParam(value = "licenseType", required = false) String licenseType,
 	                                           @RequestParam(value = "page", defaultValue = "1") int page) {
 	    // 페이지에 맞는 검색 결과 조회
@@ -143,17 +143,16 @@ public class ReceiptController {
 	    Map<String, Object> response = new HashMap<>();
 	    response.put("pageBean", pageBean);
 	    response.put("data", getSelectedLicenseType);
-	    System.out.println("ajax_paging");
 
 	    return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/ajax_paging_name")
-	public ResponseEntity<?> getPageContent(@RequestParam(value="page", defaultValue = "1")int page,
+	public ResponseEntity<?> getPageContent(@RequestParam(value="page")int page,
 											@RequestParam(value = "licenseType",required = false) String licenseType,
 											@RequestParam(value = "searchInput",required = false) String searchInput) {
 		// 페이지 정보를 조회하기 위해 서비스 레이어 호출
-		PageBean pageBean = receiptService.getContentCnt_search(licenseType, searchInput, page);
+		PageBean pageBean = receiptService.getContentCnt_search(searchInput, licenseType, page);
 		
 		// 해당 licenseType과 page에 맞는 데이터 검색
 		List<LicenseBean> getSelectedLicenseName = receiptService.searchLicenseName(searchInput, licenseType, page);
@@ -162,13 +161,12 @@ public class ReceiptController {
 		Map<String, Object> response = new HashMap<>();
 		response.put("pageBean", pageBean);
 		response.put("data", getSelectedLicenseName);
-		System.out.println("ajax_paging_name");
 		
 		return ResponseEntity.ok(response);
 	}
 
 	@GetMapping("/ajax_paging_option")
-	public ResponseEntity<?> getPageContent(@RequestParam(value="page", defaultValue = "1")int page,
+	public ResponseEntity<?> getPageContent(@RequestParam(value="page")int page,
 											@RequestParam(value = "licenseType",required = false) String licenseType,
 											@RequestParam(value = "searchInput",required = false) String searchInput,
 											@RequestParam(value = "major",required = false) String major,
@@ -183,7 +181,6 @@ public class ReceiptController {
 		Map<String, Object> response = new HashMap<>();
 		response.put("pageBean", pageBean);
 		response.put("data", getSelectedLicenseName);
-		System.out.println("ajax_paging_option");
 		
 		return ResponseEntity.ok(response);
 	}
@@ -202,9 +199,11 @@ public class ReceiptController {
 		List<String> getReceiptRegions = receiptMapper.getReceiptRegions();
 		model.addAttribute("getReceiptRegions", getReceiptRegions);
 		
+		
 		//페이징
 		List<ExamPlaceBean> getExamPlace = receiptService.getExamPlace(page);
 		model.addAttribute("getExamPlace", getExamPlace);
+
 		
 		PageBean pageBean = receiptService.getContentCnt_examPlace(page);
 		model.addAttribute("pageBean", pageBean);

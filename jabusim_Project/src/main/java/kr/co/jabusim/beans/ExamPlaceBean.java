@@ -1,8 +1,11 @@
 package kr.co.jabusim.beans;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 public class ExamPlaceBean {
 	
 	   
@@ -12,6 +15,8 @@ public class ExamPlaceBean {
 	private String examPlace_address;
 	private int examPlace_maximum;
 	
+	//해당장소 접수인원수
+	private int currentRegistrations;
 	
 	
 	
