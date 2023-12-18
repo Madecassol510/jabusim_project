@@ -252,8 +252,8 @@ span {
 }
 
 /* =========================================================================== */
-	/* 버튼 창 */
-	.footer {
+/* 버튼 창 */
+.footer {
 	position: fixed;
     bottom: 0;
     left: 0;
@@ -270,7 +270,7 @@ span {
 
 .footer .footerBox {
 	display: grid;
-	grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
+	grid-template-columns: repeat(3, 110px); /* 2개의 동일한 폭의 칸으로 나눔 */
 	grid-template-rows: repeat(1, 90px);
 	gap: 20px;
 	margin-right: 100px;
@@ -279,11 +279,14 @@ span {
 .footer .footerHd {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: right;
+	grid-column: span 2; /* 이 요소는 2개의 열을 차지합니다. */
 }
 
 .footer span {
-	font-size: 30px;
+	font-size: 28px;
+    font-weight: 700;
+    font-family: 'Nanum Gothic';
 }
 
 .footer .footerButton {
@@ -298,11 +301,11 @@ span {
 }
 
 .footer .footerButton button.btn-danger {
-	background-color: #7285A5; /* 파란색 배경 */
-	border: none; /* 테두리 제거 */
-	font-size: 20px;
+	background-color: #7285A5;
+    border: none;
+    font-size: 20px;
+    width: 120px;
 }
-
 </style>
 <script type="text/javascript">
 

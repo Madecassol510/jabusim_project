@@ -258,8 +258,19 @@ th, td {
 
 <script type="text/javascript">
 	var examPassingJson = ${examPassingJson != null ? examPassingJson : 'null'};
-</script>
 
+  $(document).ready(function() {
+	    $('.license-card').hover(function() {
+	        // 마우스 오버 시
+	        var newContent = $(this).data('hover-text');
+	        $(this).find('.main-card-text').text(newContent);
+	    }, function() {
+	        // 마우스 아웃 시
+	        var originalContent = $(this).data('original-text');
+	        $(this).find('.main-card-text').text(originalContent);
+	    });
+	});
+</script>
 </head>
 <body>
 

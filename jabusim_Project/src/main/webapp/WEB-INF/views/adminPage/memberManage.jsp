@@ -250,7 +250,7 @@ span {
 
 .footer .footerBox {
 	display: grid;
-	grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
+	grid-template-columns: repeat(3, 110px;); /* 2개의 동일한 폭의 칸으로 나눔 */
 	grid-template-rows: repeat(1, 90px);
 	gap: 20px;
 	margin-right: 100px;
@@ -259,11 +259,12 @@ span {
 .footer .footerHd {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: right;
+	grid-column: span 2; /* 이 요소는 2개의 열을 차지합니다. */
 }
 
 .footer span {
-	font-size: 31px;
+	font-size: 28px;
     font-weight: 700;
     font-family: 'Nanum Gothic';
 }
@@ -280,94 +281,12 @@ span {
 }
 
 .footer .footerButton button.btn-danger {
-	background-color: #7285A5; /* 파란색 배경 */
-	border: none; /* 테두리 제거 */
-	font-size: 20px;
-}
-/* =========================================================================== */
-
-/* 모달창 */
-.modalBackground {
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	justify-content: center;
-	align-items: center;
-	background: rgba(0, 0, 0, 0.5);
-	display: none;
+	background-color: #7285A5;
+    border: none;
+    font-size: 20px;
+    width: 120px;
 }
 
-.modalContainer {
-	width: 500px;
-	height: 500px;
-	position: absolute;
-	background: white;
-}
-
-.modalContainer .modalContainerHd {
-	padding: 10px;
-	width: 100%;
-	height: 12%;
-	border-bottom: 1px solid black;
-}
-
-.modalContainer .modalContainerHd h3 {
-	height: 100%;
-	margin: auto 0px;
-	display: inline-block;
-	float: left;
-	padding-top: 5px;
-}
-
-.modalContainer .modalContainerHd button {
-	float: right;
-	height: 40px;
-	width: 40px;
-	padding: 0;
-}
-
-.modalContainer .modalContent {
-	width: 100%;
-	height: 88%;
-	padding: 5%;
-}
-
-.modalContainer .searchHd {
-	width: 100%;
-	height: 17%;
-	margin-bottom: 3%;
-	border: 1px solid black;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.modalContainer .searchResult {
-	width: 100%;
-	height: 80%;
-	border: 1px solid black;
-	overflow: auto;
-}
-
-.modalContainer .searchResult ul {
-	width: 100%;
-	height: 100%;
-	display: inline-block;
-	padding: 0px 0px 0px 15px;
-	margin: 0;
-}
-
-.modalContainer .searchResult li {
-	height: 12.5%;
-	width: 100%;
-	padding: 10px;
-}
-
-.modalContainer .searchResult li span {
-	cursor: pointer;
-}
 
 /* =========================================================================== */
 

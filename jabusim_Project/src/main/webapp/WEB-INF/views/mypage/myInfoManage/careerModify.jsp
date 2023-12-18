@@ -473,15 +473,15 @@
 									<c:otherwise>
 										<tr>
 											<th>학력구분</th>
-											<td id="eduType">${userEduBeans[eduNum].edu_type}</td>
+											<td id="eduType">${userEduBeans[0].edu_type}</td>
 										</tr>
 										<tr>
 											<th>학력(기관)명</th>
-											<td id="edu_academy">${userEduBeans[eduNum].edu_academy}</td>
+											<td id="edu_academy">${userEduBeans[0].edu_academy}</td>
 										</tr>
 										<tr>
 											<th>학과/전공</th>
-											<td id="edu_major">${userEduBeans[eduNum].edu_major}</td>
+											<td id="edu_major">${userEduBeans[0].edu_major}</td>
 										</tr>
 									</c:otherwise>
 								</c:choose>
@@ -570,8 +570,7 @@
 											<td id="careerCompany">${userCareerBeans[0].career_company}</td>
 										</tr>
 									</c:otherwise>
-								</c:choose>
-								
+								</c:choose>							
 							</table>
 						</div>
 						<div class="button_div">

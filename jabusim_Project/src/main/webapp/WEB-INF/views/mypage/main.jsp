@@ -536,8 +536,6 @@
 			</div>
 		</div>	
 	</div>
-
-
 	<c:import url="/WEB-INF/views/include/buttom_info.jsp" />
 </body>
 </html>

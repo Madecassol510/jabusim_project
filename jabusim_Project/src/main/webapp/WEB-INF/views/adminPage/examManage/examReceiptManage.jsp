@@ -250,8 +250,8 @@ span {
 }
 
 /* =========================================================================== */
-	/* 버튼 창 */
-	.footer {
+/* 버튼 창 */
+.footer {
 	position: fixed;
     bottom: 0;
     left: 0;
@@ -268,7 +268,7 @@ span {
 
 .footer .footerBox {
 	display: grid;
-	grid-template-columns: repeat(2, 200px); /* 2개의 동일한 폭의 칸으로 나눔 */
+	grid-template-columns: repeat(5, 110px); /* 2개의 동일한 폭의 칸으로 나눔 */
 	grid-template-rows: repeat(1, 90px);
 	gap: 20px;
 	margin-right: 100px;
@@ -277,21 +277,20 @@ span {
 .footer .footerHd {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-    margin-right: 10px; /* span 태그 왼쪽으로 10px 이동 */
-    margin-left: -50px; /* 왼쪽으로 10px 이동 */
+	justify-content: right;
+	grid-column: span 2; /* 이 요소는 2개의 열을 차지합니다. */
 }
 
 .footer span {
-	font-size: 30px;
+	font-size: 28px;
+    font-weight: 700;
+    font-family: 'Nanum Gothic';
 }
 
 .footer .footerButton {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	
-	
 }
 
 .footer button {
@@ -300,29 +299,12 @@ span {
 }
 
 .footer .footerButton button.btn-danger {
-	background-color: #7285A5; /* 파란색 배경 */
-	writing-mode: horizontal-tb;
-	border: none; /* 테두리 제거 */
-	font-size: 20px;
-	width: 250px; /* 버튼의 너비를 넓혀보세요 */
-    height: 70px;
-    margin: 0 10px; /* 버튼 사이의 여백을 늘리세요 */
-}
-	
-
-.footer .footerButton button {
-    writing-mode: horizontal-tb;
-    width: 200px; /* 버튼 너비 조정 */
-    height: 70px;
-    margin: 0 25px; /* 좌우 여백 조정 */
-    white-space: nowrap;
+	background-color: #7285A5;
+    border: none;
+    font-size: 20px;
+    width: 120px;
 }
 
-.footer .footerButton span {
-    display: inline-block;
-    margin-right: 10px; /* span 태그 왼쪽으로 10px 이동 */
-    margin-left: -50px; /* 왼쪽으로 10px 이동 */
-}
 	
 
 
@@ -748,10 +730,14 @@ span {
 				<span>총 ${checkedCount}개 선택</span>
 			</div>
 			<div class="footerButton">
-				<button type="button" onclick="deleteList()" class="btn btn-danger">삭제</button>
-				<button type="button" onclick="updateList('접수완료')" class="btn btn-danger">접수완료</button>
-				<button type="button" onclick="updateList('접수거부')" class="btn btn-danger">접수거부</button>
+				<button type="button" onclick="deleteList()" class="btn btn-danger">삭제</button>				
 			</div>
+			<div class="footerButton">
+				<button type="button" onclick="updateList('접수완료')" class="btn btn-danger">접수완료</button>				
+			</div>
+			<div class="footerButton">
+				<button type="button" onclick="updateList('접수거부')" class="btn btn-danger">접수거부</button>				
+			</div>			
 		</div>
 	</div>
 
