@@ -678,9 +678,8 @@ span {
 						</form>
 					</div>
 					
-					<div class="searchResultCount" style="text-align: left; padding-left: 10px;">
-					<span>검색결과 : 13/ 총 13명 검색결과 </span>
-					</div>
+					<!-- <div class="searchResultCount" style="text-align: left; padding-left: 10px;">
+					</div> -->
 					
 					<div class="dashBoardArticle">
 						<table>

@@ -130,7 +130,7 @@
 		<div class="module" id="exam_result_module">
 			<div class="article">
 				<div class="hd">
-					<h3>문의 결과</h3>
+					<h3>경력 문의결과</h3>
 				</div>
 				<div class="resultBox">
 					<table>
