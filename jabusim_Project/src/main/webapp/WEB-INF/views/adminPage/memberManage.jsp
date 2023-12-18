@@ -704,37 +704,6 @@ span {
 	</div>
 
 
-	<!--  상세정보 모달창 -->
-	<div class="modalBackground" id="userModalBackground">
-		<div class="modalContainer" id="">
-			<div class="modalContainerHd">
-				<h3>학과/전공 검색</h3>
-				<button type="button" onclick="closeModal()">닫기</button>
-			</div>
-			<div class="modalContent">
-				<div class="searchHd">
-					<form action="" onsubmit="">
-						<span>학과/전공명</span> <input type="text" />
-						<button type="submit">검색</button>
-					</form>
-				</div>
-				<div class="searchResult">
-					<ul class="resultResult">
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-						<li><span onclick="selectResult(this)" id="selectMajor">서울대학교</span></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
 		integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
