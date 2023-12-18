@@ -777,8 +777,14 @@ span {
 			</div>
 			<div class="footerButton">
 				<button type="button" onclick="deleteList()" class="btn btn-danger">삭제</button>
+			</div>
+			<div class="footerButton">
 				<button type="button" onclick="updateList('합격')" class="btn btn-danger">합격</button>
+			</div>
+			<div class="footerButton">
 				<button type="button" onclick="updateList('불합격')" class="btn btn-danger">불합격</button>
+			</div>
+			<div class="footerButton">
 				<button type="button" onclick="processList('처리완료')" class="btn btn-danger">처리완료</button>
 			</div>
 		</div>

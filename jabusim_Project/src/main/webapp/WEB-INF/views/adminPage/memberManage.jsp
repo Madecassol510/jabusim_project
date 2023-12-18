@@ -250,7 +250,7 @@ span {
 
 .footer .footerBox {
 	display: grid;
-	grid-template-columns: repeat(3, 110px;); /* 2개의 동일한 폭의 칸으로 나눔 */
+	grid-template-columns: repeat(3, 110px); /* 2개의 동일한 폭의 칸으로 나눔 */
 	grid-template-rows: repeat(1, 90px);
 	gap: 20px;
 	margin-right: 100px;
