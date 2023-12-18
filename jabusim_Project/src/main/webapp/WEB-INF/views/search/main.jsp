@@ -17,7 +17,7 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="${root}css/search_main/search_main.css?ver=15" />
+<link rel="stylesheet" href="${root}css/search_main/search_main.css?ver=16" />
 <link rel="stylesheet" href="${root}css/custom_scrollBar.css" />
 <!-- AJAX -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

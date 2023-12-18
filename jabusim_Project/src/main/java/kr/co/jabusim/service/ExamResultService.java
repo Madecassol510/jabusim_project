@@ -39,27 +39,43 @@ public class ExamResultService {
 		ArrayList<ExamResultBean> examResultBeanList = new ArrayList<ExamResultBean>();
 		
 		
-		outerLoop:
-		for(int i=0; i<tempExamResultBeanList.size(); i++) {
-			if(resultStatus.size()<=0 && processStatus.size()<=0) {
-				examResultBeanList.add(tempExamResultBeanList.get(i));
-			}
-			else {
-				for(int y=0; y<resultStatus.size(); y++) {
-					if(tempExamResultBeanList.get(i).getExamResult_status().equals(resultStatus.get(y))) {
-						examResultBeanList.add(tempExamResultBeanList.get(i));
-						continue outerLoop;			
-					}
-				}
-				
-				for(int z=0; z<processStatus.size(); z++) {
-					if(tempExamResultBeanList.get(i).getExamResult_processStatus().equals(processStatus.get(z))) {
-						examResultBeanList.add(tempExamResultBeanList.get(i));
-						continue outerLoop;			
-					}
-				}
-			}		
-		}
+			if (resultStatus.size() <= 0 &&  processStatus.size()<=0) {
+		         for(int i=0; i<tempExamResultBeanList.size(); i++) {
+		            examResultBeanList.add(tempExamResultBeanList.get(i));
+		         }
+		      }
+		      else if(resultStatus.size() > 0 && processStatus.size()<=0) {
+		         
+		         for(int i=0; i<tempExamResultBeanList.size(); i++) {
+		            for(int y=0; y<resultStatus.size(); y++) {
+		               if(tempExamResultBeanList.get(i).getExamResult_status().equals(resultStatus.get(y))) {
+		                  examResultBeanList.add(tempExamResultBeanList.get(i));      
+		               }
+		            }      
+		         }   
+		      }
+		      else if(resultStatus.size() <= 0 && processStatus.size()>0) {
+		         for(int i=0; i<tempExamResultBeanList.size(); i++) {
+		            for(int z=0; z<processStatus.size(); z++) {
+		               if(tempExamResultBeanList.get(i).getExamResult_processStatus().equals(processStatus.get(z))) {
+		                  examResultBeanList.add(tempExamResultBeanList.get(i));      
+		               }
+		            }   
+		         }   
+		      }
+		      else if(resultStatus.size() > 0 && processStatus.size() >0){
+		         for(int i=0; i<tempExamResultBeanList.size(); i++) {
+		            for(int z=0; z<processStatus.size(); z++) {
+		               if(tempExamResultBeanList.get(i).getExamResult_processStatus().equals(processStatus.get(z))) {               
+		                  for(int y=0; y<resultStatus.size(); y++) {
+		                     if(tempExamResultBeanList.get(i).getExamResult_status().equals(resultStatus.get(y))) {
+		                        examResultBeanList.add(tempExamResultBeanList.get(i));      
+		                     }
+		                  }                  
+		               }
+		            }   
+		         }      
+		      }
 		
 		
 		return examResultBeanList;

@@ -487,10 +487,6 @@
 								</c:choose>
 							</table>					
 						</div>
-						<div class="button_div">
-							<button class = "preButton" id="edu_preButton" onclick="clickPre('학력')"> &lt;</button>
-							<button class = "nextButton" id="edu_nextButton" onclick="CareerClickNext('학력')"> &gt;</button>
-						</div>				
 					</div>
 					<div class="modify_div">
 						<h5>학력 추가</h5>
@@ -572,10 +568,6 @@
 									</c:otherwise>
 								</c:choose>							
 							</table>
-						</div>
-						<div class="button_div">
-							<button class = "preButton" id="career_preButton" onclick="clickPre('경력')">&lt;</button>
-							<button class = "nextButton" id="career_nextButton" onclick="clickNext('경력')">&gt;</button>
 						</div>
 					</div>
 					<div class="modify_div">

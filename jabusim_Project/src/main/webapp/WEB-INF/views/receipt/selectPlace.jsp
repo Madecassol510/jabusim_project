@@ -228,6 +228,6 @@
 </body>
 
 
-<script type="text/javascript" src="${root}js/receiptJS/selectPlace.js?ver=6" ></script>
+<script type="text/javascript" src="${root}js/receiptJS/selectPlace.js?ver=7" ></script>
 
 </html>

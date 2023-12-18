@@ -9,7 +9,7 @@
 }
 
 .pretty-scrollbar::-webkit-scrollbar-thumb {
-    background: #0d6efd; /* Color of the scrollbar thumb */
+    background: #6495ED; /* Color of the scrollbar thumb */
     border-radius: 8px; /* Rounded corners for the thumb */
 }
 
