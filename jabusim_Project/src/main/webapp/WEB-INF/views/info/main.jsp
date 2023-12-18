@@ -14,6 +14,7 @@
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <style>
 .sidebar-styling {
@@ -249,6 +250,12 @@ th, td {
 	padding: 5px;
 }
 
+#passRateChart {
+	box-sizing: border-box;
+	height: 100% !important;
+	width: 100% !important;
+}
+
 </style>
 
 <%
@@ -277,7 +284,7 @@ th, td {
 	<c:import url="/WEB-INF/views/include/top_menu.jsp" />
 
 	<!-- 사이드바 -->
-	<div class="sidebar-styling">
+<!-- 	<div class="sidebar-styling">
 		<ul>
 			<li><button class="sidebar-btn" data-bs-target="#fbanner-section">배너</button></li>
 			<li><button class="sidebar-btn" data-bs-target="#info-section">정보</button></li>
@@ -286,7 +293,7 @@ th, td {
 			<li><button class="sidebar-btn" data-bs-target="#exam-section">정보</button></li>
 					
 		</ul>
-	</div>
+	</div> -->
 
 	<div class="container-box mx-auto my-5">
 		<div id="fbanner-section" class="card mx-auto my-5">
