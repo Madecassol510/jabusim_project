@@ -26,7 +26,7 @@
 <style>
 
 	.btn-primary {
-		background-color: #5A7BFF;
+		background-color: #6495ED;
 	} 
 
 	.top_module_inner>h1{

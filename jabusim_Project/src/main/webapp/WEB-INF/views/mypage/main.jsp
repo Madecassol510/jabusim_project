@@ -287,8 +287,14 @@
 	#myLicense_module .licenseBox .licenseList{
 		min-height: 300px;
 		width: 100%;
-		/* border: 1px solid blue; */
 		padding:30px;
+		
+		display: grid;
+		grid-template-columns: repeat(4, 1fr); /* 4개의 열을 만듭니다. 각 열의 너비는 동일합니다. */
+		gap: 10px;
+		
+		
+		
 	} 
 	
 	#myLicense_module .licenseBox .own_licenseListBox{
@@ -299,21 +305,91 @@
 		border-radius: 10px;
 		display: inline-block;
 		padding: 12px;
+		
+		
 	}
 	
-	#myLicense_module .licenseBox .licenseCardList{
-		height: 150px;
-		width: 25%;
-		/* border: 1px solid green; */
-		float: left;
-	} 
 	
-	#myLicense_module .licenseBox .licenseCardList .card{		
-		width: 95%;
-		height: 95%;
-		margin: auto;
+	#myLicense_module .licenseBox  .license-card{		
+		height:150px;
+		border: 1px solid black;
 	}
 	
+	
+	
+.license-card {
+	width: 280px;
+	height: 150px;
+	border: 1px solid #222;
+	border-radius: 20px;
+	margin : 10px 5px;
+}
+
+.license-card:hover {
+	overflow: visible;
+	
+}
+
+.license-card:hover .main-card-body{
+	/* display:inline-block;
+	white-space:nowrap; */
+	position: absolute;
+	z-index: 2;
+	background-color: white;
+	width: 278px;
+	border: 1px solid #33333380;
+	
+}
+
+.main-card-header {
+	padding: 5px 0;
+	text-align: center;
+	font-size: 16pt;
+	font-weight: bold;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom: 1px solid #000;
+	box-shadow: 0 3px 3px 0 #ccc;
+	background-color: #F0F2FF;
+}
+
+.main-card-body {
+	text-align: center;
+	padding: 5px;
+}
+
+.main-card-title {
+	margin: 0;
+	margin-bottom: 3px;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+.main-card-text {
+	margin: 0;
+	padding: 0;
+	font-size: 10pt;
+	font-weight: lighter;
+	text-align: center;
+}
+
+.license-button {
+	display: flex;
+	justify-content: center;
+}
+
+.license-button>button {
+	width: 50px;
+	height: 30px;
+	margin: 0 10px;
+	background-color: #F0F2FF;
+	font-weight: bold;
+	border-radius: 3px;
+}
+
+.license-button>button:active {
+	background-color: #B2B7D5;
+}
 	
 </style>
 
@@ -444,28 +520,18 @@
 						<span>${myPageUserBean.getUser_name()}님의 관심 자격증은 ${licenseCount}개입니다</span>
 					</div>
 					<div class="licenseList" id="own_licenseList">
-						<div class="own_licenseListBox">
-							<div class="licenseCardList">
-								<div class="card text-bg-light">
-									<div class="card-header">Header</div>
-									<div></div>
-								</div>
-							</div>
-							<div class="licenseCardList">
-								<div class="card text-bg-light">
-									<div class="card-header">Header</div>
-									<div></div>
-								</div>
-							</div>
-							
-							
-						</div>
-					
-						
 						<c:forEach items="${userOwnLicenseBeans}" var="userOwnLicenseBean">
-							
-						</c:forEach> 	
+							<div class="license-card" onclick="location.href='${root}info/main?licenseID=${userOwnLicenseBean.license_idx}'" style="transition: transform 0.3s ease-in-out;" data-original-text="마우스를 올리면 상세내용이 뜹니다." data-hover-text="${userOwnLicenseBean.license_info}">
+								<div class="main-card-header">${userOwnLicenseBean.license_name}</div>
+								<div class="main-card-body">
+									<p class="main-card-title">${userOwnLicenseBean.license_mainCategory}</p>
+									<p class="main-card-text">마우스를 올리면 상세내용이 뜹니다.</p>
+								</div>
+							</div>
+						</c:forEach>
 					</div>
+					
+					
 				</div>
 			</div>
 		</div>	

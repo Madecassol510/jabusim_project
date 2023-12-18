@@ -249,7 +249,7 @@ li {
 	align-items: center;
 	position: relative;
 	top: 15px;
-	border: 3px solid black;
+	border: 1px solid black;
 	border-radius: 5px;
 }
 
@@ -319,7 +319,7 @@ li {
 .license-card {
 	width: 280px;
 	height: 150px;
-	border: 2px solid #222;
+	border: 1px solid #222;
 	border-radius: 20px;
 	margin : 10px 5px;
 }
@@ -335,7 +335,7 @@ li {
 	position: absolute;
 	z-index: 2;
 	background-color: white;
-	width: 270px;
+	width: 269px;
 	border: 1px solid #33333380;
 	
 }
@@ -343,7 +343,7 @@ li {
 .main-card-header {
 	padding: 5px 0;
 	text-align: center;
-	font-size: 20pt;
+	font-size: 16pt;
 	font-weight: bold;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;

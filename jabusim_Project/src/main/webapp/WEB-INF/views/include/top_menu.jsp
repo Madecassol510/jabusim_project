@@ -45,7 +45,6 @@
 				<c:otherwise>
 					<li class="login-item"><a href="${root }user/login" class="login-item-link">로그인</a></li>
 					<li class="login-item"><a href="${root }user/join" class="login-item-link">회원가입</a></li>
-					<li class="login-item"><a href="${root }adminPage/memberManage" class="login-item-link">관리자페이지</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul> <!-- top login section end -->

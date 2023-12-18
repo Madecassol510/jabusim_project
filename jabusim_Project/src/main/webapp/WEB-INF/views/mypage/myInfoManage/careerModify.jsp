@@ -72,6 +72,7 @@
 		text-align:center;
 		width: 100%;
 		border: 1px solid black;
+		border-collapse: collapse;
 	}
 	
 	#modify_module .article .articleBox table tbody, tr{
@@ -85,6 +86,7 @@
 		padding-bottom: 10px;
 		border: 1px solid black;
 		height: 50px;
+		border-collapse: collapse;
 	}
 	
 	#modify_module .article .articleBox table td{
@@ -94,6 +96,7 @@
 		padding-bottom: 10px;
 		border: 1px solid black;
 		height: 50px;
+		border-collapse: collapse;
 	}
 	
 	#modify_module h3{
